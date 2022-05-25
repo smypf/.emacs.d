@@ -65,6 +65,7 @@
     (setq evil-want-keybinding nil)
     (setq evil-vsplit-window-right t)
     (setq evil-split-window-below t)
+    (setq evil-undo-system 'undo-redo)
     (evil-mode))
 
   (use-package evil-collection
