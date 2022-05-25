@@ -4,16 +4,23 @@
 * Things to fix
 - [ ] Key Bindings
   - [ ] Tab to open close headings
-  - [ ] SPC w <window operations>
+  - [X] SPC w <window operations>
 
-- [ ] Turn off noise
+- [X] Turn off noise
 - [ ] Don't install packages every time.
 - [X] Use the theme
 - [ ] SPC-: Replicate from Doom
 - [X] Install magit
 - [ ] New splash page
 - [ ] Make Which-Key not as noisy - Unbind unused keys?
-- [ ] Install Consult etc
+- [X] Install Consult etc
+- Magit
+  - [ ] Open in vertical split
+  - [ ] Change buffer below commit message instead of on top of
+- [ ] Automatically install packages
+  https://stackoverflow.com/a/10093312
+  https://stackoverflow.com/a/10095853
+- [ ] Paging is weird. Scrolling pages down at the bottom of the page
 
 - [ ] LSP ?
 
