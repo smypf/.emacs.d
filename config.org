@@ -167,3 +167,27 @@ https://github.com/minad/vertico#complementary-packages
 					  ; 	     completion-category-overrides '((files (styles partial-completion))))
     )
 #+END_SRC
+
+* QOL Extensions
+* Projectile
+
+#+BEGIN_SRC emacs-lisp
+  (use-package projectile
+    :ensure t)
+
+  (general-define-key
+   :states 'normal
+   :keymaps 'override
+   :prefix leader
+   "SPC" 'projectile-find-file)
+#+END_SRC
+
+* simple.el
+
+#+BEGIN_SRC emacs-lisp
+  (general-define-key
+   :states 'normal
+   :keymaps 'override
+   :prefix leader
+   ":" 'execute-extended-command)
+#+END_SRC
