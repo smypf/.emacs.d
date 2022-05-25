@@ -9,7 +9,7 @@
 - [X] Turn off noise
 - [ ] Don't install packages every time.
 - [X] Use the theme
-- [ ] SPC-: Replicate from Doom
+- [X] SPC-: Replicate from Doom
 - [X] Install magit
 - [ ] New splash page
 - [ ] Make Which-Key not as noisy - Unbind unused keys?
