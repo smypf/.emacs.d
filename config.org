@@ -33,15 +33,14 @@
 * Package Management
 ** Use package.el to use MELPA
 #+BEGIN_SRC emacs-lisp
-;;   (require 'package)
-;;   (add-to-list 'package-archives
-;; 	       '("melpa" . "https://melpa.org/packages/"))
+  (require 'package)
+  (add-to-list 'package-archives
+	       '("melpa" . "https://melpa.org/packages/"))
 
-  ;; Setting these significantly increases the statup time as packages are refreshed from melpa
+  ;; Setting this significantly increases the statup time as packages are refreshed from melpa
+  ;; See C-h f package-refresh-contents
   ;; (package-refresh-contents)
-  ;; (package-initialize)
-  ;; (setq package-enable-at-startup nil)
-
+  (setq package-enable-at-startup nil)
 #+END_SRC
 
 ** use-package
@@ -50,9 +49,10 @@
   ;; This is only needed once, near the top of the file
   (eval-when-compile
     ;; Following line is not needed if use-package.el is in ~/.emacs.d
-    (add-to-list 'load-path "<path where use-package is installed>")
+    (add-to-list 'load-path "~/.emacs.d/elpa/")
     (unless (package-installed-p 'use-package)
       (require 'use-package)))
+  (setq use-package-always-ensure t)
 #+END_SRC
 
 * EVIL Mode
