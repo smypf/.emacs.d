@@ -214,3 +214,16 @@ https://github.com/minad/vertico#complementary-packages
    :prefix leader
    ":" 'execute-extended-command)
 #+END_SRC
+
+
+** Buffers
+
+#+BEGIN_SRC emacs-lisp
+  (general-define-key
+   :states 'normal
+   :keymaps 'override
+   :prefix leader
+   "bp" 'evil-prev-buffer
+   "bn" 'evil-next-buffer)
+#+END_SRC
+
