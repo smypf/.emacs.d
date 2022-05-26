@@ -95,14 +95,20 @@
 * Magit
 
 #+BEGIN_SRC emacs-lisp
-   (use-package magit
-     :ensure t)
+  (use-package magit
+    :ensure t)
 
   (general-define-key
    :states 'normal
    :keymaps 'override
    :prefix leader
    "g" 'magit)
+
+  ; Kill the magit buffer and close the pane
+  (general-define-key
+   :state 'normal
+   :keymaps 'magit-mode-map
+   "q" 'kill-buffer-and-window)
 #+END_SRC
 
 * Which Key
