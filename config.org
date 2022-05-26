@@ -126,7 +126,10 @@
    :states 'normal
    "-" 'dired-jump)
 
-					  ; (evil-define-key 'normal 'global "-" 'dired-jump)
+  (evil-define-key 'normal dired-mode-map "q" 'kill-buffer-and-window)
+
+  ; Prevent new buffers from being created when navigating directories
+  (setq dired-kill-when-opening-new-dired-buffer t)
 #+END_SRC
 
 * Window Manipulation
