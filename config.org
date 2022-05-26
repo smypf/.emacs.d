@@ -188,19 +188,23 @@ https://github.com/minad/vertico#complementary-packages
 #+END_SRC
 
 * QOL Extensions
-* Projectile
+** Projectile
 
 #+BEGIN_SRC emacs-lisp
     (use-package projectile)
 
-  (general-define-key
-   :states 'normal
-   :keymaps 'override
-   :prefix leader
-   "SPC" 'projectile-find-file)
+    (general-define-key
+     :states 'normal
+     :keymaps 'override
+     :prefix leader
+     "SPC" 'projectile-find-file
+     "pp" 'projectile-switch-project)
+
+    (setq projectile-project-search-path '("~/projects/"))
+    (projectile-discover-projects-in-search-path)
 #+END_SRC
 
-* simple.el
+** simple.el
 
 #+BEGIN_SRC emacs-lisp
   (general-define-key
