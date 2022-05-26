@@ -2,3 +2,6 @@ auto-save-list
 eln-cache
 elps
 transient
+projectile-bookmarks.eld
+elpa
+config.el
