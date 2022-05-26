@@ -162,11 +162,10 @@ https://github.com/minad/vertico#complementary-packages
     :init)
 
   (use-package orderless
-    :init
-					  ; (setq completion-styles '(orderless-basic)
-					  ; 	     completion-category-defaults nil
-					  ; 	     completion-category-overrides '((files (styles partial-completion))))
-    )
+    :ensure t
+    :custom
+    (completion-styles '(orderless basic))
+    (completion-category-overrides '((file (styles basic partial-completion)))))
 #+END_SRC
 
 * QOL Extensions
