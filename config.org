@@ -59,7 +59,6 @@
 
 #+BEGIN_SRC emacs-lisp
   (use-package evil
-    :ensure t
     :init
     (setq evil-want-integration t)
     (setq evil-want-keybinding nil)
@@ -70,12 +69,10 @@
 
   (use-package evil-collection
     :after evil
-    :ensure t
     :config
     (evil-collection-init))
 
   (use-package general
-    :ensure t
     :init
     (general-evil-setup t))
 
@@ -103,13 +100,15 @@ Sometimes I have sausage fingers. These commands allow me to mistype commands wh
   (load-theme 'eink t)
 #+END_SRC
 
+** Other
 #+BEGIN_SRC emacs-lisp
+  ;; Add line numbers globally
+  (global-display-line-numbers-mode)
 #+END_SRC
 * Magit
 
 #+BEGIN_SRC emacs-lisp
-  (use-package magit
-    :ensure t)
+  (use-package magit)
 
   (general-define-key
    :states 'normal
@@ -127,8 +126,7 @@ Sometimes I have sausage fingers. These commands allow me to mistype commands wh
 * Which Key
 
 #+BEGIN_SRC emacs-lisp
-  (use-package which-key
-    :ensure t)
+  (use-package which-key)
   (which-key-mode)
 #+END_SRC
 
@@ -184,7 +182,6 @@ https://github.com/minad/vertico#complementary-packages
     :init)
 
   (use-package orderless
-    :ensure t
     :custom
     (completion-styles '(orderless basic))
     (completion-category-overrides '((file (styles basic partial-completion)))))
@@ -194,8 +191,7 @@ https://github.com/minad/vertico#complementary-packages
 * Projectile
 
 #+BEGIN_SRC emacs-lisp
-  (use-package projectile
-    :ensure t)
+    (use-package projectile)
 
   (general-define-key
    :states 'normal
