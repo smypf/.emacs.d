@@ -92,7 +92,8 @@ Sometimes I have sausage fingers. These commands allow me to mistype commands wh
   (evil-ex-define-cmd "W" 'evil-write) 
 
 #+END_SRC
-* Theme
+* Appearance
+** Theme
 
 #+BEGIN_SRC emacs-lisp
   (package-install-file "~/.emacs.d/eink-theme.el")
