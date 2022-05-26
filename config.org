@@ -79,9 +79,22 @@
     :init
     (general-evil-setup t))
 
-    (defconst leader "SPC")
+  (defconst leader "SPC")
+
+  (setq scroll-conservatively 101) ; Prevent the cursor jumping to the middle of the page when scrolling to the bottom of the screen
+					  ; https://stackoverflow.com/a/25777730
+  (setq scroll-margin 5)
 #+END_SRC
 
+*** New commands
+
+Sometimes I have sausage fingers. These commands allow me to mistype commands which I regularly input incorrectly
+#+BEGIN_SRC emacs-lisp
+  ; For some reason this doesn't work
+  ; (evil-ex-define-cmd "\"w" 'evil-write) 
+  (evil-ex-define-cmd "W" 'evil-write) 
+
+#+END_SRC
 * Theme
 
 #+BEGIN_SRC emacs-lisp
