@@ -5,7 +5,7 @@
 - [ ] Key Bindings
   - [ ] Tab to open close headings
   - [X] SPC w <window operations>
-
+  - [X] SPC b n + SPC b p for navigating buffers
 - [X] Turn off noise
 - [ ] Don't install packages every time.
 - [X] Use the theme
@@ -24,8 +24,30 @@
   https://stackoverflow.com/a/10093312
   https://stackoverflow.com/a/10095853
 - [ ] Paging is weird. Scrolling pages down at the bottom of the page
+- [X] New command :"W => :w
+  This isn't possible as it's a syntax error
+- [ ] Do you want to use `global-hl-line-mode`
+- [ ] Theme
+  - [X] Search Matches are impossible to see
+- [ ] Orderless
+  - [ ] Space should match anything
+- [ ] "y" and "n" for confirmations instead of "yesRET" and "noRET"
 
 - [ ] LSP ?
+
+* Useful things
+
+| Key Binding | Function                                    |
+|-------------+---------------------------------------------|
+| C-h v       | Describe variables                          |
+| C-h f       | Describe functions                          |
+| M-s h C-h   | Highlight commands                          |
+| M-s o       | Occur - Show buffer with all search results |
+
+
+** Highlighting things
+Occur
+https://stackoverflow.com/a/9938538
 
 * Basic settings
 #+BEGIN_SRC emacs-lisp
