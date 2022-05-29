@@ -288,3 +288,13 @@ https://github.com/minad/vertico#complementary-packages
 	   ;; (before-save . tide-format-before-save))
 	   )
 #+END_SRC
+
+* vterm
+
+#+BEGIN_SRC emacs-lisp
+  (general-define-key
+   :states 'normal
+   :keymaps 'override
+   :prefix leader
+   "'" 'vterm)
+#+END_SRC
