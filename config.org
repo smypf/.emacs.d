@@ -15,7 +15,10 @@
 - [ ] Make Which-Key not as noisy - Unbind unused keys?
 - [X] Install Consult etc
 - Magit
-  - [ ] Open in vertical split
+  - [X] Open in vertical split
+    https://emacs.stackexchange.com/questions/17872/algorithm-on-deciding-splitting-vertically-or-horizontally/17877#17877
+    The value for split-width-threshold and split-height-threshold was taken from Doom Emacs which does this well
+    https://github.com/doomemacs/doomemacs/blob/61a7c541655038615e3f846a87db2e7d5883d35a/core/core-ui.el#L290
   - [ ] Change buffer below commit message instead of on top of
 - [ ] Automatically install packages
   https://stackoverflow.com/a/10093312
@@ -65,6 +68,13 @@
 	  evil-vsplit-window-right t
 	  evil-split-window-below t
 	  evil-undo-system 'undo-redo)
+
+    ; Setting `split-height-threshold` to nil and `split-width-threshold` to 1 forces vertical splits
+    ; This was specifically done for ensuring that magit panes are not opened in horizontal splits
+    ; These values are copied from the Doom Emacs repository
+    ; https://github.com/doomemacs/doomemacs/blob/61a7c541655038615e3f846a87db2e7d5883d35a/core/core-ui.el#L290
+    (setq split-height-threshold nil
+	  split-width-threshold 160)
     (evil-mode))
 
   (use-package evil-collection
