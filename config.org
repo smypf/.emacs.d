@@ -166,6 +166,9 @@ https://stackoverflow.com/a/54832344
    :state 'normal
    :keymaps 'magit-mode-map
    "q" 'kill-buffer-and-window)
+
+  ;; https://emacs.stackexchange.com/a/14012
+  (add-hook 'with-editor-mode-hook 'evil-insert-state)
 #+END_SRC
 
 * Which Key
