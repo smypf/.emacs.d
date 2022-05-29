@@ -57,9 +57,7 @@
 
       ;; new
       (et-font        "EtBembo")
-      (sans-mono-font "Fira Code")
-      )
-
+      (sans-mono-font "Fira Code"))
 
   (custom-theme-set-faces
    'eink
