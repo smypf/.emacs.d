@@ -272,9 +272,16 @@ https://github.com/minad/vertico#complementary-packages
    :keymaps 'override
    :prefix leader
    "bp" 'evil-prev-buffer
-   "bn" 'evil-next-buffer)
+   "bn" 'evil-next-buffer
+   "bb" 'switch-to-buffer)
 #+END_SRC
 
+** Yes or No
+https://www.emacswiki.org/emacs/YesOrNoP
+
+#+BEGIN_SRC emacs-lisp
+  (defalias 'yes-or-no-p 'y-or-n-p)
+#+END_SRC
 * Code Completion
 
 ** TypeScript
