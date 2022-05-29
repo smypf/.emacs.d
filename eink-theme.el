@@ -52,6 +52,8 @@
       (bg-highlight-3 "LightGreen")
       (hl-line-bg     "#f4f4e8")
       (org-todo       "#ff98a3")
+      (isearch-bg     "#e88aff")
+      (lazy-highlight-bg     "#e1c5e8")
 
       ;; new
       (et-font        "EtBembo")
@@ -95,7 +97,8 @@
    `(ido-first-match ((t (:foreground ,fg))))
    `(ido-only-match ((t (:foreground ,fg))))
    `(ido-subdir ((t (:foreground ,fg))))
-   `(isearch ((t (:background "#eeeee8" :foreground ,fg))))
+   `(isearch ((t (:background ,isearch-bg :foreground ,bg))))
+   `(lazy-highlight ((t (:background ,lazy-highlight-bg :foreground ,fg))))
    `(link ((t (:foreground ,fg))))
    `(minibuffer-prompt ((t (:foreground ,fg))))
    ;; `(mode-line ((t (:background ,bg-light :foreground ,fg :height 0.8))))
@@ -266,7 +269,7 @@
    `(evil-snipe-matches-face ((t (:foreground ,fg :background ,bg-highlight-3))))
 
    ;; evil
-   `(evil-ex-lazy-highlight ((t (:background ,bg-highlight-2))))
+   `(evil-ex-lazy-highlight ((t (:background ,isearch-bg))))
    `(evil-ex-substitute-matches ((t (:background ,bg-highlight-2))))
    `(evil-ex-substitute-replacement ((t (:background ,bg-highlight :underline nil :foreground ,fg))))
 
