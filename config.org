@@ -80,11 +80,12 @@ https://stackoverflow.com/a/9938538
   (setq use-package-always-ensure t)
 #+END_SRC
 
-* EVIL Mode
+** EVIL Mode
 
 #+BEGIN_SRC emacs-lisp
   (use-package evil
     :init
+
     (setq evil-want-integration t
 	  evil-want-keybinding nil
 	  evil-vsplit-window-right t
