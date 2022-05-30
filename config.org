@@ -179,7 +179,9 @@ https://stackoverflow.com/a/54832344
 * Magit
 
 #+BEGIN_SRC emacs-lisp
-  (use-package magit)
+  (use-package magit
+    :after evil
+    :defer t)
 
   (general-define-key
    :states 'normal
@@ -200,8 +202,10 @@ https://stackoverflow.com/a/54832344
 * Which Key
 
 #+BEGIN_SRC emacs-lisp
-  (use-package which-key)
-  (which-key-mode)
+  (use-package which-key
+    :defer t
+    :config
+    (which-key-mode))
 #+END_SRC
 
 * Dired
@@ -245,7 +249,8 @@ https://github.com/minad/vertico#complementary-packages
 
 #+BEGIN_SRC emacs-lisp
   (use-package vertico
-    :init
+    :defer t
+    :config
     (vertico-mode)
     (setq vertico-count 15))
 
@@ -253,6 +258,7 @@ https://github.com/minad/vertico#complementary-packages
     "  " 'vertico-find)
 
   (use-package consult
+    :defer t
     :init
     (setq xref-show-xrefs-function #'consult-xref
 	  xref-show-definitions-function #'consult-xref)
@@ -260,6 +266,7 @@ https://github.com/minad/vertico#complementary-packages
     (autoload 'projectile-project-root "projectile"))
 
   (use-package orderless
+    :defer t
     :custom
     (completion-styles '(orderless flex))
     (completion-category-overrides '((file (styles basic partial-completion)))))
@@ -269,7 +276,8 @@ https://github.com/minad/vertico#complementary-packages
 ** Projectile
 
 #+BEGIN_SRC emacs-lisp
-    (use-package projectile)
+  (use-package projectile
+    :defer t)
 
     (general-define-key
      :states 'normal
@@ -336,6 +344,7 @@ https://www.emacswiki.org/emacs/YesOrNoP
 
 #+BEGIN_SRC emacs-lisp
   (use-package tide
+  :defer t
     :ensure t
     :hook ((typescript-mode . tide-setup)
 	   (typescript-mode . tide-hl-identifier-mode)))
@@ -345,6 +354,7 @@ https://www.emacswiki.org/emacs/YesOrNoP
 
 #+BEGIN_SRC emacs-lisp
   (use-package vterm
+  :defer t
     :ensure t
     :config
     (with-eval-after-load 'evil
