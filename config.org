@@ -285,6 +285,21 @@ https://www.emacswiki.org/emacs/YesOrNoP
 #+END_SRC
 * Code Completion
 
+** Search 
+
+#+BEGIN_SRC emacs-lisp
+
+  (general-define-key
+   :states 'normal
+   :keymaps 'override
+   :prefix leader
+   "/" 'consult-ripgrep
+   "s" 'consult-line)
+
+#+END_SRC
+
+* Code
+
 ** TypeScript
 
 #+BEGIN_SRC emacs-lisp
