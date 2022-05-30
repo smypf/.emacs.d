@@ -178,6 +178,24 @@ https://stackoverflow.com/a/54832344
   ;; Add line numbers globally
   (global-display-line-numbers-mode)
 #+END_SRC
+
+** Doom Modeline
+
+Somethings about Doom Emacs are nice, like the modeline
+
+#+BEGIN_SRC emacs-lisp
+  (use-package doom-modeline
+    :init (doom-modeline-mode)
+    :config
+    (setq doom-modeline-major-mode-icon nil
+	  doom-modeline-vcs-max-length 40
+	  doom-modeline-workspace-name nil
+	  doom-modeline-buffer-encoding nil
+	  doom-modeline-persp-name nil
+	  doom-modeline-persp-icon t
+	  doom-modeline-buffer-file-name-style 'relative-to-project))
+#+END_SRC
+
 * Magit
 
 #+BEGIN_SRC emacs-lisp

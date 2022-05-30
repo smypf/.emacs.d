@@ -41,23 +41,20 @@
 (deftheme eink
   "Theme emulating reading on an E Ink device.")
 
-(let ((fg             "#444444")
-      (fg-table       "#222291")
-      (bg             "#fffff8")
-      (bg-light       "#646464")
-      (comment        "#c1c1bd")
-      (fg-light       "#ddddd8")
-      (bg-highlight   "#fff1aa")
-      (bg-highlight-2 "LightCyan")
-      (bg-highlight-3 "LightGreen")
-      (hl-line-bg     "#f4f4e8")
-      (org-todo       "#ff98a3")
-      (isearch-bg     "#e88aff")
-      (lazy-highlight-bg     "#e1c5e8")
-
-      ;; new
-      (et-font        "EtBembo")
-      (sans-mono-font "Fira Code"))
+(let ((fg                "#444444")
+      (fg-table          "#222291")
+      (bg                "#fffff8")
+      (bg-light          "#646464")
+      (comment           "#c1c1bd")
+      (fg-light          "#ddddd8")
+      (bg-highlight      "#fff1aa")
+      (bg-highlight-2    "LightCyan")
+      (bg-highlight-3    "LightGreen")
+      (hl-line-bg        "#f4f4e8")
+      (org-todo          "#ff98a3")
+      (isearch-bg        "#e88aff")
+      (lazy-highlight-bg "#e1c5e8")
+      (mode-line-bg      "#c5a7d4"))
 
   (custom-theme-set-faces
    'eink
@@ -99,11 +96,15 @@
    `(lazy-highlight ((t (:background ,lazy-highlight-bg :foreground ,fg))))
    `(link ((t (:foreground ,fg))))
    `(minibuffer-prompt ((t (:foreground ,fg))))
-   ;; `(mode-line ((t (:background ,bg-light :foreground ,fg :height 0.8))))
+   `(mode-line ((t (:background ,mode-line-bg :foreground ,fg))))
+   `(doom-modeline-evil-insert-state ((t (:foreground ,fg))))
+   `(doom-modeline-evil-visual-state ((t (:foreground ,fg))))
+   `(doom-modeline-evil-normal-state ((t (:foreground ,fg))))
+   `(doom-modeline-info ((t (:foreground ,fg))))
+
    ;; `(mode-line-buffer ((t (:foreground ,fg))))
    ;; `(mode-line-inactive ((t (:background ,bg-light :foreground ,bg-light :height 0.8))))
    ;; `(mode-line-minor-mode ((t (:weight ultra-light))))
-   ;; `(modeline ((t (:background ,bg :foreground ,fg :height 0.8))))
    `(region ((t (:background "#eeeee8" :foreground ,fg))))
    `(slime-repl-inputed-output-face ((t (:foreground ,fg))))
    `(whitespace-line ((t (:background ,bg-highlight-2 :foreground ,fg))))
@@ -138,10 +139,6 @@
    `(org-verse ((t (:inherit org-block :slant italic))))
    `(org-table ((t (:foreground ,fg-table))))
    `(org-document-title ((t (:foreground ,fg :weight semi-bold))))
-
-   ;; powerline
-   ;; `(powerline-active1 ((t (:background "grey22" :foreground ,bg :inherit mode-line))))
-   ;; `(powerline-active2 ((t (:background "grey40" :foreground ,bg :inherit mode-line))))
 
    ;; magit
    `(magit-header ((t (:weight semi-bold))))
