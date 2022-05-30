@@ -312,8 +312,8 @@ https://github.com/minad/vertico#complementary-packages
 
 ** Formatting
 
-#+BEGIN_SRC
-(setq-default fill-column 120)
+#+BEGIN_SRC emacs-lisp
+  (setq-default fill-column 120)
 #+END_SRC
 
 ** Projectile
