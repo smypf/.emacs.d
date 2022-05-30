@@ -3,12 +3,16 @@
 
 * Things to fix
 - [ ] Key Bindings
-  - [ ] Tab to open close headings
+  - [ ] Tab to open close headings in org mode
   - [X] SPC w <window operations>
   - [X] SPC b n + SPC b p for navigating buffers
 - [X] Turn off noise
-- [ ] Don't install packages every time.
-- [X] Use the theme
+
+- [ ] use-package
+  - [X] Don't install packages every time.
+  - [ ] Automatically install packages when missing
+    https://stackoverflow.com/a/10093312
+    https://stackoverflow.com/a/10095853
 - [X] SPC-: Replicate from Doom
 - [X] Install magit
 - [ ] New splash page
@@ -20,21 +24,19 @@
     The value for split-width-threshold and split-height-threshold was taken from Doom Emacs which does this well
     https://github.com/doomemacs/doomemacs/blob/61a7c541655038615e3f846a87db2e7d5883d35a/core/core-ui.el#L290
   - [X] Change buffer below commit message instead of on top of
-- [ ] Automatically install packages
-  https://stackoverflow.com/a/10093312
-  https://stackoverflow.com/a/10095853
 - [ ] Paging is weird. Scrolling pages down at the bottom of the page
 - [X] New command :"W => :w
   This isn't possible as it's a syntax error
 - [ ] Do you want to use `global-hl-line-mode`
-- [ ] Theme
+- [X] Theme
+  - [X] Use the theme
   - [X] Search Matches are impossible to see
 - [X] Orderless
   - [X] Fuzzy search
   - [X] Space should match anything
 - [X] "y" and "n" for confirmations instead of "yesRET" and "noRET"
 
-- [ ] LSP ?
+- [X] LSP - Eglot
 
 * Useful things
 
