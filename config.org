@@ -56,6 +56,13 @@ https://stackoverflow.com/a/9938538
   (setq visible-bell 1)
 #+END_SRC
 
+* Keep directories clean
+
+#+BEGIN_SRC emacs-lisp
+  (unless (package-installed-p 'no-littering)
+    (require 'no-littering))
+#+END_SRC
+
 * Package Management
 ** Use package.el to use MELPA
 #+BEGIN_SRC emacs-lisp
