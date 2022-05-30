@@ -184,7 +184,21 @@ https://stackoverflow.com/a/54832344
   (use-package magit
     :after evil
     :defer t
-    :init (defvar evil-collection-magit-use-$-for-end-of-line nil))
+    :init (defvar evil-collection-magit-use-$-for-end-of-line nil)
+    :config
+    (setq git-commit-summary-max-length 120)
+
+    ;; Open in other window instead of the current window
+    ;; TODO - Change this to use use-package's :bind
+    (define-key magit-hunk-section-map (kbd "RET") 'magit-diff-visit-file-other-window)
+    (define-key magit-file-section-map (kbd "RET") 'magit-diff-visit-file-other-window)
+
+    ;; Add goto-address-mode to magit status window and process window
+    (add-hook 'magit-process-mode-hook 'goto-address-mode)
+    (add-hook 'magit-status-sections-hook 'goto-address-mode)
+
+    ;; https://magit.vc/manual/magit/Automatic-Refreshing-of-Magit-Buffers.html
+    (add-hook 'after-save-hook 'magit-after-save-refresh-status t))
 
 
   (general-define-key
@@ -277,6 +291,13 @@ https://github.com/minad/vertico#complementary-packages
 #+END_SRC
 
 * QOL Extensions
+
+** Formatting
+
+#+BEGIN_SRC
+(setq-default fill-column 120)
+#+END_SRC
+
 ** Projectile
 
 #+BEGIN_SRC emacs-lisp
