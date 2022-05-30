@@ -320,16 +320,20 @@ https://www.emacswiki.org/emacs/YesOrNoP
 #+BEGIN_SRC emacs-lisp
   (use-package tide
     :ensure t
-    ;; :after (typescript-mode company flycheck)
     :hook ((typescript-mode . tide-setup)
-	   (typescript-mode . tide-hl-identifier-mode)
-	   ;; (before-save . tide-format-before-save))
-	   ))
+	   (typescript-mode . tide-hl-identifier-mode)))
 #+END_SRC
 
 * vterm
 
 #+BEGIN_SRC emacs-lisp
+  (use-package vterm
+    :ensure t
+    :config
+    (with-eval-after-load 'evil
+      (evil-collection-vterm-setup)
+      (evil-set-initial-state 'vterm-mode 'insert)))
+
   (general-define-key
    :states 'normal
    :keymaps 'override
