@@ -229,7 +229,11 @@ https://github.com/minad/vertico#complementary-packages
     "  " 'vertico-find)
 
   (use-package consult
-    :init)
+    :init
+    (setq xref-show-xrefs-function #'consult-xref
+	  xref-show-definitions-function #'consult-xref)
+    :config
+    (autoload 'projectile-project-root "projectile"))
 
   (use-package orderless
     :custom
@@ -283,7 +287,6 @@ https://www.emacswiki.org/emacs/YesOrNoP
 #+BEGIN_SRC emacs-lisp
   (defalias 'yes-or-no-p 'y-or-n-p)
 #+END_SRC
-* Code Completion
 
 ** Search 
 
@@ -320,4 +323,22 @@ https://www.emacswiki.org/emacs/YesOrNoP
    :keymaps 'override
    :prefix leader
    "'" 'vterm)
+#+END_SRC
+
+* Code
+
+** Finding Things
+
+#+BEGIN_SRC emacs-lisp
+  (defun find-references-at-point ()
+    (interactive)
+    (xref-find-references (thing-at-point 'symbol)))
+
+
+  (general-define-key
+   :states 'normal
+   :keymaps 'override
+   :prefix leader
+   "cd" 'xref-find-definitions
+   "cD" 'find-references-at-point)
 #+END_SRC
