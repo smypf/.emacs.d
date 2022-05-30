@@ -397,11 +397,11 @@ https://www.emacswiki.org/emacs/YesOrNoP
 
 #+BEGIN_SRC emacs-lisp
   (use-package vterm
-  :defer t
+    :after evil
+    :defer t
     :ensure t
     :config
-    (with-eval-after-load 'evil
-      (evil-set-initial-state 'vterm-mode 'emacs)))
+    (evil-set-initial-state 'vterm-mode 'insert))
 
   (general-define-key
    :states 'normal
