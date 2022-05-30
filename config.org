@@ -19,7 +19,7 @@
     https://emacs.stackexchange.com/questions/17872/algorithm-on-deciding-splitting-vertically-or-horizontally/17877#17877
     The value for split-width-threshold and split-height-threshold was taken from Doom Emacs which does this well
     https://github.com/doomemacs/doomemacs/blob/61a7c541655038615e3f846a87db2e7d5883d35a/core/core-ui.el#L290
-  - [ ] Change buffer below commit message instead of on top of
+  - [X] Change buffer below commit message instead of on top of
 - [ ] Automatically install packages
   https://stackoverflow.com/a/10093312
   https://stackoverflow.com/a/10095853
@@ -29,9 +29,10 @@
 - [ ] Do you want to use `global-hl-line-mode`
 - [ ] Theme
   - [X] Search Matches are impossible to see
-- [ ] Orderless
-  - [ ] Space should match anything
-- [ ] "y" and "n" for confirmations instead of "yesRET" and "noRET"
+- [X] Orderless
+  - [X] Fuzzy search
+  - [X] Space should match anything
+- [X] "y" and "n" for confirmations instead of "yesRET" and "noRET"
 
 - [ ] LSP ?
 
