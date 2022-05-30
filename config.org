@@ -75,7 +75,7 @@ https://stackoverflow.com/a/9938538
   ;; This is only needed once, near the top of the file
   (eval-when-compile
     ;; Following line is not needed if use-package.el is in ~/.emacs.d
-    (add-to-list 'load-path "~/.emacs.d/elpa/")
+    (add-to-list 'load-path (expand-file-name "elpa/" user-emacs-directory))
     (unless (package-installed-p 'use-package)
       (require 'use-package)))
   (setq use-package-always-ensure t)
@@ -142,7 +142,7 @@ https://stackoverflow.com/a/54832344
 ** Theme
 
 #+BEGIN_SRC emacs-lisp
-  (package-install-file "~/.emacs.d/eink-theme.el")
+  (package-install-file (expand-file-name "eink-theme.el" user-emacs-directory))
 
   (load-theme 'eink t)
 #+END_SRC
