@@ -11,7 +11,9 @@
  '(custom-safe-themes
    '("6f1e32040ff938f2dcd758702db99a6b2fddfbd9128d732fe23c6dccd82d8567" default))
  '(package-selected-packages
-   '(no-littering
+   '(doom-modeline
+     no-littering
+     eglot
      general
      consult
      vertico
