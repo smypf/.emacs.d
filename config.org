@@ -298,12 +298,17 @@ https://www.emacswiki.org/emacs/YesOrNoP
 ** Search 
 
 #+BEGIN_SRC emacs-lisp
+  (defun search-thing-at-point ()
+    (interactive)
+    (consult-ripgrep (projectile-project-root) (thing-at-point 'symbol)))
+
 
   (general-define-key
    :states 'normal
    :keymaps 'override
    :prefix leader
-   "/" 'consult-ripgrep
+   "?" 'consult-ripgrep
+   "/" 'search-thing-at-point
    "s" 'consult-line)
 
 #+END_SRC
