@@ -165,7 +165,8 @@ https://stackoverflow.com/a/54832344
 ** Theme
 
 #+BEGIN_SRC emacs-lisp
-  (package-install-file (expand-file-name "eink-theme.el" user-emacs-directory))
+  (unless (package-installed-p 'eink-theme)
+    (package-install-file (expand-file-name "eink-theme.el" user-emacs-directory)))
 
   (load-theme 'eink t)
 #+END_SRC
