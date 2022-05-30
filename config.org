@@ -360,8 +360,7 @@ https://www.emacswiki.org/emacs/YesOrNoP
     :ensure t
     :config
     (with-eval-after-load 'evil
-      (evil-collection-vterm-setup)
-      (evil-set-initial-state 'vterm-mode 'insert)))
+      (evil-set-initial-state 'vterm-mode 'emacs)))
 
   (general-define-key
    :states 'normal
