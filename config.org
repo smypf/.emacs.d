@@ -294,7 +294,7 @@ https://www.emacswiki.org/emacs/YesOrNoP
     :hook ((typescript-mode . tide-setup)
 	   (typescript-mode . tide-hl-identifier-mode)
 	   ;; (before-save . tide-format-before-save))
-	   )
+	   ))
 #+END_SRC
 
 * vterm
