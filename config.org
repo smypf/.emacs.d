@@ -412,6 +412,14 @@ https://www.emacswiki.org/emacs/YesOrNoP
 
 * Code
 
+** QOL Things
+
+I like being able to traverse subWords using "w" and "b"
+
+#+BEGIN_SRC emacs-lisp
+  (global-subword-mode)
+#+END_SRC
+
 ** Finding Things
 
 #+BEGIN_SRC emacs-lisp
