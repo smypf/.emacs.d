@@ -38,7 +38,7 @@
   (setq evil-want-integration t
 	evil-want-keybinding nil
 	evil-vsplit-window-right t
-	evil-split-window-below t
+	evil-split-window-below nil
 	evil-undo-system 'undo-redo)
 
   ; Setting `split-height-threshold` to nil and `split-width-threshold` to 1 forces vertical splits
@@ -272,6 +272,13 @@
  "cd" 'xref-find-definitions
  "cD" 'find-references-at-point)
 
+;; Copy Pasting
+(use-package xclip
+  :ensure t
+  :init (xclip-mode)
+  :config
+  (setq select-enable-clipboard nil))
+
 ;; Make gc pauses faster by decreasing the threshold.
 (setq gc-cons-threshold (* 2 1000 1000))
 
@@ -292,17 +299,7 @@
  '(custom-safe-themes
    '("6f1e32040ff938f2dcd758702db99a6b2fddfbd9128d732fe23c6dccd82d8567" default))
  '(package-selected-packages
-   '(doom-modeline
-     no-littering
-     eglot
-     general
-     consult
-     vertico
-     magit
-     evil-collection
-     evil
-     use-package
-     vterm)))
+   '(xclip doom-modeline no-littering eglot general consult vertico magit evil-collection evil use-package vterm)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
