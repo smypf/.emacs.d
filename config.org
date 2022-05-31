@@ -177,6 +177,7 @@ https://stackoverflow.com/a/54832344
 #+BEGIN_SRC emacs-lisp
   ;; Add line numbers globally
   (global-display-line-numbers-mode)
+  (global-hl-line-mode)
 #+END_SRC
 
 ** Doom Modeline
