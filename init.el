@@ -317,6 +317,12 @@
 (load "server")
 (unless (server-running-p) (server-start))
 
+;; Set the initial buffer to the scratch buffer
+(setq inhibit-startup-message t)
+;; (setq initial-buffer-choice 'scratch)
+;; Set a different message
+(setq initial-scratch-message ";; Stay focussed\n\n")
+
 ;; For compiling files. This needs to be moved into a file which is only called sometimes.
 ;; See https://github.com/gilbertw1/emacs-literate-starter
 ;; (setq byte-compile-warnings '(not free-vars unresolved noruntime lexical make-local))
