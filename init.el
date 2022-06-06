@@ -20,6 +20,12 @@
 (unless (package-installed-p 'no-littering)
   (require 'no-littering))
 
+(setq auto-save-file-name-transforms
+      `((".*" ,(no-littering-expand-var-file-name "auto-save/") t))
+      ;; Prevent creation of "#...#" lock files
+      ;; https://www.gnu.org/software/emacs/manual/html_node/emacs/Interlocking.html#Interlocking
+      create-lockfiles nil)
+
 (require 'package)
 (add-to-list 'package-archives
 	     '("melpa" . "https://melpa.org/packages/"))
