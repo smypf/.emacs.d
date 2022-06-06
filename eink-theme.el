@@ -365,6 +365,8 @@
    `(orderless-match-face-3 ((t (:foreground ,fg-table :weight bold))))
 
    ;; `(vertico-current ((t (:background ,hl-line-bg))))
+
+   `(tide-hl-identifier-face ((t (:weight bold))))
    ))
 
 ;; to here
