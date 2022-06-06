@@ -213,8 +213,10 @@
   (vertico-mode)
   (setq vertico-count 15))
 
-(general-nmap
-  "  " 'vertico-find)
+(general-define-key
+ :states 'normal
+ :keymaps 'override
+ " " 'vertico-find)
 
 (use-package consult
   :defer t
