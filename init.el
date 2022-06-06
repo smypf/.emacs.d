@@ -235,7 +235,18 @@
 (setq-default fill-column 120)
 
 (use-package projectile
-  :defer t)
+  :defer t
+  :config
+  ;; Add npm projects
+  ;; This allows for usage of `projectile-toggle-between-implementation-and-test`
+  (projectile-mode)
+  (projectile-register-project-type 'npm '("package.json")
+                                  :project-file "package.json"
+				  :configure "npm ci"
+				  :compile "npm run build"
+				  :test "npm test"
+				  :run "npm start"
+				  :test-suffix ".spec"))
 
 (general-define-key
  :states 'normal
