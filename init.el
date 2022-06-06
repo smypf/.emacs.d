@@ -50,14 +50,17 @@
 ;;   ;; To disable collection of benchmark data after init is done.
 ;;   (add-hook 'after-init-hook 'benchmark-init/deactivate))
 
+;; Setup evil for vim style keybinds
 (use-package evil
   :init
-
   (setq evil-want-integration t
 	evil-want-keybinding nil
 	evil-vsplit-window-right t
 	evil-split-window-below nil
-	evil-undo-system 'undo-redo)
+	evil-undo-system 'undo-redo
+	;; Search for the word under the cursor instead of the symbol
+	;; https://github.com/emacs-evil/evil/pull/1431/commits/84347427a729b7cc325be05ea2996ec1ad3efda3
+	evil-symbol-word-search t)
 
   ; Setting `split-height-threshold` to nil and `split-width-threshold` to 1 forces vertical splits
   ; This was specifically done for ensuring that magit panes are not opened in horizontal splits
@@ -86,8 +89,8 @@
 (setq scroll-conservatively 101)
 (setq scroll-margin 5)
 
-; For some reason this doesn't work
-; (evil-ex-define-cmd "\"w" 'evil-write)
+;; For some reason this doesn't work
+;; (evil-ex-define-cmd "\"w" 'evil-write)
 (evil-ex-define-cmd "W" 'evil-write)
 
 (setq lazy-highlight-cleanup nil
