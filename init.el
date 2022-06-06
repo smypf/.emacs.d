@@ -165,7 +165,7 @@
 ;; Set up which-key. This shows what options are availabe for key sequences
 (use-package which-key
   :defer t
-  :config
+  :init
   (which-key-mode))
 
 ;; Open dired by pressing the '-' (hyphen) button
