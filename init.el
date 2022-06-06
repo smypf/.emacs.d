@@ -237,10 +237,16 @@
  :keymaps 'override
  :prefix leader
  "SPC" 'projectile-find-file
- "pp" 'projectile-switch-project)
+ "pA" 'projectile-add-known-project
+ "pC" 'projectile-compile-project
+ "pT" 'projectile-test-project
+ "pi" 'projectile-invalidate-cache
+ "pp" 'projectile-switch-project
+ "pt" 'projectile-toggle-between-implementation-and-test)
 
-(setq projectile-project-search-path '("~/projects/"))
-(projectile-discover-projects-in-search-path)
+;; Auto discovery wasn't working for me. Instead manually add the project with "SPC P A" to add the project to the cache
+;; (setq projectile-project-search-path '("~/projects/"))
+;; (projectile-discover-projects-in-search-path)
 
 (general-define-key
  :states 'normal
