@@ -1,3 +1,4 @@
+;; Increate the garbage collection threshold to prevent GC pauses
 (setq gc-cons-threshold (* 50 1000 1000))
 
 ;; Uncomment these lines to determine startup time
@@ -9,9 +10,13 @@
 ;; 				(time-subtract after-init-time before-init-time)))
 ;; 		       gcs-done)))
 
+;; Hide the menu bar
 (menu-bar-mode -1)
+
+;; Remove the audio bell when an error occurs
 (setq visible-bell 1)
 
+;; No Littering prevents backup files from being created in the same location as the file being worked on
 (unless (package-installed-p 'no-littering)
   (require 'no-littering))
 
@@ -49,19 +54,23 @@
 	split-width-threshold 160)
   (evil-mode))
 
+;; Evil Collection is used for setting up vim keybindings in other buffers
 (use-package evil-collection
   :after evil
   :config
   (evil-collection-init))
 
+;; General is used for setting up keybinds
 (use-package general
   :init
   (general-evil-setup t))
 
+;; Set the leader. This is used for keybindings
 (defconst leader "SPC")
 
-(setq scroll-conservatively 101) ; Prevent the cursor jumping to the middle of the page when scrolling to the bottom of the screen
-					; https://stackoverflow.com/a/25777730
+;; Prevent the cursor jumping to the middle of the page when scrolling to the bottom of the screen
+;; https://stackoverflow.com/a/25777730
+(setq scroll-conservatively 101)
 (setq scroll-margin 5)
 
 ; For some reason this doesn't work
@@ -73,17 +82,21 @@
       lazy-highlight-initial-delay 0
       isearch-allow-scroll t)
 
+;; Setup my theme to be used
 (unless (package-installed-p 'eink-theme)
   (package-install-file (expand-file-name "eink-theme.el" user-emacs-directory)))
 
+;; Load the theme
 (load-theme 'eink t)
 
 ;; Add line numbers globally
 (global-display-line-numbers-mode)
 
-;;
+;; Use hl-line-mode everywhere
+;; This makes it easier to see which line the cursor is on
 (global-hl-line-mode)
 
+;; Doom modeline is a nice package for showing meta information about the current buffer
 (use-package doom-modeline
   :init (doom-modeline-mode)
   :config
@@ -95,11 +108,13 @@
 	doom-modeline-persp-icon t
 	doom-modeline-buffer-file-name-style 'relative-to-project))
 
+;; Magit is a wrapper around git which is nice to use.
 (use-package magit
   :after evil
   :defer t
   :init (defvar evil-collection-magit-use-$-for-end-of-line nil)
   :config
+  ;; Set the max length of the commit message before wrapping to the next line
   (setq git-commit-summary-max-length 120)
 
   ;; Open in other window instead of the current window
@@ -127,18 +142,22 @@
  :keymaps 'magit-mode-map
  "q" 'kill-buffer-and-window)
 
+;; Automatically start in insert state when openning the commit buffer
 ;; https://emacs.stackexchange.com/a/14012
 (add-hook 'with-editor-mode-hook 'evil-insert-state)
 
+;; Set up which-key. This shows what options are availabe for key sequences
 (use-package which-key
   :defer t
   :config
   (which-key-mode))
 
+;; Open dired by pressing the '-' (hyphen) button
 (general-define-key
  :states 'normal
  "-" 'dired-jump)
 
+;; Kill the dired buffer when pressing 'q'
 (evil-define-key 'normal dired-mode-map "q" 'kill-buffer-and-window)
 
 ;; Prevent new buffers from being created when navigating directories
@@ -156,22 +175,22 @@
 	      (seq bol "." eol)
 	      (seq bol ".." eol))))
 
+;; Keybinds for manipulating window panes
 (general-define-key
  :states 'normal
  :keymaps 'override
  :prefix leader
  "w" 'evil-window-map)
-
 (define-key evil-window-map (kbd "<right>") 'evil-window-right)
 (define-key evil-window-map (kbd "<left>") 'evil-window-left)
 (define-key evil-window-map (kbd "<up>") 'evil-window-up)
 (define-key evil-window-map (kbd "<down>") 'evil-window-down)
-
 (define-key evil-window-map (kbd "S-<right>") 'evil-window-move-far-right)
 (define-key evil-window-map (kbd "S-<left>") 'evil-window-move-far-left)
 (define-key evil-window-map (kbd "S-<up>") 'evil-window-move-very-top)
 (define-key evil-window-map (kbd "S-<down>") 'evil-window-move-very-bottom)
 
+;; Vertico is a nice completion package
 (use-package vertico
   :defer t
   :init
