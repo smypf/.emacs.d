@@ -227,10 +227,8 @@
   (autoload 'projectile-project-root "projectile"))
 
 (use-package orderless
-  :defer t
-  :custom
-  (completion-styles '(orderless flex))
-  (completion-category-overrides '((file (styles basic partial-completion)))))
+  :init
+  (setq completion-styles '(orderless flex)))
 
 (setq-default fill-column 120)
 
