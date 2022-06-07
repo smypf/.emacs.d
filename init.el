@@ -300,8 +300,21 @@
 (use-package tide
 :defer t
   :ensure t
-  :hook ((typescript-mode . tide-setup)
-	 (typescript-mode . tide-hl-identifier-mode)))
+  :hook
+  ((typescript-mode . tide-setup)
+   (typescript-mode . tide-hl-identifier-mode))
+  :config
+  ;; Running M-x compile will allow to jumping to errors in the output
+  ;; https://emacs.stackexchange.com/a/44708
+  (setq compilation-error-regexp-alist-alist
+	;; Tip: M-x re-builder to test this out
+	(cons '(node "^[ ]+at \\(?:[^\(\n]+ \(\\)?\\([a-zA-Z\.0-9_/-]+\\):\\([0-9]+\\):\\([0-9]+\\)\)?$"
+		     1 ;; file
+		     2 ;; line
+		     3 ;; column
+		     )
+	      compilation-error-regexp-alist-alist))
+  (add-to-list 'compilation-error-regexp-alist 'node))
 
 (use-package vterm
   :after evil
