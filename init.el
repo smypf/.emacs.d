@@ -344,7 +344,10 @@
 (setq initial-scratch-message ";; Stay focussed\n\n")
 
 (use-package company
-  :defer 2)
+  :defer 2
+  :config
+  ;; Prevent Company completion in Text Mode from being converted into lowercase
+  (setq company-dabbrev-downcase nil))
 
 (use-package eglot
   :defer 3)
