@@ -372,7 +372,7 @@
  '(custom-safe-themes
    '("6f1e32040ff938f2dcd758702db99a6b2fddfbd9128d732fe23c6dccd82d8567" default))
  '(package-selected-packages
-   '(xclip doom-modeline no-littering eglot general consult vertico magit evil-collection evil use-package vterm)))
+   '(company xclip doom-modeline no-littering eglot general consult vertico magit evil-collection evil use-package vterm)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
