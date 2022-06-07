@@ -335,7 +335,6 @@
   (interactive)
   (xref-find-references (thing-at-point 'symbol)))
 
-
 (general-define-key
  :states 'normal
  :keymaps 'override
@@ -357,10 +356,9 @@
 (unless (server-running-p) (server-start))
 
 ;; Set the initial buffer to the scratch buffer
-(setq inhibit-startup-message t)
-;; (setq initial-buffer-choice 'scratch)
-;; Set a different message
-(setq initial-scratch-message ";; Stay focussed\n\n")
+(setq inhibit-startup-message t
+      ;; Set a different message
+      initial-scratch-message ";; Stay focussed\n\n")
 
 (use-package company
   :defer 2
