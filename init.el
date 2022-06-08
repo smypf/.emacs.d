@@ -183,8 +183,9 @@
 (add-hook 'dired-mode-hook 'dired-omit-mode)
 
 ;; use gls to ensure that folders are sorted at the top
-(setq insert-directory-program "gls" dired-use-ls-dired t
-      dired-listing-switches "-alGh --group-directories-first"
+(if (eq system-type 'darwin)
+    (setq insert-directory-program "gls" dired-use-ls-dired t))
+(setq dired-listing-switches "-alGh --group-directories-first"
       dired-omit-files
       (rx (or (seq bol (? ".") "#")
 	      (seq bol "." eol)
