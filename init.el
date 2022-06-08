@@ -145,7 +145,6 @@
   ;; https://magit.vc/manual/magit/Automatic-Refreshing-of-Magit-Buffers.html
   (add-hook 'after-save-hook 'magit-after-save-refresh-status t))
 
-
 (general-define-key
  :states 'normal
  :keymaps 'override
