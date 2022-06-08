@@ -178,6 +178,7 @@
    `(magit-diff-context-highlight ((t (:foreground ,fg))))
    `(magit-branch-local ((t (:weight bold))))
    `(magit-branch-remote ((t (:weight bold))))
+   `(magit-log-author ((t (:foreground ,fg))))
 
    ;; diff
    `(diff-added ((t (:background "#e9ffe9"))))
