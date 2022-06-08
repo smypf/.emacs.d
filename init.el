@@ -161,6 +161,12 @@
 ;; https://emacs.stackexchange.com/a/14012
 (add-hook 'with-editor-mode-hook 'evil-insert-state)
 
+;; TODO Should I also install git-timemachine?
+;; https://github.com/emacsmirror/git-timemachine
+;; (use-package git-timemachine
+;; :after magit)
+
+
 ;; Set up which-key. This shows what options are availabe for key sequences
 (use-package which-key
   :defer t
