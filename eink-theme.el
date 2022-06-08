@@ -77,6 +77,11 @@
 
    `(region ((t (:background ,purple-bg :foreground ,fg))))
 
+   `(reb-match-0 ((t (:background ,purple-bg :weight bold))))
+   `(reb-match-1 ((t (:background ,purple-bg :weight bold))))
+   `(reb-match-2 ((t (:background ,purple-bg :weight bold))))
+   `(reb-match-3 ((t (:background ,purple-bg :weight bold))))
+
    ;; `(font-latex-bold-face ((t (:foreground ,fg))))
    ;; `(font-latex-italic-face ((t (:foreground ,fg :slant italic))))
    ;; `(font-latex-match-reference-keywords ((t (:foreground ,fg))))
