@@ -41,20 +41,23 @@
 (deftheme eink
   "Theme emulating reading on an E Ink device.")
 
+;; base purple - dfcee7
+;; analogous - #e7cee3 & #d3cee7
 (let ((fg                "#444444")
       (fg-table          "#222291")
       (bg                "#fffff8")
-      (bg-light          "#646464")
+      ;; (bg-light          "#646464")
       (comment           "#c1c1bd")
-      (fg-light          "#ddddd8")
+      ;; (fg-light          "#ddddd8")
       (bg-highlight      "#fff1aa")
       (bg-highlight-2    "LightCyan")
       (bg-highlight-3    "LightGreen")
       (hl-line-bg        "#f4f4e8")
-      (org-todo          "#ff98a3")
-      (isearch-bg        "#e88aff")
+      ;; (org-todo          "#ff98a3")
+      (isearch-bg        "#d3cee7")
       (lazy-highlight-bg "#e1c5e8")
-      (mode-line-bg      "#c5a7d4"))
+      (purple-bg      "#dfcee7"))
+
 
   (custom-theme-set-faces
    'eink
@@ -71,6 +74,8 @@
    `(cursor ((t (:background ,fg :foreground "white smoke"))))
    `(custom-variable-tag ((t (:foreground ,fg))))
    `(default-italic ((t (:italic t))))
+
+   `(region ((t (:background ,purple-bg :foreground ,fg))))
 
    ;; `(font-latex-bold-face ((t (:foreground ,fg))))
    ;; `(font-latex-italic-face ((t (:foreground ,fg :slant italic))))
@@ -98,26 +103,33 @@
    ;; `(gnus-header-name ((t (:foreground ,fg))))
    ;; `(gnus-header-subject ((t (:foreground ,fg))))
 
-   `(highlight ((t (:background ,lazy-highlight-bg))))
+   `(highlight ((t (:background ,purple-bg))))
    
    ;; `(ido-first-match ((t (:foreground ,fg))))
    ;; `(ido-only-match ((t (:foreground ,fg))))
    ;; `(ido-subdir ((t (:foreground ,fg))))
 
-   `(isearch ((t (:background ,isearch-bg :foreground ,bg))))
-   `(lazy-highlight ((t (:background ,lazy-highlight-bg :foreground ,fg))))
+   `(isearch ((t (:background ,isearch-bg :foreground ,fg))))
+
+   `(lazy-highlight ((t (:background ,purple-bg :foreground ,fg))))
+
    `(link ((t (:foreground ,fg))))
+
    `(minibuffer-prompt ((t (:foreground ,fg))))
-   `(mode-line ((t (:background ,mode-line-bg :foreground ,fg))))
+
+   `(mode-line ((t (:background ,purple-bg :foreground ,fg))))
    `(doom-modeline-evil-insert-state ((t (:foreground ,fg))))
    `(doom-modeline-evil-visual-state ((t (:foreground ,fg))))
    `(doom-modeline-evil-normal-state ((t (:foreground ,fg))))
+   `(doom-modeline-lsp-success ((t (:foreground ,fg))))
+   `(doom-modeline-buffer-modified ((t (:foreground "#9e4d93" :weight bold))))
+   `(doom-modeline-urgent ((t (:foreground "#d4a7cd"))))
+
    `(doom-modeline-info ((t (:foreground ,fg))))
 
    ;; `(mode-line-buffer ((t (:foreground ,fg))))
    ;; `(mode-line-inactive ((t (:background ,bg-light :foreground ,bg-light :height 0.8))))
    ;; `(mode-line-minor-mode ((t (:weight ultra-light))))
-   `(region ((t (:background "#eeeee8" :foreground ,fg))))
    `(slime-repl-inputed-output-face ((t (:foreground ,fg))))
    `(whitespace-line ((t (:background ,bg-highlight-2 :foreground ,fg))))
    `(hc-tab ((t (:inherit default))))
@@ -233,8 +245,8 @@
    ;; parens - other
    ;; `(sp-show-pair-match-face ((t (:foreground "black"))))
    ;; `(sp-show-pair-mismatch-face ((t (:background "red" :foreground "black"))))
-   ;; `(show-paren-match ((t (:foreground "black"))))
-   ;; `(show-paren-mismatch ((t (:background "red" :foreground "black"))))
+   `(show-paren-match ((t (:foreground "#AFA7D4"))))
+   `(show-paren-mismatch ((t (:background "red" :foreground "black"))))
 
    ;; js2
    ;; `(js2-function-param ((t (:foreground ,fg))))
