@@ -71,11 +71,13 @@
    `(cursor ((t (:background ,fg :foreground "white smoke"))))
    `(custom-variable-tag ((t (:foreground ,fg))))
    `(default-italic ((t (:italic t))))
-   `(font-latex-bold-face ((t (:foreground ,fg))))
-   `(font-latex-italic-face ((t (:foreground ,fg :slant italic))))
-   `(font-latex-match-reference-keywords ((t (:foreground ,fg))))
-   `(font-latex-match-variable-keywords ((t (:foreground ,fg))))
-   `(font-latex-string-face ((t (:foreground "#a9a9a9"))))
+
+   ;; `(font-latex-bold-face ((t (:foreground ,fg))))
+   ;; `(font-latex-italic-face ((t (:foreground ,fg :slant italic))))
+   ;; `(font-latex-match-reference-keywords ((t (:foreground ,fg))))
+   ;; `(font-latex-match-variable-keywords ((t (:foreground ,fg))))
+   ;; `(font-latex-string-face ((t (:foreground "#a9a9a9"))))
+
    `(font-lock-builtin-face ((t (:background ,bg :foreground ,fg))))
    `(font-lock-comment-delimiter-face ((t (:foreground ,comment))))
    `(font-lock-comment-face ((t (:foreground ,comment))))
@@ -89,15 +91,19 @@
    `(font-lock-type-face ((t (:foreground ,fg))))
    `(font-lock-variable-name-face ((t (:foreground ,fg :underline nil))))
    `(font-lock-warning-face ((t (:foreground ,fg))))
+
    `(fringe ((t (:background ,bg :foreground ,bg))))
-   `(gnus-header-content ((t (:foreground ,fg))))
-   `(gnus-header-from ((t (:foreground ,fg))))
-   `(gnus-header-name ((t (:foreground ,fg))))
-   `(gnus-header-subject ((t (:foreground ,fg))))
+   ;; `(gnus-header-content ((t (:foreground ,fg))))
+   ;; `(gnus-header-from ((t (:foreground ,fg))))
+   ;; `(gnus-header-name ((t (:foreground ,fg))))
+   ;; `(gnus-header-subject ((t (:foreground ,fg))))
+
    `(highlight ((t (:background ,lazy-highlight-bg))))
-   `(ido-first-match ((t (:foreground ,fg))))
-   `(ido-only-match ((t (:foreground ,fg))))
-   `(ido-subdir ((t (:foreground ,fg))))
+   
+   ;; `(ido-first-match ((t (:foreground ,fg))))
+   ;; `(ido-only-match ((t (:foreground ,fg))))
+   ;; `(ido-subdir ((t (:foreground ,fg))))
+
    `(isearch ((t (:background ,isearch-bg :foreground ,bg))))
    `(lazy-highlight ((t (:background ,lazy-highlight-bg :foreground ,fg))))
    `(link ((t (:foreground ,fg))))
@@ -117,34 +123,34 @@
    `(hc-tab ((t (:inherit default))))
 
    ;; org
-   `(org-agenda-date ((t (:foreground ,fg))))
-   `(org-agenda-date-today ((t (:foreground ,fg))))
-   `(org-agenda-date-weekend ((t (:foreground ,fg :weight normal))))
-   `(org-agenda-structure ((t (:foreground ,fg))))
-   `(org-block ((t (:foreground ,fg))))
-   `(org-block-begin-line ((t (:foreground ,fg-light))))
-   `(org-block-end-line ((t (:foreground ,fg-light))))
-   `(org-verbatim ((t (:foreground ,fg))))
-   `(org-date ((t (:foreground ,fg) :underline)))
-   `(org-headline-done ((t (:foreground ,fg))))
-   `(org-done ((t (:foreground ,fg-light))))
-   `(org-hide ((t (:foreground ,bg))))
-   ;;use :overline to give headings more top margin
-   `(org-level-1 ((t (:foreground ,fg :weight bold))))
-   `(org-level-2 ((t (:foreground ,fg :weight bold))))
-   `(org-level-3 ((t (:foreground ,fg :weight bold))))
-   `(org-level-4 ((t (:foreground ,fg :weight bold))))
-   `(org-level-5 ((t (:foreground ,fg :weight bold))))
-   `(org-level-6 ((t (:foreground ,fg :weight bold))))
-   `(org-link ((t (:foreground ,fg :underline t))))
-   `(org-quote ((t (:foreground ,fg :slant italic :inherit org-block))))
-   `(org-scheduled ((t (:foreground ,fg))))
-   `(org-sexp-date ((t (:foreground ,fg))))
-   `(org-special-keyword ((t (:foreground ,fg))))
-   `(org-todo ((t (:foreground ,org-todo :weight bold))))
-   `(org-verse ((t (:inherit org-block :slant italic))))
-   `(org-table ((t (:foreground ,fg-table))))
-   `(org-document-title ((t (:foreground ,fg :weight semi-bold))))
+   ;; `(org-agenda-date ((t (:foreground ,fg))))
+   ;; `(org-agenda-date-today ((t (:foreground ,fg))))
+   ;; `(org-agenda-date-weekend ((t (:foreground ,fg :weight normal))))
+   ;; `(org-agenda-structure ((t (:foreground ,fg))))
+   ;; `(org-block ((t (:foreground ,fg))))
+   ;; `(org-block-begin-line ((t (:foreground ,fg-light))))
+   ;; `(org-block-end-line ((t (:foreground ,fg-light))))
+   ;; `(org-verbatim ((t (:foreground ,fg))))
+   ;; `(org-date ((t (:foreground ,fg) :underline)))
+   ;; `(org-headline-done ((t (:foreground ,fg))))
+   ;; `(org-done ((t (:foreground ,fg-light))))
+   ;; `(org-hide ((t (:foreground ,bg))))
+   ;; ;;use :overline to give headings more top margin
+   ;; `(org-level-1 ((t (:foreground ,fg :weight bold))))
+   ;; `(org-level-2 ((t (:foreground ,fg :weight bold))))
+   ;; `(org-level-3 ((t (:foreground ,fg :weight bold))))
+   ;; `(org-level-4 ((t (:foreground ,fg :weight bold))))
+   ;; `(org-level-5 ((t (:foreground ,fg :weight bold))))
+   ;; `(org-level-6 ((t (:foreground ,fg :weight bold))))
+   ;; `(org-link ((t (:foreground ,fg :underline t))))
+   ;; `(org-quote ((t (:foreground ,fg :slant italic :inherit org-block))))
+   ;; `(org-scheduled ((t (:foreground ,fg))))
+   ;; `(org-sexp-date ((t (:foreground ,fg))))
+   ;; `(org-special-keyword ((t (:foreground ,fg))))
+   ;; `(org-todo ((t (:foreground ,org-todo :weight bold))))
+   ;; `(org-verse ((t (:inherit org-block :slant italic))))
+   ;; `(org-table ((t (:foreground ,fg-table))))
+   ;; `(org-document-title ((t (:foreground ,fg :weight semi-bold))))
 
    ;; magit
    `(magit-header ((t (:weight semi-bold))))
@@ -167,8 +173,8 @@
    `(magit-diff-removed ((t (:background "#ffecec"))))
 
    ;; git-timemachine
-   `(git-timemachine-minibuffer-author-face ((t (:inherit default))))
-   `(git-timemachine-minibuffer-detail-face ((t (:weight bold))))
+   ;; `(git-timemachine-minibuffer-author-face ((t (:inherit default))))
+   ;; `(git-timemachine-minibuffer-detail-face ((t (:weight bold))))
 
    ;; compile
    `(compilation-error ((t (:inherit error))))
@@ -200,74 +206,74 @@
    `(diredfl-symlink ((t (:inherit default))))
 
    ;; helm
-   `(helm-source-header ((t (:foreground ,fg :background "grey90"))))
-   `(helm-header ((t (:foreground ,fg))))
-   `(helm-selection-line ((t (:inherit region))))
-   `(helm-selection ((t (:background ,bg-highlight))))
-   `(helm-ff-directory ((t (:foreground ,fg))))
-   `(helm-ff-dotted-directory ((t (:foreground ,fg))))
-   `(helm-ff-symlink ((t (:foreground ,fg :slant italic))))
-   `(helm-ff-executable ((t (:foreground ,fg))))
+   ;; `(helm-source-header ((t (:foreground ,fg :background "grey90"))))
+   ;; `(helm-header ((t (:foreground ,fg))))
+   ;; `(helm-selection-line ((t (:inherit region))))
+   ;; `(helm-selection ((t (:background ,bg-highlight))))
+   ;; `(helm-ff-directory ((t (:foreground ,fg))))
+   ;; `(helm-ff-dotted-directory ((t (:foreground ,fg))))
+   ;; `(helm-ff-symlink ((t (:foreground ,fg :slant italic))))
+   ;; `(helm-ff-executable ((t (:foreground ,fg))))
 
    ;; iedit
-   `(iedit-occurrence ((t (:background ,bg-highlight-3 :foreground ,fg))))
+   ;; `(iedit-occurrence ((t (:background ,bg-highlight-3 :foreground ,fg))))
 
    ;; company
    `(company-echo-common ((t (:foreground ,fg))))
    `(company-tooltip-selection ((t (:background ,bg-highlight))))
 
    ;; parens - parenface
-   '(parenface-paren-face ((t (:foreground "gray70"))))
-   '(parenface-curly-face ((t (:foreground "gray70"))))
-   '(parenface-bracket-face ((t (:foreground "gray70"))))
+   ;; '(parenface-paren-face ((t (:foreground "gray70"))))
+   ;; '(parenface-curly-face ((t (:foreground "gray70"))))
+   ;; '(parenface-bracket-face ((t (:foreground "gray70"))))
 
    ;; parens - paren-face
-   '(parenthesis ((t (:foreground "gray70"))))
+   ;; '(parenthesis ((t (:foreground "gray70"))))
 
    ;; parens - other
-   `(sp-show-pair-match-face ((t (:foreground "black"))))
-   `(sp-show-pair-mismatch-face ((t (:background "red" :foreground "black"))))
-   `(show-paren-match ((t (:foreground "black"))))
-   `(show-paren-mismatch ((t (:background "red" :foreground "black"))))
+   ;; `(sp-show-pair-match-face ((t (:foreground "black"))))
+   ;; `(sp-show-pair-mismatch-face ((t (:background "red" :foreground "black"))))
+   ;; `(show-paren-match ((t (:foreground "black"))))
+   ;; `(show-paren-mismatch ((t (:background "red" :foreground "black"))))
 
    ;; js2
-   `(js2-function-param ((t (:foreground ,fg))))
-   `(js2-external-variable ((t (:foreground ,fg))))
+   ;; `(js2-function-param ((t (:foreground ,fg))))
+   ;; `(js2-external-variable ((t (:foreground ,fg))))
 
    ;; perl
-   `(cperl-hash-face ((t (:foreground ,fg))))
-   `(cperl-array-face ((t (:foreground ,fg))))
-   `(cperl-nonoverridable-face ((t (:foreground ,fg))))
+   ;; `(cperl-hash-face ((t (:foreground ,fg))))
+   ;; `(cperl-array-face ((t (:foreground ,fg))))
+   ;; `(cperl-nonoverridable-face ((t (:foreground ,fg))))
 
    ;; rpm-spec-mode
-   `(rpm-spec-tag-face ((t (:inherit default))))
-   `(rpm-spec-package-face ((t (:inherit default))))
-   `(rpm-spec-macro-face ((t (:inherit default))))
-   `(rpm-spec-doc-face ((t (:inherit default))))
-   `(rpm-spec-var-face ((t (:inherit default))))
-   `(rpm-spec-ghost-face ((t (:inherit default))))
-   `(rpm-spec-section-face ((t (:inherit default))))
+   ;; `(rpm-spec-tag-face ((t (:inherit default))))
+   ;; `(rpm-spec-package-face ((t (:inherit default))))
+   ;; `(rpm-spec-macro-face ((t (:inherit default))))
+   ;; `(rpm-spec-doc-face ((t (:inherit default))))
+   ;; `(rpm-spec-var-face ((t (:inherit default))))
+   ;; `(rpm-spec-ghost-face ((t (:inherit default))))
+   ;; `(rpm-spec-section-face ((t (:inherit default))))
 
    ;; linum / nlinum-relative
    `(nlinum-relative-current-face ((t (:inherit normal))))
    `(linum ((t (:inherit normal))))
 
    ;; web-mode
-   `(web-mode-current-element-highlight-face ((t (:inherit normal :foreground ,fg))))
+   ;; `(web-mode-current-element-highlight-face ((t (:inherit normal :foreground ,fg))))
 
    ;; misc
-   `(idle-highlight ((t (:background ,bg-highlight))))
-   `(yas-field-highlight-face ((t (:background "#eeeee8" :foreground ,fg))))
-   `(eshell-prompt ((t (:foreground ,fg))))
-   `(cider-result-overlay-face ((t (:weight bold))))
+   ;; `(idle-highlight ((t (:background ,bg-highlight))))
+   ;; `(yas-field-highlight-face ((t (:background "#eeeee8" :foreground ,fg))))
+   ;; `(eshell-prompt ((t (:foreground ,fg))))
+   ;; `(cider-result-overlay-face ((t (:weight bold))))
 
    ;; evil-quickscope
-   `(evil-quickscope-first-face ((t (:foreground ,fg :background "#eeeee8"))))
-   `(evil-quickscope-second-face ((t (:foreground ,fg :background ,bg-highlight-3))))
+   ;; `(evil-quickscope-first-face ((t (:foreground ,fg :background "#eeeee8"))))
+   ;; `(evil-quickscope-second-face ((t (:foreground ,fg :background ,bg-highlight-3))))
 
    ;; evil-snipe
-   `(evil-snipe-first-match-face ((t (:foreground ,fg :background "#eeeee8"))))
-   `(evil-snipe-matches-face ((t (:foreground ,fg :background ,bg-highlight-3))))
+   ;; `(evil-snipe-first-match-face ((t (:foreground ,fg :background "#eeeee8"))))
+   ;; `(evil-snipe-matches-face ((t (:foreground ,fg :background ,bg-highlight-3))))
 
    ;; evil
    `(evil-ex-lazy-highlight ((t (:background ,isearch-bg))))
@@ -282,10 +288,10 @@
    `(hl-line ((t (:background ,hl-line-bg))))
    `(hl-fill-column-face ((t (:background ,hl-line-bg))))
 
-   `(whitespace-indentation ((t (:foreground ,fg-light :background ,bg))))
-   `(highlight-indent-guides-character-face ((t (:foreground ,fg-light))))
-   `(highlight-indent-guides-even-face ((t (:foreground ,fg-light))))
-   `(highlight-indent-guides-odd-face ((t (:foreground ,fg-light))))
+   ;; `(whitespace-indentation ((t (:foreground ,fg-light :background ,bg))))
+   ;; `(highlight-indent-guides-character-face ((t (:foreground ,fg-light))))
+   ;; `(highlight-indent-guides-even-face ((t (:foreground ,fg-light))))
+   ;; `(highlight-indent-guides-odd-face ((t (:foreground ,fg-light))))
 
    ;; from https://lepisma.xyz/2017/10/28/ricing-org-mode/
    ;;`(variable-pitch ((t (:family ,et-font :background ,bg :foreground ,fg :height 1.7))))
@@ -323,13 +329,13 @@
    `(reb-match-2 ((t (:inherit default))))
    `(reb-match-3 ((t (:inherit default))))
 
-   `(org-agenda-clocking ((t (:inherit default))))
-   `(org-agenda-column-dateline ((t (:inherit default))))
-   `(org-clock-overlay ((t (:inherit default))))
+   ;; `(org-agenda-clocking ((t (:inherit default))))
+   ;; `(org-agenda-column-dateline ((t (:inherit default))))
+   ;; `(org-clock-overlay ((t (:inherit default))))
 
-   `(sh-quoted-exec ((t (:inherit default))))
+   ;; `(sh-quoted-exec ((t (:inherit default))))
 
-   `(window-divider ((t (:foreground ,bg-light :background ,bg-light))))
+   ;; `(window-divider ((t (:foreground ,bg-light :background ,bg-light))))
 
    `(lsp-ui-sideline-code-action ((t (:foreground ,comment))))
    `(lsp-ui-sideline-current-symbol ((t (:foreground ,comment))))
@@ -348,21 +354,21 @@
    `(success ((t (:foreground ,comment))))
 
 
-   `(vertical-border ((t (:foreground ,comment :background ,comment))))
+   ;; `(vertical-border ((t (:foreground ,comment :background ,comment))))
    ;;`(vertical-border ((t (:foreground ,bg-light :background ,bg-light))))
 
    ; Removed rainbow-delimiters
-   `(rainbow-delimiters-depth-1-face ((t (:foreground ,fg))))
-   `(rainbow-delimiters-depth-2-face ((t (:foreground ,fg))))
-   `(rainbow-delimiters-depth-3-face ((t (:foreground ,fg))))
-   `(rainbow-delimiters-depth-4-face ((t (:foreground ,fg))))
-   `(rainbow-delimiters-depth-5-face ((t (:foreground ,fg))))
-   `(rainbow-delimiters-depth-6-face ((t (:foreground ,fg))))
-   `(rainbow-delimiters-depth-7-face ((t (:foreground ,fg))))
-   `(rainbow-delimiters-depth-8-face ((t (:foreground ,fg))))
-   `(rainbow-delimiters-depth-9-face ((t (:foreground ,fg))))
+   ;; `(rainbow-delimiters-depth-1-face ((t (:foreground ,fg))))
+   ;; `(rainbow-delimiters-depth-2-face ((t (:foreground ,fg))))
+   ;; `(rainbow-delimiters-depth-3-face ((t (:foreground ,fg))))
+   ;; `(rainbow-delimiters-depth-4-face ((t (:foreground ,fg))))
+   ;; `(rainbow-delimiters-depth-5-face ((t (:foreground ,fg))))
+   ;; `(rainbow-delimiters-depth-6-face ((t (:foreground ,fg))))
+   ;; `(rainbow-delimiters-depth-7-face ((t (:foreground ,fg))))
+   ;; `(rainbow-delimiters-depth-8-face ((t (:foreground ,fg))))
+   ;; `(rainbow-delimiters-depth-9-face ((t (:foreground ,fg))))
 
-   `(tree-sitter-hl-face:property ((t (:inherit default))))
+   ;; `(tree-sitter-hl-face:property ((t (:inherit default))))
 
    ; Orderless
    `(orderless-match-face-0 ((t (:foreground ,fg-table :weight bold))))
