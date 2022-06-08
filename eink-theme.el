@@ -61,7 +61,13 @@
 
    ;; generic stuff
    `(default ((t (:background ,bg :foreground ,fg))))
+
    `(button ((t (:foreground ,fg :underline t))))
+   `(widget-field ((t (:foreground ,fg :background ,bg :underline t))))
+   `(custom-visibility ((t (:foreground ,fg :background ,bg :underline t))))
+   `(custom-group-tag ((t (:foreground ,fg :background ,bg :weight bold))))
+   `(custom-state ((t (:foreground ,fg :background ,bg :weight bold))))
+
    `(cursor ((t (:background ,fg :foreground "white smoke"))))
    `(custom-variable-tag ((t (:foreground ,fg))))
    `(default-italic ((t (:italic t))))
