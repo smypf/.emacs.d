@@ -293,8 +293,8 @@
  :states 'normal
  :keymaps 'override
  :prefix leader
- "?" 'consult-ripgrep
- "/" 'search-thing-at-point
+ "/" 'consult-ripgrep
+ "?" 'search-thing-at-point
  "s" 'consult-line)
 
 (use-package tide
