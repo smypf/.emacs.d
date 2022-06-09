@@ -396,6 +396,31 @@
 
    ;; `(vertico-current ((t (:background ,hl-line-bg))))
 
+   ;; I couldn't figure out how to strip things.
+   ;; It has something to do with ansi-color.el and ansi-color-for-comint-mode
+   ;; This _should_ work but it doesn't.
+   ;; https://stackoverflow.com/a/71785402
+   ;; Here we just replace the colours instead
+   `(ansi-color-red ((t (:foreground ,fg))))
+   `(ansi-color-blue ((t (:foreground ,fg))))
+   `(ansi-color-bold ((t (:foreground ,fg))))
+   `(ansi-color-cyan ((t (:foreground ,fg))))
+   `(ansi-color-black ((t (:foreground ,fg))))
+   `(ansi-color-faint ((t (:foreground ,fg))))
+   `(ansi-color-green ((t (:foreground ,fg))))
+   `(ansi-color-white ((t (:foreground ,bg))))
+   `(ansi-color-italic ((t (:foreground ,fg))))
+   `(ansi-color-yellow ((t (:foreground ,fg))))
+   `(ansi-color-magenta ((t (:foreground ,fg))))
+   `(ansi-color-bright-red ((t (:foreground ,fg))))
+   `(ansi-color-bright-blue ((t (:foreground ,fg))))
+   `(ansi-color-bright-cyan ((t (:foreground ,fg))))
+   `(ansi-color-bright-black ((t (:foreground ,fg))))
+   `(ansi-color-bright-green ((t (:foreground ,fg))))
+   `(ansi-color-bright-white ((t (:foreground ,fg))))
+   `(ansi-color-bright-yellow ((t (:foreground ,fg))))
+   `(ansi-color-bright-magenta ((t (:foreground ,fg))))
+
    `(tide-hl-identifier-face ((t (:weight bold))))
    ))
 
