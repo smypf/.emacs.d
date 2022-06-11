@@ -58,15 +58,12 @@
       ;; https://www.gnu.org/software/emacs/manual/html_node/emacs/Interlocking.html#Interlocking
       create-lockfiles nil)
 
-
 ;; Benchmark startup times
 ;; (use-package benchmark-init
 ;;   :ensure t
 ;;   :config
 ;;   ;; To disable collection of benchmark data after init is done.
 ;;   (add-hook 'after-init-hook 'benchmark-init/deactivate))
-
-
 
 ;; Set up which-key. This shows what options are availabe for key sequences
 (use-package which-key
@@ -94,9 +91,6 @@
 
 (load "server")
 (unless (server-running-p) (server-start))
-
-(use-package eglot
-  :defer 3)
 
 ;; For compiling files. This needs to be moved into a file which is only called sometimes.
 ;; See https://github.com/gilbertw1/emacs-literate-starter
