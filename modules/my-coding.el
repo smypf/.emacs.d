@@ -13,6 +13,10 @@
 
 ;; Searching for references
 
+;; Navigate camelCaseWords easier
+(global-subword-mode)
+
+;; Search for whatever is under the cursor
 (defun find-references-at-point ()
   (interactive)
   (xref-find-references (thing-at-point 'symbol)))
@@ -26,7 +30,6 @@
 
 (use-package eglot
   :defer 3)
-
 
 ;;; Package:
 (provide 'my-coding)

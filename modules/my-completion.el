@@ -103,6 +103,12 @@
 ;; (with-eval-after-load 'embark-consult
 ;;   (add-hook 'embark-collect-mode-hook #'consult-preview-at-point-mode))
 
+(general-define-key
+ :states 'normal
+ :keymaps 'override
+ :prefix leader
+ ":" 'execute-extended-command)
+
 ;;; Package:
 (provide 'my-completion)
 ;;; my-completion.el ends here

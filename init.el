@@ -71,14 +71,6 @@
   :init
   (which-key-mode))
 
-(general-define-key
- :states 'normal
- :keymaps 'override
- :prefix leader
- ":" 'execute-extended-command)
-
-(global-subword-mode)
-
 ;; Copy Pasting
 (use-package xclip
   :ensure t
