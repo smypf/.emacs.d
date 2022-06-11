@@ -46,6 +46,7 @@
 (require 'my-dired)
 (require 'my-projectile)
 (require 'my-node)
+(require 'my-coding)
 
 ;; No Littering prevents backup files from being created in the same location as the file being worked on
 (unless (package-installed-p 'no-littering)
@@ -79,36 +80,7 @@
  :prefix leader
  ":" 'execute-extended-command)
 
-(defun search-thing-at-point ()
-  (interactive)
-  (consult-ripgrep (projectile-project-root) (thing-at-point 'symbol)))
-
-
-(use-package vterm
-  :after evil
-  :defer t
-  :ensure t
-  :config
-  (evil-set-initial-state 'vterm-mode 'insert))
-
-(general-define-key
- :states 'normal
- :keymaps 'override
- :prefix leader
- "'" 'vterm)
-
 (global-subword-mode)
-
-(defun find-references-at-point ()
-  (interactive)
-  (xref-find-references (thing-at-point 'symbol)))
-
-(general-define-key
- :states 'normal
- :keymaps 'override
- :prefix leader
- "cd" 'xref-find-definitions
- "cD" 'find-references-at-point)
 
 ;; Copy Pasting
 (use-package xclip

@@ -68,6 +68,10 @@
 
 ;; TODO move this
 ;; Keybinds for searching
+(defun search-thing-at-point ()
+  (interactive)
+  (consult-ripgrep (projectile-project-root) (thing-at-point 'symbol)))
+
 (general-define-key
  :states 'normal
  :keymaps 'override
