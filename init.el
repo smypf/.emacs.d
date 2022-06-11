@@ -47,16 +47,7 @@
 (require 'my-projectile)
 (require 'my-node)
 (require 'my-coding)
-
-;; No Littering prevents backup files from being created in the same location as the file being worked on
-(unless (package-installed-p 'no-littering)
-  (require 'no-littering))
-
-(setq auto-save-file-name-transforms
-      `((".*" ,(no-littering-expand-var-file-name "auto-save/") t))
-      ;; Prevent creation of "#...#" lock files
-      ;; https://www.gnu.org/software/emacs/manual/html_node/emacs/Interlocking.html#Interlocking
-      create-lockfiles nil)
+(require 'my-utility)
 
 ;; Benchmark startup times
 ;; (use-package benchmark-init
@@ -64,19 +55,6 @@
 ;;   :config
 ;;   ;; To disable collection of benchmark data after init is done.
 ;;   (add-hook 'after-init-hook 'benchmark-init/deactivate))
-
-;; Set up which-key. This shows what options are availabe for key sequences
-(use-package which-key
-  :defer t
-  :init
-  (which-key-mode))
-
-;; Copy Pasting
-(use-package xclip
-  :ensure t
-  :init (xclip-mode)
-  :config
-  (setq select-enable-clipboard nil))
 
 ;; Make gc pauses faster by decreasing the threshold.
 (setq gc-cons-threshold (* 2 1000 1000))
