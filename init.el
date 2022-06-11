@@ -7,11 +7,10 @@
 ;; 				(time-subtract after-init-time before-init-time)))
 ;; 		       gcs-done)))
 
-;; Hide the menu bar
-(menu-bar-mode -1)
+;; Add the modules folder to the load path
+(add-to-list 'load-path (expand-file-name "modules/" user-emacs-directory))
 
-;; Remove the audio bell when an error occurs
-(setq visible-bell 1)
+(require 'visual-customisations)
 
 ;; No Littering prevents backup files from being created in the same location as the file being worked on
 (unless (package-installed-p 'no-littering)
@@ -94,32 +93,6 @@
       lazy-highlight-max-at-a-time nil
       lazy-highlight-initial-delay 0
       isearch-allow-scroll t)
-
-;; Setup my theme to be used
-(unless (package-installed-p 'eink-theme)
-  (package-install-file (expand-file-name "eink-theme.el" user-emacs-directory)))
-
-;; Load the theme
-(load-theme 'eink t)
-
-;; Add line numbers globally
-(global-display-line-numbers-mode)
-
-;; Use hl-line-mode everywhere
-;; This makes it easier to see which line the cursor is on
-(global-hl-line-mode)
-
-;; Doom modeline is a nice package for showing meta information about the current buffer
-(use-package doom-modeline
-  :init (doom-modeline-mode)
-  :config
-  (setq doom-modeline-major-mode-icon nil
-	doom-modeline-vcs-max-length 40
-	doom-modeline-workspace-name nil
-	doom-modeline-buffer-encoding nil
-	doom-modeline-persp-name nil
-	doom-modeline-persp-icon t
-	doom-modeline-buffer-file-name-style 'relative-to-project))
 
 ;; Magit is a wrapper around git which is nice to use.
 (use-package magit
