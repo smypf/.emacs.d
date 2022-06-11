@@ -1,4 +1,4 @@
-;;;; visual-customisations.el --- Change the look and feel  -*- lexical-binding: t; -*-
+;;;; my-visual-customisations.el --- Change the look and feel  -*- lexical-binding: t; -*-
 
 ;; Copyright (C) 2022
 ;; SPDX-License-Identifier: MIT
@@ -44,6 +44,35 @@
 ;; This makes it easier to see which line the cursor is on
 (global-hl-line-mode)
 
+;; Prevent the cursor jumping to the middle of the page when scrolling to the bottom of the screen
+;; https://stackoverflow.com/a/25777730
+(setq scroll-conservatively 101)
+
+;; Add a margin at the top and bottom of the page to give more context
+(setq scroll-margin 5)
+
+
+;; Change highlighting while searching
+;; TODO after pressing `n` search terms are not highlighted. I don't like this.
+;; Perhaps change the `/` button to `consult-line`
+(setq lazy-highlight-cleanup nil
+      lazy-highlight-max-at-a-time nil
+      lazy-highlight-initial-delay 0
+      isearch-allow-scroll t)
+
+;; 120 is a good number
+(setq-default fill-column 120)
+
+;; Set the initial buffer to the scratch buffer
+(setq inhibit-startup-message t
+      ;; Set a different message
+      initial-scratch-message ";; Stay focussed\n\n")
+
+;; Allow for pressing `y` and `n` instead of having to type yesRET or noRET
+(defalias 'yes-or-no-p 'y-or-n-p)
+
+
 ;;; Package:
-(provide 'visual-customisations)
-;;; rational-compile.el ends here
+(provide 'my-visual-customisations)
+;;; my-visual-customisations.el ends here
+

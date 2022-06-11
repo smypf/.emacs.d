@@ -7,10 +7,45 @@
 ;; 				(time-subtract after-init-time before-init-time)))
 ;; 		       gcs-done)))
 
+;; Set up melpa which is a package host
+(require 'package)
+(add-to-list 'package-archives
+	     '("melpa" . "https://melpa.org/packages/"))
+
+;; Setting this significantly increases the statup time as packages are refreshed from melpa
+;; See C-h f package-refresh-contents
+;; (package-refresh-contents)
+;; I think that this is not necessary as use-package handles this
+(setq package-enable-at-startup nil)
+
+;; Set up use-package
+;; This is only needed once, near the top of the file
+(eval-when-compile
+  ;; Following line is not needed if use-package.el is in ~/.emacs.d
+  (add-to-list 'load-path (expand-file-name "elpa/" user-emacs-directory))
+  (unless (package-installed-p 'use-package)
+    (require 'use-package)))
+(setq use-package-always-ensure t)
+
+;; General is used for setting up keybinds
+;; Since this is used across all modules it is loaded here
+(use-package general
+  :init
+  (general-evil-setup t)
+  :config
+  ;; Set the leader. This is used for keybindings
+  (defconst leader "SPC"))
+
 ;; Add the modules folder to the load path
 (add-to-list 'load-path (expand-file-name "modules/" user-emacs-directory))
 
-(require 'visual-customisations)
+(require 'my-evil)
+(require 'my-visual-customisations)
+(require 'my-completion)
+(require 'my-magit)
+(require 'my-dired)
+(require 'my-projectile)
+(require 'my-node)
 
 ;; No Littering prevents backup files from being created in the same location as the file being worked on
 (unless (package-installed-p 'no-littering)
@@ -22,22 +57,6 @@
       ;; https://www.gnu.org/software/emacs/manual/html_node/emacs/Interlocking.html#Interlocking
       create-lockfiles nil)
 
-(require 'package)
-(add-to-list 'package-archives
-	     '("melpa" . "https://melpa.org/packages/"))
-
-;; Setting this significantly increases the statup time as packages are refreshed from melpa
-;; See C-h f package-refresh-contents
-;; (package-refresh-contents)
-(setq package-enable-at-startup nil)
-
-;; This is only needed once, near the top of the file
-(eval-when-compile
-  ;; Following line is not needed if use-package.el is in ~/.emacs.d
-  (add-to-list 'load-path (expand-file-name "elpa/" user-emacs-directory))
-  (unless (package-installed-p 'use-package)
-    (require 'use-package)))
-(setq use-package-always-ensure t)
 
 ;; Benchmark startup times
 ;; (use-package benchmark-init
@@ -46,95 +65,6 @@
 ;;   ;; To disable collection of benchmark data after init is done.
 ;;   (add-hook 'after-init-hook 'benchmark-init/deactivate))
 
-;; Setup evil for vim style keybinds
-(use-package evil
-  :init
-  (setq evil-want-integration t
-	evil-want-keybinding nil
-	evil-vsplit-window-right t
-	evil-split-window-below nil
-	evil-undo-system 'undo-redo
-	;; Search for the word under the cursor instead of the symbol
-	;; https://github.com/emacs-evil/evil/pull/1431/commits/84347427a729b7cc325be05ea2996ec1ad3efda3
-	evil-symbol-word-search t)
-
-  ; Setting `split-height-threshold` to nil and `split-width-threshold` to 1 forces vertical splits
-  ; This was specifically done for ensuring that magit panes are not opened in horizontal splits
-  ; These values are copied from the Doom Emacs repository
-  ; https://github.com/doomemacs/doomemacs/blob/61a7c541655038615e3f846a87db2e7d5883d35a/core/core-ui.el#L290
-  (setq split-height-threshold nil
-	split-width-threshold 160)
-  (evil-mode))
-
-;; Evil Collection is used for setting up vim keybindings in other buffers
-(use-package evil-collection
-  :after evil
-  :config
-  (evil-collection-init))
-
-;; General is used for setting up keybinds
-(use-package general
-  :init
-  (general-evil-setup t))
-
-;; Set the leader. This is used for keybindings
-(defconst leader "SPC")
-
-;; Prevent the cursor jumping to the middle of the page when scrolling to the bottom of the screen
-;; https://stackoverflow.com/a/25777730
-(setq scroll-conservatively 101)
-(setq scroll-margin 5)
-
-;; For some reason this doesn't work
-;; (evil-ex-define-cmd "\"w" 'evil-write)
-(evil-ex-define-cmd "W" 'evil-write)
-
-(setq lazy-highlight-cleanup nil
-      lazy-highlight-max-at-a-time nil
-      lazy-highlight-initial-delay 0
-      isearch-allow-scroll t)
-
-;; Magit is a wrapper around git which is nice to use.
-(use-package magit
-  :after evil
-  :defer t
-  :init (defvar evil-collection-magit-use-$-for-end-of-line nil)
-  :config
-  ;; Set the max length of the commit message before wrapping to the next line
-  (setq git-commit-summary-max-length 120)
-
-  ;; Open in other window instead of the current window
-  ;; TODO - Change this to use use-package's :bind
-  (define-key magit-hunk-section-map (kbd "RET") 'magit-diff-visit-file-other-window)
-  (define-key magit-file-section-map (kbd "RET") 'magit-diff-visit-file-other-window)
-
-  ;; Add goto-address-mode to magit status window and process window
-  (add-hook 'magit-process-mode-hook 'goto-address-mode)
-  (add-hook 'magit-status-sections-hook 'goto-address-mode)
-
-  ;; https://magit.vc/manual/magit/Automatic-Refreshing-of-Magit-Buffers.html
-  (add-hook 'after-save-hook 'magit-after-save-refresh-status t))
-
-(general-define-key
- :states 'normal
- :keymaps 'override
- :prefix leader
- "g" 'magit)
-
-;; Kill the magit buffer and close the pane
-(general-define-key
- :state 'normal
- :keymaps 'magit-mode-map
- "q" 'kill-buffer-and-window)
-
-;; Automatically start in insert state when openning the commit buffer
-;; https://emacs.stackexchange.com/a/14012
-(add-hook 'with-editor-mode-hook 'evil-insert-state)
-
-;; TODO Should I also install git-timemachine?
-;; https://github.com/emacsmirror/git-timemachine
-;; (use-package git-timemachine
-;; :after magit)
 
 
 ;; Set up which-key. This shows what options are availabe for key sequences
@@ -142,101 +72,6 @@
   :defer t
   :init
   (which-key-mode))
-
-;; Open dired by pressing the '-' (hyphen) button
-(general-define-key
- :states 'normal
- "-" 'dired-jump)
-
-;; Kill the dired buffer when pressing 'q'
-(evil-define-key 'normal dired-mode-map "q" 'kill-buffer-and-window)
-
-;; Prevent new buffers from being created when navigating directories
-(setq dired-kill-when-opening-new-dired-buffer t)
-
-;; Hide the "." and ".." directories
-;; https://stackoverflow.com/a/43632653
-(add-hook 'dired-mode-hook 'dired-omit-mode)
-
-;; use gls to ensure that folders are sorted at the top
-(if (eq system-type 'darwin)
-    (setq insert-directory-program "gls" dired-use-ls-dired t))
-(setq dired-listing-switches "-alGh --group-directories-first"
-      dired-omit-files
-      (rx (or (seq bol (? ".") "#")
-	      (seq bol "." eol)
-	      (seq bol ".." eol))))
-
-;; Keybinds for manipulating window panes
-(general-define-key
- :states 'normal
- :keymaps 'override
- :prefix leader
- "w" 'evil-window-map)
-(define-key evil-window-map (kbd "<right>") 'evil-window-right)
-(define-key evil-window-map (kbd "<left>") 'evil-window-left)
-(define-key evil-window-map (kbd "<up>") 'evil-window-up)
-(define-key evil-window-map (kbd "<down>") 'evil-window-down)
-(define-key evil-window-map (kbd "S-<right>") 'evil-window-move-far-right)
-(define-key evil-window-map (kbd "S-<left>") 'evil-window-move-far-left)
-(define-key evil-window-map (kbd "S-<up>") 'evil-window-move-very-top)
-(define-key evil-window-map (kbd "S-<down>") 'evil-window-move-very-bottom)
-
-;; Vertico is a nice completion package
-(use-package vertico
-  :defer t
-  :init
-  (vertico-mode)
-  (setq vertico-count 15))
-
-(general-define-key
- :states 'normal
- :keymaps 'override
- " " 'vertico-find)
-
-(use-package consult
-  :defer t
-  :init
-  (setq xref-show-xrefs-function #'consult-xref
-	xref-show-definitions-function #'consult-xref)
-  :config
-  (autoload 'projectile-project-root "projectile"))
-
-(use-package orderless
-  :init
-  (setq completion-styles '(orderless flex)))
-
-(setq-default fill-column 120)
-
-(use-package projectile
-  :defer t
-  :config
-  ;; Add npm projects
-  ;; This allows for usage of `projectile-toggle-between-implementation-and-test`
-  (projectile-mode)
-  (projectile-register-project-type 'npm '("package.json")
-                                  :project-file "package.json"
-				  :configure "npm ci"
-				  :compile "npm run build"
-				  :test "npm test"
-				  :run "npm start"
-				  :test-suffix ".spec"))
-
-(general-define-key
- :states 'normal
- :keymaps 'override
- :prefix leader
- "SPC" 'projectile-find-file
- "pA" 'projectile-add-known-project
- "pC" 'projectile-compile-project
- "pT" 'projectile-test-project
- "pi" 'projectile-invalidate-cache
- "pp" 'projectile-switch-project
- "pt" 'projectile-toggle-between-implementation-and-test)
-
-;; Auto discovery wasn't working for me. Instead manually add the project with "SPC P A" to add the project to the cache
-;; (setq projectile-project-search-path '("~/projects/"))
-;; (projectile-discover-projects-in-search-path)
 
 (general-define-key
  :states 'normal
@@ -252,8 +87,6 @@
  "bn" 'evil-next-buffer
  "bb" 'switch-to-buffer)
 
-(defalias 'yes-or-no-p 'y-or-n-p)
-
 (defun search-thing-at-point ()
   (interactive)
   (consult-ripgrep (projectile-project-root) (thing-at-point 'symbol)))
@@ -266,28 +99,6 @@
  "/" 'consult-ripgrep
  "?" 'search-thing-at-point
  "s" 'consult-line)
-
-(use-package tide
-:defer t
-  :ensure t
-  :hook
-  ((typescript-mode . tide-setup)
-   (typescript-mode . tide-hl-identifier-mode)))
-
-;; Running M-x compile will allow to jumping to errors in the output
-;; https://emacs.stackexchange.com/a/44708
-(require 'compile)
-(defun add-node-error-regex ()
-  (setq compilation-error-regexp-alist-alist
-	;; Tip: M-x re-builder to test this out
-	(cons '(node "\\(?:[^\(\n]+ \(\\)?\\([a-zA-Z\.0-9_/-]+\\):\\([0-9]+\\):\\([0-9]+\\)\)?"
-		     1 ;; file
-		     2 ;; line
-		     3 ;; column
-		     )
-	      compilation-error-regexp-alist-alist))
-  (add-to-list 'compilation-error-regexp-alist 'node))
-(add-hook 'after-init-hook 'add-node-error-regex)
 
 (use-package vterm
   :after evil
@@ -328,17 +139,6 @@
 (load "server")
 (unless (server-running-p) (server-start))
 
-;; Set the initial buffer to the scratch buffer
-(setq inhibit-startup-message t
-      ;; Set a different message
-      initial-scratch-message ";; Stay focussed\n\n")
-
-(use-package company
-  :defer 2
-  :config
-  ;; Prevent Company completion in Text Mode from being converted into lowercase
-  (setq company-dabbrev-downcase nil))
-
 (use-package eglot
   :defer 3)
 
@@ -354,7 +154,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
-   '("6f1e32040ff938f2dcd758702db99a6b2fddfbd9128d732fe23c6dccd82d8567" default))
+   '("f0393dbed2e12400391e2845e7443d92fbbc109a6a5b68549db416ffa9a7d26a" "43723b620f335ac047727a9dc13cb629b74a7c23349e9b5e0e6535dd662dadc4" "96ac3799e504479c862cce31b6882274fa4ad9490c57ccfab81c1bfb8c326795" "77ccee107184be05753c15ba11cae1f4f03012505969d46c4e3d76cac264e077" "3848c2c3e7a48d6dec6defbd5a90ea6f8c03c4aac835461ead0c2bef7651a174" "c6d63b27dea1738060614c48ce48cee42ee82ce27263dbd612a9230c86a4a8eb" "f98c6f84330f1f3490021c1f0ccb9f7e90797df0f2700fe3bd7fe8ad4dd67369" "680ba271ab61df49c4f8464b6f4d04b5bb2965691cec658bbd16bd8039faf69b" default))
  '(package-selected-packages
    '(company xclip doom-modeline no-littering eglot general consult vertico magit evil-collection evil use-package vterm)))
 (custom-set-faces
