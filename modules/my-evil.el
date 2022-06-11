@@ -57,6 +57,26 @@
 (define-key evil-window-map (kbd "S-<up>") 'evil-window-move-very-top)
 (define-key evil-window-map (kbd "S-<down>") 'evil-window-move-very-bottom)
 
+;; Keybinds for manipulating buffers
+(general-define-key
+ :states 'normal
+ :keymaps 'override
+ :prefix leader
+ "bp" 'evil-prev-buffer
+ "bn" 'evil-next-buffer
+ "bb" 'switch-to-buffer)
+
+;; TODO move this
+;; Keybinds for searching
+(general-define-key
+ :states 'normal
+ :keymaps 'override
+ :prefix leader
+ "/" 'consult-ripgrep
+ "?" 'search-thing-at-point
+ "s" 'consult-line)
+
+
 ;;; Package:
 (provide 'my-evil)
 ;;; my-evil.el ends here

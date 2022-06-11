@@ -79,26 +79,10 @@
  :prefix leader
  ":" 'execute-extended-command)
 
-(general-define-key
- :states 'normal
- :keymaps 'override
- :prefix leader
- "bp" 'evil-prev-buffer
- "bn" 'evil-next-buffer
- "bb" 'switch-to-buffer)
-
 (defun search-thing-at-point ()
   (interactive)
   (consult-ripgrep (projectile-project-root) (thing-at-point 'symbol)))
 
-
-(general-define-key
- :states 'normal
- :keymaps 'override
- :prefix leader
- "/" 'consult-ripgrep
- "?" 'search-thing-at-point
- "s" 'consult-line)
 
 (use-package vterm
   :after evil
