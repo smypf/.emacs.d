@@ -1,12 +1,3 @@
-;; Uncomment these lines to determine startup time
-;;   (add-hook 'emacs-startup-hook
-;; 	    (lambda ()
-;; 	      (message "Emacs ready in %s with %d garbage collections."
-;; 		       (format "%.2f seconds"
-;; 			       (float-time
-;; 				(time-subtract after-init-time before-init-time)))
-;; 		       gcs-done)))
-
 ;; Set up melpa which is a package host
 (require 'package)
 (add-to-list 'package-archives
@@ -48,13 +39,7 @@
 (require 'my-node)
 (require 'my-coding)
 (require 'my-utility)
-
-;; Benchmark startup times
-;; (use-package benchmark-init
-;;   :ensure t
-;;   :config
-;;   ;; To disable collection of benchmark data after init is done.
-;;   (add-hook 'after-init-hook 'benchmark-init/deactivate))
+;(require my-benchmark)
 
 ;; Make gc pauses faster by decreasing the threshold.
 (setq gc-cons-threshold (* 2 1000 1000))
