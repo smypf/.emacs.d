@@ -1,6 +1,3 @@
-;; Increate the garbage collection threshold to prevent GC pauses
-(setq gc-cons-threshold (* 50 1000 1000))
-
 ;; Uncomment these lines to determine startup time
 ;;   (add-hook 'emacs-startup-hook
 ;; 	    (lambda ()
