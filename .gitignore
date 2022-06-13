@@ -5,3 +5,6 @@ transient
 projectile-bookmarks.eld
 elpa
 config.el
+var
+history
+projects
