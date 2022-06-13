@@ -21,7 +21,8 @@
   (setq git-commit-summary-max-length 120)
 
   ;; Open in other window instead of the current window
-  ;; TODO - Change this to use use-package's :bind
+  ;; This is using `define-key` rather than general.el since as this would require overriding the key first
+  ;; https://github.com/noctuid/evil-guide#prevent-text-property-maps-from-overriding-evil
   (define-key magit-hunk-section-map (kbd "RET") 'magit-diff-visit-file-other-window)
   (define-key magit-file-section-map (kbd "RET") 'magit-diff-visit-file-other-window)
 
