@@ -389,10 +389,14 @@
    ;; `(tree-sitter-hl-face:property ((t (:inherit default))))
 
    ; Orderless
-   `(orderless-match-face-0 ((t (:foreground ,fg-table :weight bold))))
-   `(orderless-match-face-1 ((t (:foreground ,fg-table :weight bold))))
-   `(orderless-match-face-2 ((t (:foreground ,fg-table :weight bold))))
-   `(orderless-match-face-3 ((t (:foreground ,fg-table :weight bold))))
+   `(orderless-match-face-0 ((t (:background ,purple-bg :weight bold))))
+   `(orderless-match-face-1 ((t (:background ,purple-bg :weight bold))))
+   `(orderless-match-face-2 ((t (:background ,purple-bg :weight bold))))
+   `(orderless-match-face-3 ((t (:background ,purple-bg :weight bold))))
+
+   `(consult-preview-match ((t (:weight bold :underline t))))
+   `(consult-file ((t (:background ,purple-bg :weight bold))))
+
 
    ;; `(vertico-current ((t (:background ,hl-line-bg))))
 
@@ -420,8 +424,6 @@
    `(ansi-color-bright-white ((t (:foreground ,fg))))
    `(ansi-color-bright-yellow ((t (:foreground ,fg))))
    `(ansi-color-bright-magenta ((t (:foreground ,fg))))
-
-   `(tide-hl-identifier-face ((t (:weight bold))))
    ))
 
 ;; to here
@@ -432,7 +434,6 @@
 ;; TODO Comments should remain toned down with hl-line-mode
 ;; TODO Remove usages of non variable values
 ;; TODO Fix highlight indent guide colours
-;;
 
 (provide-theme 'eink)
 ;;; eink-theme.el ends here
