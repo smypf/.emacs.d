@@ -169,6 +169,7 @@
 
   ;; Enable indentation+completion using the TAB key.
   ;; `completion-at-point' is often bound to M-TAB.
+  ;; https://emacsredux.com/blog/2016/01/31/use-tab-to-indent-or-complete/
   (setq tab-always-indent 'complete))
 
 ;; I don't know what the point of embark is
