@@ -11,17 +11,17 @@
 
 ;;; Code:
 
-;; TODO
-;; 1. Should this be removed? It's heavier and I don't know if it's actually providing lots of utility
-;; 1. Does this belong here?
-(use-package tide
-:defer t
+;; Use typescipt-mode instead of tide.
+;; LSP is doing most of the heavy lifting anyway
+(use-package typescript-mode)
+
+;; auto-format different source code files extremely intelligently
+;; https://github.com/radian-software/apheleia
+;; TODO This could probably go somewhere else
+(use-package apheleia
   :ensure t
-  :hook
-  ((typescript-mode . tide-setup)
-   (typescript-mode . tide-hl-identifier-mode)))
-
-
+  :config
+  (apheleia-global-mode +1))
 
 ;; Running M-x compile will allow to jumping to errors in the output
 ;; https://emacs.stackexchange.com/a/44708
