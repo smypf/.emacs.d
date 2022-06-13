@@ -72,6 +72,17 @@
 (defalias 'yes-or-no-p 'y-or-n-p)
 
 
+;; Change the vertical border character
+;; https://stackoverflow.com/a/18211568
+;; Reverse colors for the border to have nicer line
+(set-face-inverse-video-p 'vertical-border nil)
+(set-face-background 'vertical-border (face-background 'default))
+
+;; Set symbol for the border
+(set-display-table-slot standard-display-table
+                        'vertical-border
+                        (make-glyph-code ?│))
+
 ;;; Package:
 (provide 'my-visual-customisations)
 ;;; my-visual-customisations.el ends here
