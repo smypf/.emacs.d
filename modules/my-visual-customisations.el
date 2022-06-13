@@ -53,12 +53,12 @@
 
 
 ;; Change highlighting while searching
-;; TODO after pressing `n` search terms are not highlighted. I don't like this.
 ;; Perhaps change the `/` button to `consult-line`
-(setq lazy-highlight-cleanup nil
-      lazy-highlight-max-at-a-time nil
-      lazy-highlight-initial-delay 0
-      isearch-allow-scroll t)
+;; This was disabled in favour of 'evil-search. See modules/my-evil.el
+; (setq lazy-highlight-cleanup nil
+;       lazy-highlight-max-at-a-time nil
+;       lazy-highlight-initial-delay 0
+;       isearch-allow-scroll t)
 
 ;; 120 is a good number
 (setq-default fill-column 120)
