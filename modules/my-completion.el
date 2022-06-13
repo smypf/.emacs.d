@@ -12,18 +12,84 @@
 ;;; Code:
 
 ;; Vertico is a nice completion package
+;; Enable vertico
 (use-package vertico
-  :defer t
   :init
   (vertico-mode)
-  (setq vertico-count 15))
+  (vertico-multiform-mode)
 
-(use-package vertico-directory
-  :after vertico
-  :ensure nil
+
   :config
-  ;; TODO get this working properly
-  (define-key vertico-map (kbd "M-h") 'vertico-directory-up))
+  ;; Show more candidates
+  (setq vertico-count 15
+
+	;; Configure the display per command.
+	;; Use a buffer with indices for imenu
+	;; and a flat (Ido-like) menu for M-x.
+	vertico-multiform-commands '((consult-ripgrep buffer indexed))
+
+	;; Display ripgrep candidates in a buffer on the right of the page
+	vertico-buffer-display-action
+	'(display-buffer-in-side-window
+	  (side . right)
+	  (window-width . 0.3)))
+  (add-hook 'minibuffer-setup-hook #'vertico-repeat-save))
+
+;; Persist history over Emacs restarts. Vertico sorts by history position.
+(use-package savehist
+  :init
+  (savehist-mode))
+
+;; A few more useful configurations...
+(use-package emacs
+  :init
+  ;; Add prompt indicator to `completing-read-multiple'.
+  ;; We display [CRM<separator>], e.g., [CRM,] if the separator is a comma.
+  (defun crm-indicator (args)
+    (cons (format "[CRM%s] %s"
+                  (replace-regexp-in-string
+                   "\\`\\[.*?]\\*\\|\\[.*?]\\*\\'" ""
+                   crm-separator)
+                  (car args))
+          (cdr args)))
+  (advice-add #'completing-read-multiple :filter-args #'crm-indicator)
+
+  ;; Do not allow the cursor in the minibuffer prompt
+  (setq minibuffer-prompt-properties
+        '(read-only t cursor-intangible t face minibuffer-prompt))
+  (add-hook 'minibuffer-setup-hook #'cursor-intangible-mode)
+
+  ;; Emacs 28: Hide commands in M-x which do not work in the current mode.
+  ;; Vertico commands are hidden in normal buffers.
+  (setq read-extended-command-predicate
+        #'command-completion-default-include-p)
+
+  ;; Enable recursive minibuffers
+  ;; (setq enable-recursive-minibuffers t)
+  )
+
+;; TODO get this working properly
+;; (use-package vertico-directory
+;;   :after vertico
+;;   :ensure nil
+;;   :config
+;;   (define-key vertico-map (kbd "M-h") 'vertico-directory-up))
+
+
+;; TODO Optionally close vertico only when I want to.
+;; E.g. Pressing S-Enter will keep the mini buffer around allowing me to return to it (somehow)
+;; Look into (setq enable-recursive-minibuffers t)
+;; https://www.reddit.com/r/emacs/comments/qkgnhe/comment/hixh0f7
+
+(use-package vertico-repeat
+  :after vertico
+  :ensure nil)
+
+(general-define-key
+ :prefix leader
+ :states 'normal
+ :keymaps 'override
+ "v" 'vertico-repeat)
 
 (general-define-key
  :states 'normal
@@ -42,20 +108,68 @@
   :init
   (setq completion-styles '(orderless flex)))
 
-;; TODO Replace this with corfu
-;; https://github.com/minad/corfu
-(use-package company
-  :defer 2
-  :config
-  ;; Prevent Company completion in Text Mode from being converted into lowercase
-  (setq company-dabbrev-downcase nil))
-
 ;; Corfu
 ;; Perhaps use this
-;; https://github.com/minad/corfu#transfer-completion-to-the-minibuffer
-;; Otherwise use corfu-terminal
-;; https://codeberg.org/akib/emacs-corfu-terminal
+(use-package corfu
+  ;; Optional customizations
+  :custom
+  (corfu-cycle t)                ;; Enable cycling for `corfu-next/previous'
+  (corfu-auto t)                 ;; Enable auto completion
+  ;; (corfu-separator ?\s)          ;; Orderless field separator
+  ;; (corfu-quit-at-boundary nil)   ;; Never quit at completion boundary
+  ;; (corfu-quit-no-match nil)      ;; Never quit, even if there is no match
+  ;; (corfu-preview-current nil)    ;; Disable current candidate preview
+  ;; (corfu-preselect-first nil)    ;; Disable candidate preselection
+  ;; (corfu-on-exact-match nil)     ;; Configure handling of exact matches
+  ;; (corfu-echo-documentation nil) ;; Disable documentation in the echo area
+  ;; (corfu-scroll-margin 5)        ;; Use scroll margin
 
+  :bind
+  (:map corfu-map
+	;; Tab will select the next option
+	("TAB" . corfu-next)
+	([tab] . corfu-next)
+	;; Shift-Tab will select the previous option
+	("S-TAB" . corfu-previous)
+	([backtab] . corfu-previous)
+	;; Enter will select the option
+	([enter] . corfu-complete))
+
+  ;; Enable Corfu only for certain modes.
+  ;; :hook ((prog-mode . corfu-mode)
+  ;;        (shell-mode . corfu-mode)
+  ;;        (eshell-mode . corfu-mode))
+
+  ;; Recommended: Enable Corfu globally.
+  ;; This is recommended since Dabbrev can be used globally (M-/).
+  ;; See also `corfu-excluded-modes'.
+  :init
+  (global-corfu-mode))
+
+;; https://github.com/minad/corfu#transfer-completion-to-the-minibuffer
+
+;; Allow usage of corfu in terminal windows
+(use-package corfu-terminal
+  :after corfu
+  :config
+  (unless (display-graphic-p)
+    (corfu-terminal-mode +1)))
+
+;; A few more useful configurations...
+(use-package emacs
+  :ensure nil
+  :init
+  ;; TAB cycle if there are only few candidates
+  (setq completion-cycle-threshold 2)
+
+  ;; Emacs 28: Hide commands in M-x which do not apply to the current mode.
+  ;; Corfu commands are hidden, since they are not supposed to be used via M-x.
+  ;; (setq read-extended-command-predicate
+  ;;       #'command-completion-default-include-p)
+
+  ;; Enable indentation+completion using the TAB key.
+  ;; `completion-at-point' is often bound to M-TAB.
+  (setq tab-always-indent 'complete))
 
 ;; I don't know what the point of embark is
 ;; (use-package marginalia
