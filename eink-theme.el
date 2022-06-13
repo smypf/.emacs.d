@@ -372,7 +372,7 @@
    `(success ((t (:foreground ,comment))))
 
 
-   ;; `(vertical-border ((t (:foreground ,comment :background ,comment))))
+   `(vertical-border ((t (:foreground ,comment :background ,bg))))
    ;;`(vertical-border ((t (:foreground ,bg-light :background ,bg-light))))
 
    ; Removed rainbow-delimiters
