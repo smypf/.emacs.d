@@ -90,7 +90,6 @@
  "?" 'search-thing-at-point
  "s" 'consult-line)
 
-
 ;;; Package:
 (provide 'my-evil)
 ;;; my-evil.el ends here
