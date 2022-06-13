@@ -29,7 +29,9 @@
  "cD" 'find-references-at-point)
 
 (use-package eglot
-  :defer 3)
+  :defer 3
+  :config
+  (setq eglot-autoshutdown t))
 
 ;;; Package:
 (provide 'my-coding)
