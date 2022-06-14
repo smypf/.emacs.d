@@ -7,7 +7,7 @@
 
 ;;; Commentary:
 
-;; 
+;; Customisations for making it easier to work with code
 
 ;;; Code:
 
@@ -49,6 +49,9 @@
   (ansi-color-for-comint-mode-off)
   ;; (setq ansi-color-for-comint-mode 'filter)
   :hook (compilation-filter . ansi-color-compilation-filter))
+
+;; Automatically insert matching pair for delimiters
+(electric-pair-mode 1)
 
 ;;; Package:
 (provide 'my-coding)
