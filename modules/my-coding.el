@@ -32,6 +32,14 @@
   :defer 3
   :config
   (setq eglot-autoshutdown t))
+(use-package ansi-color
+  ;; turn off ensure for this pre-installed package
+  ;; https://github.com/jwiegley/use-package/issues/977
+  :ensure nil
+  :init
+  (ansi-color-for-comint-mode-off)
+  ;; (setq ansi-color-for-comint-mode 'filter)
+  :hook (compilation-filter . ansi-color-compilation-filter))
 
 ;;; Package:
 (provide 'my-coding)
