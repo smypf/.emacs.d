@@ -8,3 +8,4 @@ config.el
 var
 history
 projects
+straight
