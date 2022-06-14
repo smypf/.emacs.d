@@ -21,6 +21,12 @@
   (interactive)
   (xref-find-references (thing-at-point 'symbol)))
 
+(use-package eglot
+  :defer 3
+  :config
+  (setq eglot-autoshutdown t
+	eglot-send-changes-idle-time 1))
+
 (general-define-key
  :states 'normal
  :keymaps 'override
@@ -28,10 +34,6 @@
  "cd" 'xref-find-definitions
  "cD" 'find-references-at-point)
 
-(use-package eglot
-  :defer 3
-  :config
-  (setq eglot-autoshutdown t))
 (use-package ansi-color
   ;; turn off ensure for this pre-installed package
   ;; https://github.com/jwiegley/use-package/issues/977
