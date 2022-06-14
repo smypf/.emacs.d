@@ -27,12 +27,19 @@
   (setq eglot-autoshutdown t
 	eglot-send-changes-idle-time 1))
 
+(use-package consult-eglot
+  :after consult
+  :defer t)
+
 (general-define-key
  :states 'normal
  :keymaps 'override
  :prefix leader
  "cd" 'xref-find-definitions
- "cD" 'find-references-at-point)
+ "cD" 'find-references-at-point
+ "cr" 'eglot-rename
+ "ce" 'consult-flymake
+ "cs" 'consult-eglot-symbols)
 
 (use-package ansi-color
   ;; turn off ensure for this pre-installed package
