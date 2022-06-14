@@ -26,7 +26,8 @@
 	;; Configure the display per command.
 	;; Use a buffer with indices for imenu
 	;; and a flat (Ido-like) menu for M-x.
-	vertico-multiform-commands '((consult-ripgrep buffer indexed))
+	vertico-multiform-commands '((consult-ripgrep buffer indexed)
+				     (consult-eglot-symbols buffer indexed))
 
 	;; Display ripgrep candidates in a buffer on the right of the page
 	vertico-buffer-display-action
