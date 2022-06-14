@@ -14,11 +14,18 @@
 ;; Use typescipt-mode instead of tide.
 ;; LSP is doing most of the heavy lifting anyway
 ;; https://vxlabs.com/2022/06/12/typescript-development-with-emacs-tree-sitter-and-lsp-in-2022/ for more information
-(use-package typescript-mode)
+(use-package typescript-mode
+  :config
+  (add-hook 'typescript-mode-hook 'eglot-ensure))
+
+;; From the wiki
+(with-eval-after-load 'eglot
+   (setq completion-category-defaults nil))
 
 ;; auto-format different source code files extremely intelligently
 ;; https://github.com/radian-software/apheleia
 ;; TODO This could probably go somewhere else
+;; I think that this may be slowing down things
 (use-package apheleia
   :ensure t
   :config
