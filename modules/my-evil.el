@@ -38,8 +38,13 @@
   (evil-mode))
 
 (use-package evil-surround
-  :after evil)
+  :config
+  (global-evil-surround-mode 1))
 
+;; Allows for matching of the closes text object.
+;; I specifically like it due to being able to use single quote character to change double quote characters
+(use-package evil-textobj-anyblock
+  :after evil-surround)
 
 ;; Evil Collection is used for setting up vim keybindings in other buffers
 (use-package evil-collection
