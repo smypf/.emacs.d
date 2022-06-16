@@ -251,7 +251,7 @@
    ;; parens - other
    ;; `(sp-show-pair-match-face ((t (:foreground "black"))))
    ;; `(sp-show-pair-mismatch-face ((t (:background "red" :foreground "black"))))
-   `(show-paren-match ((t (:foreground "#AFA7D4"))))
+   `(show-paren-match ((t (:background ,purple-bg))))
    `(show-paren-mismatch ((t (:background "red" :foreground "black"))))
 
    ;; js2

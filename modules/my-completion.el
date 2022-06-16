@@ -26,7 +26,8 @@
 	;; Configure the display per command.
 	;; Use a buffer with indices for imenu
 	;; and a flat (Ido-like) menu for M-x.
-	vertico-multiform-commands '((consult-ripgrep buffer indexed))
+	vertico-multiform-commands '((consult-ripgrep buffer indexed)
+				     (consult-eglot-symbols buffer indexed))
 
 	;; Display ripgrep candidates in a buffer on the right of the page
 	vertico-buffer-display-action
@@ -118,9 +119,9 @@
   ;; (corfu-separator ?\s)          ;; Orderless field separator
   ;; (corfu-quit-at-boundary nil)   ;; Never quit at completion boundary
   ;; (corfu-quit-no-match nil)      ;; Never quit, even if there is no match
-  ;; (corfu-preview-current nil)    ;; Disable current candidate preview
-  ;; (corfu-preselect-first nil)    ;; Disable candidate preselection
-  ;; (corfu-on-exact-match nil)     ;; Configure handling of exact matches
+  (corfu-preview-current t)    ;; Disable current candidate preview
+  (corfu-preselect-first t)    ;; Disable candidate preselection
+  (corfu-on-exact-match 'quit)     ;; Configure handling of exact matches
   ;; (corfu-echo-documentation nil) ;; Disable documentation in the echo area
   ;; (corfu-scroll-margin 5)        ;; Use scroll margin
 

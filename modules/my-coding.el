@@ -7,7 +7,7 @@
 
 ;;; Commentary:
 
-;; 
+;; Customisations for making it easier to work with code
 
 ;;; Code:
 
@@ -21,17 +21,37 @@
   (interactive)
   (xref-find-references (thing-at-point 'symbol)))
 
+(use-package eglot
+  :defer 3
+  :config
+  (setq eglot-autoshutdown t
+	eglot-send-changes-idle-time 1))
+
+(use-package consult-eglot
+  :after consult
+  :defer t)
+
 (general-define-key
  :states 'normal
  :keymaps 'override
  :prefix leader
  "cd" 'xref-find-definitions
- "cD" 'find-references-at-point)
+ "cD" 'find-references-at-point
+ "cr" 'eglot-rename
+ "ce" 'consult-flymake
+ "cs" 'consult-eglot-symbols)
 
-(use-package eglot
-  :defer 3
-  :config
-  (setq eglot-autoshutdown t))
+(use-package ansi-color
+  ;; turn off ensure for this pre-installed package
+  ;; https://github.com/jwiegley/use-package/issues/977
+  :ensure nil
+  :init
+  (ansi-color-for-comint-mode-off)
+  ;; (setq ansi-color-for-comint-mode 'filter)
+  :hook (compilation-filter . ansi-color-compilation-filter))
+
+;; Automatically insert matching pair for delimiters
+(electric-pair-mode 1)
 
 (use-package highlight-indent-guides
   :defer 3
