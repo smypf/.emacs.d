@@ -33,6 +33,14 @@
   :config
   (setq eglot-autoshutdown t))
 
+(use-package highlight-indent-guides
+  :defer 3
+  :config
+  (add-hook 'prog-mode-hook 'highlight-indent-guides-mode)
+  (setq highlight-indent-guides-method 'character
+	highlight-indent-guides-responsive 'stack
+	highlight-indent-guides-auto-enabled nil))
+
 ;;; Package:
 (provide 'my-coding)
 ;;; my-coding.el ends here

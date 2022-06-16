@@ -424,6 +424,10 @@
    `(ansi-color-bright-white ((t (:foreground ,fg))))
    `(ansi-color-bright-yellow ((t (:foreground ,fg))))
    `(ansi-color-bright-magenta ((t (:foreground ,fg))))
+
+   `(highlight-indent-guides-character-face ((t (:foreground ,comment))))
+   `(highlight-indent-guides-top-character-face ((t (:foreground ,purple-bg))))
+   ; `(highlight-indent-guides-stack-character-face ((t (:foreground ,purple-bg))))
    ))
 
 ;; to here
