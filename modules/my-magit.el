@@ -39,6 +39,7 @@
 		    "\\1"
 		    (magit-get-current-branch))))
 	;; Unless the buffer contains the current Issue Key
+	;; 1+ is required as the buffer is 1 indexed
 	(unless (string-equal (buffer-substring-no-properties 1 (1+ (length ISSUEKEY))) ISSUEKEY)
 	  ;; Append the Issue Key to the buffer
 	  (insert ISSUEKEY)
@@ -78,6 +79,9 @@
 ;; (use-package git-timemachine
 ;; :after magit)
 
+;; TODO Consider magit-delta
+;; (use-package magit-delta
+;; :after magit)
 
 ;;; Package:
 (provide 'my-magit)
