@@ -64,7 +64,7 @@
  '(custom-safe-themes
    '("40d29cf577515779b178069a54d998a3da35a28b5d42246e4006dbdf7cf4b7a5" "f0393dbed2e12400391e2845e7443d92fbbc109a6a5b68549db416ffa9a7d26a" "43723b620f335ac047727a9dc13cb629b74a7c23349e9b5e0e6535dd662dadc4" "96ac3799e504479c862cce31b6882274fa4ad9490c57ccfab81c1bfb8c326795" "77ccee107184be05753c15ba11cae1f4f03012505969d46c4e3d76cac264e077" "3848c2c3e7a48d6dec6defbd5a90ea6f8c03c4aac835461ead0c2bef7651a174" "c6d63b27dea1738060614c48ce48cee42ee82ce27263dbd612a9230c86a4a8eb" "f98c6f84330f1f3490021c1f0ccb9f7e90797df0f2700fe3bd7fe8ad4dd67369" "680ba271ab61df49c4f8464b6f4d04b5bb2965691cec658bbd16bd8039faf69b" default))
  '(package-selected-packages
-   '(company xclip doom-modeline no-littering eglot general consult vertico magit evil-collection evil use-package vterm)))
+   '(evil-textobj-anyblock company xclip doom-modeline no-littering eglot general consult vertico magit evil-collection evil use-package vterm)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
