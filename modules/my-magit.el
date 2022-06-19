@@ -30,6 +30,29 @@
   (add-hook 'magit-process-mode-hook 'goto-address-mode)
   (add-hook 'magit-status-sections-hook 'goto-address-mode)
 
+  (defun insert-issue-key()
+    ;; Set a regex for identifying an issue
+    (let ((ISSUEKEYREGEX "[[:upper:]]+-[[:digit:]]+"))
+      ;; Save the Issue Key as a variable from the current branch
+      (let ((ISSUEKEY (replace-regexp-in-string
+		    (concat ".*?\\(" ISSUEKEYREGEX "\\).*")
+		    "\\1"
+		    (magit-get-current-branch))))
+	;; Unless the buffer contains the current Issue Key
+	(unless (string-equal (buffer-substring-no-properties 1 (1+ (length ISSUEKEY))) ISSUEKEY)
+	  ;; Append the Issue Key to the buffer
+	  (insert ISSUEKEY)
+	  ;; Append a separator as well.
+	  ;; It would be good to concat in the line above to simplify this but whatever
+	  (insert " - "))
+	;; Go to the end of the line
+	;; TODO Perhaps check if evil mode is actually activated
+	;; But we both know this is going to be the case.
+	(evil-append-line 1))))
+
+
+  (add-hook 'git-commit-setup-hook 'insert-issue-key)
+
   ;; https://magit.vc/manual/magit/Automatic-Refreshing-of-Magit-Buffers.html
   (add-hook 'after-save-hook 'magit-after-save-refresh-status t))
 
@@ -47,7 +70,8 @@
 
 ;; Automatically start in insert state when openning the commit buffer
 ;; https://emacs.stackexchange.com/a/14012
-(add-hook 'with-editor-mode-hook 'evil-insert-state)
+;; This has been disabled since the INSERT ISSUE KEY function above does this already.
+;; (add-hook 'with-editor-mode-hook 'evil-insert-state)
 
 ;; TODO Should I also install git-timemachine?
 ;; https://github.com/emacsmirror/git-timemachine
