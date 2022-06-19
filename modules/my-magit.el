@@ -30,26 +30,27 @@
   (add-hook 'magit-process-mode-hook 'goto-address-mode)
   (add-hook 'magit-status-sections-hook 'goto-address-mode)
 
+  ;; From https://emacs.stackexchange.com/a/44685
   (defun insert-issue-key()
     ;; Set a regex for identifying an issue
     (let ((ISSUEKEYREGEX "[[:upper:]]+-[[:digit:]]+"))
       ;; Save the Issue Key as a variable from the current branch
       (let ((ISSUEKEY (replace-regexp-in-string
-		    (concat ".*?\\(" ISSUEKEYREGEX "\\).*")
-		    "\\1"
-		    (magit-get-current-branch))))
-	;; Unless the buffer contains the current Issue Key
-	;; 1+ is required as the buffer is 1 indexed
-	(unless (string-equal (buffer-substring-no-properties 1 (1+ (length ISSUEKEY))) ISSUEKEY)
-	  ;; Append the Issue Key to the buffer
-	  (insert ISSUEKEY)
-	  ;; Append a separator as well.
-	  ;; It would be good to concat in the line above to simplify this but whatever
-	  (insert " - "))
-	;; Go to the end of the line
-	;; TODO Perhaps check if evil mode is actually activated
-	;; But we both know this is going to be the case.
-	(evil-append-line 1))))
+		       (concat ".*?\\(" ISSUEKEYREGEX "\\).*")
+		       "\\1"
+		       (magit-get-current-branch))))
+
+	;; When the current branch has an issue key in it
+	(when (string-match-p ISSUEKEYREGEX (magit-get-current-branch))
+	  ;; Unless the buffer contains the current Issue Key
+	  ;; 1+ is required as the buffer is 1 indexed
+	  (unless (string-equal (buffer-substring-no-properties 1 (1+ (length ISSUEKEY))) ISSUEKEY)
+	    ;; Append the Issue Key to the buffer
+	    (insert (concat ISSUEKEY " - ")))
+	  ;; Go to the end of the line
+	  ;; TODO Perhaps check if evil mode is actually activated
+	  ;; But we both know this is going to be the case.
+	  (evil-append-line 1)))))
 
 
   (add-hook 'git-commit-setup-hook 'insert-issue-key)
