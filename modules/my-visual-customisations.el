@@ -44,6 +44,12 @@
 ;; This makes it easier to see which line the cursor is on
 (global-hl-line-mode)
 
+(general-define-key
+ :states 'normal
+ :keymaps 'override
+ :prefix leader
+ "th" 'global-hl-line-mode)
+
 ;; Prevent the cursor jumping to the middle of the page when scrolling to the bottom of the screen
 ;; https://stackoverflow.com/a/25777730
 (setq scroll-conservatively 101)
