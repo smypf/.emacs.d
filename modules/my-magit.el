@@ -72,8 +72,7 @@
 
 ;; Automatically start in insert state when openning the commit buffer
 ;; https://emacs.stackexchange.com/a/14012
-;; This has been disabled since the INSERT ISSUE KEY function above does this already.
-;; (add-hook 'with-editor-mode-hook 'evil-insert-state)
+(add-hook 'with-editor-mode-hook 'evil-insert-state)
 
 ;; TODO Should I also install git-timemachine?
 ;; https://github.com/emacsmirror/git-timemachine
