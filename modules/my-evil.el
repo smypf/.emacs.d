@@ -51,7 +51,7 @@
   :after evil
   :config
   ;; Initialise only the packages I'm interested in
-  (evil-collection-init '(magit dired consult vertico compile)))
+  (evil-collection-init '(magit dired consult vertico compile xref)))
 
 ;; For some reason this doesn't work
 ;; (evil-ex-define-cmd "\"w" 'evil-write)
