@@ -44,8 +44,11 @@
 ;; Make gc pauses faster by decreasing the threshold.
 (setq gc-cons-threshold (* 2 1000 1000))
 
-(load "server")
-(unless (server-running-p) (server-start))
+;; Load server if it isn't already running
+(use-package server
+  :ensure nil
+  :config
+  (unless (server-running-p) (server-start)))
 
 ;; Enable mouse for terminal
 (xterm-mouse-mode 1)
