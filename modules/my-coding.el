@@ -35,12 +35,20 @@
   :after consult
   :defer t)
 
+(defun xref-list-references()
+  (interactive)
+  (setq xref-show-xrefs-function 'xref--show-xref-buffer)
+  (evil-collection-define-key 'normal 'xref--xref-buffer-mode-map (kbd "RET") 'xref-quit-and-goto-xref)
+  (find-references-at-point)
+  (setq xref-show-xrefs-function 'consult-xref))
+
 (general-define-key
  :states 'normal
  :keymaps 'override
  :prefix leader
  "cd" 'xref-find-definitions
  "cD" 'find-references-at-point
+ "cl" 'xref-list-references
  "cr" 'eglot-rename
  "ce" 'consult-flymake
  "cs" 'consult-eglot-symbols)
