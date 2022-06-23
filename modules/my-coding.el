@@ -74,6 +74,12 @@
 	highlight-indent-guides-responsive 'stack
 	highlight-indent-guides-auto-enabled nil))
 
+(general-define-key
+ :states 'normal
+ :keymaps 'override
+ :prefix leader
+ "ti" 'highlight-indent-guides-mode)
+
 ;; TODO install https://github.com/flymake/emacs-flymake instead of the builtin one?
 ;; Are these the same or different?
 
