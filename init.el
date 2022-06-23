@@ -50,8 +50,13 @@
   :config
   (unless (server-running-p) (server-start)))
 
-;; Enable mouse for terminal
-(xterm-mouse-mode 1)
+;; Enable mouse and scrolling for terminal
+;; https://stackoverflow.com/a/62266648
+(unless (display-graphic-p)
+  ;; activate mouse-based scrolling
+  (xterm-mouse-mode 1)
+  (global-set-key (kbd "<mouse-4>") 'scroll-down-line)
+  (global-set-key (kbd "<mouse-5>") 'scroll-up-line))
 
 ;; For compiling files. This needs to be moved into a file which is only called sometimes.
 ;; See https://github.com/gilbertw1/emacs-literate-starter
