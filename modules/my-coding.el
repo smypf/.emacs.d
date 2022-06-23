@@ -67,8 +67,9 @@
 
 (use-package highlight-indent-guides
   :defer 3
+  :hook
+  (prog-mode . highlight-indent-guides-mode)
   :config
-  (add-hook 'prog-mode-hook 'highlight-indent-guides-mode)
   (setq highlight-indent-guides-method 'character
 	highlight-indent-guides-responsive 'stack
 	highlight-indent-guides-auto-enabled nil))
