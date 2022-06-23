@@ -83,6 +83,13 @@
 ;; (use-package magit-delta
 ;; :after magit)
 
+;; Override inbuilt magit functionality to tell you off when inserting a space
+;; https://stackoverflow.com/a/15725437
+(eval-after-load "magit"
+  '(defun magit-whitespace-disallowed ()
+     (interactive)
+     (insert "-")))
+
 ;;; Package:
 (provide 'my-magit)
 ;;; my-magit.el ends here
