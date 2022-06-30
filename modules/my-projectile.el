@@ -31,8 +31,9 @@
  :prefix leader
  "SPC" 'projectile-find-file
  "pA" 'projectile-add-known-project
- "pC" 'projectile-compile-project
- "pT" 'projectile-test-project
+ "C" 'projectile-compile-project
+ "R" 'recompile
+ "T" 'projectile-test-project
  "pi" 'projectile-invalidate-cache
  "pp" 'projectile-switch-project
  "pt" 'projectile-toggle-between-implementation-and-test)
