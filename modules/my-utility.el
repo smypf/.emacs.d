@@ -25,7 +25,10 @@
 (use-package which-key
   :defer t
   :init
-  (which-key-mode))
+  (which-key-mode)
+  :config
+  ;; Add more spacing between options
+  (setq which-key-add-column-padding 10))
 
 ;; Copy Pasting
 (use-package xclip
