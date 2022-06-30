@@ -95,6 +95,11 @@
  "?" 'search-thing-at-point
  "s" 'consult-line)
 
+;; Unbind M-: which was set to call `eval-expression`.
+;; Essentially I was pressing `ESC :` quickly to return to the normal state and call `evil-ex`
+;; For some reason (probably a setting in iTerm) the escape was being interpreted as the meta key
+(global-set-key (kbd "M-:") nil)
+
 ;;; Package:
 (provide 'my-evil)
 ;;; my-evil.el ends here
