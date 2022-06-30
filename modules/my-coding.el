@@ -89,6 +89,12 @@
   :hook
   (prog-mode . flymake-cursor-mode))
 
+;; Enable folding code sections
+(use-package emacs
+  :ensure nil
+  :hook
+  (prog-mode . hs-minor-mode))
+
 ;;; Package:
 (provide 'my-coding)
 ;;; my-coding.el ends here
