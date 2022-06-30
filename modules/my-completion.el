@@ -230,7 +230,8 @@
  :states 'normal
  :keymaps 'override
  :prefix leader
- ":" 'execute-extended-command)
+ ":" 'execute-extended-command
+ "o" 'execute-extended-command)
 
 ;;; Package:
 (provide 'my-completion)
