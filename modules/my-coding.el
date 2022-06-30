@@ -83,6 +83,12 @@
 ;; TODO install https://github.com/flymake/emacs-flymake instead of the builtin one?
 ;; Are these the same or different?
 
+;; Show the error at the cursor in the mini-buffer
+(use-package flymake-cursor
+  :after flymake
+  :hook
+  (prog-mode . flymake-cursor-mode))
+
 ;;; Package:
 (provide 'my-coding)
 ;;; my-coding.el ends here
