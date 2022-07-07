@@ -79,9 +79,18 @@
 ;; (use-package git-timemachine
 ;; :after magit)
 
-;; TODO Consider magit-delta
+;; Magit Delta
+;; This may have problems with git-delta v. 0.13.0
+;; This has been disabled as it may be causing issues with staging changes
 ;; (use-package magit-delta
-;; :after magit)
+;;   :after magit
+;;   :config
+;;   (setq magit-delta-delta-args '(
+;; 				 "--syntax-theme" "none"))
+;; 				 ;;"--side-by-side" "true"))
+;;   :hook (magit-mode . magit-delta-mode))
+
+;; TODO Override (magit-visit-thing) to work with (goto-address-mode)
 
 ;; Override inbuilt magit functionality to tell you off when inserting a space
 ;; https://stackoverflow.com/a/15725437
