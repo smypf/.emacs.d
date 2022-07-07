@@ -92,10 +92,10 @@
  :keymaps 'override
  "v" 'vertico-repeat)
 
-(general-define-key
- :states 'normal
- :keymaps 'override
- " " 'vertico-find)
+; (general-define-key
+;  :states 'normal
+;  :keymaps 'override
+;  " " 'vertico-find)
 
 (use-package consult
   :defer t
