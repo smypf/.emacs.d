@@ -17,7 +17,7 @@
   (setq evil-want-integration t
 	evil-want-keybinding nil
 	evil-vsplit-window-right t
-	evil-split-window-below nil
+	evil-split-window-below t
 
 	;; Persist highlighting
 	;; https://www.reddit.com/r/emacs/comments/6lythd/comment/djxowfs
@@ -79,7 +79,8 @@
  :prefix leader
  "bp" 'evil-prev-buffer
  "bn" 'evil-next-buffer
- "bb" 'switch-to-buffer)
+ "bb" 'switch-to-buffer
+ "," 'switch-to-buffer)
 
 ;; TODO move this
 ;; Keybinds for searching
