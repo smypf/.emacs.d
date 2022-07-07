@@ -103,7 +103,10 @@
   (setq xref-show-xrefs-function #'consult-xref
 	xref-show-definitions-function #'consult-xref)
   :config
-  (autoload 'projectile-project-root "projectile"))
+  (autoload 'projectile-project-root "projectile")
+
+  :hook
+  (completion-list-mode . consult-preview-at-point-mode))
 
 (use-package orderless
   :init
@@ -180,51 +183,53 @@
   ;; https://emacsredux.com/blog/2016/01/31/use-tab-to-indent-or-complete/
   (setq tab-always-indent 'complete))
 
-;; I don't know what the point of embark is
-;; (use-package marginalia
-;;   :ensure t
-;;   :config
-;;   (marginalia-mode))
-;; 
-;; 
-;; (use-package embark
-;;   :ensure t
-;; 
-;;   :bind
-;;   (("M-." . embark-act)         ;; pick some comfortable binding
-;;    ("M-/" . embark-dwim)        ;; good alternative: M-.
-;;    ("C-h B" . embark-bindings)) ;; alternative for `describe-bindings'
-;; 
-;;   :init
-;; 
-;;   ;; Optionally replace the key help with a completing-read interface
-;;   (setq prefix-help-command #'embark-prefix-help-command)
-;; 
-;;   :config
-;; 
-;;   ;; Hide the mode line of the Embark live/completions buffers
-;;   (add-to-list 'display-buffer-alist
-;;                '("\\`\\*Embark Collect \\(Live\\|Completions\\)\\*"
-;;                  nil
-;;                  (window-parameters (mode-line-format . none)))))
-;; 
-;; ;; Consult users will also want the embark-consult package.
-;; (use-package embark-consult
-;;   :ensure t
-;;   :after (embark consult)
-;;   :demand t ; only necessary if you have the hook below
-;;   ;; if you want to have consult previews as you move around an
-;;   ;; auto-updating embark collect buffer
-;;   :hook
-;;   (embark-collect-mode . consult-preview-at-point-mode))
-;; 
-;; 
-;; 
-;; ;; Use Embark to show bindings in a key prefix with `C-h`
-;; (setq prefix-help-command #'embark-prefix-help-command)
-;; 
-;; (with-eval-after-load 'embark-consult
-;;   (add-hook 'embark-collect-mode-hook #'consult-preview-at-point-mode))
+(use-package marginalia
+  :ensure t
+  :config
+  (marginalia-mode))
+
+
+;; Embark Export (M-. E) will send all results to a buffer.
+;; This is useful as it means that it is not necessary to continuously open the consult buffer to visit subsequent matches
+;; This is enough for me to enable this.
+(use-package embark
+  :ensure t
+
+  :bind
+  (("M-." . embark-act)         ;; pick some comfortable binding
+   ("M-/" . embark-dwim)        ;; good alternative: M-.
+   ("C-h B" . embark-bindings)) ;; alternative for `describe-bindings'
+
+  :init
+
+  ;; Optionally replace the key help with a completing-read interface
+  (setq prefix-help-command #'embark-prefix-help-command)
+
+  :config
+
+  ;; Hide the mode line of the Embark live/completions buffers
+  (add-to-list 'display-buffer-alist
+               '("\\`\\*Embark Collect \\(Live\\|Completions\\)\\*"
+                 nil
+                 (window-parameters (mode-line-format . none)))))
+
+;; Consult users will also want the embark-consult package.
+(use-package embark-consult
+  :ensure t
+  :after (embark consult)
+  :demand t ; only necessary if you have the hook below
+  ;; if you want to have consult previews as you move around an
+  ;; auto-updating embark collect buffer
+  :hook
+  (embark-collect-mode . consult-preview-at-point-mode))
+
+
+
+;; Use Embark to show bindings in a key prefix with `C-h`
+(setq prefix-help-command #'embark-prefix-help-command)
+
+(with-eval-after-load 'embark-consult
+  (add-hook 'embark-collect-mode-hook #'consult-preview-at-point-mode))
 
 (general-define-key
  :states 'normal

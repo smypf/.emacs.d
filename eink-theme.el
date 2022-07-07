@@ -428,7 +428,8 @@
    `(highlight-indent-guides-character-face ((t (:foreground ,comment))))
    `(highlight-indent-guides-top-character-face ((t (:foreground ,purple-bg))))
    ; `(highlight-indent-guides-stack-character-face ((t (:foreground ,purple-bg))))
-   ))
+
+   `(marginalia-documentation ((t (:underline nil))))))
 
 ;; to here
 ;;
