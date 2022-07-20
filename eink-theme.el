@@ -429,7 +429,9 @@
    `(highlight-indent-guides-top-character-face ((t (:foreground ,purple-bg))))
    ; `(highlight-indent-guides-stack-character-face ((t (:foreground ,purple-bg))))
 
-   `(marginalia-documentation ((t (:underline nil))))))
+   `(marginalia-documentation ((t (:underline nil))))
+
+   `(corfu-current ((t (:background ,purple-bg))))))
 
 ;; to here
 ;;
