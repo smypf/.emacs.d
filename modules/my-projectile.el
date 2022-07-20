@@ -14,9 +14,10 @@
 (use-package projectile
   :defer t
   :config
+  (projectile-mode)
+  (setq projectile-sort-order 'recently-active)
   ;; Add npm projects
   ;; This allows for usage of `projectile-toggle-between-implementation-and-test`
-  (projectile-mode)
   (projectile-register-project-type 'npm '("package.json")
                                   :project-file "package.json"
 				  :configure "npm ci"
@@ -24,6 +25,11 @@
 				  :test "npm test "
 				  :run "npm start"
 				  :test-suffix ".spec"))
+
+(use-package emacs
+  :ensure nil
+  :config
+  (recentf-mode))
 
 (general-define-key
  :states 'normal
