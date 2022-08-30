@@ -1,7 +1,7 @@
-;;; eink-theme.el --- eink
+;;; pleasant-monochromish-theme.el --- Pleasant Monochromish Theme
 ;;; Version: 1.0
 ;;; Commentary:
-;;; A theme called eink
+;;; A pleasant monochromish theme
 ;;; Code:
 
 ;; Copyright (C) 2020 Sasha Yee
@@ -38,7 +38,7 @@
 
 ;;; Code:
 
-(deftheme eink
+(deftheme pleasant-monochromish
   "Theme emulating reading on an E Ink device.")
 
 ;; base purple - dfcee7
@@ -60,7 +60,7 @@
 
 
   (custom-theme-set-faces
-   'eink
+   'pleasant-monochromish
 
    ;; generic stuff
    `(default ((t (:background ,bg :foreground ,fg))))
@@ -304,6 +304,7 @@
    `(typescript-jsdoc-value ((t (:inherit font-lock-comment-face))))
 
    `(hl-line ((t (:background ,hl-line-bg))))
+   `(dirvish-hl-line ((t (:inherit hl-line))))
    `(hl-fill-column-face ((t (:background ,hl-line-bg))))
 
    ;; `(whitespace-indentation ((t (:foreground ,fg-light :background ,bg))))
@@ -442,6 +443,6 @@
 ;; TODO Remove usages of non variable values
 ;; TODO Fix highlight indent guide colours
 
-(provide-theme 'eink)
-;;; eink-theme.el ends here
+(provide-theme 'pleasant-monochromish)
+;;; pleasant-monochromish-theme.el ends here
 

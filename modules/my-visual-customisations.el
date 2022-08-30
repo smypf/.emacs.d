@@ -31,11 +31,11 @@
 
 
 ;; Setup my theme to be used
-(unless (package-installed-p 'eink-theme)
-  (package-install-file (expand-file-name "eink-theme.el" user-emacs-directory)))
+(unless (package-installed-p 'pleasant-monochromish-theme)
+  (package-install-file (expand-file-name "pleasant-monochromish-theme.el" user-emacs-directory)))
 
 ;; Load the theme
-(load-theme 'eink t)
+(load-theme 'pleasant-monochromish t)
 
 ;; Add line numbers globally
 (global-display-line-numbers-mode)
@@ -86,7 +86,7 @@
                         (make-glyph-code ?│))
 
 ;; Reverse colors for the border to have nicer line
-;; These are done in the eink theme
+;; These are done in the pleasant-monochromish theme
 ;; (set-face-inverse-video-p 'vertical-border nil)
 ;; (set-face-background 'vertical-border (face-background 'default))
 
