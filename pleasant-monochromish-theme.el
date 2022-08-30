@@ -44,21 +44,25 @@
 ;; base purple - dfcee7
 ;; analogous - #e7cee3 & #d3cee7
 (let ((fg                "#444444")
-      (fg-table          "#222291")
       (bg                "#fffff8")
-      ;; (bg-light          "#646464")
+
       (comment           "#c1c1bd")
-      ;; (fg-light          "#ddddd8")
+
       (bg-highlight      "#fff1aa")
       (bg-highlight-2    "LightCyan")
       (bg-highlight-3    "LightGreen")
       (hl-line-bg        "#f4f4e8")
-      ;; (org-todo          "#ff98a3")
+
       (isearch-bg        "#d3cee7")
       (lazy-highlight-bg "#e1c5e8")
       (purple-bg         "#dfcee7")
       (dark-purple       "#9e4d93"))
 
+      ;; Previously used colours which are still referenced below
+      ;; (fg-table          "#222291")
+      ;; (bg-light          "#646464")
+      ;; (fg-light          "#ddddd8")
+      ;; (org-todo          "#ff98a3")
 
   (custom-theme-set-faces
    'pleasant-monochromish
