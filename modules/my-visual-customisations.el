@@ -44,11 +44,32 @@
 ;; This makes it easier to see which line the cursor is on
 (global-hl-line-mode)
 
+
+;; This isn't working for some reason
+;; (defvar my-visual-fill-toggle nil)
+;; (defun my-visual-fill-toggle ()
+;;   (interactive)
+;;   (if (eq my-visual-fill-toggle nil)
+;;       (progn (setq my-visual-fill-toggle t)
+;;        (visual-fill-column-mode 1))
+;;     (progn (visual-fill-column-mode -1)
+;;      (setq my-visual-fill-toggle t))))
+
+
+(use-package visual-fill-column)
+;; :hook (visual-fill-column-mode-hook . visual-line-mode))
+
 (general-define-key
  :states 'normal
  :keymaps 'override
  :prefix leader
- "th" 'global-hl-line-mode)
+ "th" 'global-hl-line-mode
+ ;; "tw" 'visual-fill-column-mode
+ )
+
+;; Break lines (word wrap) at word boundaries rather than the last character in the line
+;; (global-visual-line-mode t)
+;; (add-hook 'prog-mode 'visual-line-mode)
 
 ;; Prevent the cursor jumping to the middle of the page when scrolling to the bottom of the screen
 ;; https://stackoverflow.com/a/25777730
@@ -85,10 +106,14 @@
                         'vertical-border
                         (make-glyph-code ?│))
 
+;; Remove the `\` character from lines that wrap
+(set-display-table-slot standard-display-table 'wrap ?\ )
+
 ;; Reverse colors for the border to have nicer line
 ;; These are done in the pleasant-monochromish theme
 ;; (set-face-inverse-video-p 'vertical-border nil)
 ;; (set-face-background 'vertical-border (face-background 'default))
+
 
 ;;; Package:
 (provide 'my-visual-customisations)

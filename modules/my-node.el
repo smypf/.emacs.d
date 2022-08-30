@@ -43,6 +43,10 @@
 		     3 ;; column
 		     )
 	      compilation-error-regexp-alist-alist))
+        ;; Passing tests
+	;; (cons '(compilation "\\(?:[\(\\)?\\(src/[a-zA-Z\.0-9_/-]+\\.spec.ts)?$")
+	;; 	1
+	;; 	))
   (add-to-list 'compilation-error-regexp-alist 'node))
 (add-hook 'after-init-hook 'add-node-error-regex)
 
