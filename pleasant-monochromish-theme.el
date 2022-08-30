@@ -56,7 +56,8 @@
       ;; (org-todo          "#ff98a3")
       (isearch-bg        "#d3cee7")
       (lazy-highlight-bg "#e1c5e8")
-      (purple-bg      "#dfcee7"))
+      (purple-bg         "#dfcee7")
+      (dark-purple       "#9e4d93"))
 
 
   (custom-theme-set-faces
@@ -127,7 +128,7 @@
    `(doom-modeline-evil-visual-state ((t (:foreground ,fg))))
    `(doom-modeline-evil-normal-state ((t (:foreground ,fg))))
    `(doom-modeline-lsp-success ((t (:foreground ,fg))))
-   `(doom-modeline-buffer-modified ((t (:foreground "#9e4d93" :weight bold))))
+   `(doom-modeline-buffer-modified ((t (:foreground ,dark-purple :weight bold))))
    `(doom-modeline-urgent ((t (:foreground "#d4a7cd"))))
 
    `(doom-modeline-info ((t (:foreground ,fg))))
@@ -432,7 +433,9 @@
 
    `(marginalia-documentation ((t (:underline nil))))
 
-   `(corfu-current ((t (:background ,purple-bg))))))
+   `(corfu-current ((t (:background ,purple-bg))))
+   `(completions-common-part ((t (:foreground ,dark-purple))))
+   `(completions-first-difference ((t (:foreground ,dark-purple))))))
 
 ;; to here
 ;;
