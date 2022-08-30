@@ -53,6 +53,12 @@
  "ce" 'consult-flymake
  "cs" 'consult-eglot-symbols)
 
+;; (evil-collection-define-key 'normal 'xref--xref-buffer-mode-map (kbd "RET") 'xref-quit-and-goto-xref)
+;; (general-define-key
+;;  :states 'normal
+;;  :keymap 'xref--xref-buffer-mode-map
+;;  (kbd "RET") 'xref-quit-and-goto-xref)
+
 (use-package ansi-color
   ;; turn off ensure for this pre-installed package
   ;; https://github.com/jwiegley/use-package/issues/977
@@ -64,15 +70,19 @@
 
 ;; Automatically insert matching pair for delimiters
 (electric-pair-mode 1)
+;; Prevent electric 
+(setq electric-pair-preserve-balance nil)
 
-(use-package highlight-indent-guides
-  :defer 3
-  :hook
-  (prog-mode . highlight-indent-guides-mode)
-  :config
-  (setq highlight-indent-guides-method 'character
-	highlight-indent-guides-responsive 'stack
-	highlight-indent-guides-auto-enabled nil))
+
+
+;;; (use-package highlight-indent-guides
+;;;   :defer 3
+;;;   :hook
+;;;   (prog-mode . highlight-indent-guides-mode)
+;;;   :config
+;;;   (setq highlight-indent-guides-method 'character
+;;; 	highlight-indent-guides-responsive 'stack
+;;; 	highlight-indent-guides-auto-enabled nil))
 
 (general-define-key
  :states 'normal
@@ -80,14 +90,98 @@
  :prefix leader
  "ti" 'highlight-indent-guides-mode)
 
+;;; (use-package tree-sitter
+;;;   :config
+;;;     (global-tree-sitter-mode))
+;;; 
+;;; (use-package tree-sitter-langs
+;;;   :after tree-sitter)
+;;; 
+;;; (use-package fancy-narrow
+;;;   :after tree-sitter)
+;;; 
+;;; ;; https://blog.meain.io/2022/more-treesitter-emacs/
+;;; ;; https://github.com/meain/dotfiles/blob/34ef5e3331757ac32dd066f5baa54f76cf78211b/emacs/.config/emacs/init.el#L2213
+;;; (use-package evil-textobj-tree-sitter
+;;;   :config
+;;;   ;; bind `function.outer`(entire function block) to `f` for use in things like `vaf`, `yaf`
+;;;   (define-key evil-outer-text-objects-map "f" (evil-textobj-tree-sitter-get-textobj "function.outer"))
+;;;   ;; bind `function.inner`(function block without name and args) to `f` for use in things like `vif`, `yif`
+;;;   (define-key evil-inner-text-objects-map "f" (evil-textobj-tree-sitter-get-textobj "function.inner"))
+;;; 
+;;;   ;(define-key evil-outer-text-objects-map "c" (evil-textobj-tree-sitter-get-textobj "class.outer"))
+;;;   ;(define-key evil-inner-text-objects-map "c" (evil-textobj-tree-sitter-get-textobj "class.inner"))
+;;;   ;(define-key evil-outer-text-objects-map "C" (evil-textobj-tree-sitter-get-textobj "comment.outer"))
+;;;   ;(define-key evil-inner-text-objects-map "C" (evil-textobj-tree-sitter-get-textobj "comment.outer"))
+;;;   (define-key evil-outer-text-objects-map "o" (evil-textobj-tree-sitter-get-textobj "loop.outer"))
+;;;   (define-key evil-inner-text-objects-map "o" (evil-textobj-tree-sitter-get-textobj "loop.inner"))
+;;;   (define-key evil-outer-text-objects-map "c" (evil-textobj-tree-sitter-get-textobj "conditional.outer"))
+;;;   (define-key evil-inner-text-objects-map "c" (evil-textobj-tree-sitter-get-textobj "conditional.inner"))
+;;;   (define-key evil-inner-text-objects-map "r" (evil-textobj-tree-sitter-get-textobj "parameter.inner"))
+;;;   (define-key evil-outer-text-objects-map "r" (evil-textobj-tree-sitter-get-textobj "parameter.outer"))
+;;; 
+;;;   ;; COMMENT Is recenter required?
+;;;   ;; TODO Only recenter if the target is not within the viewport
+;;;   (defun meain/goto-and-recenter (group &optional previous end query)
+;;;     (interactive)
+;;;     (evil-textobj-tree-sitter-goto-textobj group previous end query)
+;;;     (recenter 7))
+;;; 
+;;;   ;; TODO change this to general
+;;;   ;; TODO Extract the function
+;;;   (define-key evil-normal-state-map (kbd "]r") (lambda () (interactive) (meain/goto-and-recenter "parameter.inner")))
+;;;   (define-key evil-normal-state-map (kbd "[r") (lambda () (interactive) (meain/goto-and-recenter "parameter.inner" t)))
+;;;   (define-key evil-normal-state-map (kbd "]R") (lambda () (interactive) (meain/goto-and-recenter "parameter.inner" nil t)))
+;;;   (define-key evil-normal-state-map (kbd "[R") (lambda () (interactive) (meain/goto-and-recenter "parameter.inner" t t)))
+;;;   (define-key evil-normal-state-map (kbd "]c") (lambda () (interactive) (meain/goto-and-recenter "conditional.outer")))
+;;;   (define-key evil-normal-state-map (kbd "[c") (lambda () (interactive) (meain/goto-and-recenter "conditional.outer" t)))
+;;;   (define-key evil-normal-state-map (kbd "]C") (lambda () (interactive) (meain/goto-and-recenter "conditional.outer" nil t)))
+;;;   (define-key evil-normal-state-map (kbd "[C") (lambda () (interactive) (meain/goto-and-recenter "conditional.outer" t t)))
+;;;   ;(define-key evil-normal-state-map (kbd "]c") (lambda () (interactive) (meain/goto-and-recenter "class.outer")))
+;;;   ;(define-key evil-normal-state-map (kbd "[c") (lambda () (interactive) (meain/goto-and-recenter "class.outer" t)))
+;;;   ;(define-key evil-normal-state-map (kbd "]C") (lambda () (interactive) (meain/goto-and-recenter "class.outer" nil t)))
+;;;   ;(define-key evil-normal-state-map (kbd "[C") (lambda () (interactive) (meain/goto-and-recenter "class.outer" t t)))
+;;;   (define-key evil-normal-state-map (kbd "]f") (lambda () (interactive) (meain/goto-and-recenter "function.outer")))
+;;;   (define-key evil-normal-state-map (kbd "[f") (lambda () (interactive) (meain/goto-and-recenter "function.outer" t)))
+;;;   (define-key evil-normal-state-map (kbd "]F") (lambda () (interactive) (meain/goto-and-recenter "function.outer" nil t)))
+;;;   (define-key evil-normal-state-map (kbd "[F") (lambda () (interactive) (meain/goto-and-recenter "function.outer" t t))))
+;;; 
+;;; ;; Fancy narrow to textobj
+;;; (use-package emacs
+;;;   :ensure nil
+;;;   :commands (meain/fancy-narrow-to-thing)
+;;;   :config
+;;;   (defun meain/fancy-narrow-to-thing (thing)
+;;;     (interactive)
+;;;     (if (buffer-narrowed-p) (fancy-widen))
+;;;     (let ((range (evil-textobj-tree-sitter--range 1 (list (intern thing)))))
+;;;       (fancy-narrow-to-region (car range) (cdr range))))
+;;;   ;; TODO rewrite to general
+;;;   (general-define-key
+;;;    :states 'normal
+;;;    :keymaps 'override
+;;;    :prefix leader
+;;;    "nn" (lambda () (interactive) (fancy-widen))
+;;;    "nf" (lambda () (interactive) (meain/fancy-narrow-to-thing "function.outer"))
+;;;    "nc" (lambda () (interactive) (meain/fancy-narrow-to-thing "class.outer"))
+;;;    "nC" (lambda () (interactive) (meain/fancy-narrow-to-thing "comment.outer"))
+;;;    "no" (lambda () (interactive) (meain/fancy-narrow-to-thing "loop.outer"))
+;;;    "nc" (lambda () (interactive) (meain/fancy-narrow-to-thing "conditional.outer"))
+;;;    "nr" (lambda () (interactive) (meain/fancy-narrow-to-thing "parameter.outer"))))
+
+
+
 ;; TODO install https://github.com/flymake/emacs-flymake instead of the builtin one?
 ;; Are these the same or different?
 
+;; TODO Add "K" = eldoc-doc-buffer as an alternative to C-h .
+;; TODO add and remove the binding when eglot is toggled
+
 ;; Show the error at the cursor in the mini-buffer
-(use-package flymake-cursor
-  :after flymake
-  :hook
-  (prog-mode . flymake-cursor-mode))
+;;; (use-package flymake-cursor
+;;;   :after flymake
+;;;   :hook
+;;;   (prog-mode . flymake-cursor-mode))
 
 ;; Enable folding code sections
 (use-package emacs

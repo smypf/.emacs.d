@@ -33,8 +33,9 @@
 	;; This was specifically done for ensuring that magit panes are not opened in horizontal splits
 	;; These values are copied from the Doom Emacs repository
 	;; https://github.com/doomemacs/doomemacs/blob/61a7c541655038615e3f846a87db2e7d5883d35a/core/core-ui.el#L290
-	split-height-threshold nil
-	split-width-threshold 160)
+	;; split-height-threshold nil
+	;; split-width-threshold 160
+	)
   (evil-mode))
 
 (use-package evil-surround
@@ -51,6 +52,8 @@
   :after evil
   :config
   ;; Initialise only the packages I'm interested in
+  ;; TODO instead of having to add them here manually create a list which can have items added to it elsewhere which is
+  ;; then read at the end of initialisation
   (evil-collection-init '(magit dired consult vertico compile xref)))
 
 ;; For some reason this doesn't work
@@ -94,6 +97,9 @@
  :prefix leader
  "/" 'consult-ripgrep
  "?" 'search-thing-at-point
+ "'" 'eval-expression
+ "i" 'consult-imenu
+ "I" 'consult-imenu-multi
  "s" 'consult-line)
 
 ;; Unbind M-: which was set to call `eval-expression`.

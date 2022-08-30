@@ -38,19 +38,25 @@
       (let ((ISSUEKEY (replace-regexp-in-string
 		       (concat ".*?\\(" ISSUEKEYREGEX "\\).*")
 		       "\\1"
-		       (magit-get-current-branch))))
+		       (magit-get-current-branch)))
+	    ;; Find where the first instance of the "#" character is, which designates the start of the comments in the commit message
+	    (COMMITMESSAGEEND (search-forward "#")))
 
 	;; When the current branch has an issue key in it
 	(when (string-match-p ISSUEKEYREGEX (magit-get-current-branch))
 	  ;; Unless the buffer contains the current Issue Key
-	  ;; 1+ is required as the buffer is 1 indexed
-	  (unless (string-equal (buffer-substring-no-properties 1 (1+ (length ISSUEKEY))) ISSUEKEY)
+	  (unless (string-match ISSUEKEY (buffer-substring-no-properties 1 COMMITMESSAGEEND))
+	    ;; Go back to the start of the buffer since search-forward moves the cursor
+	    (evil-goto-first-line)
 	    ;; Append the Issue Key to the buffer
-	    (insert (concat ISSUEKEY " - ")))
+	    (insert (concat "\n\nref: " ISSUEKEY)))
+
+	  ;; Go back to the start of the buffer
+	  (evil-goto-first-line)
 	  ;; Go to the end of the line
 	  ;; TODO Perhaps check if evil mode is actually activated
 	  ;; But we both know this is going to be the case.
-	  (evil-append-line 1)))))
+	  (evil-insert-line 1)))))
 
 
   (add-hook 'git-commit-setup-hook 'insert-issue-key)
