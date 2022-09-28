@@ -35,6 +35,12 @@
   :after consult
   :defer t)
 
+;; Found via Hacker News
+;; https://news.ycombinator.com/item?id=32903246
+;; https://masukomi.github.io/private_comments/
+;; https://github.com/masukomi/private_comments
+(use-package private-comments-mode)
+
 (defun xref-list-references()
   (interactive)
   (setq xref-show-xrefs-function 'xref--show-xref-buffer)
