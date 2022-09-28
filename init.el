@@ -35,6 +35,7 @@
 (require 'my-completion)
 (require 'my-magit)
 (require 'my-dired)
+(require 'my-org)
 (require 'my-projectile)
 (require 'my-node)
 (require 'my-coding)
