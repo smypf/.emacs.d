@@ -54,7 +54,7 @@
   ;; Initialise only the packages I'm interested in
   ;; TODO instead of having to add them here manually create a list which can have items added to it elsewhere which is
   ;; then read at the end of initialisation
-  (evil-collection-init '(magit dired consult vertico compile xref)))
+  (evil-collection-init '(magit dired consult vertico compile xref org)))
 
 ;; For some reason this doesn't work
 ;; (evil-ex-define-cmd "\"w" 'evil-write)
