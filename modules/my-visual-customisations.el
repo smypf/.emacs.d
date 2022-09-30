@@ -17,7 +17,10 @@
 
 
 ;; Disable audio bells which are annoying
-(setq visible-bell 1)
+;; (setq visible-bell 1)
+;; https://www.emacswiki.org/emacs/AlarmBell
+(setq ring-bell-function 'ignore)
+
 
 ;; Doom modeline is a nice package for showing meta information about the current buffer
 (use-package doom-modeline
