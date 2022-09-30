@@ -15,6 +15,7 @@
 ;; LSP is doing most of the heavy lifting anyway
 ;; https://vxlabs.com/2022/06/12/typescript-development-with-emacs-tree-sitter-and-lsp-in-2022/ for more information
 (use-package typescript-mode
+  :defer t
   :config
   (add-hook 'typescript-mode-hook 'eglot-ensure)
   :dash "TypeScript" "JavaScript" "NodeJS" "HTML" "CSS")
@@ -28,6 +29,7 @@
 ;; TODO This could probably go somewhere else
 ;; I think that this may be slowing down things
 (use-package apheleia
+  :defer t
   :ensure t
   :config
   (apheleia-global-mode +1))

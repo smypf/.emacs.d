@@ -39,12 +39,15 @@
 ;; https://news.ycombinator.com/item?id=32903246
 ;; https://masukomi.github.io/private_comments/
 ;; https://github.com/masukomi/private_comments
-(use-package private-comments-mode)
+(use-package private-comments-mode
+  :defer t)
 
 ;; Ensure that the docset is activated. If this is not done results will not be shown.
 ;; See line ~20 of modules/my-node.el
-(use-package dash-docs)
+(use-package dash-docs
+  :defer t)
 (use-package consult-dash
+  :defer t
   :after dash-docs)
   ;; These lines have been disabled since I prefer to search for something myself.
   ;; :config
@@ -84,6 +87,7 @@
 (use-package ansi-color
   ;; turn off ensure for this pre-installed package
   ;; https://github.com/jwiegley/use-package/issues/977
+  :defer t
   :ensure nil
   :init
   (ansi-color-for-comint-mode-off)
@@ -201,6 +205,7 @@
 
 ;; Show the error at the cursor in the mini-buffer
 (use-package flymake-cursor
+  :defer t
   :after flymake
   :hook
   (prog-mode . flymake-cursor-mode))

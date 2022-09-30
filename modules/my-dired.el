@@ -36,6 +36,7 @@
 	      (seq bol ".." eol))))
 
 (use-package dirvish
+  :defer t
   :init
   (dirvish-override-dired-mode)
   :custom
@@ -91,6 +92,7 @@
    ;;("M-j" . dirvish-fd-jump)))
 
 (use-package dirvish-extras
+  :defer t
   :after dirvish
   :ensure nil)
 

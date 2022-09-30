@@ -17,12 +17,9 @@
   :init
   (vertico-mode)
   (vertico-multiform-mode)
-
-
   :config
   ;; Show more candidates
   (setq vertico-count 15
-
 	;; Configure the display per command.
 	;; Use a buffer with indices for imenu
 	;; and a flat (Ido-like) menu for M-x.
@@ -38,11 +35,13 @@
 
 ;; Persist history over Emacs restarts. Vertico sorts by history position.
 (use-package savehist
+  :ensure nil
   :init
   (savehist-mode))
 
 ;; A few more useful configurations...
 (use-package emacs
+  :ensure nil
   :init
   ;; Add prompt indicator to `completing-read-multiple'.
   ;; We display [CRM<separator>], e.g., [CRM,] if the separator is a comma.
@@ -84,6 +83,7 @@
 
 (use-package vertico-repeat
   :after vertico
+  :defer t
   :ensure nil)
 
 (general-define-key
@@ -109,12 +109,14 @@
   (completion-list-mode . consult-preview-at-point-mode))
 
 (use-package orderless
+  :defer t
   :init
   (setq completion-styles '(orderless flex)))
 
 ;; Corfu
 ;; Perhaps use this
 (use-package corfu
+  :defer t
   :config
   (defun corfu-move-to-minibuffer ()
     (interactive)
@@ -161,6 +163,7 @@
 
 ;; Allow usage of corfu in terminal windows
 (use-package corfu-terminal
+  :defer t
   :after corfu
   :config
   (unless (display-graphic-p)
@@ -184,6 +187,7 @@
   (setq tab-always-indent 'complete))
 
 (use-package marginalia
+  :defer t
   :ensure t
   :config
   (marginalia-mode))
@@ -193,8 +197,8 @@
 ;; This is useful as it means that it is not necessary to continuously open the consult buffer to visit subsequent matches
 ;; This is enough for me to enable this.
 (use-package embark
+  :defer t
   :ensure t
-
   :bind
   (("M-." . embark-act)         ;; pick some comfortable binding
    ("M-/" . embark-dwim)        ;; good alternative: M-.

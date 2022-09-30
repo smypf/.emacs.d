@@ -15,10 +15,31 @@
 
 (use-package org
   :ensure nil
+  :defer t
   :config
   (setq org-directory (file-truename "~/org")
 	org-agenda-files (directory-files-recursively org-directory "\\.org$")
 	org-default-notes-file (concat org-directory "/notes.org")
+    ;; Add toggling states and different states
+    ;; e.g <SPC> m t t => TODO
+    ;; e.g <SPC> m t d => Done
+    ;; This is achieved with org-todo and having a (letter) at the end of the keyword.
+    ;; (setq org-todo-keywords
+    ;;      '((sequence "TODO" "WAIT" "|" "DONE" "CANCELLED")))
+    org-todo-keywords '((sequence
+                         "TODO(t)"  ; A task that needs doing & is ready to do
+                         "WAIT(w)"  ; Something external is holding up this task
+                         "HOLD(h)"  ; This task is paused/on hold because of me
+                         "IDEA(i)"  ; An unconfirmed and unapproved task or notion
+                         "|"
+                         "DONE(d)"  ; Task successfully completed
+                         "KILL(k)") ; Task was cancelled, aborted or is no longer applicable
+                        (sequence
+                         "[ ](T)"   ; A task that needs doing
+                         "[-](S)"   ; Task is in progress
+                         "[?](W)"   ; Task is being held up or paused
+                         "|"
+                         "[X](D)")) ; Task was completed
 	;; Ensure that a heading and it's contents are automatically aligned
 	org-adapt-indentation t)
   (add-hook 'org-mode-hook 'turn-on-auto-fill)
@@ -29,32 +50,10 @@
 	    "N" 'org-capture
 	    "na" 'org-agenda
 	    "nt" 'org-todo))
-;; Add toggling states and different states
-;; e.g <SPC> m t t => TODO
-;; e.g <SPC> m t d => Done
-;; This is achieved with org-todo and having a (letter) at the end of the keyword.
-;; (setq org-todo-keywords
-;;      '((sequence "TODO" "WAIT" "|" "DONE" "CANCELLED")))
-
-(setq org-todo-keywords
-      '((sequence
-	 "TODO(t)"  ; A task that needs doing & is ready to do
-	 "WAIT(w)"  ; Something external is holding up this task
-	 "HOLD(h)"  ; This task is paused/on hold because of me
-	 "IDEA(i)"  ; An unconfirmed and unapproved task or notion
-	 "|"
-	 "DONE(d)"  ; Task successfully completed
-	 "KILL(k)") ; Task was cancelled, aborted or is no longer applicable
-	(sequence
-	 "[ ](T)"   ; A task that needs doing
-	 "[-](S)"   ; Task is in progress
-	 "[?](W)"   ; Task is being held up or paused
-	 "|"
-	 "[X](D)")))  ; Task was completed
-
 
 (use-package org-roam
   :ensure t
+  :defer t
   :custom
   (org-roam-directory org-directory)
   :config
@@ -80,6 +79,7 @@
 ;; https://github.com/Somelauw/evil-org-mode
 (use-package evil-org
   :ensure t
+  :defer t
   :after org
   :hook (org-mode . (lambda () evil-org-mode))
   :config
