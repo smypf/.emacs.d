@@ -200,10 +200,10 @@
 ;; TODO add and remove the binding when eglot is toggled
 
 ;; Show the error at the cursor in the mini-buffer
-;;; (use-package flymake-cursor
-;;;   :after flymake
-;;;   :hook
-;;;   (prog-mode . flymake-cursor-mode))
+(use-package flymake-cursor
+  :after flymake
+  :hook
+  (prog-mode . flymake-cursor-mode))
 
 ;; Enable folding code sections
 (use-package emacs
