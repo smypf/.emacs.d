@@ -16,7 +16,8 @@
 ;; https://vxlabs.com/2022/06/12/typescript-development-with-emacs-tree-sitter-and-lsp-in-2022/ for more information
 (use-package typescript-mode
   :config
-  (add-hook 'typescript-mode-hook 'eglot-ensure))
+  (add-hook 'typescript-mode-hook 'eglot-ensure)
+  :dash "TypeScript" "JavaScript" "NodeJS" "HTML" "CSS")
 
 ;; From the wiki
 (with-eval-after-load 'eglot
