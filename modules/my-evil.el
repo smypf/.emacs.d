@@ -107,6 +107,12 @@
 ;; For some reason (probably a setting in iTerm) the escape was being interpreted as the meta key
 (global-set-key (kbd "M-:") nil)
 
+;; Bind ESC to C-g in minibuffer
+;; https://www.reddit.com/r/emacs/comments/67rlfr/esc_vs_cg/
+;; This has been disabled since it was causing the Meta key to not work properly in the mini buffer
+;; (define-key key-translation-map (kbd "ESC") (kbd "C-g"))
+
+
 ;;; Package:
 (provide 'my-evil)
 ;;; my-evil.el ends here
