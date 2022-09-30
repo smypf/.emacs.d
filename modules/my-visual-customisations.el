@@ -12,7 +12,9 @@
 ;;; Code:
 
 ;; Disable the menu bar which is not useful in the terminal
-(menu-bar-mode -1)
+(unless window-system
+  (menu-bar-mode -1))
+
 
 ;; Disable audio bells which are annoying
 (setq visible-bell 1)
