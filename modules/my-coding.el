@@ -41,6 +41,22 @@
 ;; https://github.com/masukomi/private_comments
 (use-package private-comments-mode)
 
+;; Ensure that the docset is activated. If this is not done results will not be shown.
+;; See line ~20 of modules/my-node.el
+(use-package dash-docs)
+(use-package consult-dash
+  :after dash-docs)
+  ;; These lines have been disabled since I prefer to search for something myself.
+  ;; :config
+  ;; Use the symbol at point as initial search term
+  ;; (consult-customize consult-dash :initial (thing-at-point 'symbol)))
+
+(general-define-key
+ :states 'normal
+ :keymaps 'override
+ :prefix leader
+ "d" 'consult-dash)
+
 (defun xref-list-references()
   (interactive)
   (setq xref-show-xrefs-function 'xref--show-xref-buffer)
