@@ -224,6 +224,10 @@
 (with-eval-after-load 'embark-consult
   (add-hook 'embark-collect-mode-hook #'consult-preview-at-point-mode))
 
+(defun search-thing-at-point ()
+  (interactive)
+  (consult-ripgrep (projectile-project-root) (thing-at-point 'symbol)))
+
 ;;; Package:
 (provide 'my-completion)
 ;;; my-completion.el ends here
