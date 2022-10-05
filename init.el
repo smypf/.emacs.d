@@ -30,7 +30,8 @@
 (add-to-list 'load-path (expand-file-name "modules/" user-emacs-directory))
 
 (require 'my-defaults)
-(require 'my-evil)
+;; (require 'my-evil)
+(require 'my-meow)
 (require 'my-visual-customisations)
 (require 'my-completion)
 (require 'my-magit)
