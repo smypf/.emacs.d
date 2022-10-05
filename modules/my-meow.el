@@ -116,7 +116,16 @@
 ;; Find file (Projectile)
 ;; SPC SPC 
 
+(defun back-window()
+    (interactive)
+  (other-window -1))
+
 (meow-leader-define-key
+ ;; Window Manipulation
+ '("wv" . split-window-right)
+ '("wl" . other-window)
+ '("wh" . back-window)
+
  ;; Open Magit
  '("G" . magit)
  ;; Open dired.
