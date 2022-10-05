@@ -64,18 +64,6 @@
   ;; https://magit.vc/manual/magit/Automatic-Refreshing-of-Magit-Buffers.html
   (add-hook 'after-save-hook 'magit-after-save-refresh-status t))
 
-(general-define-key
- :states 'normal
- :keymaps 'override
- :prefix leader
- "g" 'magit)
-
-;; Kill the magit buffer and close the pane
-(general-define-key
- :state 'normal
- :keymaps 'magit-mode-map
- "q" 'kill-buffer-and-window)
-
 ;; Automatically start in insert state when openning the commit buffer
 ;; https://emacs.stackexchange.com/a/14012
 (add-hook 'with-editor-mode-hook 'evil-insert-state)

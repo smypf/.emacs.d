@@ -18,12 +18,11 @@
   :config
   (evil-set-initial-state 'vterm-mode 'insert))
 
-(general-define-key
- :states 'normal
- :keymaps 'override
- :prefix leader
- "'" 'vterm)
-
+;; (general-define-key
+;;  :states 'normal
+;;  :keymaps 'override
+;;  :prefix leader
+;;  "'" 'vterm)
 
 ;;; Package:
 (provide 'my-vterm)

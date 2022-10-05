@@ -10,9 +10,6 @@
 ;; Org is useful. I am committing to use it more.
 
 ;;; Code:
-
-(evil-define-key 'normal org-mode-map (kbd "<tab>") #'org-cycle)
-
 (use-package org
   :ensure nil
   :defer t
@@ -42,14 +39,7 @@
                          "[X](D)")) ; Task was completed
 	;; Ensure that a heading and it's contents are automatically aligned
 	org-adapt-indentation t)
-  (add-hook 'org-mode-hook 'turn-on-auto-fill)
-  :general (
-	    :prefix leader
-	    :states 'normal
-	    :keymaps 'override
-	    "N" 'org-capture
-	    "na" 'org-agenda
-	    "nt" 'org-todo))
+  (add-hook 'org-mode-hook 'turn-on-auto-fill))
 
 (use-package org-roam
   :ensure t
@@ -62,18 +52,6 @@
   (org-roam-db-autosync-mode)
   ;; If using org-roam-protocol
   (require 'org-roam-protocol))
-
-(general-define-key
- :states 'normal
- :keymaps 'override
- :prefix leader
- "nl" 'org-roam-buffer-toggle
- "nf" 'org-roam-node-find
- "ng" 'org-roam-graph
- "ni" 'org-roam-node-insert
- "nc" 'org-roam-capture
- ;; Dailies
- "nj" 'org-roam-dailies-capture-today)
 
 ;; Evil Key Binds for Org Mode
 ;; https://github.com/Somelauw/evil-org-mode

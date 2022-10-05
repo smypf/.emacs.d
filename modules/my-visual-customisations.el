@@ -64,14 +64,6 @@
 (use-package visual-fill-column)
 ;; :hook (visual-fill-column-mode-hook . visual-line-mode))
 
-(general-define-key
- :states 'normal
- :keymaps 'override
- :prefix leader
- "th" 'global-hl-line-mode
- ;; "tw" 'visual-fill-column-mode
- )
-
 ;; Break lines (word wrap) at word boundaries rather than the last character in the line
 ;; (global-visual-line-mode t)
 ;; (add-hook 'prog-mode 'visual-line-mode)

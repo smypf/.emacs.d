@@ -12,6 +12,16 @@
 ;;; Code:
 
 ;; Setup evil for vim style keybinds
+
+;; General is used for setting up keybinds
+;; Since this is used across all modules it is loaded here
+(use-package general
+  :init
+  (general-evil-setup t)
+  :config
+  ;; Set the leader. This is used for keybindings
+  (defconst leader "SPC"))
+
 (use-package evil
   :init
   (setq evil-want-integration t
@@ -111,6 +121,117 @@
 ;; https://www.reddit.com/r/emacs/comments/67rlfr/esc_vs_cg/
 ;; This has been disabled since it was causing the Meta key to not work properly in the mini buffer
 ;; (define-key key-translation-map (kbd "ESC") (kbd "C-g"))
+
+
+;; Keybinds
+;; Org
+(evil-define-key 'normal org-mode-map (kbd "<tab>") #'org-cycle)
+(general-define-key
+ :prefix leader
+ :states 'normal
+ :keymaps 'override
+ "N" 'org-capture
+ "na" 'org-agenda
+ "nt" 'org-todo)
+
+(general-define-key
+ :states 'normal
+ :keymaps 'override
+ :prefix leader
+ "nl" 'org-roam-buffer-toggle
+ "nf" 'org-roam-node-find
+ "ng" 'org-roam-graph
+ "ni" 'org-roam-node-insert
+ "nc" 'org-roam-capture
+ ;; Dailies
+ "nj" 'org-roam-dailies-capture-today)
+
+
+;; Dired
+;; Kill the dired buffer when pressing 'q'
+(evil-define-key 'normal dired-mode-map "q" 'kill-buffer-and-window)
+(general-define-key
+ :states 'normal
+ "-" 'dired-jump)
+
+;; Magit
+(general-define-key
+ :states 'normal
+ :keymaps 'override
+ :prefix leader
+ "g" 'magit)
+
+;; Kill the magit buffer and close the pane
+(general-define-key
+ :state 'normal
+ :keymaps 'magit-mode-map
+ "q" 'kill-buffer-and-window)
+
+
+;; Projectile
+(general-define-key
+ :states 'normal
+ :keymaps 'override
+ :prefix leader
+ "SPC" 'projectile-find-file
+ "pA" 'projectile-add-known-project
+ "C" 'projectile-compile-project
+ "R" 'recompile
+ "T" 'projectile-test-project
+ "pi" 'projectile-invalidate-cache
+ "pp" 'projectile-switch-project
+ "pt" 'projectile-toggle-between-implementation-and-test)
+
+;; Coding
+(general-define-key
+ :states 'normal
+ :keymaps 'override
+ :prefix leader
+ "d" 'consult-dash)
+
+(general-define-key
+ :states 'normal
+ :keymaps 'override
+ :prefix leader
+ "cd" 'xref-find-definitions
+ "cD" 'find-references-at-point
+ "cl" 'xref-list-references
+ "cr" 'eglot-rename
+ "ce" 'consult-flymake
+ "cs" 'consult-eglot-symbols)
+
+(general-define-key
+ :states 'normal
+ :keymaps 'override
+ :prefix leader
+ "ti" 'highlight-indent-guides-mode)
+
+;; Completion
+(general-define-key
+ :prefix leader
+ :states 'normal
+ :keymaps 'override
+ "v" 'vertico-repeat)
+
+; (general-define-key
+;  :states 'normal
+;  :keymaps 'override
+;  " " 'vertico-find)
+
+(general-define-key
+ :states 'normal
+ :keymaps 'override
+ :prefix leader
+ ":" 'execute-extended-command
+ "o" 'execute-extended-command)
+
+(general-define-key
+ :states 'normal
+ :keymaps 'override
+ :prefix leader
+ "th" 'global-hl-line-mode
+ ;; "tw" 'visual-fill-column-mode
+ )
 
 
 ;;; Package:

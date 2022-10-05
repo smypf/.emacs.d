@@ -54,29 +54,12 @@
   ;; Use the symbol at point as initial search term
   ;; (consult-customize consult-dash :initial (thing-at-point 'symbol)))
 
-(general-define-key
- :states 'normal
- :keymaps 'override
- :prefix leader
- "d" 'consult-dash)
-
 (defun xref-list-references()
   (interactive)
   (setq xref-show-xrefs-function 'xref--show-xref-buffer)
   (evil-collection-define-key 'normal 'xref--xref-buffer-mode-map (kbd "RET") 'xref-quit-and-goto-xref)
   (find-references-at-point)
   (setq xref-show-xrefs-function 'consult-xref))
-
-(general-define-key
- :states 'normal
- :keymaps 'override
- :prefix leader
- "cd" 'xref-find-definitions
- "cD" 'find-references-at-point
- "cl" 'xref-list-references
- "cr" 'eglot-rename
- "ce" 'consult-flymake
- "cs" 'consult-eglot-symbols)
 
 ;; (evil-collection-define-key 'normal 'xref--xref-buffer-mode-map (kbd "RET") 'xref-quit-and-goto-xref)
 ;; (general-define-key
@@ -109,12 +92,6 @@
 ;;;   (setq highlight-indent-guides-method 'character
 ;;; 	highlight-indent-guides-responsive 'stack
 ;;; 	highlight-indent-guides-auto-enabled nil))
-
-(general-define-key
- :states 'normal
- :keymaps 'override
- :prefix leader
- "ti" 'highlight-indent-guides-mode)
 
 ;;; (use-package tree-sitter
 ;;;   :config

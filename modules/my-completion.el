@@ -86,17 +86,6 @@
   :defer t
   :ensure nil)
 
-(general-define-key
- :prefix leader
- :states 'normal
- :keymaps 'override
- "v" 'vertico-repeat)
-
-; (general-define-key
-;  :states 'normal
-;  :keymaps 'override
-;  " " 'vertico-find)
-
 (use-package consult
   :defer t
   :init
@@ -234,13 +223,6 @@
 
 (with-eval-after-load 'embark-consult
   (add-hook 'embark-collect-mode-hook #'consult-preview-at-point-mode))
-
-(general-define-key
- :states 'normal
- :keymaps 'override
- :prefix leader
- ":" 'execute-extended-command
- "o" 'execute-extended-command)
 
 ;;; Package:
 (provide 'my-completion)
