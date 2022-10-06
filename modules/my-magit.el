@@ -13,9 +13,7 @@
 
 ;; Magit is a wrapper around git which is nice to use.
 (use-package magit
-  :after evil
   :defer t
-  :init (defvar evil-collection-magit-use-$-for-end-of-line nil)
   :config
   ;; Set the max length of the commit message before wrapping to the next line
   (setq git-commit-summary-max-length 120)
@@ -32,6 +30,9 @@
 
   ;; From https://emacs.stackexchange.com/a/44685
   (defun insert-issue-key()
+    (interactive)
+    ;; TODO also include the commit type by testing for a string proceeded by a '/'
+    ;; e.g. feat/, fix/, docs/ etc...
     ;; Set a regex for identifying an issue
     (let ((ISSUEKEYREGEX "[[:upper:]]+-[[:digit:]]+"))
       ;; Save the Issue Key as a variable from the current branch
@@ -47,17 +48,16 @@
 	  ;; Unless the buffer contains the current Issue Key
 	  (unless (string-match ISSUEKEY (buffer-substring-no-properties 1 COMMITMESSAGEEND))
 	    ;; Go back to the start of the buffer since search-forward moves the cursor
-	    (evil-goto-first-line)
+        (goto-char (point-min))
 	    ;; Append the Issue Key to the buffer
 	    (insert (concat "\n\nref: " ISSUEKEY)))
 
 	  ;; Go back to the start of the buffer
-	  (evil-goto-first-line)
-	  ;; Go to the end of the line
-	  ;; TODO Perhaps check if evil mode is actually activated
-	  ;; But we both know this is going to be the case.
-	  (evil-insert-line 1)))))
-
+      (goto-char (point-min))
+      ;; TODO fix this so that it isn't dependent on the something
+      (if (fboundp 'meow-insert) (meow-insert))))) )
+      ;;(cond (fboundp 'meow-insert meow-insert)
+            ;;(fboundp 'evil-insert-line (evil-insert-line 1)))))))
 
   (add-hook 'git-commit-setup-hook 'insert-issue-key)
 
@@ -66,7 +66,7 @@
 
 ;; Automatically start in insert state when openning the commit buffer
 ;; https://emacs.stackexchange.com/a/14012
-(add-hook 'with-editor-mode-hook 'evil-insert-state)
+;; (add-hook 'with-editor-mode-hook 'evil-insert-state)
 
 ;; TODO Should I also install git-timemachine?
 ;; https://github.com/emacsmirror/git-timemachine

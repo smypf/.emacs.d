@@ -16,6 +16,10 @@
   (meow-global-mode 1)
   :config
   ;; (meow-setup-line-number)
+  ;; from https://github.com/meow-edit/meow/issues/84
+  ;; Must set before enable `meow-global-mode`
+  ;;(setq meow-use-cursor-position-hack t
+  ;;    meow-use-enhanced-selection-effect t)
   (defun meow-setup ()
     (setq meow-cheatsheet-layout meow-cheatsheet-layout-qwerty)
     (meow-motion-overwrite-define-key
@@ -50,6 +54,8 @@
      '("3" . meow-expand-3)
      '("2" . meow-expand-2)
      '("1" . meow-expand-1)
+     ;; TODO '-' doesn't work in the dired buffers. Need to figure out what is overriding the bind
+     ;; '("-" . dired-jump)
      '("-" . negative-argument)
      '(";" . meow-reverse)
      '("," . meow-inner-of-thing)
@@ -128,12 +134,8 @@
 
  ;; Open Magit
  '("G" . magit)
- ;; Open dired.
- ;; This is different from vim-vinegar et al since it is using the leader
- '("-" . dired-jump)
 
  ;; Searching
-
  '("/" . consult-ripgrep)
  '("?" . search-thing-at-point)
  '("'" . eval-expression)
@@ -164,7 +166,16 @@
  '(":" . execute-extended-command)
  '("o" . execute-extended-command)
  ;; end
+
+ ;; buffers
+ '("bn" . next-buffer)
+ '("bp" . previous-buffer)
+ '("bb" . switch-to-buffer)
  )
+
+;; TODO
+;; C-d Down a page
+;; C-b Up a page
 
 
 ;;; Package:
