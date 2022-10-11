@@ -15,7 +15,9 @@
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
 
-
+;; For some reason esc u u is bound to 'upcase-word which is a friction point.
+;; This unbinds it.
+(define-key esc-map "u" nil)
 
 ;;; Package:
 (provide 'my-defaults)
