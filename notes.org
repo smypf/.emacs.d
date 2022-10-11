@@ -1,0 +1,62 @@
+* Extensions to look into:
+** Elfeed - RSS in Emacs
+   https://github.com/skeeto/elfeed
+** Grouping buffers in ibuffer based on Projectile project
+   https://github.com/purcell/ibuffer-projectile
+** Popper
+   More information
+   https://www.youtube.com/watch?v=E-xUNlZi3rI
+** Embrace - Change the contents of things inside (brackets|quotes|etc)
+   https://github.com/cute-jumper/embrace.el
+** shackle: Enforce rules for popup windows
+   Manage Emacs frames
+   https://depp.brause.cc/shackle/
+** eyebrowse: A simple-minded way of managing window configs in Emacs
+   https://depp.brause.cc/eyebrowse/
+** perspective.el - named workspaces
+   https://github.com/nex3/perspective-el
+*** Alternative - https://github.com/pashinin/workgroups2
+* Emacs
+** Learning the default bindings
+   https://www.reddit.com/r/emacs/comments/y0an3d/worth_to_learn_the_emacs_way_of_keymaps/
+   https://www.reddit.com/r/emacs/comments/y0an3d/worth_to_learn_the_emacs_way_of_keymaps/irrzi5s/
+** Protesilaos - Knowledgable in Emacs
+   https://protesilaos.com/
+   https://protesilaos.com/emacs/dotemacs
+   https://git.sr.ht/~protesilaos/dotfiles/tree/master/item/emacs/.emacs.d/init.el
+** Window Management
+   https://www.youtube.com/watch?v=gbdE7oZEdtA
+   https://www.youtube.com/watch?v=xRm5SUf68pc
+   https://www.youtube.com/watch?v=kyllrQiNsyA
+   
+* Other things
+
+** Ask HN: Getting tired of complexity in web development
+   https://news.ycombinator.com/item?id=33134021
+   https://medium.com/@scott.stevenson/how-to-finally-make-something-a16c8db7ba2a
+  
+** Hacking Google with a USB Plasma Globe
+
+   https://lcamtuf.coredump.cx/plasma_globe/
+   https://news.ycombinator.com/item?id=33152887
+  
+** https://timkellogg.me/blog/2022/10/04/dura
+
+** Advanced Programming in the UNIX Environment
+   https://stevens.netmeister.org/631/
+   https://news.ycombinator.com/item?id=33140795
+
+   
+** Take a break you idiot
+   https://www.robinrendle.com/notes/take-a-break-you-idiot/
+   https://news.ycombinator.com/item?id=33139297
+
+   
+** Dura - auto-backup for between git commits
+   https://timkellogg.me/blog/2022/10/04/dura
+   https://github.com/tkellogg/dura
+
+** Learn Exponentially
+   https://saveall.ai/blog/learn-exponentially
+   https://news.ycombinator.com/item?id=33140527
+   https://andymatuschak.org/prompts/
