@@ -63,6 +63,24 @@
   ;; look at interactive functions.
   (global-set-key (kbd "C-h C") #'helpful-command))
 
+(use-package popper
+  :ensure t ; or :straight t
+  ;; These binds aren't working since '`' is used for other things.
+  ;; They should be changed to something else.
+  ;; Additionally it should be checked how meow bindings can be used.
+  :bind (("C-`"   . popper-toggle-latest)
+         ("M-`"   . popper-cycle)
+         ("C-M-`" . popper-toggle-type))
+  :init
+  (setq popper-reference-buffers
+        '("\\*Messages\\*"
+          "Output\\*$"
+          "\\*Async Shell Command\\*"
+          help-mode
+          helpful-mode
+          compilation-mode))
+  (popper-mode +1)
+  (popper-echo-mode +1))                ; For echo area hints
 
 ;;; Package:
 (provide 'my-utility)
