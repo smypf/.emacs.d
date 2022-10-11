@@ -15,8 +15,9 @@
 (setq-default indent-tabs-mode nil)
 (setq-default tab-width 4)
 
-;; For some reason esc u u is bound to 'upcase-word which is a friction point.
+;; For some reason esc u u is bound to 'upcase-word which is a friction point for me.
 ;; This unbinds it.
+;; See https://emacs.stackexchange.com/questions/14755/how-to-remove-bindings-to-the-esc-prefix-key for more information
 (define-key esc-map "u" nil)
 
 ;;; Package:
