@@ -36,6 +36,7 @@
 (require 'my-completion)
 (require 'my-magit)
 (require 'my-dired)
+(require 'my-ibuffer)
 (require 'my-modes)
 (require 'my-org)
 (require 'my-projectile)
