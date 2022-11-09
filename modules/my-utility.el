@@ -82,6 +82,9 @@
   (popper-mode +1)
   (popper-echo-mode +1))                ; For echo area hints
 
+;; Automatically scroll compilation buffer output
+(setq compilation-scroll-output t)
+
 ;;; Package:
 (provide 'my-utility)
 ;;; my-utility.el ends here
