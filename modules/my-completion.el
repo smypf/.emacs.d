@@ -228,6 +228,9 @@
   (interactive)
   (consult-ripgrep (projectile-project-root) (thing-at-point 'symbol)))
 
+;; Enable FIDO for file completion
+(fido-mode)
+
 ;;; Package:
 (provide 'my-completion)
 ;;; my-completion.el ends here
