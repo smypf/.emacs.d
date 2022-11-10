@@ -20,6 +20,8 @@
 ;; See https://emacs.stackexchange.com/questions/14755/how-to-remove-bindings-to-the-esc-prefix-key for more information
 (define-key esc-map "u" nil)
 
+(repeat-mode)
+
 ;;; Package:
 (provide 'my-defaults)
 ;;; my-defaults.el ends here
