@@ -55,14 +55,14 @@
 
 ;; Evil Key Binds for Org Mode
 ;; https://github.com/Somelauw/evil-org-mode
-(use-package evil-org
-  :ensure t
-  :defer t
-  :after org
-  :hook (org-mode . (lambda () evil-org-mode))
-  :config
-  (require 'evil-org-agenda)
-  (evil-org-agenda-set-keys))
+;;(use-package evil-org
+;;  :ensure t
+;;  :defer t
+;;  :after org
+;;  :hook (org-mode . (lambda () evil-org-mode))
+;;  :config
+;;  (require 'evil-org-agenda)
+;;  (evil-org-agenda-set-keys))
 
 ;;; Package:
 (provide 'my-org)
