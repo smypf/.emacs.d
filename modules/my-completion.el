@@ -228,8 +228,8 @@
   (interactive)
   (consult-ripgrep (projectile-project-root) (thing-at-point 'symbol)))
 
-;; Enable FIDO for file completion
-(fido-mode)
+;; Enable IDO for file completion
+(ido-mode)
 
 ;;; Package:
 (provide 'my-completion)
