@@ -17,9 +17,11 @@
   (setq org-directory (file-truename "~/org")
 	org-agenda-files (directory-files-recursively org-directory "\\.org$")
 	org-default-notes-file (concat org-directory "/notes.org")
+    org-return-follows-link t
     ;; Add toggling states and different states
     ;; e.g <SPC> m t t => TODO
     ;; e.g <SPC> m t d => Done
+    ;; These key binds will conflict with meow, where <SPC> m becomes M-
     ;; This is achieved with org-todo and having a (letter) at the end of the keyword.
     ;; (setq org-todo-keywords
     ;;      '((sequence "TODO" "WAIT" "|" "DONE" "CANCELLED")))
@@ -38,7 +40,8 @@
                          "|"
                          "[X](D)")) ; Task was completed
 	;; Ensure that a heading and it's contents are automatically aligned
-	org-adapt-indentation t)
+	org-adapt-indentation t
+    org-log-done 'time)
   (add-hook 'org-mode-hook 'turn-on-auto-fill))
 
 (use-package org-roam
