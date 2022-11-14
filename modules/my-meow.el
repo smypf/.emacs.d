@@ -205,6 +205,7 @@
    '("<escape>" . ignore)))
 
 (use-package meow
+  :ensure t
   :init
   (meow-global-mode 1)
   :config
