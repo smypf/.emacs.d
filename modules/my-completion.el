@@ -33,6 +33,18 @@
 	  (window-width . 0.3)))
   (add-hook 'minibuffer-setup-hook #'vertico-repeat-save))
 
+;; Configure directory extension.
+(use-package vertico-directory
+  :after vertico
+  :ensure nil
+  ;; More convenient directory navigation commands
+  :bind (:map vertico-map
+              ("RET" . vertico-directory-enter)
+              ("DEL" . vertico-directory-delete-char)
+              ("M-DEL" . vertico-directory-delete-word))
+  ;; Tidy shadowed file names
+  :hook (rfn-eshadow-update-overlay . vertico-directory-tidy))
+
 ;; Persist history over Emacs restarts. Vertico sorts by history position.
 (use-package savehist
   :ensure nil
@@ -229,7 +241,8 @@
   (consult-ripgrep (projectile-project-root) (thing-at-point 'symbol)))
 
 ;; Enable IDO for file completion
-(ido-mode)
+;; I don't like this
+;; (ido-mode)
 
 ;;; Package:
 (provide 'my-completion)
