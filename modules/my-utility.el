@@ -82,6 +82,26 @@
   (popper-mode +1)
   (popper-echo-mode +1))                ; For echo area hints
 
+;;(use-package shackle
+;;  :ensure t
+;;  :defer t
+;;  :init
+;;  (shackle-mode)
+;;  :config
+;;  (setq shackle-rules '((compilation-mode :noselect t :align 'right))
+;;      shackle-default-rule '(:select t :align 'right)))
+
+
+(use-package shackle
+  :if (not (bound-and-true-p disable-pkg-shackle))
+  :config
+  (progn
+    (setq shackle-default-alignment 'right)
+    (setq shackle-rules
+          '((compilation-mode :select nil)))
+
+    (shackle-mode 1)))
+
 ;; Automatically scroll compilation buffer output
 (setq compilation-scroll-output t)
 
