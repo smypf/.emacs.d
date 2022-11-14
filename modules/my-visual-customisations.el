@@ -111,6 +111,9 @@
 ;; (set-face-inverse-video-p 'vertical-border nil)
 ;; (set-face-background 'vertical-border (face-background 'default))
 
+;; Kitty is reporting a larger number than iTerm.
+;; Setting this to nil ensures that windows are split vertically
+(setq split-height-threshold nil)
 
 ;;; Package:
 (provide 'my-visual-customisations)
