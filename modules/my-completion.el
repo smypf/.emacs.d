@@ -17,6 +17,14 @@
   :init
   (vertico-mode)
   (vertico-multiform-mode)
+
+  ;; Bind TAB and Shift-TAB to next and previous option.
+  ;; This allows for completion at point in a way that is useful for me
+  ;; This is adapted from https://github.com/minad/vertico/issues/143
+  :bind (:map vertico-map
+              ("TAB" . vertico-next)
+              ("S-TAB" . vertico-previous))
+
   :config
   ;; Show more candidates
   (setq vertico-count 15
@@ -67,9 +75,9 @@
   (advice-add #'completing-read-multiple :filter-args #'crm-indicator)
 
   ;; Do not allow the cursor in the minibuffer prompt
-  (setq minibuffer-prompt-properties
-        '(read-only t cursor-intangible t face minibuffer-prompt))
-  (add-hook 'minibuffer-setup-hook #'cursor-intangible-mode)
+;;  (setq minibuffer-prompt-properties
+;;        '(read-only t cursor-intangible t face minibuffer-prompt))
+;;  (add-hook 'minibuffer-setup-hook #'cursor-intangible-mode)
 
   ;; Emacs 28: Hide commands in M-x which do not work in the current mode.
   ;; Vertico commands are hidden in normal buffers.
@@ -78,7 +86,28 @@
 
   ;; Enable recursive minibuffers
   ;; (setq enable-recursive-minibuffers t)
-  )
+    ;; TAB cycle if there are only few candidates
+
+  ;; Emacs 28: Hide commands in M-x which do not apply to the current mode.
+  ;; Corfu commands are hidden, since they are not supposed to be used via M-x.
+  ;;(setq read-extended-command-predicate
+  ;;      #'command-completion-default-include-p)
+
+  ;; Completion using vertico as the completion ui.
+  (setq completion-cycle-threshold 2)
+  ;; Use `consult-completion-in-region' if Vertico is enabled.
+  ;; Otherwise use the default `completion--in-region' function.
+  (setq completion-in-region-function
+        (lambda (&rest args)
+          (apply (if vertico-mode
+                     #'consult-completion-in-region
+                   #'completion--in-region)
+                 args)))
+
+  ;; Enable indentation+completion using the TAB key.
+  ;; `completion-at-point' is often bound to M-TAB.
+  ;; https://emacsredux.com/blog/2016/01/31/use-tab-to-indent-or-complete/
+  (setq tab-always-indent 'complete))
 
 ;; TODO get this working properly
 ;; (use-package vertico-directory
@@ -113,79 +142,6 @@
   :defer t
   :init
   (setq completion-styles '(orderless flex)))
-
-;; Corfu
-;; Perhaps use this
-(use-package corfu
-  :defer t
-  :config
-  (defun corfu-move-to-minibuffer ()
-    (interactive)
-    (let ((completion-extra-properties corfu--extra)
-	  completion-cycle-threshold completion-cycling)
-      (apply #'consult-completion-in-region completion-in-region--data)))
-  (define-key corfu-map "\M-m" #'corfu-move-to-minibuffer)
-  ;; Optional customizations
-  :custom
-  (corfu-cycle t)                   ;; Enable cycling for `corfu-next/previous'
-  (corfu-auto nil)                  ;; Enable auto completion
-  ;; (corfu-separator ?\s)          ;; Orderless field separator
-  ;; (corfu-quit-at-boundary nil)   ;; Never quit at completion boundary
-  ;; (corfu-quit-no-match nil)      ;; Never quit, even if there is no match
-  (corfu-preview-current t)         ;; Enable current candidate preview
-  (corfu-preselect-first t)         ;; Enable candidate preselection
-  (corfu-on-exact-match 'quit)      ;; Configure handling of exact matches
-  ;; (corfu-echo-documentation nil) ;; Disable documentation in the echo area
-  ;; (corfu-scroll-margin 5)        ;; Use scroll margin
-
-  :bind
-  (:map corfu-map
-	;; Tab will select the next option
-	("TAB" . corfu-next)
-	([tab] . corfu-next)
-	;; Shift-Tab will select the previous option
-	("S-TAB" . corfu-previous)
-	([backtab] . corfu-previous)
-	;; Enter will select the option
-	([enter] . corfu-complete))
-
-  ;; Enable Corfu only for certain modes.
-  ;; :hook ((prog-mode . corfu-mode)
-  ;;        (shell-mode . corfu-mode)
-  ;;        (eshell-mode . corfu-mode))
-
-  ;; Recommended: Enable Corfu globally.
-  ;; This is recommended since Dabbrev can be used globally (M-/).
-  ;; See also `corfu-excluded-modes'.
-  :init
-  (global-corfu-mode))
-
-;; https://github.com/minad/corfu#transfer-completion-to-the-minibuffer
-
-;; Allow usage of corfu in terminal windows
-(use-package corfu-terminal
-  :defer t
-  :after corfu
-  :config
-  (unless (display-graphic-p)
-    (corfu-terminal-mode +1)))
-
-;; A few more useful configurations...
-(use-package emacs
-  :ensure nil
-  :init
-  ;; TAB cycle if there are only few candidates
-  (setq completion-cycle-threshold 2)
-
-  ;; Emacs 28: Hide commands in M-x which do not apply to the current mode.
-  ;; Corfu commands are hidden, since they are not supposed to be used via M-x.
-  (setq read-extended-command-predicate
-        #'command-completion-default-include-p)
-
-  ;; Enable indentation+completion using the TAB key.
-  ;; `completion-at-point' is often bound to M-TAB.
-  ;; https://emacsredux.com/blog/2016/01/31/use-tab-to-indent-or-complete/
-  (setq tab-always-indent 'complete))
 
 (use-package marginalia
   :defer t
