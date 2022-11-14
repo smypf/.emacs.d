@@ -56,13 +56,14 @@
       (isearch-bg        "#d3cee7")
       (lazy-highlight-bg "#e1c5e8")
       (purple-bg         "#dfcee7")
-      (dark-purple       "#9e4d93"))
+      (dark-purple       "#9e4d93")
 
       ;; Previously used colours which are still referenced below
       ;; (fg-table          "#222291")
       ;; (bg-light          "#646464")
       ;; (fg-light          "#ddddd8")
-      ;; (org-todo          "#ff98a3")
+      (org-todo          "#ff98a3")
+      )
 
   (custom-theme-set-faces
    'pleasant-monochromish
@@ -153,9 +154,10 @@
    ;; `(org-block-begin-line ((t (:foreground ,fg-light))))
    ;; `(org-block-end-line ((t (:foreground ,fg-light))))
    ;; `(org-verbatim ((t (:foreground ,fg))))
-   ;; `(org-date ((t (:foreground ,fg) :underline)))
+   `(org-date ((t (:foreground ,fg) :underline)))
    ;; `(org-headline-done ((t (:foreground ,fg))))
-   ;; `(org-done ((t (:foreground ,fg-light))))
+   `(org-done ((t (:foreground ,comment))))
+   `(org-headline-done ((t (:foreground ,comment))))
    ;; `(org-hide ((t (:foreground ,bg))))
    ;; ;;use :overline to give headings more top margin
    ;; `(org-level-1 ((t (:foreground ,fg :weight bold))))
@@ -169,7 +171,9 @@
    ;; `(org-scheduled ((t (:foreground ,fg))))
    ;; `(org-sexp-date ((t (:foreground ,fg))))
    ;; `(org-special-keyword ((t (:foreground ,fg))))
-   ;; `(org-todo ((t (:foreground ,org-todo :weight bold))))
+   `(org-todo ((t (:foreground ,org-todo :weight bold))))
+   `(org-link ((t (:underline t))))
+
    ;; `(org-verse ((t (:inherit org-block :slant italic))))
    ;; `(org-table ((t (:foreground ,fg-table))))
    ;; `(org-document-title ((t (:foreground ,fg :weight semi-bold))))
