@@ -280,6 +280,8 @@
  '("bn" . next-buffer)
  '("bp" . previous-buffer)
  '("B" . switch-to-buffer)
+
+ '("X" . org-capture)
  )
 
 ;; TODO
