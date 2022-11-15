@@ -260,12 +260,15 @@
  '("pt" . projectile-toggle-between-implementation-and-test)
 
  ;; Coding
- '("ld" . xref-find-definitions)
- '("lD" . find-references-at-point)
- '("ll" . xref-list-references)
- '("lr" . eglot-rename)
- '("le" . consult-flymake)
- '("ls" . consult-eglot-symbols)
+ '("cd" . xref-find-definitions)
+ '("cD" . find-references-at-point)
+ '("cl" . xref-list-references)
+ '("cr" . eglot-rename)
+ '("ce" . consult-flymake)
+ '("cs" . consult-eglot-symbols)
+ '("cf" . backward-forward-next-location)
+ '("cb" . backward-forward-previous-location)
+
 
  ;; Completion
  '("v" . vertico-repeat)

@@ -184,6 +184,10 @@
   ;;(add-to-list 'completion-at-point-functions #'cape-line)
   )
 
+(use-package backward-forward
+  :init
+  (backward-forward-mode))
+
 ;; Embark Export (M-. E) will send all results to a buffer.
 ;; This is useful as it means that it is not necessary to continuously open the consult buffer to visit subsequent matches
 ;; This is enough for me to enable this.
