@@ -115,7 +115,7 @@
    ;; `(gnus-header-subject ((t (:foreground ,fg))))
 
    `(highlight ((t (:background ,purple-bg))))
-   
+
    ;; `(ido-first-match ((t (:foreground ,fg))))
    ;; `(ido-only-match ((t (:foreground ,fg))))
    ;; `(ido-subdir ((t (:foreground ,fg))))
@@ -135,6 +135,10 @@
    `(doom-modeline-lsp-success ((t (:foreground ,fg))))
    `(doom-modeline-buffer-modified ((t (:foreground ,dark-purple :weight bold))))
    `(doom-modeline-urgent ((t (:foreground "#d4a7cd"))))
+
+   `(tab-bar ((t (:background ,bg))))
+   `(tab-bar-tab ((t (:background ,purple-bg :foreground ,fg))))
+   `(tab-bar-tab-inactive ((t (:background ,bg :foreground ,comment))))
 
    `(doom-modeline-info ((t (:foreground ,fg))))
 
@@ -456,4 +460,3 @@
 
 (provide-theme 'pleasant-monochromish)
 ;;; pleasant-monochromish-theme.el ends here
-
