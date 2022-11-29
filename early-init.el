@@ -1,6 +1,9 @@
 ;; Prevent pauses due to garbage collection by increasing the threshold
 (setq gc-cons-threshold (* 50 1000 1000))
 
+(unless window-system
+  (add-to-list 'default-frame-alist '(undecorated . t)))
+
 ;; Uncomment these lines to determine startup time
 ;;   (add-hook 'emacs-startup-hook
 ;; 	    (lambda ()
