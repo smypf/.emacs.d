@@ -1,7 +1,7 @@
 ;; Set up melpa which is a package host
 (require 'package)
 (add-to-list 'package-archives
-	     '("melpa" . "https://melpa.org/packages/"))
+         '("melpa" . "https://melpa.org/packages/"))
 
 ;; Setting this significantly increases the statup time as packages are refreshed from melpa
 ;; See C-h f package-refresh-contents

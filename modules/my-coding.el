@@ -25,11 +25,11 @@
   :defer 3
   :config
   (setq eglot-autoshutdown t
-	eglot-send-changes-idle-time 1
-	;; Remove logging to speed up eglot when using TypeScript / Javascript
-	;; https://www.reddit.com/r/emacs/comments/vau4x1/comment/ic6wd9i/
-	eglot-events-buffer-size 0
-	))
+    eglot-send-changes-idle-time 1
+    ;; Remove logging to speed up eglot when using TypeScript / Javascript
+    ;; https://www.reddit.com/r/emacs/comments/vau4x1/comment/ic6wd9i/
+    eglot-events-buffer-size 0
+    ))
 
 (use-package consult-eglot
   :after consult
@@ -79,7 +79,7 @@
 
 ;; Automatically insert matching pair for delimiters
 (electric-pair-mode 1)
-;; Prevent electric 
+;; Prevent electric
 (setq electric-pair-preserve-balance nil)
 
 
@@ -111,7 +111,7 @@
 ;;;   (define-key evil-outer-text-objects-map "f" (evil-textobj-tree-sitter-get-textobj "function.outer"))
 ;;;   ;; bind `function.inner`(function block without name and args) to `f` for use in things like `vif`, `yif`
 ;;;   (define-key evil-inner-text-objects-map "f" (evil-textobj-tree-sitter-get-textobj "function.inner"))
-;;; 
+;;;
 ;;;   ;(define-key evil-outer-text-objects-map "c" (evil-textobj-tree-sitter-get-textobj "class.outer"))
 ;;;   ;(define-key evil-inner-text-objects-map "c" (evil-textobj-tree-sitter-get-textobj "class.inner"))
 ;;;   ;(define-key evil-outer-text-objects-map "C" (evil-textobj-tree-sitter-get-textobj "comment.outer"))
@@ -122,14 +122,14 @@
 ;;;   (define-key evil-inner-text-objects-map "c" (evil-textobj-tree-sitter-get-textobj "conditional.inner"))
 ;;;   (define-key evil-inner-text-objects-map "r" (evil-textobj-tree-sitter-get-textobj "parameter.inner"))
 ;;;   (define-key evil-outer-text-objects-map "r" (evil-textobj-tree-sitter-get-textobj "parameter.outer"))
-;;; 
+;;;
 ;;;   ;; COMMENT Is recenter required?
 ;;;   ;; TODO Only recenter if the target is not within the viewport
 ;;;   (defun meain/goto-and-recenter (group &optional previous end query)
 ;;;     (interactive)
 ;;;     (evil-textobj-tree-sitter-goto-textobj group previous end query)
 ;;;     (recenter 7))
-;;; 
+;;;
 ;;;   ;; TODO change this to general
 ;;;   ;; TODO Extract the function
 ;;;   (define-key evil-normal-state-map (kbd "]r") (lambda () (interactive) (meain/goto-and-recenter "parameter.inner")))
@@ -148,7 +148,7 @@
 ;;;   (define-key evil-normal-state-map (kbd "[f") (lambda () (interactive) (meain/goto-and-recenter "function.outer" t)))
 ;;;   (define-key evil-normal-state-map (kbd "]F") (lambda () (interactive) (meain/goto-and-recenter "function.outer" nil t)))
 ;;;   (define-key evil-normal-state-map (kbd "[F") (lambda () (interactive) (meain/goto-and-recenter "function.outer" t t))))
-;;; 
+;;;
 ;;; ;; Fancy narrow to textobj
 ;;; (use-package emacs
 ;;;   :ensure nil
@@ -191,7 +191,8 @@
 (use-package emacs
   :ensure nil
   :hook
-  (prog-mode . hs-minor-mode))
+  (prog-mode . hs-minor-mode)
+  (prog-mode . whitespace-cleanup))
 
 ;;; Package:
 (provide 'my-coding)
