@@ -12,11 +12,8 @@
 ;;; Code:
 
 (use-package vterm
-  :after evil
   :defer t
-  :ensure t
-  :config
-  (evil-set-initial-state 'vterm-mode 'insert))
+  :ensure t)
 
 ;; (general-define-key
 ;;  :states 'normal

@@ -44,6 +44,7 @@
 (require 'my-coding)
 (require 'my-utility)
 (require 'my-system)
+(require 'my-vterm)
 (require 'my-tab-bar)
 
 ;; Make gc pauses faster by decreasing the threshold.
