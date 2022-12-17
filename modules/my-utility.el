@@ -98,9 +98,26 @@
   (progn
     (setq shackle-default-alignment 'right)
     (setq shackle-rules
-          '((compilation-mode :select nil)))
+          '(("*Help*" :select nil)
+            ("*info*" :select nil :other nil)
+            ("*Messages*" :select nil :other nil)
+            (compilation-mode :select nil :other nil))))
 
-    (shackle-mode 1)))
+    (shackle-mode 1))
+
+;; This was causing things to break.
+;; TODO Fix this functionality so that Shackle does it instead
+;; From https://www.masteringemacs.org/article/demystifying-emacs-window-manager
+;; This probably conflicts with Shackle and the rules for shackle should be re-written
+;;(setq window-sides-slots '(0 0 1 0))
+
+;;(add-to-list 'display-buffer-alist
+;;          `(,(rx (| "*compilation*" "*grep*"))
+;;            display-buffer-in-side-window
+;;            (side . right)
+;;            (slot . 0)
+;;            (window-parameters . ((no-delete-other-windows . t)))
+;;            (window-width . 100)))
 
 ;; Automatically scroll compilation buffer output
 (setq compilation-scroll-output t)
