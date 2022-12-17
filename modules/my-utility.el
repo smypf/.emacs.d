@@ -7,7 +7,7 @@
 
 ;;; Commentary:
 
-;; 
+;;
 
 ;;; Code:
 

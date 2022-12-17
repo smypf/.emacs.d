@@ -27,12 +27,12 @@
   :init (doom-modeline-mode)
   :config
   (setq doom-modeline-major-mode-icon nil
-	doom-modeline-vcs-max-length 40
-	doom-modeline-workspace-name nil
-	doom-modeline-buffer-encoding nil
-	doom-modeline-persp-name nil
-	doom-modeline-persp-icon t
-	doom-modeline-buffer-file-name-style 'relative-to-project))
+    doom-modeline-vcs-max-length 40
+    doom-modeline-workspace-name nil
+    doom-modeline-buffer-encoding nil
+    doom-modeline-persp-name nil
+    doom-modeline-persp-icon t
+    doom-modeline-buffer-file-name-style 'relative-to-project))
 
 
 ;; Setup my theme to be used
@@ -118,4 +118,3 @@
 ;;; Package:
 (provide 'my-visual-customisations)
 ;;; my-visual-customisations.el ends here
-

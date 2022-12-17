@@ -7,7 +7,7 @@
 
 ;;; Commentary:
 
-;; 
+;;
 
 ;;; Code:
 (defun meow-qwerty-setup ()
@@ -227,7 +227,7 @@
 ;; Opening Git
 ;; SPC G
 ;; Find file (Projectile)
-;; SPC SPC 
+;; SPC SPC
 
 (defun back-window()
     (interactive)

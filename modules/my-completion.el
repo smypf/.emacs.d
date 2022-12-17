@@ -21,6 +21,9 @@
   ;; Bind TAB and Shift-TAB to next and previous option.
   ;; This allows for completion at point in a way that is useful for me
   ;; This is adapted from https://github.com/minad/vertico/issues/143
+  ;; TODO Figure out what the correct implementation of this is.
+  ;; Tab to select - Any other characters to choose and continue?
+  ;; This should also only apply to the completion and ont other sections
   :bind (:map vertico-map
               ("TAB" . vertico-next)
               ("S-TAB" . vertico-previous))
@@ -28,17 +31,17 @@
   :config
   ;; Show more candidates
   (setq vertico-count 15
-	;; Configure the display per command.
-	;; Use a buffer with indices for imenu
-	;; and a flat (Ido-like) menu for M-x.
-	vertico-multiform-commands '((consult-ripgrep buffer indexed)
-				     (consult-eglot-symbols buffer indexed))
+    ;; Configure the display per command.
+    ;; Use a buffer with indices for imenu
+    ;; and a flat (Ido-like) menu for M-x.
+    vertico-multiform-commands '((consult-ripgrep buffer indexed)
+                     (consult-eglot-symbols buffer indexed))
 
-	;; Display ripgrep candidates in a buffer on the right of the page
-	vertico-buffer-display-action
-	'(display-buffer-in-side-window
-	  (side . right)
-	  (window-width . 0.3)))
+    ;; Display ripgrep candidates in a buffer on the right of the page
+    vertico-buffer-display-action
+    '(display-buffer-in-side-window
+      (side . right)
+      (window-width . 0.3)))
   (add-hook 'minibuffer-setup-hook #'vertico-repeat-save))
 
 ;; Configure directory extension.
@@ -97,6 +100,8 @@
   (setq completion-cycle-threshold 2)
   ;; Use `consult-completion-in-region' if Vertico is enabled.
   ;; Otherwise use the default `completion--in-region' function.
+  ;; TODO this is where the completion in vertico is.
+  ;; Perhaps this needs to be changed here.
   (setq completion-in-region-function
         (lambda (&rest args)
           (apply (if vertico-mode
@@ -131,7 +136,7 @@
   :defer t
   :init
   (setq xref-show-xrefs-function #'consult-xref
-	xref-show-definitions-function #'consult-xref)
+    xref-show-definitions-function #'consult-xref)
   :config
   (autoload 'projectile-project-root "projectile")
 
@@ -152,9 +157,9 @@
 (use-package cape
   ;; Bind dedicated completion commands
   ;; Alternative prefix keys: C-c p, M-p, M-+, ...
-  :bind (("C-c p p" . completion-at-point) ;; capf
-         ("C-c p t" . complete-tag)        ;; etags
-         ("C-c p d" . cape-dabbrev))        ;; or dabbrev-completion
+  :bind (("C-c c p" . completion-at-point)) ;; capf
+;;;;;;         ("C-c c t" . complete-tag)        ;; etags
+;;;;;;         ("C-c c d" . cape-dabbrev))        ;; or dabbrev-completion
 ;;;;;;         ("C-c p h" . cape-history)
 ;;;;;;         ("C-c p f" . cape-file)
 ;;;;;;         ("C-c p k" . cape-keyword)

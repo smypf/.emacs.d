@@ -90,19 +90,19 @@
 ;;;   (prog-mode . highlight-indent-guides-mode)
 ;;;   :config
 ;;;   (setq highlight-indent-guides-method 'character
-;;; 	highlight-indent-guides-responsive 'stack
-;;; 	highlight-indent-guides-auto-enabled nil))
+;;;     highlight-indent-guides-responsive 'stack
+;;;     highlight-indent-guides-auto-enabled nil))
 
-;;; (use-package tree-sitter
-;;;   :config
-;;;     (global-tree-sitter-mode))
-;;; 
-;;; (use-package tree-sitter-langs
-;;;   :after tree-sitter)
-;;; 
-;;; (use-package fancy-narrow
-;;;   :after tree-sitter)
-;;; 
+ (use-package tree-sitter
+   :config
+     (global-tree-sitter-mode))
+
+ (use-package tree-sitter-langs
+   :after tree-sitter)
+
+;; (use-package fancy-narrow
+;;   :after tree-sitter)
+
 ;;; ;; https://blog.meain.io/2022/more-treesitter-emacs/
 ;;; ;; https://github.com/meain/dotfiles/blob/34ef5e3331757ac32dd066f5baa54f76cf78211b/emacs/.config/emacs/init.el#L2213
 ;;; (use-package evil-textobj-tree-sitter
