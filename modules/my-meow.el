@@ -282,7 +282,9 @@
  ;; Something needs to be done to filter out irrelevant buffers
  '("bn" . next-buffer)
  '("bp" . previous-buffer)
- '("B" . switch-to-buffer)
+ '("bb" . consult-buffer)
+ '("B" . consult-buffer)
+ '("," . consult-buffer)
 
  '("X" . org-capture)
  )
