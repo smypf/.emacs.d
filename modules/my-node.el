@@ -53,6 +53,11 @@
   (add-to-list 'compilation-error-regexp-alist 'node))
 (add-hook 'after-init-hook 'add-node-error-regex)
 
+;; Changed based on https://www.reddit.com/r/emacs/comments/4xhxfw/comment/d6ghhmq/?utm_source=share&utm_medium=web2x&context=3
+(add-hook 'typescript-mode
+          (lambda ()
+            (add-to-list (make-local-variable 'electric-pair-pairs)
+                         (cons ?` ?`))))
 
 ;;; Package:
 (provide 'my-node)
