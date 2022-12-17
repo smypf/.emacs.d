@@ -22,6 +22,10 @@
 
 (repeat-mode)
 
+(setq electric-pair-preserve-balance t
+      electric-pair-inhibit-predicate 'electric-pair-conservative-inhibit
+      electric-pair-mode t)
+
 ;;; Package:
 (provide 'my-defaults)
 ;;; my-defaults.el ends here
