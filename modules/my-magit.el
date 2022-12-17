@@ -28,6 +28,22 @@
   (add-hook 'magit-process-mode-hook 'goto-address-mode)
   (add-hook 'magit-status-sections-hook 'goto-address-mode)
 
+  ;; https://mbork.pl/2022-11-19_Streamlining_my_workflow_with_Magit_and_BitBucket
+  (defun magit-open-pull-request ()
+    "Open the pull request URL if applicable."
+    (interactive)
+    (save-excursion
+      (set-buffer (magit-process-buffer t))
+      (goto-char (point-max))
+      (magit-section-backward)
+      (when
+	(search-backward-regexp "remote: \\(To create a merge\\|Create pull\\) request" nil t)
+	(forward-line 1)
+	(re-search-forward "remote: +" (line-end-position) t)
+	(browse-url-at-point))))
+
+  (transient-insert-suffix 'magit-push (kbd "o") '("r" "Open Pull Request" magit-open-pull-request))
+
   ;; From https://emacs.stackexchange.com/a/44685
   (defun insert-issue-key()
     (interactive)
