@@ -12,9 +12,15 @@
 ;;; Code:
 
 ;; Disable the menu bar which is not useful in the terminal
-(unless window-system
+(if window-system
+  (progn
+    (scroll-bar-mode -1)
+    (set-face-attribute 'default nil
+                        :family "Fira Code"
+                        :height 140
+                        :weight 'normal
+                        :width 'normal))
   (menu-bar-mode -1))
-
 
 ;; Disable audio bells which are annoying
 ;; (setq visible-bell 1)
