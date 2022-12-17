@@ -7,7 +7,7 @@
 
 ;;; Commentary:
 
-;; 
+;;
 
 ;;; Code:
 
@@ -39,17 +39,17 @@
 (require 'compile)
 (defun add-node-error-regex ()
   (setq compilation-error-regexp-alist-alist
-	;; Tip: M-x re-builder to test this out
-	(cons '(node "\\(?:[^\(\n]+ \(\\)?\\([a-zA-Z\.0-9_/-]+\\):\\([0-9]+\\):\\([0-9]+\\)\)?"
-		     1 ;; file
-		     2 ;; line
-		     3 ;; column
-		     )
-	      compilation-error-regexp-alist-alist))
+    ;; Tip: M-x re-builder to test this out
+    (cons '(node "\\(?:[^\(\n]+ \(\\)?\\([a-zA-Z\.0-9_/-]+\\):\\([0-9]+\\):\\([0-9]+\\)\)?"
+             1 ;; file
+             2 ;; line
+             3 ;; column
+             )
+          compilation-error-regexp-alist-alist))
         ;; Passing tests
-	;; (cons '(compilation "\\(?:[\(\\)?\\(src/[a-zA-Z\.0-9_/-]+\\.spec.ts)?$")
-	;; 	1
-	;; 	))
+    ;; (cons '(compilation "\\(?:[\(\\)?\\(src/[a-zA-Z\.0-9_/-]+\\.spec.ts)?$")
+    ;;  1
+    ;;  ))
   (add-to-list 'compilation-error-regexp-alist 'node))
 (add-hook 'after-init-hook 'add-node-error-regex)
 
