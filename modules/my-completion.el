@@ -243,6 +243,60 @@
 ;; I don't like this
 ;; (ido-mode)
 
+(when window-system
+ ;; Corfu
+ ;; Perhaps use this
+ (use-package corfu
+   :defer t
+   :config
+   (defun corfu-move-to-minibuffer ()
+     (interactive)
+     (let ((completion-extra-properties corfu--extra)
+      completion-cycle-threshold completion-cycling)
+       (apply #'consult-completion-in-region completion-in-region--data)))
+   (define-key corfu-map "\M-m" #'corfu-move-to-minibuffer)
+
+   (defun my-corfu-complete-and-space ()
+     (interactive)
+     (corfu-complete)
+     (insert " "))
+   ;; Optional customizations
+   :custom
+   (corfu-cycle t)                   ;; Enable cycling for `corfu-next/previous'
+   (corfu-auto nil)                  ;; Enable auto completion
+   ;; (corfu-separator ?\s)          ;; Orderless field separator
+   ;; (corfu-quit-at-boundary nil)   ;; Never quit at completion boundary
+   ;; (corfu-quit-no-match nil)      ;; Never quit, even if there is no match
+   (corfu-preview-current t)         ;; Enable current candidate preview
+   (corfu-preselect-first t)         ;; Enable candidate preselection
+   (corfu-on-exact-match 'quit)      ;; Configure handling of exact matches
+   ;; (corfu-echo-documentation nil) ;; Disable documentation in the echo area
+   ;; (corfu-scroll-margin 5)        ;; Use scroll margin
+
+   :bind
+   (:map corfu-map
+    ;; Tab will select the next option
+    ("TAB" . corfu-next)
+    ([tab] . corfu-next)
+    ;; Shift-Tab will select the previous option
+    ("S-TAB" . corfu-previous)
+    ([backtab] . corfu-previous)
+    ;; todo space doesn't work
+    ([? ] . my-corfu-complete-and-space)
+    ;; Enter will select the option
+    ([enter] . corfu-complete))
+
+   ;; Enable Corfu only for certain modes.
+   ;; :hook ((prog-mode . corfu-mode)
+   ;;        (shell-mode . corfu-mode)
+   ;;        (eshell-mode . corfu-mode))
+
+   ;; Recommended: Enable Corfu globally.
+   ;; This is recommended since Dabbrev can be used globally (M-/).
+   ;; See also `corfu-excluded-modes'.
+   :init
+   (global-corfu-mode)))
+
 ;;; Package:
 (provide 'my-completion)
 ;;; my-completion.el ends here
