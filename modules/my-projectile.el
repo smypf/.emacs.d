@@ -10,12 +10,20 @@
 ;; 
 
 ;;; Code:
+;; Removed recentf-mode as it is not being used
+;; (use-package emacs
+;;   :ensure nil
+;;   :init
+;;   (recentf-mode))
 
 (use-package projectile
   :defer t
   :config
   (projectile-mode)
-  (setq projectile-sort-order 'recently-active)
+
+  ;; These have been removed. 'alien indexing is much faster
+  ;; (setq projectile-sort-order 'recently-active)
+  ;; (setq projectile-indexing-method 'native)
   ;; Add npm projects
   ;; This allows for usage of `projectile-toggle-between-implementation-and-test`
   (projectile-register-project-type 'npm '("package.json")
@@ -25,14 +33,6 @@
 				  :test "npm test "
 				  :run "npm start"
 				  :test-suffix ".spec"))
-
-(use-package emacs
-  :ensure nil
-  :config
-  (recentf-mode))
-
-
-
 
 ;;; Package:
 (provide 'my-projectile)
