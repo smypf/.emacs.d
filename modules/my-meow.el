@@ -287,6 +287,10 @@
  '("X" . org-capture)
  )
 
+;; Disable meow for magit
+;; https://github.com/meow-edit/meow/issues/317#issuecomment-1233622579
+(meow-define-state disable "dummy state")
+(add-to-list 'meow-mode-state-list '(magit-mode . disable))
 ;; TODO
 ;; C-d Down a page
 ;; C-b Up a page
