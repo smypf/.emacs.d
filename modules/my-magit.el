@@ -53,25 +53,25 @@
     (let ((ISSUEKEYREGEX "[[:upper:]]+-[[:digit:]]+"))
       ;; Save the Issue Key as a variable from the current branch
       (let ((ISSUEKEY (replace-regexp-in-string
-		       (concat ".*?\\(" ISSUEKEYREGEX "\\).*")
-		       "\\1"
-		       (magit-get-current-branch)))
-	    ;; Find where the first instance of the "#" character is, which designates the start of the comments in the commit message
-	    (COMMITMESSAGEEND (search-forward "#")))
+               (concat ".*?\\(" ISSUEKEYREGEX "\\).*")
+               "\\1"
+               (magit-get-current-branch)))
+        ;; Find where the first instance of the "#" character is, which designates the start of the comments in the commit message
+        (COMMITMESSAGEEND (search-forward "#")))
 
-	;; When the current branch has an issue key in it
-	(when (string-match-p ISSUEKEYREGEX (magit-get-current-branch))
-	  ;; Unless the buffer contains the current Issue Key
-	  (unless (string-match ISSUEKEY (buffer-substring-no-properties 1 COMMITMESSAGEEND))
-	    ;; Go back to the start of the buffer since search-forward moves the cursor
+    ;; When the current branch has an issue key in it
+    (when (string-match-p ISSUEKEYREGEX (magit-get-current-branch))
+      ;; Unless the buffer contains the current Issue Key
+      (unless (string-match ISSUEKEY (buffer-substring-no-properties 1 COMMITMESSAGEEND))
+        ;; Go back to the start of the buffer since search-forward moves the cursor
         (goto-char (point-min))
-	    ;; Append the Issue Key to the buffer
-	    (insert (concat "\n\nref: " ISSUEKEY)))
+        ;; Append the Issue Key to the buffer
+        (insert (concat "\n\nref: " ISSUEKEY))))
 
-	  ;; Go back to the start of the buffer
+      ;; Go back to the start of the buffer
       (goto-char (point-min))
       ;; TODO fix this so that it isn't dependent on the something
-      (if (fboundp 'meow-insert) (meow-insert))))) )
+      (if (fboundp 'meow-insert) (meow-insert)))))
       ;;(cond (fboundp 'meow-insert meow-insert)
             ;;(fboundp 'evil-insert-line (evil-insert-line 1)))))))
 
@@ -96,8 +96,8 @@
 ;;   :after magit
 ;;   :config
 ;;   (setq magit-delta-delta-args '(
-;; 				 "--syntax-theme" "none"))
-;; 				 ;;"--side-by-side" "true"))
+;;               "--syntax-theme" "none"))
+;;               ;;"--side-by-side" "true"))
 ;;   :hook (magit-mode . magit-delta-mode))
 
 ;; TODO Override (magit-visit-thing) to work with (goto-address-mode)
@@ -108,7 +108,6 @@
   '(defun magit-whitespace-disallowed ()
      (interactive)
      (insert "-")))
-
 ;;; Package:
 (provide 'my-magit)
 ;;; my-magit.el ends here
