@@ -119,6 +119,14 @@
 ;; Automatically scroll compilation buffer output
 (setq compilation-scroll-output t)
 
+;; Windmove is an alternative means to navigate window panes
+
+(use-package windmove
+  :ensure nil
+  :config
+  (windmove-mode)
+  (windmove-default-keybindings 'super))
+
 ;;; Package:
 (provide 'my-utility)
 ;;; my-utility.el ends here
