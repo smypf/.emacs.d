@@ -7,7 +7,7 @@
 
 ;;; Commentary:
 
-;; 
+;;
 
 ;;; Code:
 
@@ -17,17 +17,11 @@
 
 ;; Hide the "." and ".." directories
 ;; https://stackoverflow.com/a/43632653
-(add-hook 'dired-mode-hook 'dired-omit-mode)
+;; (add-hook 'dired-mode-hook 'dired-omit-mode)
 
 ;; use gls to ensure that folders are sorted at the top
 (if (eq system-type 'darwin)
     (setq insert-directory-program "gls" dired-use-ls-dired t))
-(setq dired-listing-switches "-alGh --group-directories-first"
-      dired-omit-files
-      (rx (or (seq bol (? ".") "#")
-	      (seq bol "." eol)
-	      (seq bol ".." eol))))
-
 (use-package dirvish
   :defer t
   :init
@@ -53,7 +47,12 @@
   (setq mouse-drag-and-drop-region-cross-program t) ; added in Emacs 29
   ;; See *Parsing switches*
   (setq dired-listing-switches
-        "-l --almost-all --human-readable --time-style=long-iso --group-directories-first --no-group")
+        "-l --all --human-readable --time-style=long-iso --group-directories-first --no-group")
+  ;; Hide the . and .. directories
+  (setq dired-omit-files
+      (rx (or (seq bol (? ".") "#")
+          (seq bol "." eol)
+          (seq bol ".." eol))))
   :bind
   ;; Bind `dirvish|dirvish-side|dirvish-dwim' as you see fit
   (("C-c f" . dirvish-fd)
