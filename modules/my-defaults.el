@@ -26,6 +26,9 @@
       electric-pair-inhibit-predicate 'electric-pair-conservative-inhibit
       electric-pair-mode t)
 
+;; Confirm closing emacs
+(setq confirm-kill-emacs 'y-or-n-p)
+
 ;;; Package:
 (provide 'my-defaults)
 ;;; my-defaults.el ends here
