@@ -37,12 +37,10 @@
       (goto-char (point-max))
       (magit-section-backward)
       (when
-	(search-backward-regexp "remote: \\(To create a merge\\|Create pull\\) request" nil t)
-	(forward-line 1)
-	(re-search-forward "remote: +" (line-end-position) t)
-	(browse-url-at-point))))
-
-  (transient-insert-suffix 'magit-push (kbd "o") '("r" "Open Pull Request" magit-open-pull-request))
+    (search-backward-regexp "remote: \\(To create a merge\\|Create pull\\) request" nil t)
+    (forward-line 1)
+    (re-search-forward "remote: +" (line-end-position) t)
+    (browse-url-at-point))))
 
   ;; From https://emacs.stackexchange.com/a/44685
   (defun insert-issue-key()
