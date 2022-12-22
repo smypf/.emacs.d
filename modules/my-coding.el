@@ -79,7 +79,7 @@
 
 ;; Automatically insert matching pair for delimiters
 (electric-pair-mode 1)
-;; Prevent electric
+;; Prevent electric from automatically closing a pair when the next character is a word
 (setq electric-pair-preserve-balance nil)
 
 
