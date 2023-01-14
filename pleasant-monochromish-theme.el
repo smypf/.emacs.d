@@ -41,7 +41,7 @@
 (deftheme pleasant-monochromish
   "Theme emulating reading on an E Ink device.")
 
-;; base purple - dfcee7
+;; base purple - #dfcee7
 ;; analogous - #e7cee3 & #d3cee7
 (let ((fg                "#444444")
       (bg                "#fffff8")
@@ -136,7 +136,9 @@
    `(doom-modeline-buffer-modified ((t (:foreground ,dark-purple :weight bold))))
    `(doom-modeline-urgent ((t (:foreground "#d4a7cd"))))
 
-   `(tab-bar ((t (:background ,bg))))
+   `(tab-bar ((t (:background ,bg
+			      ;;:box '(:line-width (10 . 0 ) :color ,bg)
+			      ))))
    `(tab-bar-tab ((t (:background ,purple-bg :foreground ,fg))))
    `(tab-bar-tab-inactive ((t (:background ,bg :foreground ,comment))))
 
@@ -307,9 +309,9 @@
    ;; `(evil-snipe-matches-face ((t (:foreground ,fg :background ,bg-highlight-3))))
 
    ;; evil
-   `(evil-ex-lazy-highlight ((t (:background ,isearch-bg))))
-   `(evil-ex-substitute-matches ((t (:background ,bg-highlight-2))))
-   `(evil-ex-substitute-replacement ((t (:background ,bg-highlight :underline nil :foreground ,fg))))
+   ;;;`(evil-ex-lazy-highlight ((t (:background ,isearch-bg))))
+   ;;;`(evil-ex-substitute-matches ((t (:background ,bg-highlight-2))))
+   ;;;`(evil-ex-substitute-replacement ((t (:background ,bg-highlight :underline nil :foreground ,fg))))
 
    ;; describe-text-properties found this
    `(typescript-jsdoc-tag ((t (:inherit font-lock-comment-face))))
@@ -419,25 +421,25 @@
    ;; This _should_ work but it doesn't.
    ;; https://stackoverflow.com/a/71785402
    ;; Here we just replace the colours instead
-   `(ansi-color-red ((t (:foreground ,fg))))
-   `(ansi-color-blue ((t (:foreground ,fg))))
-   `(ansi-color-bold ((t (:foreground ,fg))))
-   `(ansi-color-cyan ((t (:foreground ,fg))))
-   `(ansi-color-black ((t (:foreground ,fg))))
-   `(ansi-color-faint ((t (:foreground ,fg))))
-   `(ansi-color-green ((t (:foreground ,fg))))
-   `(ansi-color-white ((t (:foreground ,bg))))
-   `(ansi-color-italic ((t (:foreground ,fg))))
-   `(ansi-color-yellow ((t (:foreground ,fg))))
-   `(ansi-color-magenta ((t (:foreground ,fg))))
-   `(ansi-color-bright-red ((t (:foreground ,fg))))
-   `(ansi-color-bright-blue ((t (:foreground ,fg))))
-   `(ansi-color-bright-cyan ((t (:foreground ,fg))))
-   `(ansi-color-bright-black ((t (:foreground ,fg))))
-   `(ansi-color-bright-green ((t (:foreground ,fg))))
-   `(ansi-color-bright-white ((t (:foreground ,fg))))
-   `(ansi-color-bright-yellow ((t (:foreground ,fg))))
-   `(ansi-color-bright-magenta ((t (:foreground ,fg))))
+;;    `(ansi-color-red ((t (:foreground ,fg))))
+;;    `(ansi-color-blue ((t (:foreground ,fg))))
+;;    `(ansi-color-bold ((t (:foreground ,fg))))
+;;    `(ansi-color-cyan ((t (:foreground ,fg))))
+;;    `(ansi-color-black ((t (:foreground ,fg))))
+;;    `(ansi-color-faint ((t (:foreground ,fg))))
+;;    `(ansi-color-green ((t (:foreground ,fg))))
+;;    `(ansi-color-white ((t (:foreground ,bg))))
+;;    `(ansi-color-italic ((t (:foreground ,fg))))
+;;    `(ansi-color-yellow ((t (:foreground ,fg))))
+;;    `(ansi-color-magenta ((t (:foreground ,fg))))
+;;    `(ansi-color-bright-red ((t (:foreground ,fg))))
+;;    `(ansi-color-bright-blue ((t (:foreground ,fg))))
+;;    `(ansi-color-bright-cyan ((t (:foreground ,fg))))
+;;    `(ansi-color-bright-black ((t (:foreground ,fg))))
+;;    `(ansi-color-bright-green ((t (:foreground ,fg))))
+;;    `(ansi-color-bright-white ((t (:foreground ,fg))))
+;;    `(ansi-color-bright-yellow ((t (:foreground ,fg))))
+;;    `(ansi-color-bright-magenta ((t (:foreground ,fg))))
 
    `(highlight-indent-guides-character-face ((t (:foreground ,comment))))
    `(highlight-indent-guides-top-character-face ((t (:foreground ,purple-bg))))
@@ -447,7 +449,13 @@
 
    `(corfu-current ((t (:background ,purple-bg))))
    `(completions-common-part ((t (:foreground ,dark-purple))))
-   `(completions-first-difference ((t (:foreground ,dark-purple))))))
+   `(completions-first-difference ((t (:foreground ,dark-purple))))
+
+   `(binky-highlight-add ((t (:inherit highlight))))
+
+   `(help-key-binding ((t (:inherit fixed-pitch :background ,purple-bg :foreground ,fg :box nil))))))
+   ;;`(help-key-binding ((t (:inherit fixed-pitch :background ,purple-bg :foreground ,fg :box (:line-width (1 . 1) :color ,dark-purple)))))))
+   ;;`(help-key-binding ((t (:inherit fixed-pitch :background ,purple-bg :foreground ,fg :box nil :color ,dark-purple))))
 
 ;; to here
 ;;
