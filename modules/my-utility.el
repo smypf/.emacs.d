@@ -127,6 +127,11 @@
   (windmove-mode)
   (windmove-default-keybindings 'super))
 
+(use-package binky-mode
+  :hook (after-init-hook . binky-mode)
+  :bind ("C-M-m" . binky-binky))
+
+
 ;;; Package:
 (provide 'my-utility)
 ;;; my-utility.el ends here
