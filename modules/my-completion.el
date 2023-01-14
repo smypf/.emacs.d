@@ -191,7 +191,10 @@
 
 (use-package backward-forward
   :init
-  (backward-forward-mode))
+  (backward-forward-mode)
+  :bind
+  (("C-M-<left>" . backward-forward-previous-location)
+  ("C-M-<right>" . backward-forward-next-location)))
 
 ;; Embark Export (M-. E) will send all results to a buffer.
 ;; This is useful as it means that it is not necessary to continuously open the consult buffer to visit subsequent matches
