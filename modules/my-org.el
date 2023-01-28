@@ -15,8 +15,8 @@
   :defer t
   :config
   (setq org-directory (file-truename "~/org")
-	org-agenda-files (directory-files-recursively org-directory "\\.org$")
-	org-default-notes-file (concat org-directory "/notes.org")
+    org-agenda-files (directory-files-recursively org-directory "\\.org$")
+    org-default-notes-file (concat org-directory "/notes.org")
     org-return-follows-link t
     ;; Add toggling states and different states
     ;; e.g <SPC> m t t => TODO
@@ -39,8 +39,8 @@
                          "[?](W)"   ; Task is being held up or paused
                          "|"
                          "[X](D)")) ; Task was completed
-	;; Ensure that a heading and it's contents are automatically aligned
-	org-adapt-indentation t
+    ;; Ensure that a heading and it's contents are automatically aligned
+    org-adapt-indentation t
     org-log-done 'time)
   (add-hook 'org-mode-hook 'turn-on-auto-fill))
 
