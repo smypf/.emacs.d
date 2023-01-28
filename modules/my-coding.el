@@ -44,15 +44,19 @@
 
 ;; Ensure that the docset is activated. If this is not done results will not be shown.
 ;; See line ~20 of modules/my-node.el
-(use-package dash-docs
-  :defer t)
-(use-package consult-dash
-  :defer t
-  :after dash-docs)
+;; removed as these aren't being used.
+;;;(use-package dash-docs
+;;;  :defer t)
+;;;(use-package consult-dash
+;;;  :defer t
+;;;  :after dash-docs)
   ;; These lines have been disabled since I prefer to search for something myself.
   ;; :config
   ;; Use the symbol at point as initial search term
   ;; (consult-customize consult-dash :initial (thing-at-point 'symbol)))
+
+(use-package devdocs
+  :defer t)
 
 (defun xref-list-references()
   (interactive)
