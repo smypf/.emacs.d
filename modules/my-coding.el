@@ -93,12 +93,16 @@
 ;;;     highlight-indent-guides-responsive 'stack
 ;;;     highlight-indent-guides-auto-enabled nil))
 
- (use-package tree-sitter
-   :config
-     (global-tree-sitter-mode))
+(use-package tree-sitter
+  :config
+  (global-tree-sitter-mode)
+  ;; This doesn't work as the file name is not in the expected format (it should have tree-sitter- as the prefix)
+  (setq treesit-extra-load-path '("/Users/yees6f/.emacs.d/elpa/tree-sitter-langs-20230114.1524/bin/")))
 
- (use-package tree-sitter-langs
-   :after tree-sitter)
+(add-hook 'tree-sitter-after-on-hook 'eglot-ensure)
+
+(use-package tree-sitter-langs
+  :after tree-sitter)
 
 ;; (use-package fancy-narrow
 ;;   :after tree-sitter)

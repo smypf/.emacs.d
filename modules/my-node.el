@@ -14,15 +14,23 @@
 ;; Use typescipt-mode instead of tide.
 ;; LSP is doing most of the heavy lifting anyway
 ;; https://vxlabs.com/2022/06/12/typescript-development-with-emacs-tree-sitter-and-lsp-in-2022/ for more information
-(use-package typescript-mode
-  :defer t
-  :config
-  (add-hook 'typescript-mode-hook 'eglot-ensure)
-  :dash "TypeScript" "JavaScript" "NodeJS" "HTML" "CSS")
+;; Removed in favour of typescript-ts-mode (see https://github.com/emacs-typescript/typescript.el/tree/4fcb4594819caf472ae42ea068a1c7795cf07f46#a-short-note-on-development-halt)
+;;;(use-package typescript-mode
+;;;  :defer t
+;;;  :config
+;;;  (add-hook 'typescript-mode-hook 'eglot-ensure)
+;;;  :dash "TypeScript" "JavaScript" "NodeJS" "HTML" "CSS")
+
+;; note to get this working I needed to copy the files in ~/.emacs.d/elpa/tree-sitter-langs/bin to ~/.emacs.d/tree-sitter and prefix the file with "libtree-sitter-" (e.g. "typescript.dylib" is renamed to "libtree-sitter-typescript.dylib")
+(add-to-list 'auto-mode-alist '("\\.ts[x]?\\'" . typescript-ts-mode))
+(add-hook 'typescript-ts-mode-hook 'eglot-ensure)
 
 ;; From the wiki
 (with-eval-after-load 'eglot
-   (setq completion-category-defaults nil))
+  (setq completion-category-defaults nil)
+  ;; TODO this doesn't work as the hook doesn't exist. Need to determine an automatic way to eglot-ensure
+  (add-to-list 'eglot-server-programs
+             '((typescript-ts-mode) . ("typescript-language-server" "--stdio"))))
 
 ;; auto-format different source code files extremely intelligently
 ;; https://github.com/radian-software/apheleia
@@ -31,8 +39,9 @@
 (use-package apheleia
   :defer t
   :ensure t
-  :config
-  (apheleia-global-mode +1))
+  :hook
+  (typescript-ts-mode . apheleia-mode)
+  (prog-mode . apheleia-mode))
 
 ;; Running M-x compile will allow to jumping to errors in the output
 ;; https://emacs.stackexchange.com/a/44708
@@ -54,7 +63,7 @@
 (add-hook 'after-init-hook 'add-node-error-regex)
 
 ;; Changed based on https://www.reddit.com/r/emacs/comments/4xhxfw/comment/d6ghhmq/?utm_source=share&utm_medium=web2x&context=3
-(add-hook 'typescript-mode
+(add-hook 'typescript-ts-mode
           (lambda ()
             (add-to-list (make-local-variable 'electric-pair-pairs)
                          (cons ?` ?`))))
