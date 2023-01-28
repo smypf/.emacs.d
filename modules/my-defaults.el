@@ -29,6 +29,15 @@
 ;; Confirm closing emacs
 (setq confirm-kill-emacs 'y-or-n-p)
 
+;; ediff
+;; Split windows horizontally
+(setq ediff-split-window-function 'split-window-horizontally)
+;; Prevent ediff from creating new frames
+;; https://emacs.stackexchange.com/questions/17064/never-create-frame-in-ediff
+;;(defun ediff-window-display-p () nil)
+(advice-add 'ediff-window-display-p :override #'ignore)
+(setq ediff-window-setup-function #'ediff-setup-windows-plain)
+
 ;;; Package:
 (provide 'my-defaults)
 ;;; my-defaults.el ends here
