@@ -88,14 +88,15 @@
 
 
 
-;;; (use-package highlight-indent-guides
-;;;   :defer 3
-;;;   :hook
-;;;   (prog-mode . highlight-indent-guides-mode)
-;;;   :config
-;;;   (setq highlight-indent-guides-method 'character
-;;;     highlight-indent-guides-responsive 'stack
-;;;     highlight-indent-guides-auto-enabled nil))
+(use-package highlight-indent-guides
+  :defer t
+  :hook
+  (prog-mode . highlight-indent-guides-mode)
+  :config
+  (setq highlight-indent-guides-method 'character
+    highlight-indent-guides-responsive 'stack
+    highlight-indent-guides-auto-enabled nil))
+
 
 (use-package tree-sitter
   :config
