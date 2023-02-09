@@ -135,6 +135,9 @@
   :config
   (balanced-windows-mode))
 
+;; CMD + Mouse 1 open address
+(global-set-key [s-mouse-1] 'goto-address-at-mouse)
+
 
 ;;; Package:
 (provide 'my-utility)
