@@ -22,8 +22,8 @@
       create-lockfiles nil)
 
 ;; Set up which-key. This shows what options are availabe for key sequences
+;; Which key is playing up. Meow provides this functionality without explicitly enabling this functionality
 (use-package which-key
-  :defer t
   :init
   (which-key-mode)
   :config
