@@ -131,6 +131,10 @@
   :hook (after-init-hook . binky-mode)
   :bind ("C-M-m" . binky-binky))
 
+(use-package balanced-windows
+  :config
+  (balanced-windows-mode))
+
 
 ;;; Package:
 (provide 'my-utility)
