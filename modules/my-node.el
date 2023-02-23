@@ -32,6 +32,7 @@
   (add-to-list 'eglot-server-programs
              '((typescript-ts-mode) . ("typescript-language-server" "--stdio"))))
 
+(setq typescript-ts-mode-indent-offset (symbol-value 'tab-width))
 ;; auto-format different source code files extremely intelligently
 ;; https://github.com/radian-software/apheleia
 ;; TODO This could probably go somewhere else
