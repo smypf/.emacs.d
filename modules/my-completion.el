@@ -32,6 +32,7 @@
   :config
   ;; Show more candidates
   (setq vertico-count 15
+        vertico-cycle t
     ;; Configure the display per command.
     ;; Use a buffer with indices for imenu
     ;; and a flat (Ido-like) menu for M-x.
