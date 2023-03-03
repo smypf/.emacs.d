@@ -26,6 +26,7 @@
   ;; This should also only apply to the completion and ont other sections
   :bind (:map vertico-map
               ("TAB" . vertico-next)
+              ("<backtab>" . vertico-previous)
               ("S-TAB" . vertico-previous))
 
   :config
