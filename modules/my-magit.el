@@ -175,6 +175,7 @@
   (transient-define-prefix th/magit-aux-commands ()
     "My personal auxiliary magit commands."
     ["Auxiliary commands"
+     ("p" "Open Pull Request" magit-open-pull-request)
      ("d" "Difftastic Diff (dwim)" th/magit-diff-with-difftastic)
      ("s" "Difftastic Show" th/magit-show-with-difftastic)])
 
