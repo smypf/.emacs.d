@@ -47,11 +47,18 @@
   (add-hook 'minibuffer-setup-hook #'vertico-repeat-save))
 
 ;; Configure directory extension.
+;; This can be done by checking if the string ends with a '/'.
+(defun my-vertico-expand-next ()
+  "Enter directory or shift to next file."
+  (interactive)
+  (if (string-suffix-p "/" (vertico--candidate)) (vertico-insert) (vertico-next)))
+
 (use-package vertico-directory
   :after vertico
   :ensure nil
   ;; More convenient directory navigation commands
   :bind (:map vertico-map
+              ("TAB" . my-vertico-expand-next)
               ("<backtab>" . vertico-directory-up)
               ("RET" . vertico-directory-enter)
               ("DEL" . vertico-directory-delete-char)
