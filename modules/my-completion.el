@@ -52,6 +52,7 @@
   :ensure nil
   ;; More convenient directory navigation commands
   :bind (:map vertico-map
+              ("<backtab>" . vertico-directory-up)
               ("RET" . vertico-directory-enter)
               ("DEL" . vertico-directory-delete-char)
               ("M-DEL" . vertico-directory-delete-word))
