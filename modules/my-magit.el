@@ -184,6 +184,10 @@
 
   (define-key magit-status-mode-map (kbd "#") #'th/magit-aux-commands))
 
+(use-package abridge-diff
+  :after magit ;; optional, if you'd like to use with magit
+  :init (abridge-diff-mode 1))
+
 ;; Automatically start in insert state when openning the commit buffer
 ;; https://emacs.stackexchange.com/a/14012
 ;; (add-hook 'with-editor-mode-hook 'evil-insert-state)
