@@ -280,8 +280,8 @@
 
  ;; buffers
  ;; Something needs to be done to filter out irrelevant buffers
- '("bn" . next-buffer)
- '("bp" . previous-buffer)
+ ;;'("bn" . next-buffer)
+ ;;'("bp" . previous-buffer)
  '("bb" . consult-buffer)
  '("B" . consult-buffer)
  '("," . consult-buffer)
