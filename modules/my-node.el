@@ -22,15 +22,18 @@
 ;;;  :dash "TypeScript" "JavaScript" "NodeJS" "HTML" "CSS")
 
 ;; note to get this working I needed to copy the files in ~/.emacs.d/elpa/tree-sitter-langs/bin to ~/.emacs.d/tree-sitter and prefix the file with "libtree-sitter-" (e.g. "typescript.dylib" is renamed to "libtree-sitter-typescript.dylib")
-(add-to-list 'auto-mode-alist '("\\.ts[x]?\\'" . typescript-ts-mode))
-(add-hook 'typescript-ts-mode-hook 'eglot-ensure)
+(add-to-list 'auto-mode-alist '("\\.ts[x]?\\'" . tsx-ts-mode))
+(add-to-list 'auto-mode-alist '("\\.js[x]?\\'" . tsx-ts-mode))
+(add-hook 'tsx-ts-mode-hook 'eglot-ensure)
+
 
 ;; From the wiki
 (with-eval-after-load 'eglot
   (setq completion-category-defaults nil)
   ;; TODO this doesn't work as the hook doesn't exist. Need to determine an automatic way to eglot-ensure
   (add-to-list 'eglot-server-programs
-             '((typescript-ts-mode) . ("typescript-language-server" "--stdio"))))
+               '((typescript-ts-mode) . ("typescript-language-server" "--stdio"))
+               '((tsx-ts-mode) . ("typescript-language-server" "--stdio"))))
 
 (setq typescript-ts-mode-indent-offset (symbol-value 'tab-width))
 ;; auto-format different source code files extremely intelligently
