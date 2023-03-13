@@ -299,6 +299,8 @@
 ;; C-d Down a page
 ;; C-b Up a page
 
+;; bind SPC to Meow Keypad in magit status
+(define-key magit-status-mode-map (kbd "SPC") #'meow-keypad)
 
 ;;; Package:
 (provide 'my-meow)
