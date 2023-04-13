@@ -137,8 +137,8 @@
    `(doom-modeline-urgent ((t (:foreground "#d4a7cd"))))
 
    `(tab-bar ((t (:background ,bg
-			      ;;:box '(:line-width (10 . 0 ) :color ,bg)
-			      ))))
+                  ;;:box '(:line-width (10 . 0 ) :color ,bg)
+                  ))))
    `(tab-bar-tab ((t (:background ,purple-bg :foreground ,fg))))
    `(tab-bar-tab-inactive ((t (:background ,bg :foreground ,comment))))
 
@@ -200,9 +200,9 @@
    `(diff-removed ((t (:background "#ffecec"))))
    `(diff-refine-added ((t (:background "#a4f4a3"))))
    `(diff-refine-removed ((t (:background "#f9cbca"))))
-   `(magit-diff-added-highlight ((t (:weight demibold :background "#e9ffe9"))))
+   `(magit-diff-added-highlight ((t (:weight semibold :background "#e9ffe9"))))
    `(magit-diff-added ((t (:background "#e9ffe9"))))
-   `(magit-diff-removed-highlight ((t (:weight demibold :background "#ffecec"))))
+   `(magit-diff-removed-highlight ((t (:weight semibold :background "#ffecec"))))
    `(magit-diff-removed ((t (:background "#ffecec"))))
 
    ;; git-timemachine
@@ -452,6 +452,8 @@
    `(completions-first-difference ((t (:foreground ,dark-purple))))
 
    `(binky-highlight-add ((t (:inherit highlight))))
+
+   `(whitespace-space ((t (:background ,bg))))
 
    `(help-key-binding ((t (:inherit fixed-pitch :background ,purple-bg :foreground ,fg :box nil))))))
    ;;`(help-key-binding ((t (:inherit fixed-pitch :background ,purple-bg :foreground ,fg :box (:line-width (1 . 1) :color ,dark-purple)))))))
