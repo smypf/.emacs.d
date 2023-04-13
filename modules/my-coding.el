@@ -86,8 +86,6 @@
 ;; Prevent electric from automatically closing a pair when the next character is a word
 (setq electric-pair-preserve-balance nil)
 
-
-
 (use-package highlight-indent-guides
   :defer t
   :hook
