@@ -129,7 +129,9 @@
                           ,(when (> 80 (- (frame-width) width))
                              #'display-buffer-at-bottom)
                           (window-width
-                           . ,(min width (frame-width))))))))))))
+                           . ,(min width (frame-width))))))
+                 ;; https://shivjm.blog/better-magit-diffs/
+                 (aankh/recolor-difftastic)))))))
 
   ;; copied from https://tsdh.org/posts/2022-08-01-difftastic-diffing-with-magit.html
   (defun th/magit-show-with-difftastic (rev)
@@ -187,7 +189,36 @@
   (transient-append-suffix 'magit-dispatch "!"
     '("#" "My Magit Cmds" th/magit-aux-commands))
 
-  (define-key magit-status-mode-map (kbd "#") #'th/magit-aux-commands))
+  (define-key magit-status-mode-map (kbd "#") #'th/magit-aux-commands)
+
+
+  ;; Change the colours of the diff to be better looking.
+  ;; https://shivjm.blog/better-magit-diffs/
+  (defun aankh/recolor-difftastic ()
+    (let ((ovs (overlays-in (point-min) (point-max))))
+      (dolist (ov ovs)
+        (let ((face (overlay-get ov 'face)))
+          (when (and (not (null face)) (listp face))
+            (when (plist-get face :foreground)
+              (plist-put face :foreground (aankh/get-remapped-difftastic-colour (plist-get face :foreground))))
+            (when-let ((existing (cl-find :foreground face :key (lambda (x) (if (consp x) (car x) nil)))))
+              (setf face
+                    (cl-subst `(:foreground ,(aankh/get-remapped-difftastic-colour (plist-get existing :foreground)))
+                              :foreground
+                              face
+                              :key (lambda (x) (if (consp x) (car x) nil)))))
+            (overlay-put ov 'face face))))))
+
+  (defun aankh/get-remapped-difftastic-colour (original)
+    (alist-get original +aankh/difftastic-colour-remapping+ nil nil 'string=))
+
+  (defconst +aankh/difftastic-colour-remapping+
+    `(("red2" . "#f18d8e")
+      ("green2" . "#53cb58")
+      ("yellow2" . "#000000")))
+
+
+  )
 
 (use-package abridge-diff
   :after magit ;; optional, if you'd like to use with magit
