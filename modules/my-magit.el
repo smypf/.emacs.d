@@ -16,7 +16,12 @@
   :defer t
   :config
   ;; Set the max length of the commit message before wrapping to the next line
-  (setq git-commit-summary-max-length 120)
+  (setq git-commit-summary-max-length 120
+        ;; Display magit as a full window when opened
+        magit-display-buffer-function magit-display-buffer-fullframe-status-v1
+        ;; Restore window configuration after closing magit
+        ;; This is useful with the above change
+        magit-bury-buffer-function magit-restore-window-configuration)
 
   ;; Open in other window instead of the current window
   ;; This is using `define-key` rather than general.el since as this would require overriding the key first
