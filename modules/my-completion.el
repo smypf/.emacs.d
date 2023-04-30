@@ -269,6 +269,10 @@
 ;; I don't like this
 ;; (ido-mode)
 
+;; https://github.com/mhayashi1120/Emacs-wgrep
+(use-package wgrep
+  :defer t)
+
 (when window-system
  ;; Corfu
  ;; Perhaps use this
