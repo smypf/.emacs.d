@@ -194,12 +194,16 @@
   :hook
   (prog-mode . flymake-cursor-mode))
 
+(setq-default show-trailing-whitespace nil)
+
 ;; Enable folding code sections
 (use-package emacs
   :ensure nil
   :hook
   (prog-mode . hs-minor-mode)
-  (prog-mode . whitespace-cleanup))
+  (prog-mode . whitespace-cleanup)
+  (prog-mode . (lambda ()
+                 (setq-local show-trailing-whitespacec t))))
 
 ;;; Package:
 (provide 'my-coding)
