@@ -264,6 +264,7 @@
  '("cD" . find-references-at-point)
  '("cl" . xref-list-references)
  '("cr" . eglot-rename)
+ '("ca" . eglot-code-actions)
  '("ce" . consult-flymake)
  '("cs" . consult-eglot-symbols)
  '("cf" . backward-forward-next-location)
