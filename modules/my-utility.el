@@ -188,6 +188,9 @@ version 2016-06-18"
   :bind (("C-c b n" . xah-next-user-buffer)
          ("C-c b p" . xah-previous-user-buffer)))
 
+(use-package jinx
+  :hook (emacs-startup . global-jinx-mode)
+  :bind ([remap ispell-word] . jinx-correct))
 
 ;;; Package:
 (provide 'my-utility)
