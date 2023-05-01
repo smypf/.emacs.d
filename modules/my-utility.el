@@ -119,6 +119,10 @@
 ;; Automatically scroll compilation buffer output
 (setq compilation-scroll-output t)
 
+;; Enable recentf-mode which stores recently opened files
+(recentf-mode t)
+(setq recentf-max-saved-items 50)
+
 ;; Windmove is an alternative means to navigate window panes
 
 (use-package windmove
