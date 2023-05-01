@@ -95,12 +95,43 @@
     highlight-indent-guides-responsive 'stack
     highlight-indent-guides-auto-enabled nil))
 
+;; `M-x combobulate' (or `C-c o o') to start using Combobulate
+  ;; Do not forget to customize Combobulate to your liking:
+  ;;
+  ;;  M-x customize-group RET combobulate RET
+;;
+
+(use-package combobulate
+  ;; Optional, but recommended.
+  ;;
+  ;; You can manually enable Combobulate with `M-x
+  ;; combobulate-mode'.
+  :hook ((python-ts-mode . combobulate-mode)
+         (js-ts-mode . combobulate-mode)
+         (css-ts-mode . combobulate-mode)
+         (yaml-ts-mode . combobulate-mode)
+         (typescript-ts-mode . combobulate-mode)
+         (tsx-ts-mode . combobulate-mode))
+  ;; Amend this to the directory where you keep Combobulate's source
+  ;; code.
+  :load-path ("~/tools/combobulate"))
+
+(use-package treesit-auto
+  :config
+  (global-treesit-auto-mode))
 
 (use-package tree-sitter
   :config
   (global-tree-sitter-mode)
   ;; This doesn't work as the file name is not in the expected format (it should have tree-sitter- as the prefix)
-  (setq treesit-extra-load-path '("/Users/yees6f/.emacs.d/elpa/tree-sitter-langs-20230114.1524/bin/")))
+  (setq treesit-extra-load-path '("/Users/yees6f/.emacs.d/elpa/tree-sitter-langs-20230114.1524/bin/"))
+  (push '(css-mode . css-ts-mode) major-mode-remap-alist)
+  (push '(python-mode . python-ts-mode) major-mode-remap-alist)
+  (push '(javascript-mode . js-ts-mode) major-mode-remap-alist)
+  (push '(js-json-mode . json-ts-mode) major-mode-remap-alist)
+  (push '(typescript-mode . typescript-ts-mode) major-mode-remap-alist)
+  (push '(c-mode . c-ts-mode) major-mode-remap-alist)
+  (push '(c++-mode . c++-ts-mode) major-mode-remap-alist))
 
 (add-hook 'tree-sitter-after-on-hook 'eglot-ensure)
 
