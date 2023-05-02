@@ -6,8 +6,7 @@
 ;; Author: Sasha Yee
 
 ;;; Commentary:
-
-;; Set emacs defaults on a system wide basis
+;; Set Emacs defaults on a system wide basis
 
 ;;; Code:
 
