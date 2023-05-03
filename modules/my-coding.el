@@ -227,6 +227,21 @@
 
 (setq-default show-trailing-whitespace nil)
 
+(use-package flycheck
+  :defer t
+  :ensure t
+  :init (global-flycheck-mode))
+
+(use-package flycheck-eglot
+  :ensure t
+  :defer t
+  :after (flycheck eglot)
+  :init (global-flycheck-eglot-mode))
+
+(use-package consult-flycheck
+  :after flycheck-eglot
+  :defer t)
+
 ;; Enable folding code sections
 (use-package emacs
   :ensure nil

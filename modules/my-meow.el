@@ -265,7 +265,7 @@
  '("cl" . xref-list-references)
  '("cr" . eglot-rename)
  '("ca" . eglot-code-actions)
- '("ce" . consult-flymake)
+ '("ce" . consult-flycheck)
  '("cs" . consult-eglot-symbols)
  '("cf" . backward-forward-next-location)
  '("cb" . backward-forward-previous-location)
