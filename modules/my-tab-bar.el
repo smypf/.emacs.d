@@ -11,14 +11,37 @@
 
 ;;; Code:
 ;; from https://old.reddit.com/r/emacs/comments/t4j5lu/tabbarmode_how_to_change_tab_bar_appearence/hz1uhs4/
-(defun my-tab-bar-name-format (tab i)
+
+(defface smypf-tab-bar-tab
+  `((t :inherit 'tab-bar-tab))
+  ;;:foreground ,(face-attribute 'font-lock-keyword-face :foreground nil t)))
+  "Face for active tab in tab-bar."
+  :group 'smypf-tab-bar)
+
+(defface smypf-tab-bar-tab-hint
+  `((t :inherit 'default))
+  ;;:foreground ,(face-attribute 'tab-bar-tab-inactive :foreground nil t)))
+  "Face for active tab hint in tab-bar."
+  :group 'smypf-tab-bar)
+
+(defface smypf-tab-bar-tab-inactive
+  `((t :inherit 'tab-bar-tab-inactive))
+  "Face for inactive tab in tab-bar."
+  :group 'smypf-tab-bar)
+
+(defface smypf-tab-bar-tab-hint-inactive
+  `((t :inherit 'default))
+  "Face for inactive tab hint in tab-bar."
+  :group 'smypf-tab-bar)
+
+(defun smypf-tab-bar-name-format (tab i)
     (let* ((current-p (eq (car tab) 'current-tab))
           (tab-face (if current-p
-                         'tab-bar-tab
-                       'tab-bar-tab-inactive))
+                         'smypf-tab-bar-tab
+                       'smypf-tab-bar-tab-inactive))
            (hint-face (if current-p
-                          'tab-bar-tab-hint
-                        'tab-bar-tab-hint-inactive)))
+                          'smypf-tab-bar-tab-hint
+                        'smypf-tab-bar-tab-hint-inactive)))
       (concat (propertize (if tab-bar-tab-hints (format "  %d: " i) "  ")
                           'face hint-face)
               (propertize
@@ -45,7 +68,7 @@
     (setq tab-bar-tab-hints t)                 ;; show tab numbers
     (setq tab-bar-select-tab-modifiers "super")
     (setq tab-bar-format '(tab-bar-format-tabs tab-bar-separator))
-  (setq tab-bar-tab-name-format-function 'my-tab-bar-name-format)
+    (setq tab-bar-tab-name-format-function 'smypf-tab-bar-name-format)
   (global-set-key (kbd "s-{") 'tab-bar-switch-to-prev-tab)
   (global-set-key (kbd "s-}") 'tab-bar-switch-to-next-tab)
   (global-set-key (kbd "C-S-<tab>") 'tab-bar-switch-to-prev-tab)
