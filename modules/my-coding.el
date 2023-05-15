@@ -110,7 +110,7 @@
          (js-ts-mode . combobulate-mode)
          (css-ts-mode . combobulate-mode)
          (yaml-ts-mode . combobulate-mode)
-         (typescript-ts-mode . combobulate-mode)
+         ;;(typescript-ts-mode . combobulate-mode)
          (tsx-ts-mode . combobulate-mode))
   ;; Amend this to the directory where you keep Combobulate's source
   ;; code.
@@ -129,7 +129,8 @@
   (push '(python-mode . python-ts-mode) major-mode-remap-alist)
   (push '(javascript-mode . js-ts-mode) major-mode-remap-alist)
   (push '(js-json-mode . json-ts-mode) major-mode-remap-alist)
-  (push '(typescript-mode . typescript-ts-mode) major-mode-remap-alist)
+  ;;(push '(typescript-mode . typescript-ts-mode) major-mode-remap-alist)
+  (push '(typescript-mode . tsx-ts-mode) major-mode-remap-alist)
   (push '(c-mode . c-ts-mode) major-mode-remap-alist)
   (push '(c++-mode . c++-ts-mode) major-mode-remap-alist))
 
