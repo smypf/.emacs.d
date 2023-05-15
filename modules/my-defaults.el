@@ -37,6 +37,11 @@
 (advice-add 'ediff-window-display-p :override #'ignore)
 (setq ediff-window-setup-function #'ediff-setup-windows-plain)
 
+;; disable scrollbars in vertical frames
+(add-to-list 'default-frame-alist
+             '(vertical-scroll-bars . nil))
+
+
 ;;; Package:
 (provide 'my-defaults)
 ;;; my-defaults.el ends here
