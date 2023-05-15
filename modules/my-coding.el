@@ -219,11 +219,11 @@
 ;; TODO add and remove the binding when eglot is toggled
 
 ;; Show the error at the cursor in the mini-buffer
-(use-package flymake-cursor
-  :defer t
-  :after flymake
-  :hook
-  (prog-mode . flymake-cursor-mode))
+;;(use-package flymake-cursor
+;;  :defer t
+;;  :after flymake
+;;  :hook
+;;  (prog-mode . flymake-cursor-mode))
 
 (setq-default show-trailing-whitespace nil)
 
