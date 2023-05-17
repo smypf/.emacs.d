@@ -163,13 +163,44 @@
 (use-package orderless
   :defer t
   :init
-  (setq completion-styles '(orderless flex)))
+  (setq completion-styles '(orderless flex))
+  :commands (orderless-filter))
 
-(use-package marginalia
-  :defer t
+(use-package fussy
   :ensure t
   :config
-  (marginalia-mode))
+  (setq fussy-filter-fn 'fussy-filter-orderless)
+  ;;(setq fussy-filter-fn 'fussy-filter-orderless-flex)
+
+  (push 'fussy completion-styles)
+  (setq
+   ;; For example, project-find-file uses 'project-files which uses
+   ;; substring completion by default. Set to nil to make sure it's using
+   ;; flx.
+   completion-category-defaults nil
+   completion-category-overrides nil)
+
+  ;; `eglot' defaults to flex, so set an override to point to fussy instead.
+  (with-eval-after-load 'eglot
+    (add-to-list 'completion-category-overrides
+                 '(eglot (styles fussy basic)))))
+
+
+;; This may be the package to use having exhausted the list here
+;; https://github.com/jojojames/fussy
+(use-package fuz
+  :ensure t
+  :config
+  (setq fussy-score-fn 'fussy-fuz-bin-score)
+  (unless (require 'fuz-core nil t)
+    (fuz-build-and-load-dymod)))
+
+;; I wasn't using this.
+; (use-package marginalia
+;  :defer t
+;  :ensure t
+;  :config
+;  (marginalia-mode))
 
 (use-package cape
   ;; Bind dedicated completion commands
