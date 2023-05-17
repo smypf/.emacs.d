@@ -196,6 +196,25 @@ version 2016-06-18"
   :hook (emacs-startup . global-jinx-mode)
   :bind ([remap ispell-word] . jinx-correct))
 
+;; These are stolen from https://macowners.club/posts/custom-functions-5-navigation/
+(use-package emacs
+  :ensure nil
+  :config
+  (defun smypf-nav-split-and-follow-right ()
+    "Split and focus a new window to the right."
+    (interactive)
+    (split-window-right)
+    (other-window 1))
+  (defun smypf-nav-find-file-right ()
+    "Open file with `projectile-find-file' in a split window to the right."
+    (interactive)
+    (split-window-right)
+    (other-window 1)
+    (projectile-find-file))
+  :commands (smypf-nav-find-file-right smypf-nav-split-and-follow-right)
+  :bind (([remap split-window-right] . smypf-nav-split-and-follow-right)
+         ("C-c n" . smypf-nav-find-file-right)))
+
 ;;; Package:
 (provide 'my-utility)
 ;;; my-utility.el ends here
