@@ -74,6 +74,7 @@
           "\\*Async Shell Command\\*"
           help-mode
           helpful-mode
+          flycheck-error-list-mode
           compilation-mode))
   (popper-mode +1)
   (popper-echo-mode +1))                ; For echo area hints
