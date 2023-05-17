@@ -7,7 +7,7 @@
 
 ;;; Commentary:
 
-;; 
+;;
 
 ;;; Code:
 ;; Removed recentf-mode as it is not being used
@@ -20,6 +20,13 @@
   :defer t
   :config
   (projectile-mode)
+
+  ;; Change the name of the frame.
+  ;; This is useful when alt-tabbing
+  (defun smypf-set-frame-name ()
+    (interactive)
+    (setq frame-title-format (concat "Emacs - %b - " (projectile-project-name))))
+  (smypf-set-frame-name)
 
   ;; These have been removed. 'alien indexing is much faster
   ;; (setq projectile-sort-order 'recently-active)
