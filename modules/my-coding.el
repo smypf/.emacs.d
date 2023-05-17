@@ -243,6 +243,18 @@
   :after flycheck-eglot
   :defer t)
 
+(use-package markdown-mode
+  :defer t
+  :after eglot)
+
+;;;(use-package eldoc-box
+;;;  :defer t
+;;;  :after eglot
+;;;  :commands (eldoc-box-help-at-point)
+;;;  :config
+;;;  (setq eldoc-echo-area-use-multiline-p nil)
+;;;  :bind (("C-c c i" . eldoc-box-help-at-point)))
+;;;
 ;; Enable folding code sections
 (use-package emacs
   :ensure nil
