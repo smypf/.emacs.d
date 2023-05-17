@@ -1,3 +1,9 @@
+;;; package -- Sasha's Personal Configuration
+;;; Commentary:
+;;; Stuff gets loaded here.
+;;; Most of the stuff is in module files.  These are located in the `/module` folder
+;;; Code:
+
 ;; Set up melpa which is a package host
 (require 'package)
 (add-to-list 'package-archives
