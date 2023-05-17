@@ -13,19 +13,16 @@
 
 ;; https://github.com/ReanGD/emacs-multi-compile
 
+(defvar smypf-compile-items '("npm test" "npm run build" "npm test -- -u"))
+
 ;; TODO replace items with a variable read from .dir-locals.el
 (defun smypf-choose-compile-command ()
   "Prompt the user to select multiple items from a list and call `compile`."
   (interactive)
-  (let ((items '("npm test" "npm run build" "npm test -- -u")))
-    (compile (car (last (completing-read-multiple "Select compile job: " items))))))
+  ;; TODO when a different value is supplied which isn't present in smypf-compile-items it should push that into the list
+  (compile (car (last (completing-read-multiple "Select compile job: " smypf-compile-items)))))
 
-;; This is an example of how we can bind keys outside of the my-meow module
-(use-package emacs
-  :after meow
-  :init
-  (meow-leader-define-key
-   '("T" . smypf-choose-compile-command)))
+(global-set-key (kbd "C-c T") 'smypf-choose-compile-command)
 
 ;;; Package:
 (provide 'my-compile)

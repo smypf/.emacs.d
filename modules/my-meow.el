@@ -255,7 +255,7 @@
  '("SPC" . projectile-find-file)
  '("C" . projectile-compile-project)
  '("R" . recompile)
- '("T" . projectile-test-project)
+ ;;'("T" . projectile-test-project)
  '("pp" . projectile-switch-project)
  '("pt" . projectile-toggle-between-implementation-and-test)
 
