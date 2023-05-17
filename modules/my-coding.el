@@ -250,7 +250,7 @@
   (prog-mode . hs-minor-mode)
   (prog-mode . whitespace-cleanup)
   (prog-mode . (lambda ()
-                 (setq-local show-trailing-whitespacec t))))
+                 (setq-local show-trailing-whitespace t))))
 
 ;;; Package:
 (provide 'my-coding)
