@@ -22,8 +22,8 @@
 ;;;  :dash "TypeScript" "JavaScript" "NodeJS" "HTML" "CSS")
 
 ;; note to get this working I needed to copy the files in ~/.emacs.d/elpa/tree-sitter-langs/bin to ~/.emacs.d/tree-sitter and prefix the file with "libtree-sitter-" (e.g. "typescript.dylib" is renamed to "libtree-sitter-typescript.dylib")
-(add-to-list 'auto-mode-alist '("\\.ts[x]?\\'" . tsx-ts-mode))
-(add-to-list 'auto-mode-alist '("\\.js[x]?\\'" . tsx-ts-mode))
+(add-to-list 'auto-mode-alist '("\\.tsx?\\'" . tsx-ts-mode))
+(add-to-list 'auto-mode-alist '("\\.jsx?\\'" . tsx-ts-mode))
 (add-hook 'tsx-ts-mode-hook 'eglot-ensure)
 
 
@@ -44,7 +44,7 @@
   :defer t
   :ensure t
   :hook
-  (typescript-ts-mode . apheleia-mode)
+  (typescript-ts-base-mode . apheleia-mode)
   (prog-mode . apheleia-mode))
 
 ;; Running M-x compile will allow to jumping to errors in the output
@@ -67,7 +67,7 @@
 (add-hook 'after-init-hook 'add-node-error-regex)
 
 ;; Changed based on https://www.reddit.com/r/emacs/comments/4xhxfw/comment/d6ghhmq/?utm_source=share&utm_medium=web2x&context=3
-(add-hook 'typescript-ts-mode
+(add-hook 'typescript-ts-base-mode
           (lambda ()
             (add-to-list (make-local-variable 'electric-pair-pairs)
                          (cons ?` ?`))))
