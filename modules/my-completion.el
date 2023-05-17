@@ -240,7 +240,7 @@
   ;; This isn't a perfect implementation
   (eval-after-load 'magit
     '(progn
-       (define-key git-commit-mode-map (kbd "TAB") #'completion-at-point)))
+       (define-key git-commit-mode-map (kbd "TAB") #'cape-dabbrev)))
   )
 
 (use-package backward-forward
