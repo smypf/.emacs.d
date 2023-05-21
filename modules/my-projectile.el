@@ -18,15 +18,21 @@
 
 (use-package projectile
   :defer t
+  :commands smypf-set-frame-name projectile-project-name
+  :init
+  (defun smypf-set-frame-name ()
+    (interactive)
+    (if (string= (projectile-project-name) "-")
+        (setq frame-title-format (concat "Emacs"))
+    (setq frame-title-format (concat "Emacs - %b - " (projectile-project-name)))))
+  (smypf-set-frame-name)
+  (add-hook 'projectile-find-file-hook 'smypf-set-frame-name)
+
   :config
   (projectile-mode)
 
   ;; Change the name of the frame.
   ;; This is useful when alt-tabbing
-  (defun smypf-set-frame-name ()
-    (interactive)
-    (setq frame-title-format (concat "Emacs - %b - " (projectile-project-name))))
-  (smypf-set-frame-name)
 
   ;; These have been removed. 'alien indexing is much faster
   ;; (setq projectile-sort-order 'recently-active)
