@@ -10,6 +10,16 @@
 ;;
 
 ;;; Code:
+(defun smypf-meow-quit ()
+  "Close the window if there is more than one buffer. If there is only one buffer go to the *scratch* buffer"
+  (interactive)
+
+  (if (bound-and-true-p magit-blame-read-only-mode)
+      (magit-blame-quit)
+    (if (> (count-windows) 1)
+        (delete-window)
+      (switch-to-buffer "*scratch*"))))
+
 (defun meow-qwerty-setup ()
   ;; https://emacs.stackexchange.com/questions/45401/why-cant-i-bind-my-function-to-a-key-or-call-it-with-m-x
   (interactive)
@@ -84,7 +94,7 @@
    '("o" . meow-block)
    '("O" . meow-to-block)
    '("p" . meow-yank)
-   '("q" . meow-quit)
+   '("q" . smypf-meow-quit)
    '("Q" . meow-goto-line)
    '("r" . meow-replace)
    '("R" . meow-swap-grab)
@@ -186,7 +196,7 @@
    '("o" . meow-block)
    '("O" . meow-to-block)
    '("p" . meow-yank)
-   '("q" . meow-quit)
+   '("q" . smypf-meow-quit)
    '("r" . meow-replace)
    '("s" . meow-insert)
    '("S" . meow-open-above)
@@ -292,6 +302,7 @@
 
 ;; Disable meow for various mode which rely on having inbuilt keymaps
 ;; https://github.com/meow-edit/meow/issues/317#issuecomment-1233622579
+;; TODO add keybinds to the magit-blame-read-only-mode-map
 (meow-define-state disable "dummy state")
 (add-to-list 'meow-mode-state-list '(magit-mode . disable))
 (add-to-list 'meow-mode-state-list '(git-rebase-mode . disable))
