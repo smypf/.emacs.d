@@ -22,7 +22,8 @@
 (repeat-mode)
 
 (setq electric-pair-preserve-balance t
-      electric-pair-inhibit-predicate 'electric-pair-conservative-inhibit
+      ;;electric-pair-inhibit-predicate 'electric-pair-conservative-inhibit
+      electric-pair-inhibit-predicate 'electric-pair-inhibit-if-helps-balance
       electric-pair-mode t)
 
 ;; Confirm closing emacs
