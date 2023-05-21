@@ -19,8 +19,11 @@
 (defun smypf-choose-compile-command ()
   "Prompt the user to select multiple items from a list and call `compile`."
   (interactive)
-  ;; TODO when a different value is supplied which isn't present in smypf-compile-items it should push that into the list
-  (compile (car (last (completing-read-multiple "Select compile job: " smypf-compile-items)))))
+  (let* ((selected-items (completing-read-multiple "Select compile job: " smypf-compile-items))
+         (new-items (cl-remove-if (lambda (item) (member item smypf-compile-items)) selected-items))
+         (updated-list (append smypf-compile-items new-items)))
+    (setq smypf-compile-items updated-list)
+    (compile (car (last selected-items nil)))))
 
 (global-set-key (kbd "C-c T") 'smypf-choose-compile-command)
 
