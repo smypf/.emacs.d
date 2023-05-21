@@ -149,13 +149,13 @@
     xref-show-definitions-function #'consult-xref)
   :config
   (autoload 'projectile-project-root "projectile")
-  (defun smy/consult-line-this-thing()
+  (defun smypf-consult-line-this-thing()
     (interactive)
     (consult-line (thing-at-point 'symbol)))
 
   :bind (("C-c h" . consult-history)
          :map meow-normal-state-keymap
-         ("*" . smy/consult-line-this-thing))
+         ("*" . smypf-consult-line-this-thing))
 
   :hook
   (completion-list-mode . consult-preview-at-point-mode))
