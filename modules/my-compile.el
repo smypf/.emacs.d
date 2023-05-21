@@ -12,8 +12,7 @@
 ;;; Code:
 
 ;; https://github.com/ReanGD/emacs-multi-compile
-
-(defvar smypf-compile-items '("npm test" "npm run build" "npm test -- -u"))
+(defvar smypf-compile-items '("nvm use; npm test" "nvm use; npm run build" "nvm use; npm test -- -u"))
 
 ;; TODO replace items with a variable read from .dir-locals.el
 (defun smypf-choose-compile-command ()
