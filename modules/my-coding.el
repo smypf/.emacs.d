@@ -258,6 +258,10 @@
 ;; Enable folding code sections
 (use-package emacs
   :ensure nil
+  :bind (("C-c z c" . hs-hide-level)
+         ("C-c z o" . hs-show-level)
+         ("C-c z C" . hs-hide-all)
+         ("C-c z O" . hs-show-all))
   :hook
   (prog-mode . hs-minor-mode)
   (prog-mode . whitespace-cleanup)
