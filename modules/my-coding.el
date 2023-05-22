@@ -81,11 +81,6 @@
   ;; (setq ansi-color-for-comint-mode 'filter)
   :hook (compilation-filter . ansi-color-compilation-filter))
 
-;; Automatically insert matching pair for delimiters
-(electric-pair-mode 1)
-;; Prevent electric from automatically closing a pair when the next character is a word
-(setq electric-pair-preserve-balance nil)
-
 (use-package highlight-indent-guides
   :defer t
   :hook
