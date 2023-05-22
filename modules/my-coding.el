@@ -268,6 +268,9 @@
   (prog-mode . (lambda ()
                  (setq-local show-trailing-whitespace t))))
 
+(use-package json-mode
+  :defer t)
+
 ;;; Package:
 (provide 'my-coding)
 ;;; my-coding.el ends here
