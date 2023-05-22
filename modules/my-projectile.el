@@ -40,12 +40,13 @@
   ;; Add npm projects
   ;; This allows for usage of `projectile-toggle-between-implementation-and-test`
   (projectile-register-project-type 'npm '("package.json")
-                                  :project-file "package.json"
-                  :configure "npm ci"
-                  :compile "npm run build"
-                  :test "npm test "
-                  :run "npm start"
-                  :test-suffix ".spec"))
+                                    :project-file "package.json"
+                                    :configure "npm ci"
+                                    :compilation-dir "."
+                                    :compile "npm run build"
+                                    :test "npm test "
+                                    :run "npm start"
+                                    :test-suffix ".spec"))
 
 ;;; Package:
 (provide 'my-projectile)
