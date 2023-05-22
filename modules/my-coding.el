@@ -75,6 +75,7 @@
   ;; https://github.com/jwiegley/use-package/issues/977
   :defer t
   :ensure nil
+  :commands (ansi-color-for-comint-mode-off)
   :init
   (ansi-color-for-comint-mode-off)
   ;; (setq ansi-color-for-comint-mode 'filter)
