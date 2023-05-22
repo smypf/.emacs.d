@@ -168,7 +168,8 @@ Version 2016-06-19"
   (defun xah-user-buffer-q ()
     "Return t if current buffer is a user buffer, else nil.
 Typically, if buffer name starts with *, it's not considered a user buffer.
-This function is used by buffer switching command and close buffer command, so that next buffer shown is a user buffer.
+This function is used by buffer switching command and close buffer command,
+so that next buffer shown is a user buffer.
 You can override this function to get your idea of “user buffer”.
 version 2016-06-18"
     (interactive)
