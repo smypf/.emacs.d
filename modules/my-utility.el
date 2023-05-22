@@ -118,8 +118,12 @@
 ;;            (window-width . 100)))
 
 ;; Enable recentf-mode which stores recently opened files
-(recentf-mode t)
-(setq recentf-max-saved-items 50)
+(use-package recentf
+  :ensure nil
+  :init
+  (recentf-mode t)
+  (setq recentf-max-saved-items 50)
+  :bind ("C-c r" . recentf))
 
 ;; Windmove is an alternative means to navigate window panes
 
