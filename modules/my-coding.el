@@ -61,7 +61,6 @@
 (defun xref-list-references()
   (interactive)
   (setq xref-show-xrefs-function 'xref--show-xref-buffer)
-  (evil-collection-define-key 'normal 'xref--xref-buffer-mode-map (kbd "RET") 'xref-quit-and-goto-xref)
   (find-references-at-point)
   (setq xref-show-xrefs-function 'consult-xref))
 
