@@ -455,6 +455,8 @@
 
    `(whitespace-space ((t (:background ,bg))))
 
+   `(markdown-code-face ((t (:inherit default))))
+
    `(help-key-binding ((t (:inherit fixed-pitch :background ,purple-bg :foreground ,fg :box nil))))))
    ;;`(help-key-binding ((t (:inherit fixed-pitch :background ,purple-bg :foreground ,fg :box (:line-width (1 . 1) :color ,dark-purple)))))))
    ;;`(help-key-binding ((t (:inherit fixed-pitch :background ,purple-bg :foreground ,fg :box nil :color ,dark-purple))))
