@@ -117,9 +117,6 @@
 ;;            (window-parameters . ((no-delete-other-windows . t)))
 ;;            (window-width . 100)))
 
-;; Automatically scroll compilation buffer output
-(setq compilation-scroll-output t)
-
 ;; Enable recentf-mode which stores recently opened files
 (recentf-mode t)
 (setq recentf-max-saved-items 50)

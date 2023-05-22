@@ -10,6 +10,12 @@
 ;;
 
 ;;; Code:
+;; Automatically scroll compilation buffer output
+(use-package compile
+  :ensure nil
+  :config
+  (setq compilation-scroll-output t))
+
 
 ;; https://github.com/ReanGD/emacs-multi-compile
 (defvar smypf-compile-items '("nvm use; npm test" "nvm use; npm run build" "nvm use; npm test -- -u"))
