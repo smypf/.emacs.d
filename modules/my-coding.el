@@ -116,6 +116,7 @@
   :load-path ("~/tools/combobulate"))
 
 (use-package treesit-auto
+  :commands (global-treesit-auto-mode)
   :config
   (global-treesit-auto-mode))
 
