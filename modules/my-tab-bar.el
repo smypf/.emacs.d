@@ -59,22 +59,34 @@
 
 (use-package emacs
   :ensure nil
+  :init
+  (when (< 26 emacs-major-version)
+    (tab-bar-mode 1))                           ;; enable tab bar
+
   :config
   (when (< 26 emacs-major-version)
-    (tab-bar-mode 1)                           ;; enable tab bar
     (setq tab-bar-show 1)                      ;; hide bar if <= 1 tabs open
     (setq tab-bar-close-button-show nil)       ;; hide tab close / X button
     (setq tab-bar-new-tab-choice "*scratch*");; buffer to show in new tabs
     (setq tab-bar-tab-hints t)                 ;; show tab numbers
     (setq tab-bar-select-tab-modifiers "super")
     (setq tab-bar-format '(tab-bar-format-tabs tab-bar-separator))
-    (setq tab-bar-tab-name-format-function 'smypf-tab-bar-name-format)
-  (global-set-key (kbd "s-{") 'tab-bar-switch-to-prev-tab)
-  (global-set-key (kbd "s-}") 'tab-bar-switch-to-next-tab)
-  (global-set-key (kbd "C-S-<tab>") 'tab-bar-switch-to-prev-tab)
-  (global-set-key (kbd "C-<tab>") 'tab-bar-switch-to-next-tab)
-  (global-set-key (kbd "s-t") 'tab-bar-new-tab)
-  (global-set-key (kbd "s-w") 'tab-bar-close-tab)))
+    (setq tab-bar-tab-name-format-function 'smypf-tab-bar-name-format))
+
+  :bind
+  ((
+    ("s-{" . 'tab-bar-switch-to-prev-tab)
+    ("s-}" . 'tab-bar-switch-to-next-tab)
+    ("C-S-<tab>" . 'tab-bar-switch-to-prev-tab)
+    ("C-<tab>" . 'tab-bar-switch-to-next-tab)
+    ("s-t" . 'tab-bar-new-tab)
+    ("s-1" . (lambda() (interactive) (tab-bar-select-tab 1)))
+    ("s-2" . (lambda() (interactive) (tab-bar-select-tab 2)))
+    ("s-3" . (lambda() (interactive) (tab-bar-select-tab 3)))
+    ("s-4" . (lambda() (interactive) (tab-bar-select-tab 4)))
+    ("s-5" . (lambda() (interactive) (tab-bar-select-tab 5)))
+    ("s-6" . (lambda() (interactive) (tab-bar-select-tab 6)))
+    ("s-w" . 'tab-bar-close-tab))))
   ;; elements to include in bar
 
 ;;; Package:
