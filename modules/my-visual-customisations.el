@@ -38,6 +38,7 @@
     doom-modeline-buffer-encoding nil
     doom-modeline-persp-name nil
     doom-modeline-persp-icon t
+    doom-modeline-bar-width 2
     doom-modeline-buffer-file-name-style 'relative-to-project))
 
 
