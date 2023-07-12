@@ -153,14 +153,18 @@
     xref-show-definitions-function #'consult-xref)
   :config
   (autoload 'projectile-project-root "projectile")
-  (defun smypf-consult-line-this-thing()
-    (interactive)
-    (consult-line (thing-at-point 'symbol)))
-
+  ;; Set the selected region to be the initial search term for consult-line and consult-ripgrep
+  ;; https://takeonrules.com/2023/03/14/spending-a-bit-of-time-reviewing-consult-emacs-package/
+  (consult-customize consult-line
+                     consult-ripgrep
+                     :initial (when (use-region-p)
+                                (buffer-substring-no-properties
+                                 (region-beginning) (region-end))))
   :bind (("C-c h" . consult-history)
+         :map vertico-map
+         ("*" . vertico-next)
          :map meow-normal-state-keymap
-         ("*" . smypf-consult-line-this-thing))
-
+         ("*" . consult-line))
   :hook
   (completion-list-mode . consult-preview-at-point-mode))
 
