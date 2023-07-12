@@ -45,6 +45,10 @@
   (add-to-list 'default-frame-alist
                '(vertical-scroll-bars . nil))
 
+  ;; move backups to a different directory to prevent it being present in the git status
+  ;; https://stackoverflow.com/a/151946
+  (setq backup-directory-alist `(("." . "~/.emacs-backups"))))
+
 ;;; Package:
 (provide 'my-defaults)
 ;;; my-defaults.el ends here
