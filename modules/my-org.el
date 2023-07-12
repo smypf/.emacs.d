@@ -41,7 +41,11 @@
                          "[X](D)")) ; Task was completed
     ;; Ensure that a heading and it's contents are automatically aligned
     org-adapt-indentation t
-    org-log-done 'time)
+    org-log-done 'time
+    org-capture-templates '(("t" "Task" entry (file+headline org-default-notes-file "Tasks") "* TODO %?\n  %T")
+                            ("a" "Emacs Annoyance" entry (file+headline "~/org/emacs.org" "Annoyances") "* TODO %?\n  %T")
+                            ("i" "Emacs Improvement" entry (file+headline "~/org/emacs.org" "Sharp tools") "* TODO %?\n  %T")
+                            ("r" "Reading" entry (file "~/org/reading.org") "* %?\n")))
   (add-hook 'org-mode-hook 'turn-on-auto-fill))
 
 (use-package org-roam
