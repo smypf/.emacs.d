@@ -43,7 +43,7 @@
 
   ;; disable scrollbars in vertical frames
   (add-to-list 'default-frame-alist
-               '(vertical-scroll-bars . nil)))
+               '(vertical-scroll-bars . nil))
 
 ;;; Package:
 (provide 'my-defaults)
