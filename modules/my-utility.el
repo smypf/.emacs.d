@@ -12,8 +12,7 @@
 ;;; Code:
 
 ;; No Littering prevents backup files from being created in the same location as the file being worked on
-(unless (package-installed-p 'no-littering)
-  (require 'no-littering))
+(use-package no-littering)
 
 (setq auto-save-file-name-transforms
       `((".*" ,(no-littering-expand-var-file-name "auto-save/") t))
