@@ -26,6 +26,8 @@
   ;; This should also only apply to the completion and ont other sections
   :bind (:map vertico-map
               ("TAB" . vertico-next)
+              ("M-TAB" . vertico-insert)
+              ;; ("TAB" . minibuffer-complete)
               ("<backtab>" . vertico-previous)
               ("S-TAB" . vertico-previous))
 
@@ -57,6 +59,8 @@
   :after vertico
   :ensure nil
   ;; More convenient directory navigation commands
+  ;; TODO this overrides the binds above. This is not really a problem since my-vertico-expand-next works nicely
+  ;; but this should be fixed at some point
   :bind (:map vertico-map
               ("TAB" . my-vertico-expand-next)
               ("<backtab>" . vertico-directory-up)
