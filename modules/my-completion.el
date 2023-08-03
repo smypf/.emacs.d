@@ -174,9 +174,16 @@
   (setq completion-styles '(orderless flex))
   :commands (orderless-filter))
 
+;; This give better sorting
+(use-package fuz-bin
+  :commands (fuz-bin-load-dyn)
+  :init (fuz-bin-load-dyn)
+  :load-path "~/tools/fuz-bin/")
+
 (use-package fussy
   :ensure t
   :config
+  (setq fussy-score-fn 'fussy-fuz-bin-score)
   (setq fussy-filter-fn 'fussy-filter-orderless)
   ;;(setq fussy-filter-fn 'fussy-filter-orderless-flex)
 
@@ -193,15 +200,14 @@
     (add-to-list 'completion-category-overrides
                  '(eglot (styles fussy basic)))))
 
-
 ;; This may be the package to use having exhausted the list here
 ;; https://github.com/jojojames/fussy
-(use-package fuz
-  :ensure t
-  :config
-  (setq fussy-score-fn 'fussy-fuz-bin-score)
-  (unless (require 'fuz-core nil t)
-    (fuz-build-and-load-dymod)))
+;;(use-package fuz
+;;  :ensure t
+;;  :config
+;;  (setq fussy-score-fn 'fussy-fuz-bin-score)
+;;  (unless (require 'fuz-core nil t)
+;;    (fuz-build-and-load-dymod)))
 
 ;; I wasn't using this.
 ; (use-package marginalia
