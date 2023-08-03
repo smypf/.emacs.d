@@ -254,8 +254,8 @@
 ;; Enable folding code sections
 (use-package emacs
   :ensure nil
-  :bind (("C-c z c" . hs-hide-level)
-         ("C-c z o" . hs-show-level)
+  :bind (("C-c z c" . hs-hide-block)
+         ("C-c z o" . hs-show-block)
          ("C-c z C" . hs-hide-all)
          ("C-c z O" . hs-show-all))
   :hook
