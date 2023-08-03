@@ -56,7 +56,7 @@
       (isearch-bg        "#d3cee7")
       (lazy-highlight-bg "#e1c5e8")
       (purple-bg         "#dfcee7")
-      (dark-purple       "#9e4d93")
+      (dark-purple       "#8b4d9e")
 
       ;; Previously used colours which are still referenced below
       ;; (fg-table          "#222291")
@@ -134,7 +134,9 @@
    `(doom-modeline-evil-normal-state ((t (:foreground ,fg))))
    `(doom-modeline-lsp-success ((t (:foreground ,fg))))
    `(doom-modeline-buffer-modified ((t (:foreground ,dark-purple :weight bold))))
-   `(doom-modeline-urgent ((t (:foreground "#d4a7cd"))))
+   `(doom-modeline-urgent ((t (:foreground ,dark-purple))))
+   `(doom-modeline-bar ((t (:inherit mode-line))))
+
 
    `(tab-bar ((t (:background ,bg
                   ;;:box '(:line-width (10 . 0 ) :color ,bg)
