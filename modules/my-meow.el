@@ -10,8 +10,18 @@
 ;;
 
 ;;; Code:
+(use-package emacs
+  :after magit
+  :config
+  ;; bind SPC to Meow Keypad in magit status
+  (define-key magit-status-mode-map (kbd "SPC") #'meow-keypad))
+
+
 (defun smypf-meow-quit ()
-  "Close the window if there is more than one buffer. If there is only one buffer go to the *scratch* buffer"
+  "A better way of handling close panes.
+
+Close the window if there is more than one buffer.
+If there is only one buffer go to the *scratch* buffer."
   (interactive)
 
   (if (bound-and-true-p magit-blame-read-only-mode)
@@ -240,6 +250,7 @@
 ;; SPC SPC
 
 (defun back-window()
+  "Go back a window."
     (interactive)
   (other-window -1))
 
@@ -310,12 +321,6 @@
 ;; TODO
 ;; C-d Down a page
 ;; C-b Up a page
-
-;; bind SPC to Meow Keypad in magit status
-(use-package emacs
-  :after magit
-  :config
-  (define-key magit-status-mode-map (kbd "SPC") #'meow-keypad))
 
 ;;; Package:
 (provide 'my-meow)
