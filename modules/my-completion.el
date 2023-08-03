@@ -219,9 +219,9 @@
 (use-package cape
   ;; Bind dedicated completion commands
   ;; Alternative prefix keys: C-c p, M-p, M-+, ...
-  :bind (("C-c c p" . completion-at-point)) ;; capf
+  :bind (("C-c c p" . completion-at-point)  ;; capf
 ;;;;;;         ("C-c c t" . complete-tag)        ;; etags
-;;;;;;         ("C-c c d" . cape-dabbrev))        ;; or dabbrev-completion
+         ("C-c c P" . cape-dabbrev))        ;; or dabbrev-completion
 ;;;;;;         ("C-c p h" . cape-history)
 ;;;;;;         ("C-c p f" . cape-file)
 ;;;;;;         ("C-c p k" . cape-keyword)
