@@ -39,31 +39,31 @@
 (use-package helpful
   :defer t
   :bind (
-   ;; Note that the built-in `describe-function' includes both functions
-   ;; and macros. `helpful-function' is functions only, so we provide
-   ;; `helpful-callable' as a drop-in replacement.
-   ("C-h f" . helpful-callable)
-   ;; Lookup the current symbol at point. C-c C-d is a common keybinding
-   ;; for this in lisp modes.
-   ("C-h v" . helpful-variable)
-   ("C-h k" . helpful-key)
-   ;; By default, C-h F is bound to `Info-goto-emacs-command-node'. Helpful
-   ;; already links to the manual, if a function is referenced there.
-   ("C-c C-d" . helpful-at-point)
-   ("C-h F" . helpful-function)
-   ;; Look up *C*ommands.
-   ;;
-   ;; By default, C-h C is bound to describe `describe-coding-system'. I
-   ;; don't find this very useful, but it's frequently useful to only
-   ;; look at interactive functions.
-   ("C-h C" . helpful-command)))
+         ;; Note that the built-in `describe-function' includes both functions
+         ;; and macros. `helpful-function' is functions only, so we provide
+         ;; `helpful-callable' as a drop-in replacement.
+         ("C-h f" . helpful-callable)
+         ;; Lookup the current symbol at point. C-c C-d is a common keybinding
+         ;; for this in lisp modes.
+         ("C-h v" . helpful-variable)
+         ("C-h k" . helpful-key)
+         ;; By default, C-h F is bound to `Info-goto-emacs-command-node'. Helpful
+         ;; already links to the manual, if a function is referenced there.
+         ("C-c C-d" . helpful-at-point)
+         ("C-h F" . helpful-function)
+         ;; Look up *C*ommands.
+         ;;
+         ;; By default, C-h C is bound to describe `describe-coding-system'. I
+         ;; don't find this very useful, but it's frequently useful to only
+         ;; look at interactive functions.
+         ("C-h C" . helpful-command)))
 
 (use-package popper
   :ensure t ; or :straight t
   ;; These binds aren't working since '`' is used for other things.
   ;; They should be changed to something else.
   ;; Additionally it should be checked how meow bindings can be used.
-  :bind (("C-`"   . popper-toggle-latest)
+  :bind (("C-`"   . popper-toggle)
          ("M-`"   . popper-cycle)
          ("C-M-`" . popper-toggle-type))
   :init

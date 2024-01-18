@@ -35,17 +35,17 @@
   ;; Show more candidates
   (setq vertico-count 15
         vertico-cycle t
-    ;; Configure the display per command.
-    ;; Use a buffer with indices for imenu
-    ;; and a flat (Ido-like) menu for M-x.
-    vertico-multiform-commands '((consult-ripgrep buffer indexed)
-                     (consult-eglot-symbols buffer indexed))
+        ;; Configure the display per command.
+        ;; Use a buffer with indices for imenu
+        ;; and a flat (Ido-like) menu for M-x.
+        vertico-multiform-commands '((consult-ripgrep buffer indexed)
+                                     (consult-eglot-symbols buffer indexed))
 
-    ;; Display ripgrep candidates in a buffer on the right of the page
-    vertico-buffer-display-action
-    '(display-buffer-in-side-window
-      (side . right)
-      (window-width . 0.3)))
+        ;; Display ripgrep candidates in a buffer on the right of the page
+        vertico-buffer-display-action
+        '(display-buffer-in-side-window
+          (side . right)
+          (window-width . 0.3)))
   (add-hook 'minibuffer-setup-hook #'vertico-repeat-save))
 
 ;; Configure directory extension.
@@ -92,9 +92,9 @@
   (advice-add #'completing-read-multiple :filter-args #'crm-indicator)
 
   ;; Do not allow the cursor in the minibuffer prompt
-;;  (setq minibuffer-prompt-properties
-;;        '(read-only t cursor-intangible t face minibuffer-prompt))
-;;  (add-hook 'minibuffer-setup-hook #'cursor-intangible-mode)
+  ;;  (setq minibuffer-prompt-properties
+  ;;        '(read-only t cursor-intangible t face minibuffer-prompt))
+  ;;  (add-hook 'minibuffer-setup-hook #'cursor-intangible-mode)
 
   ;; Emacs 28: Hide commands in M-x which do not work in the current mode.
   ;; Vertico commands are hidden in normal buffers.
@@ -103,7 +103,7 @@
 
   ;; Enable recursive minibuffers
   ;; (setq enable-recursive-minibuffers t)
-    ;; TAB cycle if there are only few candidates
+  ;; TAB cycle if there are only few candidates
 
   ;; Emacs 28: Hide commands in M-x which do not apply to the current mode.
   ;; Corfu commands are hidden, since they are not supposed to be used via M-x.
@@ -150,7 +150,7 @@
   :defer t
   :init
   (setq xref-show-xrefs-function #'consult-xref
-    xref-show-definitions-function #'consult-xref)
+        xref-show-definitions-function #'consult-xref)
   :config
   (autoload 'projectile-project-root "projectile")
   ;; Set the selected region to be the initial search term for consult-line and consult-ripgrep
@@ -262,7 +262,7 @@
   (backward-forward-mode)
   :bind
   (("C-M-<left>" . backward-forward-previous-location)
-  ("C-M-<right>" . backward-forward-next-location)))
+   ("C-M-<right>" . backward-forward-next-location)))
 
 ;; Embark Export (M-. E) will send all results to a buffer.
 ;; This is useful as it means that it is not necessary to continuously open the consult buffer to visit subsequent matches
@@ -319,58 +319,58 @@
   :defer t)
 
 (when window-system
- ;; Corfu
- ;; Perhaps use this
- (use-package corfu
-   :defer t
-   :config
-   (defun corfu-move-to-minibuffer ()
-     (interactive)
-     (let ((completion-extra-properties corfu--extra)
-      completion-cycle-threshold completion-cycling)
-       (apply #'consult-completion-in-region completion-in-region--data)))
-   (define-key corfu-map "\M-m" #'corfu-move-to-minibuffer)
+  ;; Corfu
+  ;; Perhaps use this
+  (use-package corfu
+    :defer t
+    :config
+    (defun corfu-move-to-minibuffer ()
+      (interactive)
+      (let ((completion-extra-properties corfu--extra)
+            completion-cycle-threshold completion-cycling)
+        (apply #'consult-completion-in-region completion-in-region--data)))
+    (define-key corfu-map "\M-m" #'corfu-move-to-minibuffer)
 
-   (defun my-corfu-complete-and-space ()
-     (interactive)
-     (corfu-complete)
-     (insert " "))
-   ;; Optional customizations
-   :custom
-   (corfu-cycle t)                   ;; Enable cycling for `corfu-next/previous'
-   (corfu-auto nil)                  ;; Enable auto completion
-   ;; (corfu-separator ?\s)          ;; Orderless field separator
-   ;; (corfu-quit-at-boundary nil)   ;; Never quit at completion boundary
-   ;; (corfu-quit-no-match nil)      ;; Never quit, even if there is no match
-   (corfu-preview-current t)         ;; Enable current candidate preview
-   (corfu-preselect-first t)         ;; Enable candidate preselection
-   (corfu-on-exact-match 'quit)      ;; Configure handling of exact matches
-   ;; (corfu-echo-documentation nil) ;; Disable documentation in the echo area
-   ;; (corfu-scroll-margin 5)        ;; Use scroll margin
+    (defun my-corfu-complete-and-space ()
+      (interactive)
+      (corfu-complete)
+      (insert " "))
+    ;; Optional customizations
+    :custom
+    (corfu-cycle t)                   ;; Enable cycling for `corfu-next/previous'
+    (corfu-auto nil)                  ;; Enable auto completion
+    ;; (corfu-separator ?\s)          ;; Orderless field separator
+    ;; (corfu-quit-at-boundary nil)   ;; Never quit at completion boundary
+    ;; (corfu-quit-no-match nil)      ;; Never quit, even if there is no match
+    (corfu-preview-current t)         ;; Enable current candidate preview
+    (corfu-preselect-first t)         ;; Enable candidate preselection
+    (corfu-on-exact-match 'quit)      ;; Configure handling of exact matches
+    ;; (corfu-echo-documentation nil) ;; Disable documentation in the echo area
+    ;; (corfu-scroll-margin 5)        ;; Use scroll margin
 
-   :bind
-   (:map corfu-map
-    ;; Tab will select the next option
-    ("TAB" . corfu-next)
-    ([tab] . corfu-next)
-    ;; Shift-Tab will select the previous option
-    ("S-TAB" . corfu-previous)
-    ([backtab] . corfu-previous)
-    ;; todo space doesn't work
-    ([? ] . my-corfu-complete-and-space)
-    ;; Enter will select the option
-    ([enter] . corfu-complete))
+    :bind
+    (:map corfu-map
+          ;; Tab will select the next option
+          ("TAB" . corfu-next)
+          ([tab] . corfu-next)
+          ;; Shift-Tab will select the previous option
+          ("S-TAB" . corfu-previous)
+          ([backtab] . corfu-previous)
+          ;; todo space doesn't work
+          ([? ] . my-corfu-complete-and-space)
+          ;; Enter will select the option
+          ([enter] . corfu-complete))
 
-   ;; Enable Corfu only for certain modes.
-   ;; :hook ((prog-mode . corfu-mode)
-   ;;        (shell-mode . corfu-mode)
-   ;;        (eshell-mode . corfu-mode))
+    ;; Enable Corfu only for certain modes.
+    ;; :hook ((prog-mode . corfu-mode)
+    ;;        (shell-mode . corfu-mode)
+    ;;        (eshell-mode . corfu-mode))
 
-   ;; Recommended: Enable Corfu globally.
-   ;; This is recommended since Dabbrev can be used globally (M-/).
-   ;; See also `corfu-excluded-modes'.
-   :init
-   (global-corfu-mode)))
+    ;; Recommended: Enable Corfu globally.
+    ;; This is recommended since Dabbrev can be used globally (M-/).
+    ;; See also `corfu-excluded-modes'.
+    :init
+    (global-corfu-mode)))
 
 ;; This has been removed as it was slowing everything down too much.
 ;;(use-package corfu-candidate-overlay

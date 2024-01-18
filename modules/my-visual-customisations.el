@@ -13,13 +13,13 @@
 
 ;; Disable the menu bar which is not useful in the terminal
 (if window-system
-  (progn
-    (scroll-bar-mode -1)
-    (set-face-attribute 'default nil
-                        :family "Fira Code"
-                        :height 140
-                        :weight 'normal
-                        :width 'normal))
+    (progn
+      (scroll-bar-mode -1)
+      (set-face-attribute 'default nil
+                          :family "Fira Code"
+                          :height 140
+                          :weight 'normal
+                          :width 'normal))
   (menu-bar-mode -1))
 
 ;; Disable audio bells which are annoying
@@ -33,13 +33,13 @@
   :init (doom-modeline-mode)
   :config
   (setq doom-modeline-major-mode-icon nil
-    doom-modeline-vcs-max-length 40
-    doom-modeline-workspace-name nil
-    doom-modeline-buffer-encoding nil
-    doom-modeline-persp-name nil
-    doom-modeline-persp-icon t
-    doom-modeline-bar-width 2
-    doom-modeline-buffer-file-name-style 'relative-to-project))
+        doom-modeline-vcs-max-length 40
+        doom-modeline-workspace-name nil
+        doom-modeline-buffer-encoding nil
+        doom-modeline-persp-name nil
+        doom-modeline-persp-icon t
+        doom-modeline-bar-width 2
+        doom-modeline-buffer-file-name-style 'relative-to-project))
 
 
 ;; Setup my theme to be used
@@ -86,10 +86,10 @@
 ;; Change highlighting while searching
 ;; Perhaps change the `/` button to `consult-line`
 ;; This was disabled in favour of 'evil-search. See modules/my-evil.el
-; (setq lazy-highlight-cleanup nil
-;       lazy-highlight-max-at-a-time nil
-;       lazy-highlight-initial-delay 0
-;       isearch-allow-scroll t)
+                                        ; (setq lazy-highlight-cleanup nil
+                                        ;       lazy-highlight-max-at-a-time nil
+                                        ;       lazy-highlight-initial-delay 0
+                                        ;       isearch-allow-scroll t)
 
 ;; 120 is a good number
 (setq-default fill-column 120)

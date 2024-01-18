@@ -251,9 +251,10 @@ If there is only one buffer go to the *scratch* buffer."
 
 (defun back-window()
   "Go back a window."
-    (interactive)
+  (interactive)
   (other-window -1))
 
+;; TODO Move these binds to specific module files rather than in the Meow module
 (meow-leader-define-key
  ;; Window Manipulation
  ;; At this point you should probably learn how Emacs does it natively

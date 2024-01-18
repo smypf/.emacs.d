@@ -25,11 +25,11 @@
   :defer 3
   :config
   (setq eglot-autoshutdown t
-    eglot-send-changes-idle-time 1
-    ;; Remove logging to speed up eglot when using TypeScript / Javascript
-    ;; https://www.reddit.com/r/emacs/comments/vau4x1/comment/ic6wd9i/
-    eglot-events-buffer-size 0
-    ))
+        eglot-send-changes-idle-time 1
+        ;; Remove logging to speed up eglot when using TypeScript / Javascript
+        ;; https://www.reddit.com/r/emacs/comments/vau4x1/comment/ic6wd9i/
+        eglot-events-buffer-size 0
+        ))
 
 (use-package consult-eglot
   :after consult
@@ -87,13 +87,13 @@
   (prog-mode . highlight-indent-guides-mode)
   :config
   (setq highlight-indent-guides-method 'character
-    highlight-indent-guides-responsive 'stack
-    highlight-indent-guides-auto-enabled nil))
+        highlight-indent-guides-responsive 'stack
+        highlight-indent-guides-auto-enabled nil))
 
 ;; `M-x combobulate' (or `C-c o o') to start using Combobulate
-  ;; Do not forget to customize Combobulate to your liking:
-  ;;
-  ;;  M-x customize-group RET combobulate RET
+;; Do not forget to customize Combobulate to your liking:
+;;
+;;  M-x customize-group RET combobulate RET
 ;;
 
 (use-package combobulate
