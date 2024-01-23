@@ -319,6 +319,13 @@ If there is only one buffer go to the *scratch* buffer."
 (add-to-list 'meow-mode-state-list '(magit-mode . disable))
 (add-to-list 'meow-mode-state-list '(git-rebase-mode . disable))
 (add-to-list 'meow-mode-state-list '(ediff-mode . disable))
+(add-to-list 'meow-mode-state-list '(vterm-mode . disable))
+(add-to-list 'meow-mode-state-list '(howm-menu-mode . disable))
+(add-to-list 'meow-mode-state-list '(howm-mode . disable))
+(add-to-list 'meow-mode-state-list '(hm . disable))
+
+(add-hook 'howm-menu-hook 'meow-disable-mode)
+
 ;; TODO
 ;; C-d Down a page
 ;; C-b Up a page

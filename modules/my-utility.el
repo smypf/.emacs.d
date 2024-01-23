@@ -207,6 +207,25 @@ version 2016-06-18"
   :bind (([remap split-window-right] . smypf-nav-split-and-follow-right)
          ("C-c n" . smypf-nav-find-file-right)))
 
+(use-package howm
+  :defer t
+  :init
+  (require 'howm)
+  :config
+  ;; Refer to https://leahneukirchen.org/blog/archive/2022/03/note-taking-in-emacs-with-howm.html for some more information about why this is used
+  (setq howm-home-directory (file-truename "~/org/howm"))
+  (setq howm-directory (symbol-value 'howm-home-directory))
+  (setq howm-keyword-file (expand-file-name ".howm-keys" howm-home-directory))
+  (setq howm-history-file (expand-file-name ".howm-history" howm-home-directory))
+  (setq howm-file-name-format "%Y/%m/%Y-%m-%d-%H%M%S.org")
+  (setq howm-view-use-grep t)
+  (setq howm-view-grep-command "rg")
+  (setq howm-view-grep-option "-nH --no-heading --color never")
+  (setq howm-view-grep-extended-option nil)
+  (setq howm-view-grep-fixed-option "-F")
+  (setq howm-view-grep-expr-option nil)
+  (setq howm-view-grep-file-stdin-option nil))
+
 ;;; Package:
 (provide 'my-utility)
 ;;; my-utility.el ends here
