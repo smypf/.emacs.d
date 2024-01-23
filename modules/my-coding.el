@@ -60,7 +60,8 @@
   ;; (consult-customize consult-dash :initial (thing-at-point 'symbol)))
 
 (use-package devdocs
-  :defer t)
+  :defer t
+  :bind (("C-c L" . devdocs-search)))
 
 (defun xref-list-references()
   (interactive)
