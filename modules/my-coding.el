@@ -272,6 +272,11 @@
 (use-package json-mode
   :defer t)
 
+(use-package surround
+  :ensure t
+  :defer t
+  :bind-keymap ("M-'" . surround-keymap))
+
 ;;; Package:
 (provide 'my-coding)
 ;;; my-coding.el ends here
