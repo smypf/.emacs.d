@@ -69,6 +69,7 @@
   :init
   (setq popper-reference-buffers
         '("\\*Messages\\*"
+          "\\*Warnings\\*"
           "Output\\*$"
           "\\*Async Shell Command\\*"
           help-mode
@@ -85,12 +86,16 @@
     (setq shackle-default-alignment 'right)
     (setq shackle-rules
           '(("*Help*" :select nil)
+            ("*Warnings*" :select nil :other nil :align below)
             (helpful-mode :select nil :other nil)
             ("*info*" :select nil :other nil)
             ("*Messages*" :select nil :other nil)
-            (compilation-mode :select nil :other nil))))
+            ;; Including this line causes the height to be 50% of the window, regardless of the :size value
+            ;;(flycheck-error-list-mode :select nil :size .1 :align below)
+            (compilation-mode :select nil :other nil)))
+    )
 
-    (shackle-mode 1))
+  (shackle-mode 1))
 
 ;; This was causing things to break.
 ;; TODO Fix this functionality so that Shackle does it instead
