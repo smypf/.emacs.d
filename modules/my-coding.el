@@ -35,6 +35,10 @@
   :after consult
   :defer t)
 
+(use-package eglot-booster
+  :after eglot
+  :config	(eglot-booster-mode))
+
 ;; Found via Hacker News
 ;; https://news.ycombinator.com/item?id=32903246
 ;; https://masukomi.github.io/private_comments/
