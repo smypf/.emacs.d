@@ -48,17 +48,18 @@
                             ("r" "Reading" entry (file "~/org/reading.org") "* %?\n")))
   (add-hook 'org-mode-hook 'turn-on-auto-fill))
 
-(use-package org-roam
-  :ensure t
-  :defer t
-  :custom
-  (org-roam-directory org-directory)
-  :config
-  ;; If you're using a vertical completion framework, you might want a more informative completion interface
-  (setq org-roam-node-display-template (concat "${title:*} " (propertize "${tags:10}" 'face 'org-tag)))
-  (org-roam-db-autosync-mode)
-  ;; If using org-roam-protocol
-  (require 'org-roam-protocol))
+;; Org Roam doesn't work for me.
+;; (use-package org-roam
+;;   :ensure t
+;;   :defer t
+;;   :custom
+;;   (org-roam-directory org-directory)
+;;   :config
+;;   ;; If you're using a vertical completion framework, you might want a more informative completion interface
+;;   (setq org-roam-node-display-template (concat "${title:*} " (propertize "${tags:10}" 'face 'org-tag)))
+;;   (org-roam-db-autosync-mode)
+;;   ;; If using org-roam-protocol
+;;   (require 'org-roam-protocol))
 
 ;; Evil Key Binds for Org Mode
 ;; https://github.com/Somelauw/evil-org-mode
