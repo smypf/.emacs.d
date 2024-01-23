@@ -160,6 +160,18 @@
                      :initial (when (use-region-p)
                                 (buffer-substring-no-properties
                                  (region-beginning) (region-end))))
+  ;; Hide the modeline when opening vertico buffers
+  ;; This is done to hide the ugly modeline
+  ;; It needs to be done on a timer as this is overwritten by vertico
+  ;; https://github.com/minad/vertico/blob/main/extensions/vertico-buffer.el#L163C22-L163C22
+  ;; This was adapted from https://bzg.fr/en/emacs-hide-mode-line/
+  ;; This was causing the mode line to be hidden on other buffers, which was not desirableq
+  ;; (defun hide-mode-line ()
+  ;;   (interactive)
+  ;;   (setq mode-line-format nil)
+  ;;   (force-mode-line-update)
+  ;;   (redraw-display))
+  ;; (add-hook 'vertico-buffer-mode-hook (lambda () (run-with-timer 0.1 nil 'hide-mode-line)))
   :bind (("C-c h" . consult-history)
          ;; Removed as this doesn't allow for entering the "*" character when searching
          ;; :map vertico-map
