@@ -211,11 +211,11 @@
 ;;    (fuz-build-and-load-dymod)))
 
 ;; I wasn't using this.
-; (use-package marginalia
-;  :defer t
-;  :ensure t
-;  :config
-;  (marginalia-mode))
+                                        ; (use-package marginalia
+                                        ;  :defer t
+                                        ;  :ensure t
+                                        ;  :config
+                                        ;  (marginalia-mode))
 
 (use-package cape
   ;; Bind dedicated completion commands
