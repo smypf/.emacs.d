@@ -49,6 +49,10 @@
   (add-to-list 'default-frame-alist
                '(vertical-scroll-bars . nil))
 
+  ;; Change the minimum level of messages to error
+  (setq native-comp-async-report-warnings-errors 'silent)
+  (setq warning-minimum-level :error)
+
   ;; move backups to a different directory to prevent it being present in the git status
   ;; https://stackoverflow.com/a/151946
   (setq backup-directory-alist `(("." . "~/.emacs-backups"))))
