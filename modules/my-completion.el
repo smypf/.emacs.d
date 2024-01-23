@@ -161,8 +161,9 @@
                                 (buffer-substring-no-properties
                                  (region-beginning) (region-end))))
   :bind (("C-c h" . consult-history)
-         :map vertico-map
-         ("*" . vertico-next)
+         ;; Removed as this doesn't allow for entering the "*" character when searching
+         ;; :map vertico-map
+         ;; ("*" . vertico-next)
          :map meow-normal-state-keymap
          ("*" . consult-line))
   :hook
