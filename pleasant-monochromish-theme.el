@@ -114,7 +114,7 @@
    ;; `(gnus-header-name ((t (:foreground ,fg))))
    ;; `(gnus-header-subject ((t (:foreground ,fg))))
 
-   `(highlight ((t (:background ,purple-bg))))
+   `(highlight ((t (:background ,purple-bg :foreground ,fg))))
 
    ;; `(ido-first-match ((t (:foreground ,fg))))
    ;; `(ido-only-match ((t (:foreground ,fg))))
@@ -139,8 +139,8 @@
 
 
    `(tab-bar ((t (:background ,bg
-                  ;;:box '(:line-width (10 . 0 ) :color ,bg)
-                  ))))
+                              ;;:box '(:line-width (10 . 0 ) :color ,bg)
+                              ))))
    `(tab-bar-tab ((t (:background ,purple-bg :foreground ,fg))))
    `(tab-bar-tab-inactive ((t (:background ,bg :foreground ,comment))))
 
@@ -196,6 +196,7 @@
    `(magit-branch-local ((t (:weight bold))))
    `(magit-branch-remote ((t (:weight bold))))
    `(magit-log-author ((t (:foreground ,fg))))
+   `(magit-tag ((t (:inherit default))))
 
    ;; diff
    `(diff-added ((t (:background "#e9ffe9"))))
@@ -321,7 +322,7 @@
    `(typescript-jsdoc-value ((t (:inherit font-lock-comment-face))))
 
    `(hl-line ((t (:background ,hl-line-bg))))
-   `(dirvish-hl-line ((t (:inherit hl-line))))
+   `(dirvish-hl-line ((t (:background ,hl-line-bg)))) ;; this should inherit, but for some reason it doesn't work.
    `(hl-fill-column-face ((t (:background ,hl-line-bg))))
 
    ;; `(whitespace-indentation ((t (:foreground ,fg-light :background ,bg))))
@@ -333,8 +334,8 @@
    ;;`(variable-pitch ((t (:family ,et-font :background ,bg :foreground ,fg :height 1.7))))
 
    ;;`(org-document-title ((t
-                          ;;(:inherit variable-pitch :height 1.3 :weight normal)
-                          ;;(:inherit nil :family ,et-font :height 1.8 :underline nil))))
+   ;;(:inherit variable-pitch :height 1.3 :weight normal)
+   ;;(:inherit nil :family ,et-font :height 1.8 :underline nil))))
 
    ;;`(org-document-info ((t (:slant italic) (:height 1.2 :slant italic))))
 
@@ -357,6 +358,9 @@
    ;;`(org-done ((t (:inherit variable-pitch))))
 
    `(transient-active-infix ((t (:inherit default))))
+   `(transient-key-stay ((t (:inherit default))))
+   `(transient-key-exit ((t (:inherit default))))
+   `(transient-key-return ((t (:inherit default))))
    `(info-index-match ((t (:inherit default))))
    `(match ((t (:background ,bg-highlight :foreground ,fg))))
 
@@ -364,6 +368,13 @@
    `(reb-match-1 ((t (:inherit default))))
    `(reb-match-2 ((t (:inherit default))))
    `(reb-match-3 ((t (:inherit default))))
+
+   `(shr-h1 ((t (:inherit default :weight bold))))
+   `(shr-h2 ((t (:inherit default :weight bold))))
+   `(shr-h3 ((t (:inherit default :weight bold))))
+   `(shr-h4 ((t (:inherit default :weight bold))))
+   `(shr-text ((t (:inherit default))))
+   `(shr-code ((t (:inherit default :box (:line-width (1 . 1) :color ,dark-purple)))))
 
    ;; `(org-agenda-clocking ((t (:inherit default))))
    ;; `(org-agenda-column-dateline ((t (:inherit default))))
@@ -381,19 +392,19 @@
    `(compilation-info ((t (:foreground ,comment))))
    `(flycheck-error-list-info ((t (:foreground ,comment))))
 
-   ;`(font-lock-type-face ((t (:foreground ,comment))))
+                                        ;`(font-lock-type-face ((t (:foreground ,comment))))
 
-   ;`(dap-ui-breakpoint-verified-fringe ((t (:foreground ,comment))))
-   ;`(lsp-treemacs-file-info ((t (:foreground ,comment))))
+                                        ;`(dap-ui-breakpoint-verified-fringe ((t (:foreground ,comment))))
+                                        ;`(lsp-treemacs-file-info ((t (:foreground ,comment))))
 
-   ; I don't like this. This is for the lsp messages
+                                        ; I don't like this. This is for the lsp messages
    `(success ((t (:foreground ,comment))))
 
 
    `(vertical-border ((t (:foreground ,comment :background ,bg))))
    ;;`(vertical-border ((t (:foreground ,bg-light :background ,bg-light))))
 
-   ; Removed rainbow-delimiters
+                                        ; Removed rainbow-delimiters
    ;; `(rainbow-delimiters-depth-1-face ((t (:foreground ,fg))))
    ;; `(rainbow-delimiters-depth-2-face ((t (:foreground ,fg))))
    ;; `(rainbow-delimiters-depth-3-face ((t (:foreground ,fg))))
@@ -406,7 +417,7 @@
 
    ;; `(tree-sitter-hl-face:property ((t (:inherit default))))
 
-   ; Orderless
+                                        ; Orderless
    `(orderless-match-face-0 ((t (:background ,purple-bg :weight bold))))
    `(orderless-match-face-1 ((t (:background ,purple-bg :weight bold))))
    `(orderless-match-face-2 ((t (:background ,purple-bg :weight bold))))
@@ -423,29 +434,29 @@
    ;; This _should_ work but it doesn't.
    ;; https://stackoverflow.com/a/71785402
    ;; Here we just replace the colours instead
-;;    `(ansi-color-red ((t (:foreground ,fg))))
-;;    `(ansi-color-blue ((t (:foreground ,fg))))
-;;    `(ansi-color-bold ((t (:foreground ,fg))))
-;;    `(ansi-color-cyan ((t (:foreground ,fg))))
-;;    `(ansi-color-black ((t (:foreground ,fg))))
-;;    `(ansi-color-faint ((t (:foreground ,fg))))
-;;    `(ansi-color-green ((t (:foreground ,fg))))
-;;    `(ansi-color-white ((t (:foreground ,bg))))
-;;    `(ansi-color-italic ((t (:foreground ,fg))))
-;;    `(ansi-color-yellow ((t (:foreground ,fg))))
-;;    `(ansi-color-magenta ((t (:foreground ,fg))))
-;;    `(ansi-color-bright-red ((t (:foreground ,fg))))
-;;    `(ansi-color-bright-blue ((t (:foreground ,fg))))
-;;    `(ansi-color-bright-cyan ((t (:foreground ,fg))))
-;;    `(ansi-color-bright-black ((t (:foreground ,fg))))
-;;    `(ansi-color-bright-green ((t (:foreground ,fg))))
-;;    `(ansi-color-bright-white ((t (:foreground ,fg))))
-;;    `(ansi-color-bright-yellow ((t (:foreground ,fg))))
-;;    `(ansi-color-bright-magenta ((t (:foreground ,fg))))
+   ;;    `(ansi-color-red ((t (:foreground ,fg))))
+   ;;    `(ansi-color-blue ((t (:foreground ,fg))))
+   ;;    `(ansi-color-bold ((t (:foreground ,fg))))
+   ;;    `(ansi-color-cyan ((t (:foreground ,fg))))
+   ;;    `(ansi-color-black ((t (:foreground ,fg))))
+   ;;    `(ansi-color-faint ((t (:foreground ,fg))))
+   ;;    `(ansi-color-green ((t (:foreground ,fg))))
+   ;;    `(ansi-color-white ((t (:foreground ,bg))))
+   ;;    `(ansi-color-italic ((t (:foreground ,fg))))
+   ;;    `(ansi-color-yellow ((t (:foreground ,fg))))
+   ;;    `(ansi-color-magenta ((t (:foreground ,fg))))
+   ;;    `(ansi-color-bright-red ((t (:foreground ,fg))))
+   ;;    `(ansi-color-bright-blue ((t (:foreground ,fg))))
+   ;;    `(ansi-color-bright-cyan ((t (:foreground ,fg))))
+   ;;    `(ansi-color-bright-black ((t (:foreground ,fg))))
+   ;;    `(ansi-color-bright-green ((t (:foreground ,fg))))
+   ;;    `(ansi-color-bright-white ((t (:foreground ,fg))))
+   ;;    `(ansi-color-bright-yellow ((t (:foreground ,fg))))
+   ;;    `(ansi-color-bright-magenta ((t (:foreground ,fg))))
 
    `(highlight-indent-guides-character-face ((t (:foreground ,comment))))
    `(highlight-indent-guides-top-character-face ((t (:foreground ,purple-bg))))
-   ; `(highlight-indent-guides-stack-character-face ((t (:foreground ,purple-bg))))
+                                        ; `(highlight-indent-guides-stack-character-face ((t (:foreground ,purple-bg))))
 
    `(marginalia-documentation ((t (:underline nil))))
 
@@ -460,8 +471,8 @@
    `(markdown-code-face ((t (:inherit default))))
 
    `(help-key-binding ((t (:inherit fixed-pitch :background ,purple-bg :foreground ,fg :box nil))))))
-   ;;`(help-key-binding ((t (:inherit fixed-pitch :background ,purple-bg :foreground ,fg :box (:line-width (1 . 1) :color ,dark-purple)))))))
-   ;;`(help-key-binding ((t (:inherit fixed-pitch :background ,purple-bg :foreground ,fg :box nil :color ,dark-purple))))
+;;`(help-key-binding ((t (:inherit fixed-pitch :background ,purple-bg :foreground ,fg :box (:line-width (1 . 1) :color ,dark-purple)))))))
+;;`(help-key-binding ((t (:inherit fixed-pitch :background ,purple-bg :foreground ,fg :box nil :color ,dark-purple))))
 
 ;; to here
 ;;
