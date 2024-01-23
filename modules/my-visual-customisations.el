@@ -54,8 +54,10 @@
 
 ;; Use hl-line-mode everywhere
 ;; This makes it easier to see which line the cursor is on
-(global-hl-line-mode)
-
+(use-package emacs
+  :ensure nil
+  :bind (("C-c t h" . hl-line-mode))
+  :hook (dired-after-readin-hook . hl-line-mode))
 
 ;; This isn't working for some reason
 ;; (defvar my-visual-fill-toggle nil)
