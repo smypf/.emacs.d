@@ -31,6 +31,12 @@
         eglot-events-buffer-size 0
         ))
 
+;; This wasn't that useful
+;; (use-package eldoc-box
+;;   :after eglot
+;;   :hook
+;;   (prog-mode . eldoc-box-hover-mode))
+
 (use-package consult-eglot
   :after consult
   :defer t)
@@ -54,10 +60,10 @@
 ;;;(use-package consult-dash
 ;;;  :defer t
 ;;;  :after dash-docs)
-  ;; These lines have been disabled since I prefer to search for something myself.
-  ;; :config
-  ;; Use the symbol at point as initial search term
-  ;; (consult-customize consult-dash :initial (thing-at-point 'symbol)))
+;; These lines have been disabled since I prefer to search for something myself.
+;; :config
+;; Use the symbol at point as initial search term
+;; (consult-customize consult-dash :initial (thing-at-point 'symbol)))
 
 (use-package devdocs
   :defer t
@@ -240,6 +246,25 @@
   :after (flycheck eglot)
   :init (global-flycheck-eglot-mode))
 
+
+;; This wasn't being used much
+;; (use-package hl-todo
+;;   :ensure t)
+
+;; (defun flycheck-hl-todo-follow-mode ()
+;;   (setq flycheck-hl-todo-enabled hl-todo-mode)
+;;   ;; Force flycheck update
+;;   (flycheck-buffer))
+
+;; (use-package flycheck-hl-todo
+;;   :ensure t
+;;   :defer t ; Need to be initialized after the rest of checkers
+;;   :after (flycheck)
+;;   :hook
+;;   (hl-todo-mode-hook . flycheck-hl-todo-follow-mode)
+;;   :config
+;;   (flycheck-hl-todo-setup))
+
 (use-package consult-flycheck
   :after flycheck-eglot
   :defer t)
@@ -271,6 +296,22 @@
 
 (use-package json-mode
   :defer t)
+
+;; Removed... Not used regularly
+;; (use-package editorconfig
+;;   :defer t
+;;   :config
+;;   (editorconfig-mode 1))
+
+;; Removed... Never used
+;; (use-package realgud
+;;   :defer t
+;;   :commands realgud)
+
+;; Removed... Never used
+;; (use-package realgud-trepan-ni
+;;   :defer t
+;;   :commands trepan-ni realgud:trepan-ni)
 
 (use-package surround
   :ensure t
