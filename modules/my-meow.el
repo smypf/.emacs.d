@@ -28,7 +28,9 @@ If there is only one buffer go to the *scratch* buffer."
       (magit-blame-quit)
     (if (> (count-windows) 1)
         (delete-window)
-      (switch-to-buffer "*scratch*"))))
+      (if (> (length (tab-bar-tabs)) 1)
+          (tab-bar-close-tab)
+        (switch-to-buffer "*scratch*")))))
 
 (defun meow-qwerty-setup ()
   ;; https://emacs.stackexchange.com/questions/45401/why-cant-i-bind-my-function-to-a-key-or-call-it-with-m-x
