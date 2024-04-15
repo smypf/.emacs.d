@@ -216,6 +216,12 @@ version 2016-06-18"
   :bind (([remap split-window-right] . smypf-nav-split-and-follow-right)
          ("C-c n" . smypf-nav-find-file-right)))
 
+(use-package smart-delete
+  :defer t
+  :bind (("C-c t d" . smart-delete-mode)))
+  ;; Removed automatic enabling of smart-delete-mode as it got in the way
+  ;;:hook (prog-mode . smart-delete-mode)
+
 (use-package visual-regexp
   :defer t
   :bind (("C-c %" . vr/replace)
