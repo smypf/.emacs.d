@@ -96,8 +96,9 @@
   :defer t
   :hook
   (prog-mode . highlight-indent-guides-mode)
+  :bind (("C-c t g" . highlight-indent-guides-mode))
   :config
-  (setq highlight-indent-guides-method 'character
+  (setq highlight-indent-guides-method 'bitmap
         highlight-indent-guides-responsive 'stack
         highlight-indent-guides-auto-enabled nil))
 
