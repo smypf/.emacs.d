@@ -7,13 +7,17 @@
 
 ;;; Commentary:
 
-;; 
+;;
 
 ;;; Code:
 
 (use-package vterm
   :defer t
-  :ensure t)
+  :ensure t
+  :hook
+  ;; Disable line numbers for vterm mode
+  (vterm-mode . (lambda() (display-line-numbers-mode -1)))
+)
 
 ;; (general-define-key
 ;;  :states 'normal
