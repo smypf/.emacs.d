@@ -216,6 +216,11 @@ version 2016-06-18"
   :bind (([remap split-window-right] . smypf-nav-split-and-follow-right)
          ("C-c n" . smypf-nav-find-file-right)))
 
+(use-package visual-regexp
+  :defer t
+  :bind (("C-c %" . vr/replace)
+         ([remap query-replace] . vr/replace)))
+
 (use-package howm
   :defer t
   :init
