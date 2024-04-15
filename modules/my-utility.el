@@ -59,6 +59,7 @@
          ("C-h C" . helpful-command)))
 
 (use-package popper
+  :defer t
   :ensure t ; or :straight t
   ;; These binds aren't working since '`' is used for other things.
   ;; They should be changed to something else.
@@ -114,6 +115,7 @@
 
 ;; Enable recentf-mode which stores recently opened files
 (use-package recentf
+  :defer t
   :ensure nil
   :init
   (recentf-mode t)
@@ -121,14 +123,15 @@
   :bind ("C-c r" . recentf))
 
 ;; Windmove is an alternative means to navigate window panes
-
 (use-package windmove
+  :defer t
   :ensure nil
   :config
   (windmove-mode)
   (windmove-default-keybindings 'super))
 
-(use-package binky-mode
+(use-package binky
+  :defer t
   :hook (after-init-hook . binky-mode)
   :bind ("C-M-m" . binky-binky))
 
