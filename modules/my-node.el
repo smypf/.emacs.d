@@ -44,27 +44,27 @@
   :defer t
   :ensure t
   :hook
-  (typescript-ts-base-mode . apheleia-mode)
-  (prog-mode . apheleia-mode))
+  ;;(prog-mode . apheleia-mode)
+  (typescript-ts-base-mode . apheleia-mode))
 
 ;; Running M-x compile will allow to jumping to errors in the output
 ;; https://emacs.stackexchange.com/a/44708
 (require 'compile)
 (defun add-node-error-regex ()
   (setq compilation-error-regexp-alist-alist
-    ;; Tip: M-x re-builder to test this out
-    (cons '(node "\\(?:[^\(\n]+ \(\\)?\\([a-zA-Z\.0-9_/-]+\\):\\([0-9]+\\):\\([0-9]+\\)\)?"
-             1 ;; file
-             2 ;; line
-             3 ;; column
-             )
-          compilation-error-regexp-alist-alist))
-        ;; Passing tests
-    ;; (cons '(compilation "\\(?:[\(\\)?\\(src/[a-zA-Z\.0-9_/-]+\\.spec.ts)?$")
-    ;;  1
-    ;;  ))
+        ;; Tip: M-x re-builder to test this out
+        (cons '(node "\\(?:[^\(\n]+ \(\\)?\\([a-zA-Z\.0-9_/-]+\\):\\([0-9]+\\):\\([0-9]+\\)\)?"
+                     1 ;; file
+                     2 ;; line
+                     3 ;; column
+                     )
+              compilation-error-regexp-alist-alist))
+  ;; Passing tests
+  ;; (cons '(compilation "\\(?:[\(\\)?\\(src/[a-zA-Z\.0-9_/-]+\\.spec.ts)?$")
+  ;;  1
+  ;;  ))
   (add-to-list 'compilation-error-regexp-alist 'node))
-(add-hook 'after-init-hook 'add-node-error-regex)
+(add-hook 'typescript-ts-mode 'add-node-error-regex)
 
 ;; Changed based on https://www.reddit.com/r/emacs/comments/4xhxfw/comment/d6ghhmq/?utm_source=share&utm_medium=web2x&context=3
 (add-hook 'typescript-ts-base-mode
