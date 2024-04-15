@@ -260,9 +260,9 @@ If there is only one buffer go to the *scratch* buffer."
 (meow-leader-define-key
  ;; Window Manipulation
  ;; At this point you should probably learn how Emacs does it natively
- '("wv" . split-window-right)
- '("wl" . other-window)
- '("wh" . back-window)
+ ;; '("wv" . split-window-right)
+ ;; '("wl" . other-window)
+ ;; '("wh" . back-window)
 
  ;; Open Magit
  '("G" . magit)
@@ -309,10 +309,18 @@ If there is only one buffer go to the *scratch* buffer."
  ;;'("bp" . previous-buffer)
  '("bb" . consult-buffer)
  '("B" . consult-buffer)
- '("," . consult-buffer)
+                                        ;'("," . consult-buffer)
 
  '("X" . org-capture)
  )
+
+;; (meow-define-keys
+;;     ;; state
+;;     'normal
+;;   '("z c" . hs-hide-block)
+;;   '("z o" . hs-show-block)
+;;   '("z C" . hs-hide-all)
+;;   '("z O" . hs-show-all))
 
 ;; Disable meow for various mode which rely on having inbuilt keymaps
 ;; https://github.com/meow-edit/meow/issues/317#issuecomment-1233622579
