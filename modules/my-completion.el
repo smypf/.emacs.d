@@ -32,6 +32,14 @@
               ("S-TAB" . vertico-previous))
 
   :config
+  ;; Use transient for Embark
+  (setq embark-indicators
+        '(embark-minimal-indicator  ; default is embark-mixed-indicator
+          embark-highlight-indicator
+          embark-isearch-highlight-indicator))
+  (add-to-list 'vertico-multiform-categories '(embark-keybinding grid))
+  (vertico-multiform-mode)
+
   ;; Show more candidates
   (setq vertico-count 15
         vertico-cycle t
