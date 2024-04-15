@@ -28,6 +28,14 @@
   (smypf-set-frame-name)
   (add-hook 'projectile-find-file-hook 'smypf-set-frame-name)
 
+  (defun smypf-open-test-in-new-window ()
+    (interactive)
+    (smypf-nav-split-and-follow-right)
+    (projectile-toggle-between-implementation-and-test))
+
+  :bind
+  (("C-c p t" . projectile-toggle-between-implementation-and-test)
+   ("C-c p T" . smypf-open-test-in-new-window))
   :config
   (projectile-mode)
 
