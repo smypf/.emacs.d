@@ -146,6 +146,11 @@
   (push '(c++-mode . c++-ts-mode) major-mode-remap-alist))
 
 (add-hook 'tree-sitter-after-on-hook 'eglot-ensure)
+(with-eval-after-load 'eglot
+  (setq completion-category-defaults nil)
+  ;; TODO this doesn't work as the hook doesn't exist. Need to determine an automatic way to eglot-ensure
+  (add-to-list 'eglot-server-programs
+               '((python-ts-mode) . ("pyright-langserver" "--stdio"))))
 
 (use-package tree-sitter-langs
   :after tree-sitter)
