@@ -56,7 +56,8 @@
                 (seq bol ".." eol))))
   :bind
   ;; Bind `dirvish|dirvish-side|dirvish-dwim' as you see fit
-  (("C-c f" . dirvish-fd)
+  (("C-x d" . dirvish)
+   ("C-c f" . dirvish-fd)
    ;; Dirvish has all the keybindings in `dired-mode-map' already
    :map dirvish-mode-map
    ("h" . dired-up-directory)
