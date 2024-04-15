@@ -125,11 +125,13 @@
 (use-package treesit-auto
   :commands (global-treesit-auto-mode)
   :config
+  (treesit-auto-add-to-auto-mode-alist 'all)
   (global-treesit-auto-mode))
 
 (use-package tree-sitter
   :config
   (global-tree-sitter-mode)
+  (setq go-ts-mode-indent-offset (symbol-value 'tab-width))
   ;; This doesn't work as the file name is not in the expected format (it should have tree-sitter- as the prefix)
   (setq treesit-extra-load-path '("/Users/yees6f/.emacs.d/elpa/tree-sitter-langs-20230114.1524/bin/"))
   (push '(css-mode . css-ts-mode) major-mode-remap-alist)
@@ -138,6 +140,7 @@
   (push '(js-json-mode . json-ts-mode) major-mode-remap-alist)
   ;;(push '(typescript-mode . typescript-ts-mode) major-mode-remap-alist)
   (push '(typescript-mode . tsx-ts-mode) major-mode-remap-alist)
+  (push '(go-mode . go-ts-mode) major-mode-remap-alist)
   (push '(c-mode . c-ts-mode) major-mode-remap-alist)
   (push '(c++-mode . c++-ts-mode) major-mode-remap-alist))
 
