@@ -64,6 +64,7 @@
   ;; They should be changed to something else.
   ;; Additionally it should be checked how meow bindings can be used.
   :bind (("C-`"   . popper-toggle)
+         ("C-c t p"   . popper-toggle)
          ("M-`"   . popper-cycle)
          ("C-M-`" . popper-toggle-type))
   :init
