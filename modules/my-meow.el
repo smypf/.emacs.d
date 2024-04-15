@@ -325,6 +325,8 @@ If there is only one buffer go to the *scratch* buffer."
 (add-to-list 'meow-mode-state-list '(howm-menu-mode . disable))
 (add-to-list 'meow-mode-state-list '(howm-mode . disable))
 (add-to-list 'meow-mode-state-list '(hm . disable))
+(add-to-list 'meow-mode-state-list '(private-comments-edit-mode . disable))
+(add-to-list 'meow-mode-state-list '(org-capture-mode . insert))
 
 (add-hook 'howm-menu-hook 'meow-disable-mode)
 
