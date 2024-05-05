@@ -72,6 +72,7 @@
   (setq popper-reference-buffers
         '("\\*Messages\\*"
           "\\*Warnings\\*"
+          "\\*HTTP Response\\*"
           "Output\\*$"
           "\\*Async Shell Command\\*"
           help-mode
@@ -89,6 +90,7 @@
     (setq shackle-rules
           '(("*Help*" :select nil)
             ("*Warnings*" :select nil :other nil :align below)
+            ("*HTTP Response*" :select nil :other nil)
             (helpful-mode :select nil :other nil)
             ("*info*" :select nil :other nil)
             ("*Messages*" :select nil :other nil)

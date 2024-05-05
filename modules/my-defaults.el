@@ -28,10 +28,11 @@
 
   (repeat-mode)
 
-  (setq electric-pair-preserve-balance t
-        ;;electric-pair-inhibit-predicate 'electric-pair-conservative-inhibit
-        electric-pair-inhibit-predicate 'electric-pair-inhibit-if-helps-balance
-        electric-pair-mode t)
+  (setq electric-pair-preserve-balance nil ;; https://stackoverflow.com/questions/27142996/electric-pair-mode-dont-pair-if-cursor-precedes-a-non-whitespace-character
+        electric-pair-inhibit-predicate 'electric-pair-conservative-inhibit)
+        ;;electric-pair-inhibit-predicate 'electric-pair-inhibit-if-helps-balance)
+
+  (electric-pair-mode)
 
   ;; Confirm closing emacs
   (setq confirm-kill-emacs 'y-or-n-p)

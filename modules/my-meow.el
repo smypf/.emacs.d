@@ -308,6 +308,7 @@ If there is only one buffer go to the *scratch* buffer."
  ;;'("bn" . next-buffer)
  ;;'("bp" . previous-buffer)
  '("bb" . consult-buffer)
+ '("bk" . kill-buffer)
  '("B" . consult-buffer)
                                         ;'("," . consult-buffer)
 
