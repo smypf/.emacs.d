@@ -97,15 +97,16 @@
   ;; (setq ansi-color-for-comint-mode 'filter)
   :hook (compilation-filter . ansi-color-compilation-filter))
 
-(use-package highlight-indent-guides
-  :defer t
-  :hook
-  (prog-mode . highlight-indent-guides-mode)
-  :bind (("C-c t g" . highlight-indent-guides-mode))
-  :config
-  (setq highlight-indent-guides-method 'bitmap
-        highlight-indent-guides-responsive 'stack
-        highlight-indent-guides-auto-enabled nil))
+;; Removed - These were causing too many errors
+;; (use-package highlight-indent-guides
+;;   :defer t
+;;   :hook
+;;   (prog-mode . highlight-indent-guides-mode)
+;;   :bind (("C-c t g" . highlight-indent-guides-mode))
+;;   :config
+;;   (setq highlight-indent-guides-method 'bitmap
+;;         highlight-indent-guides-responsive 'stack
+;;         highlight-indent-guides-auto-enabled nil))
 
 ;; `M-x combobulate' (or `C-c o o') to start using Combobulate
 ;; Do not forget to customize Combobulate to your liking:
