@@ -124,10 +124,7 @@
          (css-ts-mode . combobulate-mode)
          (yaml-ts-mode . combobulate-mode)
          ;;(typescript-ts-mode . combobulate-mode)
-         (tsx-ts-mode . combobulate-mode))
-  ;; Amend this to the directory where you keep Combobulate's source
-  ;; code.
-  :load-path ("~/tools/combobulate"))
+         (tsx-ts-mode . combobulate-mode)))
 
 (use-package treesit-auto
   :commands (global-treesit-auto-mode)
