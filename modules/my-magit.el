@@ -59,8 +59,10 @@
                (concat ".*?\\(" ISSUEKEYREGEX "\\).*")
                "\\1"
                (magit-get-current-branch)))
-        ;; Find where the first instance of the "#" character is, which designates the start of the comments in the commit message
-        (COMMITMESSAGEEND (search-forward "#")))
+            ;; Find where the first instance of the "#" character is, which designates the start of the comments in the commit message
+            ;; This is unnecessary
+            ;; (COMMITMESSAGEEND (search-forward "#"))
+            )
 
     ;; When the current branch has an issue key in it
     (when (string-match-p ISSUEKEYREGEX (magit-get-current-branch))
@@ -69,10 +71,10 @@
         ;; Go back to the start of the buffer since search-forward moves the cursor
         (goto-char (point-min))
         ;; Append the Issue Key to the buffer
-        (insert (concat "\n\nref: " ISSUEKEY))))
+        (insert (concat ISSUEKEY " - "))))
 
       ;; Go back to the start of the buffer
-      (goto-char (point-min))
+      ;; (goto-char (point-min))
       ;; TODO fix this so that it isn't dependent on the something
       (if (fboundp 'meow-insert) (meow-insert)))))
       ;;(cond (fboundp 'meow-insert meow-insert)
