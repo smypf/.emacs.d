@@ -28,7 +28,12 @@
         eglot-send-changes-idle-time 1
         ;; Remove logging to speed up eglot when using TypeScript / Javascript
         ;; https://www.reddit.com/r/emacs/comments/vau4x1/comment/ic6wd9i/
-        eglot-events-buffer-size 0
+        ;; eglot-events-buffer-size 0)
+
+        ;; More speed
+        ;; https://www.reddit.com/r/emacs/comments/1b25904/comment/ksj593p/
+        ;; (fset #'jsonrpc--log-event #'ignore))
+        ;; (setf (plist-get eglot-events-buffer-config :size) 0))
         ))
 
 ;; This wasn't that useful
