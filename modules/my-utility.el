@@ -248,6 +248,38 @@ version 2016-06-18"
   (setq howm-view-grep-expr-option nil)
   (setq howm-view-grep-file-stdin-option nil))
 
+(use-package emacs
+  :ensure nil
+  :config
+  ;; https://www.reddit.com/r/emacs/comments/r7l3ar/comment/hn3kuwh
+  (defun smypf/scroll-down-half-page ()
+    "scroll down half a page while keeping the cursor centered"
+    (interactive)
+    (let ((ln (line-number-at-pos (point)))
+          (lmax (line-number-at-pos (point-max))))
+      (cond ((= ln 1) (move-to-window-line nil))
+            ((= ln lmax) (recenter (window-end)))
+            (t (progn
+                 (move-to-window-line -1)
+                 (recenter))))))
+
+  (defun smypf/scroll-up-half-page ()
+    "scroll up half a page while keeping the cursor centered"
+    (interactive)
+    (let ((ln (line-number-at-pos (point)))
+          (lmax (line-number-at-pos (point-max))))
+      (cond ((= ln 1) nil)
+            ((= ln lmax) (move-to-window-line nil))
+            (t (progn
+                 (move-to-window-line 0)
+                 (recenter))))))
+
+  :bind (
+         ("C-c C-d" . smypf/scroll-down-half-page)
+         ("C-c C-b" . smypf/scroll-up-half-page)
+         )
+  :commands (smypf/scroll-down-half-page smypf/scroll-up-half-page))
+
 ;;; Package:
 (provide 'my-utility)
 ;;; my-utility.el ends here
