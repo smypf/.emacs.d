@@ -120,7 +120,8 @@
    '(binky centered-cursor-mode auto-dim-other-buffers eldoc-box gumshoe eglot-booster howm dape jtsx dumb-jump jest-test-mode plz-see surround pcre2el visual-regexp-steroids visual-regexp-steriods visual-regexp visual-regex-steriods visual-regex hide-mode-line mistty olivetti smart-delete flycheck-hl-todo hl-todo-flycheck hl-todo highlight almost-mono-themes fuz compile-multi flycheck-eglot wgrep noccur imenu-list reveal-in-osx-finder org-jira ztree dired-sidebar binky-mode transpose-frame multi-compile magit-todos highlight-indent-guides csv-mode fold-this exec-path-from-shell consult-git-log-grep backward-forward benchmark-init dirvish rainbow-mode yasnippet flymake-cursor company xclip doom-modeline no-littering eglot general consult vertico magit use-package vterm))
  '(package-vc-selected-packages
    '((combobulate :vc-backend Git :url "https://github.com/mickeynp/combobulate")
-     (eglot-booster :vc-backend Git :url "https://github.com/jdtsmith/eglot-booster")))
+     (eglot-booster :vc-backend Git :url "https://github.com/jdtsmith/eglot-booster")
+     (fuz-bin :vc-backend Git :url "https://github.com/jcs-legacy/fuz-bin")))
  '(popper-mode-line '(:eval (propertize " POP " 'face 'mode-line-emphasis)))
  '(safe-local-variable-values
    '((smypf-compile-items "parent; make test && golangci-lint run")
