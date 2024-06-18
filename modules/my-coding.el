@@ -309,11 +309,10 @@
 (use-package json-mode
   :defer t)
 
-;; Removed... Not used regularly
-;; (use-package editorconfig
-;;   :defer t
-;;   :config
-;;   (editorconfig-mode 1))
+(use-package editorconfig
+  :defer t
+  :config
+  (editorconfig-mode 1))
 
 ;; Removed... Never used
 ;; (use-package realgud
