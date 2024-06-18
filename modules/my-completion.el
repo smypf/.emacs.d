@@ -192,7 +192,7 @@
 (use-package orderless
   :defer t
   :init
-  (setq completion-styles '(orderless flex))
+  (setq completion-styles '(orderless))
   :commands (orderless-filter))
 
 ;; This give better sorting
@@ -214,7 +214,8 @@
    ;; substring completion by default. Set to nil to make sure it's using
    ;; flx.
    completion-category-defaults nil
-   completion-category-overrides nil)
+   completion-category-overrides nil
+   fussy-use-cache t)
 
   ;; `eglot' defaults to flex, so set an override to point to fussy instead.
   (with-eval-after-load 'eglot
