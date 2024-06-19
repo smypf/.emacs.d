@@ -39,6 +39,9 @@
         doom-modeline-persp-name nil
         doom-modeline-persp-icon t
         doom-modeline-bar-width 2
+        doom-modeline-buffer-state-icon nil
+        doom-modeline-check-icon nil
+        doom-modeline-icon nil
         doom-modeline-buffer-file-name-style 'relative-to-project))
 
 
