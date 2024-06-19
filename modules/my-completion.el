@@ -272,6 +272,8 @@
   (add-to-list 'completion-at-point-functions #'cape-symbol)
   (add-to-list 'completion-at-point-functions #'cape-line)
 
+  (advice-add 'eglot-completion-at-point :around #'cape-wrap-buster)
+
   ;; Add completion in the git commit message buffer.
   ;; This isn't a perfect implementation
   (eval-after-load 'magit
