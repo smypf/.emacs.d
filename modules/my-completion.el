@@ -280,6 +280,19 @@
     '(progn
        (define-key git-commit-mode-map (kbd "TAB") #'cape-dabbrev)))
   )
+;; Add Cape Completions when eglot is being used
+;; https://github.com/minad/corfu/wiki#making-a-cape-super-capf-for-eglot
+(defun smypf/eglot-capf ()
+  (setq-local completion-at-point-functions
+              (list (cape-capf-super
+                     #'eglot-completion-at-point
+                     #'cape-abbrev
+                     #'cape-dabbrev
+                     #'cape-file
+                     #'cape-history))))
+
+(add-hook 'eglot-managed-mode-hook #'smypf/eglot-capf)
+
 
 (use-package backward-forward
   :init
