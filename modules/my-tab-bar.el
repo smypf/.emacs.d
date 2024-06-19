@@ -42,17 +42,18 @@
            (hint-face (if current-p
                           'smypf-tab-bar-tab-hint
                         'smypf-tab-bar-tab-hint-inactive)))
-      (concat (propertize (if tab-bar-tab-hints (format "  %d: " i) "  ")
+      (concat (propertize (if tab-bar-tab-hints (format "  %d: " i) "")
                           'face hint-face)
               (propertize
                (concat
+                " "
                 (alist-get 'name tab)
                 (or (and tab-bar-close-button-show
                          (not (eq tab-bar-close-button-show
                                   (if current-p 'non-selected 'selected)))
                          tab-bar-close-button)
                     "")
-                "  ")
+                " ")
                'face tab-face))))
 
 
@@ -68,7 +69,7 @@
     (setq tab-bar-show 1)                      ;; hide bar if <= 1 tabs open
     (setq tab-bar-close-button-show nil)       ;; hide tab close / X button
     (setq tab-bar-new-tab-choice "*scratch*");; buffer to show in new tabs
-    (setq tab-bar-tab-hints t)                 ;; show tab numbers
+    (setq tab-bar-tab-hints nil)                 ;; show tab numbers
     (setq tab-bar-select-tab-modifiers "super")
     (setq tab-bar-format '(tab-bar-format-tabs tab-bar-separator))
     (setq tab-bar-tab-name-format-function 'smypf-tab-bar-name-format))

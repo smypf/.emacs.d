@@ -133,6 +133,8 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((t (:family "Fira Code" :foundry "nil" :slant normal :weight regular :height 140 :width normal)))))
+ '(default ((t (:family "Fira Code" :foundry "nil" :slant normal :weight regular :height 140 :width normal))))
+ '(tab-bar-tab ((t (:background "#dfcee7" :foreground "#444444" :box (:line-width (3 . 3) :color "#dfcee7")))))
+ '(tab-bar-tab-inactive ((t (:background "#fffff8" :foreground "#c1c1bd" :box (:line-width (3 . 3) :color "#fffff8"))))))
 (put 'narrow-to-region 'disabled nil)
 (put 'upcase-region 'disabled nil)
