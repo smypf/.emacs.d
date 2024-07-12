@@ -139,10 +139,14 @@
 
 
    `(tab-bar ((t (:background ,bg
-                              ;;:box '(:line-width (10 . 0 ) :color ,bg)
+                              ;; :box '(:line-width 3 :color ,bg :style nil)
                               ))))
-   `(tab-bar-tab ((t (:background ,purple-bg :foreground ,fg))))
-   `(tab-bar-tab-inactive ((t (:background ,bg :foreground ,comment))))
+   `(tab-bar-tab ((t (:background ,purple-bg :foreground ,fg
+                              :box '(:line-width 5 :color ,fg :style nil)
+                                  ))))
+   `(tab-bar-tab-inactive ((t (:background ,bg :foreground ,comment
+                                           :box '(:line-width 5 :color ,bg :style nil)
+                                           ))))
 
    `(doom-modeline-info ((t (:foreground ,fg))))
 
@@ -469,6 +473,8 @@
    `(whitespace-space ((t (:background ,bg))))
 
    `(markdown-code-face ((t (:inherit default))))
+
+   `(combobulate-query-highlight-serene-shade-face ((t (:inherit default))))
 
    `(help-key-binding ((t (:inherit fixed-pitch :background ,purple-bg :foreground ,fg :box nil))))))
 ;;`(help-key-binding ((t (:inherit fixed-pitch :background ,purple-bg :foreground ,fg :box (:line-width (1 . 1) :color ,dark-purple)))))))
