@@ -22,10 +22,12 @@
 ;;;  :dash "TypeScript" "JavaScript" "NodeJS" "HTML" "CSS")
 
 ;; note to get this working I needed to copy the files in ~/.emacs.d/elpa/tree-sitter-langs/bin to ~/.emacs.d/tree-sitter and prefix the file with "libtree-sitter-" (e.g. "typescript.dylib" is renamed to "libtree-sitter-typescript.dylib")
-(add-to-list 'auto-mode-alist '("\\.tsx?\\'" . tsx-ts-mode))
-(add-to-list 'auto-mode-alist '("\\.jsx?\\'" . tsx-ts-mode))
+(add-to-list 'auto-mode-alist '("\\.tsx?\\'" . jtsx-tsx-mode))
+(add-to-list 'auto-mode-alist '("\\.jsx?\\'" . jtsx-jsx-mode))
 (add-hook 'tsx-ts-mode-hook 'eglot-ensure)
+(add-hook 'jsx-ts-mode-hook 'eglot-ensure)
 
+;; (setq atlassian-tab-width 2)
 
 ;; From the wiki
 (with-eval-after-load 'eglot
@@ -33,7 +35,11 @@
   ;; TODO this doesn't work as the hook doesn't exist. Need to determine an automatic way to eglot-ensure
   (add-to-list 'eglot-server-programs
                '((typescript-ts-mode) . ("typescript-language-server" "--stdio"))
-               '((tsx-ts-mode) . ("typescript-language-server" "--stdio"))))
+               '((tsx-ts-mode) . ("typescript-language-server" "--stdio")))
+
+  (flycheck-add-mode 'javascript-eslint 'typescript-ts-mode)
+  (flycheck-add-mode 'javascript-eslint 'tsx-ts-mode)
+  (flycheck-add-mode 'javascript-eslint 'jsx-ts-mode))
 
 (setq typescript-ts-mode-indent-offset (symbol-value 'tab-width))
 ;; auto-format different source code files extremely intelligently
@@ -53,7 +59,7 @@
 (defun add-node-error-regex ()
   (setq compilation-error-regexp-alist-alist
         ;; Tip: M-x re-builder to test this out
-        (cons '(node "\\(?:[^\(\n]+ \(\\)?\\([a-zA-Z\.0-9_/-]+\\):\\([0-9]+\\):\\([0-9]+\\)\)?"
+        (cons '(node "\\(?:[^\(\n]+ \(\\)?\\([a-zA-Z\.0-9_/-]+\\)\\(?:\\([0-9]+\\)\\)?\\(?:\\([0-9]+\\)\)?\\)?"
                      1 ;; file
                      2 ;; line
                      3 ;; column
@@ -71,6 +77,11 @@
           (lambda ()
             (add-to-list (make-local-variable 'electric-pair-pairs)
                          (cons ?` ?`))))
+
+;; Atlassian uses tabs
+(add-hook 'jtsx-tsx-mode 'indent-tabs-mode)
+(add-hook 'jtsx-jsx-mode 'indent-tabs-mode)
+(add-hook 'json-ts-mode 'indent-tabs-mode)
 
 ;;; Package:
 (provide 'my-node)

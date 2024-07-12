@@ -39,6 +39,11 @@
   :config
   (projectile-mode)
 
+  ;; Speeds up loading files.
+  (setq projectile-enable-caching t
+        ;; Maybe turn this on to speed up finding files
+        projectile-git-use-fd nil)
+
   ;; Change the name of the frame.
   ;; This is useful when alt-tabbing
 

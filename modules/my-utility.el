@@ -36,6 +36,10 @@
   :config
   (setq select-enable-clipboard nil))
 
+(use-package rg
+  :ensure t
+  :defer t)
+
 (use-package helpful
   :defer t
   :bind (
@@ -78,6 +82,7 @@
           help-mode
           helpful-mode
           flycheck-error-list-mode
+          rg-mode
           compilation-mode))
   (popper-mode +1)
   (popper-echo-mode +1))                ; For echo area hints
@@ -93,6 +98,7 @@
             ("*HTTP Response*" :select nil :other nil)
             (helpful-mode :select nil :other nil)
             ("*info*" :select nil :other nil)
+            (rg-mode :select nil :other nil)
             ("*Messages*" :select nil :other nil)
             ;; Including this line causes the height to be 50% of the window, regardless of the :size value
             ;;(flycheck-error-list-mode :select nil :size .1 :align below)

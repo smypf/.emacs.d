@@ -117,14 +117,15 @@
    '(java-mode java-ts-mode js-mode js-ts-mode ruby-mode ruby-ts-mode rust-mode rust-ts-mode haskell-mode kotlin-mode swift-mode csharp-mode csharp-ts-mode objc-mode typescript-ts-mode typescript-mode python-mode python-ts-mode dart-mode go-mode go-ts-mode scala-mode groovy-mode tsx-ts-mode typescript-ts-mode))
  '(org-export-backends '(ascii html icalendar latex md odt))
  '(package-selected-packages
-   '(binky centered-cursor-mode auto-dim-other-buffers eldoc-box gumshoe eglot-booster howm dape jtsx dumb-jump jest-test-mode plz-see surround pcre2el visual-regexp-steroids visual-regexp-steriods visual-regexp visual-regex-steriods visual-regex hide-mode-line mistty olivetti smart-delete flycheck-hl-todo hl-todo-flycheck hl-todo highlight almost-mono-themes fuz compile-multi flycheck-eglot wgrep noccur imenu-list reveal-in-osx-finder org-jira ztree dired-sidebar binky-mode transpose-frame multi-compile magit-todos highlight-indent-guides csv-mode fold-this exec-path-from-shell consult-git-log-grep backward-forward benchmark-init dirvish rainbow-mode yasnippet flymake-cursor company xclip doom-modeline no-littering eglot general consult vertico magit use-package vterm))
+   '(rg dot-mode hideshowvis deadgrep yaml editorconfig combobulate fuz-bin binky centered-cursor-mode auto-dim-other-buffers eldoc-box gumshoe eglot-booster howm dape jtsx dumb-jump jest-test-mode plz-see surround pcre2el visual-regexp-steroids visual-regexp-steriods visual-regexp visual-regex-steriods visual-regex hide-mode-line mistty olivetti smart-delete flycheck-hl-todo hl-todo-flycheck hl-todo highlight almost-mono-themes fuz compile-multi flycheck-eglot wgrep noccur imenu-list reveal-in-osx-finder org-jira ztree dired-sidebar binky-mode transpose-frame multi-compile magit-todos csv-mode fold-this exec-path-from-shell consult-git-log-grep backward-forward benchmark-init dirvish rainbow-mode yasnippet flymake-cursor company xclip doom-modeline no-littering eglot general consult vertico magit use-package vterm))
  '(package-vc-selected-packages
    '((combobulate :vc-backend Git :url "https://github.com/mickeynp/combobulate")
      (eglot-booster :vc-backend Git :url "https://github.com/jdtsmith/eglot-booster")
      (fuz-bin :vc-backend Git :url "https://github.com/jcs-legacy/fuz-bin")))
  '(popper-mode-line '(:eval (propertize " POP " 'face 'mode-line-emphasis)))
  '(safe-local-variable-values
-   '((smypf-compile-items "parent; make test && golangci-lint run")
+   '((smypf-compile-items "parent; cd platform; yarn test -- packages/uip/volt")
+     (smypf-compile-items "parent; make test && golangci-lint run")
      (smypf-compile-items "parent; make test && make lint")))
  '(tab-bar-mode t)
  '(vr/engine python3))
