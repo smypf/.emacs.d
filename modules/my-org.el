@@ -46,10 +46,15 @@
         ;; Ensure that a heading and it's contents are automatically aligned
         org-adapt-indentation t
         org-log-done 'time
+
         org-capture-templates '(("t" "Task" entry (file+headline org-default-notes-file "Tasks") "* TODO %?\n  %T")
                                 ("a" "Emacs Annoyance" entry (file+headline "~/org/emacs.org" "Annoyances") "* TODO %?\n  %T")
                                 ("i" "Emacs Improvement" entry (file+headline "~/org/emacs.org" "Sharp tools") "* TODO %?\n  %T")
-                                ("r" "Reading" entry (file "~/org/reading.org") "* %?\n")))
+                                ("r" "Reading" entry (file "~/org/reading.org") "* %?\n")
+                                ("W" "Log work from home" plain
+                                 (file+olp+datetree "~/org/wfh-diary.org")
+                                 ":LOGBOOK:\nCLOCK: [%<%F %a> 09:00]--[%<%F %a> 16:30] =>  7:30\n:END:\n" :time-prompt t :immediate-finish t))
+        )
   (add-hook 'org-mode-hook 'turn-on-auto-fill))
 
 ;; Org Roam doesn't work for me.
