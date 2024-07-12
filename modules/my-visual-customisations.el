@@ -77,8 +77,8 @@
 ;; :hook (visual-fill-column-mode-hook . visual-line-mode))
 
 ;; Break lines (word wrap) at word boundaries rather than the last character in the line
-;; (global-visual-line-mode t)
-;; (add-hook 'prog-mode 'visual-line-mode)
+(global-visual-line-mode t)
+(add-hook 'prog-mode 'visual-line-mode)
 
 ;; Prevent the cursor jumping to the middle of the page when scrolling to the bottom of the screen
 ;; https://stackoverflow.com/a/25777730
@@ -126,6 +126,8 @@
 ;; Kitty is reporting a larger number than iTerm.
 ;; Setting this to nil ensures that windows are split vertically
 (setq split-height-threshold nil)
+
+(setq whitespace-line-column (symbol-value 'fill-column))
 
 ;;; Package:
 (provide 'my-visual-customisations)
