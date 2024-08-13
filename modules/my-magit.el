@@ -83,7 +83,8 @@
   (add-hook 'git-commit-setup-hook 'insert-issue-key)
 
   ;; https://magit.vc/manual/magit/Automatic-Refreshing-of-Magit-Buffers.html
-  (add-hook 'after-save-hook 'magit-after-save-refresh-status t)
+  ;; This was slowing things down
+  ;; (add-hook 'after-save-hook 'magit-after-save-refresh-status t)
 
   (defun th/magit--with-difftastic (buffer command)
   "Run COMMAND with GIT_EXTERNAL_DIFF=difft then show result in BUFFER."
