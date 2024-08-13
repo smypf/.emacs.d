@@ -80,7 +80,6 @@
 ;;(require 'my-golang)
 ;;(require 'my-restclient)
 (require 'my-atlassian)
-(require 'my-path)
 (require 'my-deadgrep)
 
 ;; Make gc pauses faster by decreasing the threshold.
