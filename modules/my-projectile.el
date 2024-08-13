@@ -59,7 +59,7 @@
                                     :compile "npm run build"
                                     :test "npm test "
                                     :run "npm start"
-                                    :test-suffix ".spec"))
+                                    :test-suffix ".test"))
 
 ;;; Package:
 (provide 'my-projectile)
