@@ -61,7 +61,6 @@
 
 (require 'my-defaults)
 (require 'my-compile)
-;; (require 'my-evil)
 (require 'my-meow)
 (require 'my-visual-customisations)
 (require 'my-completion)
@@ -75,12 +74,13 @@
 (require 'my-coding)
 (require 'my-utility)
 (require 'my-system)
-(require 'my-vterm)
+;;(require 'my-vterm)
 (require 'my-tab-bar)
 (require 'my-native-comp)
-(require 'my-golang)
-(require 'my-restclient)
+;;(require 'my-golang)
+;;(require 'my-restclient)
 (require 'my-atlassian)
+(require 'my-path)
 (require 'my-deadgrep)
 
 ;; Make gc pauses faster by decreasing the threshold.
