@@ -55,7 +55,7 @@ If there is only one buffer go to the *scratch* buffer."
    '("8" . meow-digit-argument)
    '("9" . meow-digit-argument)
    '("0" . meow-digit-argument)
-   '("/" . meow-keypad-describe-key)
+   ;; '("/" . meow-keypad-describe-key) ;; I don't use this
    '("?" . meow-cheatsheet))
   (meow-normal-define-key
    '("C-r" . undo-redo)
@@ -123,7 +123,8 @@ If there is only one buffer go to the *scratch* buffer."
    '("Y" . meow-sync-grab)
    '("z" . meow-pop-selection)
    '("'" . repeat)
-   '("<escape>" . ignore)))
+   '("<escape>" . ignore)
+   '("/" . consult-line)))
 
 (defun meow-colemak-setup ()
   (interactive)
@@ -268,7 +269,7 @@ If there is only one buffer go to the *scratch* buffer."
  '("G" . magit)
 
  ;; Searching
- '("/" . consult-ripgrep)
+ ;;'("/" . consult-ripgrep) - replaced with deadgrep
  '("?" . search-thing-at-point)
  '("'" . eval-expression)
  '("i" . consult-imenu)
