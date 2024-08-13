@@ -26,6 +26,7 @@
 (add-to-list 'auto-mode-alist '("\\.jsx?\\'" . jtsx-jsx-mode))
 (add-hook 'tsx-ts-mode-hook 'eglot-ensure)
 (add-hook 'jsx-ts-mode-hook 'eglot-ensure)
+(add-to-list 'auto-mode-alist '("\\.json\\'" . json-ts-mode))
 
 ;; (setq atlassian-tab-width 2)
 
