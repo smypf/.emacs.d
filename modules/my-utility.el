@@ -68,9 +68,9 @@
   ;; These binds aren't working since '`' is used for other things.
   ;; They should be changed to something else.
   ;; Additionally it should be checked how meow bindings can be used.
-  :bind (("C-`"   . popper-toggle)
+  :bind (("C-c `"   . popper-toggle)
          ("C-c t p"   . popper-toggle)
-         ("M-`"   . popper-cycle)
+         ("C-c ~"   . popper-cycle)
          ("C-M-`" . popper-toggle-type))
   :init
   (setq popper-reference-buffers
@@ -85,7 +85,17 @@
           rg-mode
           compilation-mode))
   (popper-mode +1)
-  (popper-echo-mode +1))                ; For echo area hints
+  (popper-echo-mode +1) ; For echo area hints
+
+  :config
+  (defvar popper-repeat-map
+	(let ((map (make-sparse-keymap)))
+	  (define-key map "`" 'popper-toggle)
+	  (define-key map "~" 'popper-cycle)
+	  map))
+
+  (put 'popper-toggle 'repeat-map 'popper-repeat-map)
+  (put 'popper-cycle 'repeat-map 'popper-repeat-map))
 
 (use-package shackle
   :if (not (bound-and-true-p disable-pkg-shackle))
@@ -201,9 +211,9 @@ version 2016-06-18"
   :bind (("C-c b n" . xah-next-user-buffer)
          ("C-c b p" . xah-previous-user-buffer)))
 
-(use-package jinx
-  :hook (emacs-startup . global-jinx-mode)
-  :bind ([remap ispell-word] . jinx-correct))
+;; (use-package jinx
+;;   :hook (emacs-startup . global-jinx-mode)
+;;   :bind ([remap ispell-word] . jinx-correct))
 
 ;; These are stolen from https://macowners.club/posts/custom-functions-5-navigation/
 (use-package emacs
@@ -280,11 +290,26 @@ version 2016-06-18"
                  (move-to-window-line 0)
                  (recenter))))))
 
+  ;; Add to repeat map
+  ;; https://www.masteringemacs.org/article/mastering-key-bindings-emacs
+  (defvar scroll-repeat-map
+	(let ((map (make-sparse-keymap)))
+	  (define-key map "b" 'smypf/scroll-up-half-page)
+	  (define-key map "d" 'smypf/scroll-down-half-page)
+	  map))
+
+  (put 'smypf/scroll-up-half-page 'repeat-map 'scroll-repeat-map)
+  (put 'smypf/scroll-down-half-page 'repeat-map 'scroll-repeat-map)
+
   :bind (
          ("C-c C-d" . smypf/scroll-down-half-page)
          ("C-c C-b" . smypf/scroll-up-half-page)
          )
   :commands (smypf/scroll-down-half-page smypf/scroll-up-half-page))
+
+
+(use-package rainbow-mode
+  :defer t)
 
 ;;; Package:
 (provide 'my-utility)
