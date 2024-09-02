@@ -101,8 +101,8 @@
 
 ;; Set the initial buffer to the scratch buffer
 (setq inhibit-startup-message t
-      ;; Set a different message
-      initial-scratch-message ";; Stay focused\n\n")
+	  ;; Set a different message
+	  initial-scratch-message ";; I am focused\n\n")
 
 ;; Allow for pressing `y` and `n` instead of having to type yesRET or noRET
 (defalias 'yes-or-no-p 'y-or-n-p)
