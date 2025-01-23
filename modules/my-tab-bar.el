@@ -70,9 +70,10 @@
     (setq tab-bar-close-button-show nil)       ;; hide tab close / X button
     (setq tab-bar-new-tab-choice "*scratch*");; buffer to show in new tabs
     (setq tab-bar-tab-hints nil)                 ;; show tab numbers
-    (setq tab-bar-select-tab-modifiers "super")
     (setq tab-bar-format '(tab-bar-format-tabs tab-bar-separator))
-    (setq tab-bar-tab-name-format-function 'smypf-tab-bar-name-format))
+    (setq tab-bar-tab-name-format-function 'smypf-tab-bar-name-format)
+    (setq tab-bar-select-tab-modifiers '(super))
+    )
 
   :bind
   ((

@@ -77,7 +77,7 @@
    `(custom-group-tag ((t (:foreground ,fg :background ,bg :weight bold))))
    `(custom-state ((t (:foreground ,fg :background ,bg :weight bold))))
 
-   `(cursor ((t (:background ,fg :foreground "white smoke"))))
+   `(cursor ((t (:background ,fg :foreground ,bg))))
    `(custom-variable-tag ((t (:foreground ,fg))))
    `(default-italic ((t (:italic t))))
 
@@ -142,11 +142,12 @@
                               ;; :box '(:line-width 3 :color ,bg :style nil)
                               ))))
    `(tab-bar-tab ((t (:background ,purple-bg :foreground ,fg
-                              :box '(:line-width 5 :color ,fg :style nil)
+                                  :box '(:line-width (3. 3) :color ,purple-bg)
                                   ))))
    `(tab-bar-tab-inactive ((t (:background ,bg :foreground ,comment
-                                           :box '(:line-width 5 :color ,bg :style nil)
+                                           :box '(:line-width (3 . 3) :color ,bg)
                                            ))))
+
 
    `(doom-modeline-info ((t (:foreground ,fg))))
 
@@ -325,6 +326,9 @@
    `(typescript-jsdoc-type ((t (:inherit font-lock-comment-face))))
    `(typescript-jsdoc-value ((t (:inherit font-lock-comment-face))))
 
+   `(private-comments-face ((t (:inherit font-lock-comment-face))))
+
+
    `(hl-line ((t (:background ,hl-line-bg))))
    `(dirvish-hl-line ((t (:background ,hl-line-bg)))) ;; this should inherit, but for some reason it doesn't work.
    `(hl-fill-column-face ((t (:background ,hl-line-bg))))
@@ -475,6 +479,8 @@
    `(markdown-code-face ((t (:inherit default))))
 
    `(combobulate-query-highlight-serene-shade-face ((t (:inherit default))))
+   
+   `(sh-quoted-exec ((t (:inherit normal))))
 
    `(help-key-binding ((t (:inherit fixed-pitch :background ,purple-bg :foreground ,fg :box nil))))))
 ;;`(help-key-binding ((t (:inherit fixed-pitch :background ,purple-bg :foreground ,fg :box (:line-width (1 . 1) :color ,dark-purple)))))))

@@ -11,8 +11,6 @@
 
 ;;; Code:
 
-;; Searching for references
-
 ;; Navigate camelCaseWords easier
 (global-subword-mode)
 
@@ -21,8 +19,21 @@
   (interactive)
   (xref-find-references (thing-at-point 'symbol)))
 
+;; This shouldn't be here.
+;; There's a dependency that this needs to be first which I don't like
+(use-package flycheck
+  :ensure t
+  :commands (global-flycheck-mode)
+  :config
+  (global-flycheck-mode)
+  ((flycheck-add-mode 'javascript-eslint 'typescript-ts-mode)
+   (flycheck-add-mode 'javascript-eslint 'tsx-ts-mode)
+   (flycheck-add-mode 'javascript-eslint 'jsx-ts-mode)))
+
 (use-package eglot
-  :defer 3
+  :after flycheck
+  :defer nil
+  :ensure nil
   :config
   (setq eglot-autoshutdown t
         eglot-send-changes-idle-time 1
@@ -35,12 +46,6 @@
         ;; (fset #'jsonrpc--log-event #'ignore))
         ;; (setf (plist-get eglot-events-buffer-config :size) 0))
         ))
-
-;; This wasn't that useful
-;; (use-package eldoc-box
-;;   :after eglot
-;;   :hook
-;;   (prog-mode . eldoc-box-hover-mode))
 
 (use-package consult-eglot
   :after consult
@@ -56,19 +61,6 @@
 ;; https://github.com/masukomi/private_comments
 (use-package private-comments-mode
   :defer t)
-
-;; Ensure that the docset is activated. If this is not done results will not be shown.
-;; See line ~20 of modules/my-node.el
-;; removed as these aren't being used.
-;;;(use-package dash-docs
-;;;  :defer t)
-;;;(use-package consult-dash
-;;;  :defer t
-;;;  :after dash-docs)
-;; These lines have been disabled since I prefer to search for something myself.
-;; :config
-;; Use the symbol at point as initial search term
-;; (consult-customize consult-dash :initial (thing-at-point 'symbol)))
 
 (use-package devdocs
   :defer t
@@ -97,34 +89,20 @@
   ;; (setq ansi-color-for-comint-mode 'filter)
   :hook (compilation-filter . ansi-color-compilation-filter))
 
-;; Removed - These were causing too many errors
-;; (use-package highlight-indent-guides
-;;   :defer t
-;;   :hook
-;;   (prog-mode . highlight-indent-guides-mode)
-;;   :bind (("C-c t g" . highlight-indent-guides-mode))
-;;   :config
-;;   (setq highlight-indent-guides-method 'bitmap
-;;         highlight-indent-guides-responsive 'stack
-;;         highlight-indent-guides-auto-enabled nil))
-
-;; `M-x combobulate' (or `C-c o o') to start using Combobulate
-;; Do not forget to customize Combobulate to your liking:
-;;
-;;  M-x customize-group RET combobulate RET
-;;
-
 (use-package combobulate
-  ;; Optional, but recommended.
-  ;;
-  ;; You can manually enable Combobulate with `M-x
-  ;; combobulate-mode'.
-  :hook ((python-ts-mode . combobulate-mode)
-         (js-ts-mode . combobulate-mode)
-         (css-ts-mode . combobulate-mode)
-         (yaml-ts-mode . combobulate-mode)
-         ;;(typescript-ts-mode . combobulate-mode)
-         (tsx-ts-mode . combobulate-mode)))
+  :config
+  (defalias 'combobulate-key-map combobulate-key-map)
+  (meow-normal-define-key '("N" . combobulate-key-map))
+  (define-key combobulate-key-map "N" 'combobulate)
+
+  :custom
+  ;; You can customize Combobulate's key prefix here.
+  ;; Note that you may have to restart Emacs for this to take effect!
+  (combobulate-key-prefix "C-c l")
+  :hook ((prog-mode . combobulate-mode))
+  ;; Amend this to the directory where you keep Combobulate's source
+  ;; code.
+  :load-path ("~/tools/combobulate/"))
 
 (use-package treesit-auto
   :commands (global-treesit-auto-mode)
@@ -149,6 +127,7 @@
   (push '(c++-mode . c++-ts-mode) major-mode-remap-alist))
 
 (add-hook 'tree-sitter-after-on-hook 'eglot-ensure)
+
 (with-eval-after-load 'eglot
   (setq completion-category-defaults nil)
   ;; TODO this doesn't work as the hook doesn't exist. Need to determine an automatic way to eglot-ensure
@@ -158,124 +137,7 @@
 (use-package tree-sitter-langs
   :after tree-sitter)
 
-;; (use-package fancy-narrow
-;;   :after tree-sitter)
-
-;;; ;; https://blog.meain.io/2022/more-treesitter-emacs/
-;;; ;; https://github.com/meain/dotfiles/blob/34ef5e3331757ac32dd066f5baa54f76cf78211b/emacs/.config/emacs/init.el#L2213
-;;; (use-package evil-textobj-tree-sitter
-;;;   :config
-;;;   ;; bind `function.outer`(entire function block) to `f` for use in things like `vaf`, `yaf`
-;;;   (define-key evil-outer-text-objects-map "f" (evil-textobj-tree-sitter-get-textobj "function.outer"))
-;;;   ;; bind `function.inner`(function block without name and args) to `f` for use in things like `vif`, `yif`
-;;;   (define-key evil-inner-text-objects-map "f" (evil-textobj-tree-sitter-get-textobj "function.inner"))
-;;;
-;;;   ;(define-key evil-outer-text-objects-map "c" (evil-textobj-tree-sitter-get-textobj "class.outer"))
-;;;   ;(define-key evil-inner-text-objects-map "c" (evil-textobj-tree-sitter-get-textobj "class.inner"))
-;;;   ;(define-key evil-outer-text-objects-map "C" (evil-textobj-tree-sitter-get-textobj "comment.outer"))
-;;;   ;(define-key evil-inner-text-objects-map "C" (evil-textobj-tree-sitter-get-textobj "comment.outer"))
-;;;   (define-key evil-outer-text-objects-map "o" (evil-textobj-tree-sitter-get-textobj "loop.outer"))
-;;;   (define-key evil-inner-text-objects-map "o" (evil-textobj-tree-sitter-get-textobj "loop.inner"))
-;;;   (define-key evil-outer-text-objects-map "c" (evil-textobj-tree-sitter-get-textobj "conditional.outer"))
-;;;   (define-key evil-inner-text-objects-map "c" (evil-textobj-tree-sitter-get-textobj "conditional.inner"))
-;;;   (define-key evil-inner-text-objects-map "r" (evil-textobj-tree-sitter-get-textobj "parameter.inner"))
-;;;   (define-key evil-outer-text-objects-map "r" (evil-textobj-tree-sitter-get-textobj "parameter.outer"))
-;;;
-;;;   ;; COMMENT Is recenter required?
-;;;   ;; TODO Only recenter if the target is not within the viewport
-;;;   (defun meain/goto-and-recenter (group &optional previous end query)
-;;;     (interactive)
-;;;     (evil-textobj-tree-sitter-goto-textobj group previous end query)
-;;;     (recenter 7))
-;;;
-;;;   ;; TODO change this to general
-;;;   ;; TODO Extract the function
-;;;   (define-key evil-normal-state-map (kbd "]r") (lambda () (interactive) (meain/goto-and-recenter "parameter.inner")))
-;;;   (define-key evil-normal-state-map (kbd "[r") (lambda () (interactive) (meain/goto-and-recenter "parameter.inner" t)))
-;;;   (define-key evil-normal-state-map (kbd "]R") (lambda () (interactive) (meain/goto-and-recenter "parameter.inner" nil t)))
-;;;   (define-key evil-normal-state-map (kbd "[R") (lambda () (interactive) (meain/goto-and-recenter "parameter.inner" t t)))
-;;;   (define-key evil-normal-state-map (kbd "]c") (lambda () (interactive) (meain/goto-and-recenter "conditional.outer")))
-;;;   (define-key evil-normal-state-map (kbd "[c") (lambda () (interactive) (meain/goto-and-recenter "conditional.outer" t)))
-;;;   (define-key evil-normal-state-map (kbd "]C") (lambda () (interactive) (meain/goto-and-recenter "conditional.outer" nil t)))
-;;;   (define-key evil-normal-state-map (kbd "[C") (lambda () (interactive) (meain/goto-and-recenter "conditional.outer" t t)))
-;;;   ;(define-key evil-normal-state-map (kbd "]c") (lambda () (interactive) (meain/goto-and-recenter "class.outer")))
-;;;   ;(define-key evil-normal-state-map (kbd "[c") (lambda () (interactive) (meain/goto-and-recenter "class.outer" t)))
-;;;   ;(define-key evil-normal-state-map (kbd "]C") (lambda () (interactive) (meain/goto-and-recenter "class.outer" nil t)))
-;;;   ;(define-key evil-normal-state-map (kbd "[C") (lambda () (interactive) (meain/goto-and-recenter "class.outer" t t)))
-;;;   (define-key evil-normal-state-map (kbd "]f") (lambda () (interactive) (meain/goto-and-recenter "function.outer")))
-;;;   (define-key evil-normal-state-map (kbd "[f") (lambda () (interactive) (meain/goto-and-recenter "function.outer" t)))
-;;;   (define-key evil-normal-state-map (kbd "]F") (lambda () (interactive) (meain/goto-and-recenter "function.outer" nil t)))
-;;;   (define-key evil-normal-state-map (kbd "[F") (lambda () (interactive) (meain/goto-and-recenter "function.outer" t t))))
-;;;
-;;; ;; Fancy narrow to textobj
-;;; (use-package emacs
-;;;   :ensure nil
-;;;   :commands (meain/fancy-narrow-to-thing)
-;;;   :config
-;;;   (defun meain/fancy-narrow-to-thing (thing)
-;;;     (interactive)
-;;;     (if (buffer-narrowed-p) (fancy-widen))
-;;;     (let ((range (evil-textobj-tree-sitter--range 1 (list (intern thing)))))
-;;;       (fancy-narrow-to-region (car range) (cdr range))))
-;;;   ;; TODO rewrite to general
-;;;   (general-define-key
-;;;    :states 'normal
-;;;    :keymaps 'override
-;;;    :prefix leader
-;;;    "nn" (lambda () (interactive) (fancy-widen))
-;;;    "nf" (lambda () (interactive) (meain/fancy-narrow-to-thing "function.outer"))
-;;;    "nc" (lambda () (interactive) (meain/fancy-narrow-to-thing "class.outer"))
-;;;    "nC" (lambda () (interactive) (meain/fancy-narrow-to-thing "comment.outer"))
-;;;    "no" (lambda () (interactive) (meain/fancy-narrow-to-thing "loop.outer"))
-;;;    "nc" (lambda () (interactive) (meain/fancy-narrow-to-thing "conditional.outer"))
-;;;    "nr" (lambda () (interactive) (meain/fancy-narrow-to-thing "parameter.outer"))))
-
-
-
-;; TODO install https://github.com/flymake/emacs-flymake instead of the builtin one?
-;; Are these the same or different?
-
-;; TODO Add "K" = eldoc-doc-buffer as an alternative to C-h .
-;; TODO add and remove the binding when eglot is toggled
-
-;; Show the error at the cursor in the mini-buffer
-;;(use-package flymake-cursor
-;;  :defer t
-;;  :after flymake
-;;  :hook
-;;  (prog-mode . flymake-cursor-mode))
-
 (setq-default show-trailing-whitespace nil)
-
-(use-package flycheck
-  :defer t
-  :ensure t
-  :init (global-flycheck-mode))
-
-(use-package flycheck-eglot
-  :ensure t
-  :defer t
-  :after (flycheck eglot)
-  :init (global-flycheck-eglot-mode))
-
-
-;; This wasn't being used much
-;; (use-package hl-todo
-;;   :ensure t)
-
-;; (defun flycheck-hl-todo-follow-mode ()
-;;   (setq flycheck-hl-todo-enabled hl-todo-mode)
-;;   ;; Force flycheck update
-;;   (flycheck-buffer))
-
-;; (use-package flycheck-hl-todo
-;;   :ensure t
-;;   :defer t ; Need to be initialized after the rest of checkers
-;;   :after (flycheck)
-;;   :hook
-;;   (hl-todo-mode-hook . flycheck-hl-todo-follow-mode)
-;;   :config
-;;   (flycheck-hl-todo-setup))
 
 (use-package consult-flycheck
   :after flycheck-eglot
@@ -285,14 +147,6 @@
   :defer t
   :after eglot)
 
-;;;(use-package eldoc-box
-;;;  :defer t
-;;;  :after eglot
-;;;  :commands (eldoc-box-help-at-point)
-;;;  :config
-;;;  (setq eldoc-echo-area-use-multiline-p nil)
-;;;  :bind (("C-c c i" . eldoc-box-help-at-point)))
-;;;
 ;; Enable folding code sections
 (use-package emacs
   :ensure nil
@@ -303,26 +157,18 @@
   :hook
   (prog-mode . hs-minor-mode)
   (prog-mode . whitespace-cleanup)
+  ;; Could this be what is causing electric-pair-mode to be unhelpful?
+  ;; (prog-mode . electric-pair-mode)
   (prog-mode . (lambda ()
                  (setq-local show-trailing-whitespace t))))
 
 (use-package json-mode
   :defer t)
 
-(use-package editorconfig
-  :defer t
-  :config
-  (editorconfig-mode 1))
-
-;; Removed... Never used
-;; (use-package realgud
+;; (use-package editorconfig
 ;;   :defer t
-;;   :commands realgud)
-
-;; Removed... Never used
-;; (use-package realgud-trepan-ni
-;;   :defer t
-;;   :commands trepan-ni realgud:trepan-ni)
+;;   :config
+;;   (editorconfig-mode 1))
 
 (use-package surround
   :ensure t
@@ -347,6 +193,11 @@
   (jtsx-enable-jsx-electric-closing-element t)
   (jtsx-enable-all-syntax-highlighting-features t)
   :config
+  (add-to-list 'auto-mode-alist '("\\.tsx?\\'" . jtsx-tsx-mode))
+  (add-to-list 'auto-mode-alist '("\\.jsx?\\'" . jtsx-jsx-mode))
+  (add-hook 'tsx-ts-mode-hook 'eglot-ensure)
+  (add-hook 'jsx-ts-mode-hook 'eglot-ensure)
+  (add-to-list 'auto-mode-alist '("\\.json\\'" . json-ts-mode))
   (defun jtsx-bind-keys-to-mode-map (mode-map)
     "Bind keys to MODE-MAP."
     (define-key mode-map (kbd "C-c C-j") 'jtsx-jump-jsx-element-tag-dwim)
@@ -400,6 +251,30 @@
   ;; Projectile users
   (setq dape-cwd-fn 'projectile-project-root))
 
+(use-package indent-bars
+  :config
+  (require 'indent-bars-ts)         ; not needed with straight
+  :custom
+  (indent-bars-treesit-support t)
+  (indent-bars-treesit-ignore-blank-lines-types '("module"))
+  ;; Add other languages as needed
+  (indent-bars-treesit-scope '((python function_definition class_definition for_statement
+      if_statement with_statement while_statement)))
+  ;; Note: wrap may not be needed if no-descend-list is enough
+  ;;(indent-bars-treesit-wrap '((python argument_list parameters ; for python, as an example
+  ;;                      list list_comprehension
+  ;;                      dictionary dictionary_comprehension
+  ;;                      parenthesized_expression subscript)))
+
+  ;; from https://github.com/jdtsmith/indent-bars/blob/main/examples.md#in-terminal
+  ;; allows for non-stipple support
+  (indent-bars-prefer-character t)
+  (indent-bars-color '(highlight :face-bg t :blend 0.5)
+  (indent-bars-color-by-depth '(:regexp "outline-\\([0-9]+\\)" :blend 1))
+  (indent-bars-unspecified-fg-color "white")
+  (indent-bars-unspecified-bg-color "black")
+
+  :hook ((prog-mode js-ts-mode jsx-ts-mode tsx-ts-mode) . indent-bars-mode)))
 ;;; Package:
 (provide 'my-coding)
 ;;; my-coding.el ends here

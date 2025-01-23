@@ -51,9 +51,12 @@
                                 ("a" "Emacs Annoyance" entry (file+headline "~/org/emacs.org" "Annoyances") "* TODO %?\n  %T")
                                 ("i" "Emacs Improvement" entry (file+headline "~/org/emacs.org" "Sharp tools") "* TODO %?\n  %T")
                                 ("r" "Reading" entry (file "~/org/reading.org") "* %?\n")
-                                ("W" "Log work from home" plain
+                                ("w" "Log work from home" plain
                                  (file+olp+datetree "~/org/wfh-diary.org")
-                                 ":LOGBOOK:\nCLOCK: [%<%F %a> 09:00]--[%<%F %a> 16:30] =>  7:30\n:END:\n" :time-prompt t :immediate-finish t))
+                                 ":LOGBOOK:\nCLOCK: [%<%F %a> 09:00]--[%<%F %a> 16:30] =>  7:30\n:END:\n" :time-prompt t :immediate-finish t)
+                                ("W" "Log work from home for today" plain
+                                 (file+olp+datetree "~/org/wfh-diary.org")
+                                 ":LOGBOOK:\nCLOCK: [%<%F %a> 09:00]--[%<%F %a> 16:30] =>  7:30\n:END:\n" :time-prompt nil :immediate-finish t))
         )
   (add-hook 'org-mode-hook 'turn-on-auto-fill))
 

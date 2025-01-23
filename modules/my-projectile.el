@@ -40,7 +40,7 @@
   (projectile-mode)
 
   ;; Speeds up loading files.
-  (setq projectile-enable-caching nil)
+  (setq projectile-enable-caching t)
   ;; Maybe turn this on to speed up finding files
   (setq projectile-git-use-fd t)
 

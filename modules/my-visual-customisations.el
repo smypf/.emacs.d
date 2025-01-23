@@ -19,9 +19,9 @@
                           :family "Fira Code"
                           :height 140
                           :weight 'normal
-                          :width 'normal))
-  (menu-bar-mode -1))
+                          :width 'normal)))
 
+  (menu-bar-mode -1)
 ;; Disable audio bells which are annoying
 ;; (setq visible-bell 1)
 ;; https://www.emacswiki.org/emacs/AlarmBell

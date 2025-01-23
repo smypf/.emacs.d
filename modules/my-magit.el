@@ -15,6 +15,10 @@
 (use-package magit
   :defer t
   :config
+  ;; Prevent ansi escape codes from being displayed in magit process
+  ;; https://github.com/magit/magit/pull/3159
+  ;; https://github.com/magit/magit/issues/3549
+  (setq magit-process-finish-apply-ansi-colors t)
   ;; Set the max length of the commit message before wrapping to the next line
   (setq git-commit-summary-max-length (symbol-value 'fill-column)
         ;; Display magit as a full window when opened
@@ -22,6 +26,12 @@
         ;; Restore window configuration after closing magit
         ;; This is useful with the above change
         magit-bury-buffer-function 'magit-restore-window-configuration)
+
+
+  ;; Add absorb functionality
+  ;; https://github.com/magit/magit/issues/3723#issuecomment-634967479
+  (transient-replace-suffix 'magit-commit 'magit-commit-autofixup
+    '("x" "Absorb changes" magit-commit-absorb))
 
   ;; Open in other window instead of the current window
   ;; This is using `define-key` rather than general.el since as this would require overriding the key first
@@ -64,21 +74,27 @@
             ;; (COMMITMESSAGEEND (search-forward "#"))
             )
 
-    ;; When the current branch has an issue key in it
-    (when (string-match-p ISSUEKEYREGEX (magit-get-current-branch))
-      ;; Unless the buffer contains the current Issue Key
-      (unless (string-match ISSUEKEY (buffer-substring-no-properties 1 COMMITMESSAGEEND))
-        ;; Go back to the start of the buffer since search-forward moves the cursor
-        (goto-char (point-min))
-        ;; Append the Issue Key to the buffer
-        (insert (concat ISSUEKEY " - "))))
+            ;; When the current branch has an issue key in it
+            (when (string-match-p ISSUEKEYREGEX (magit-get-current-branch))
+              ;; Unless the buffer contains the current Issue Key
+              ;; TODO - If the value is only the issue key + " " it should replace with my value
+              (unless (string-match ISSUEKEY (buffer-substring-no-properties 1 COMMITMESSAGEEND))
+                ;; Go back to the start of the buffer since search-forward moves the cursor
+                ((goto-char (point-min)) (meow-insert))
+                ;; Append the Issue Key to the buffer
+                (
+                 (insert (concat ISSUEKEY " - "))
+                 (meow-insert))))
+            ;;)
+            (meow-insert))))
 
-      ;; Go back to the start of the buffer
-      ;; (goto-char (point-min))
-      ;; TODO fix this so that it isn't dependent on the something
-      (if (fboundp 'meow-insert) (meow-insert)))))
-      ;;(cond (fboundp 'meow-insert meow-insert)
-            ;;(fboundp 'evil-insert-line (evil-insert-line 1)))))))
+
+              ;; Go back to the start of the buffer
+              ;; (goto-char (point-min))
+              ;; TODO fix this so that it isn't dependent on the something
+              ;;(if (fboundp 'meow-insert) (meow-insert)))))
+              ;;(cond (fboundp 'meow-insert meow-insert)
+                    ;;(fboundp 'evil-insert-line (evil-insert-line 1)))))))
 
   (add-hook 'git-commit-setup-hook 'insert-issue-key)
 

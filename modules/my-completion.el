@@ -33,12 +33,12 @@
 
   :config
   ;; Use transient for Embark
-  (setq embark-indicators
-        '(embark-minimal-indicator  ; default is embark-mixed-indicator
-          embark-highlight-indicator
-          embark-isearch-highlight-indicator))
-  (add-to-list 'vertico-multiform-categories '(embark-keybinding grid))
-  (vertico-multiform-mode)
+  ;; (setq embark-indicators
+  ;;        '(embark-minimal-indicator  ; default is embark-mixed-indicator
+  ;;          embark-highlight-indicator
+  ;;          embark-isearch-highlight-indicator))
+  ;; (add-to-list 'vertico-multiform-categories '(embark-keybinding grid))
+  ;; (vertico-multiform-mode)
 
   ;; Show more candidates
   (setq vertico-count 15
@@ -287,19 +287,35 @@
               (list (cape-capf-super
                      #'eglot-completion-at-point
                      #'cape-abbrev
-                     #'cape-dabbrev
+                     ;; Disabled for now.
+                     ;; Really what I would like is eglot first, and then the rest afterwards. look into display-sort-function
+                     ;; #'cape-dabbrev
                      #'cape-file
                      #'cape-history))))
 
 (add-hook 'eglot-managed-mode-hook #'smypf/eglot-capf)
 
 
-(use-package backward-forward
-  :init
-  (backward-forward-mode)
-  :bind
-  (("C-M-<left>" . backward-forward-previous-location)
-   ("C-M-<right>" . backward-forward-next-location)))
+;; https://github.com/minad/corfu/wiki#combined-sorting
+(defun my-corfu-combined-sort (candidates)
+  "Sort CANDIDATES using both display-sort-function and corfu-sort-function."
+  (let ((candidates
+         (let ((display-sort-func (corfu--metadata-get 'display-sort-function)))
+           (if display-sort-func
+               (funcall display-sort-func candidates)
+             candidates))))
+    (if corfu-sort-function
+        (funcall corfu-sort-function candidates)
+      candidates)))
+
+(setq corfu-sort-override-function #'my-corfu-combined-sort)
+
+;; (use-package backward-forward
+;;   :init
+;;   (backward-forward-mode)
+;;   :bind
+;;   (("C-M-<left>" . backward-forward-previous-location)
+;;    ("C-M-<right>" . backward-forward-next-location)))
 
 ;; Embark Export (M-. E) will send all results to a buffer.
 ;; This is useful as it means that it is not necessary to continuously open the consult buffer to visit subsequent matches

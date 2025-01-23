@@ -11,10 +11,10 @@
 
 ;;; Code:
 
-(use-package deadgrep
+(use-package  deadgrep
   :ensure t
   :defer t
-  :bind ("C-c /" . deadgrep))
+  :bind (("C-c /" . deadgrep)))
 
 
 ;;; Package:

@@ -59,6 +59,7 @@ If there is only one buffer go to the *scratch* buffer."
    '("?" . meow-cheatsheet))
   (meow-normal-define-key
    '("C-r" . undo-redo)
+   '("~" . pop-global-mark)
    '("0" . meow-expand-0)
    '("9" . meow-expand-9)
    '("8" . meow-expand-8)
@@ -295,7 +296,6 @@ If there is only one buffer go to the *scratch* buffer."
  '("cf" . backward-forward-next-location)
  '("cb" . backward-forward-previous-location)
 
-
  ;; Completion
  '("v" . vertico-repeat)
 
@@ -330,15 +330,22 @@ If there is only one buffer go to the *scratch* buffer."
 (meow-define-state disable "dummy state")
 (add-to-list 'meow-mode-state-list '(magit-mode . disable))
 (add-to-list 'meow-mode-state-list '(git-rebase-mode . disable))
+(add-to-list 'meow-mode-state-list '(git-commit-mode . insert))
 (add-to-list 'meow-mode-state-list '(ediff-mode . disable))
 (add-to-list 'meow-mode-state-list '(vterm-mode . disable))
 (add-to-list 'meow-mode-state-list '(howm-menu-mode . disable))
 (add-to-list 'meow-mode-state-list '(howm-mode . disable))
 (add-to-list 'meow-mode-state-list '(hm . disable))
-(add-to-list 'meow-mode-state-list '(private-comments-edit-mode . disable))
+(add-to-list 'meow-mode-state-list '(private-comments-edit-mode . insert))
 (add-to-list 'meow-mode-state-list '(org-capture-mode . insert))
 
 (add-hook 'howm-menu-hook 'meow-disable-mode)
+
+(use-package meow-tree-sitter
+  :after meow
+  :defer t
+  :init
+  (meow-tree-sitter-register-defaults))
 
 ;; TODO
 ;; C-d Down a page

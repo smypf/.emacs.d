@@ -2,12 +2,12 @@
 (setq gc-cons-threshold (* 50 1000 1000))
 
 
-(add-to-list 'default-frame-alist '(ns-transparent-titlebar . t))
-(add-to-list 'default-frame-alist '(ns-appearance . light)) ;; assuming you are using a dark theme
-(setq ns-use-proxy-icon nil)
-(setq frame-title-format nil)
-(tool-bar-mode -1)
-
+(add-to-list 'default-frame-alist '(ns-transparent-titlebar . nil)) ;; Ensure that the title bar is shown
+(add-to-list 'default-frame-alist '(ns-appearance . light)) ;; Make the title bar match the appearance
+(add-to-list 'initial-frame-alist '(fullscreen . maximized)) ;; Start emacs maximised
+(setq ns-use-proxy-icon nil) ;; Hide the file icon in the title bar
+(tool-bar-mode -1) ;; Hide the icons in the title bar
+(select-frame-set-input-focus (selected-frame))
 ;; (unless window-system
 ;;  (add-to-list 'default-frame-alist '(undecorated . t)))
 
