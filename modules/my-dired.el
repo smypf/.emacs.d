@@ -15,6 +15,12 @@
 ;; Prevent new buffers from being created when navigating directories
 (setq dired-kill-when-opening-new-dired-buffer t)
 
+;; I never use list-directory and this bind gets in the way
+(use-package emacs
+  :defer t
+  :ensure nil
+  :bind ([remap list-directory] . dired))
+
 ;; Hide the "." and ".." directories
 ;; https://stackoverflow.com/a/43632653
 ;; (add-hook 'dired-mode-hook 'dired-omit-mode)
