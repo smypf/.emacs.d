@@ -18,7 +18,7 @@
   (if (and (fboundp 'native-comp-available-p)
            (native-comp-available-p))
       (progn
-        (message "Native comp is available")
+        ;; (message "Native comp is available")
         ;; Using Emacs.app/Contents/MacOS/bin since it was compiled with
         ;; ./configure --prefix="$PWD/nextstep/Emacs.app/Contents/MacOS"
         (add-to-list 'exec-path (concat invocation-directory "bin") t)
