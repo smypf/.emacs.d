@@ -290,12 +290,16 @@
   :commands smypf/copy-git-link
   :bind ("C-c f b" . smypf/copy-git-link))
 
-(defun smypf/copy-git-link ()
-  "Create a git link for the current buffer and copy it to the system clipboard."
-  (interactive)
+(defun smypf/copy-git-link (&optional arg)
+  "Create a git link for the current buffer and copy it to the system clipboard.
+With universal argument (C-u), also open the link in the browser."
+  (interactive "P")
   (when (call-interactively #'git-link)
 	(let ((latest-kill (current-kill 0)))
 	  (gui-select-text latest-kill)
+	  ;; Open in browser if universal argument is provided
+	  (when arg
+		(browse-url latest-kill))
 	  latest-kill)))
 
 
