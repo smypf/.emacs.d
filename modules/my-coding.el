@@ -21,39 +21,45 @@
 
 ;; This shouldn't be here.
 ;; There's a dependency that this needs to be first which I don't like
-(use-package flycheck
-  :ensure t
-  :commands (global-flycheck-mode)
-  :config
-  (global-flycheck-mode)
-  ((flycheck-add-mode 'javascript-eslint 'typescript-ts-mode)
-   (flycheck-add-mode 'javascript-eslint 'tsx-ts-mode)
-   (flycheck-add-mode 'javascript-eslint 'jsx-ts-mode)))
+;; (use-package flycheck
+;;   :ensure t
+;;   :commands (global-flycheck-mode)
+;;   :config
+;;   (global-flycheck-mode)
+;;   ((flycheck-add-mode 'javascript-eslint 'typescript-ts-mode)
+;;    (flycheck-add-mode 'javascript-eslint 'tsx-ts-mode)
+;;    (flycheck-add-mode 'javascript-eslint 'jsx-ts-mode)))
 
 (use-package eglot
-  :after flycheck
+  :disabled
+  ;; :after flycheck
   :defer nil
   :ensure nil
+  :preface
+  (defun mp-eglot-eldoc ()
+	(setq eldoc-documentation-strategy
+			'eldoc-documentation-compose-eagerly))
+  :hook ((eglot-managed-mode . mp-eglot-eldoc))
   :config
   (setq eglot-autoshutdown t
-        eglot-send-changes-idle-time 1
-        ;; Remove logging to speed up eglot when using TypeScript / Javascript
-        ;; https://www.reddit.com/r/emacs/comments/vau4x1/comment/ic6wd9i/
-        ;; eglot-events-buffer-size 0)
+		eglot-send-changes-idle-time 1
+		;; Remove logging to speed up eglot when using TypeScript / Javascript
+		;; https://www.reddit.com/r/emacs/comments/vau4x1/comment/ic6wd9i/
+		;; eglot-events-buffer-size 0)
 
-        ;; More speed
-        ;; https://www.reddit.com/r/emacs/comments/1b25904/comment/ksj593p/
-        ;; (fset #'jsonrpc--log-event #'ignore))
-        ;; (setf (plist-get eglot-events-buffer-config :size) 0))
-        ))
+		;; More speed
+		;; https://www.reddit.com/r/emacs/comments/1b25904/comment/ksj593p/
+		;; (fset #'jsonrpc--log-event #'ignore))
+		;; (setf (plist-get eglot-events-buffer-config :size) 0))
+		))
 
 (use-package consult-eglot
   :after consult
   :defer t)
 
-(use-package eglot-booster
-  :after eglot
-  :config	(eglot-booster-mode))
+;; (use-package eglot-booster
+;;   :after eglot
+;;   :config	(eglot-booster-mode))
 
 ;; Found via Hacker News
 ;; https://news.ycombinator.com/item?id=32903246
@@ -95,10 +101,10 @@
   (meow-normal-define-key '("N" . combobulate-key-map))
   (define-key combobulate-key-map "N" 'combobulate)
 
-  :custom
+  ;;:custom
   ;; You can customize Combobulate's key prefix here.
   ;; Note that you may have to restart Emacs for this to take effect!
-  (combobulate-key-prefix "C-c l")
+  ;; (combobulate-key-prefix "C-c l")
   :hook ((prog-mode . combobulate-mode))
   ;; Amend this to the directory where you keep Combobulate's source
   ;; code.
@@ -132,16 +138,16 @@
   (setq completion-category-defaults nil)
   ;; TODO this doesn't work as the hook doesn't exist. Need to determine an automatic way to eglot-ensure
   (add-to-list 'eglot-server-programs
-               '((python-ts-mode) . ("pyright-langserver" "--stdio"))))
+			   '((python-ts-mode) . ("pyright-langserver" "--stdio"))))
 
 (use-package tree-sitter-langs
   :after tree-sitter)
 
 (setq-default show-trailing-whitespace nil)
 
-(use-package consult-flycheck
-  :after flycheck-eglot
-  :defer t)
+;; (use-package consult-flycheck
+;;   :after flycheck-eglot
+;;   :defer t)
 
 (use-package markdown-mode
   :defer t
@@ -151,16 +157,16 @@
 (use-package emacs
   :ensure nil
   :bind (("C-c z c" . hs-hide-block)
-         ("C-c z o" . hs-show-block)
-         ("C-c z C" . hs-hide-all)
-         ("C-c z O" . hs-show-all))
+		 ("C-c z o" . hs-show-block)
+		 ("C-c z C" . hs-hide-all)
+		 ("C-c z O" . hs-show-all))
   :hook
   (prog-mode . hs-minor-mode)
   (prog-mode . whitespace-cleanup)
   ;; Could this be what is causing electric-pair-mode to be unhelpful?
   ;; (prog-mode . electric-pair-mode)
   (prog-mode . (lambda ()
-                 (setq-local show-trailing-whitespace t))))
+				 (setq-local show-trailing-whitespace t))))
 
 (use-package json-mode
   :defer t)
@@ -178,12 +184,12 @@
 (use-package jtsx
   :ensure t
   :mode (("\\.jsx?\\'" . jtsx-jsx-mode)
-         ("\\.tsx?\\'" . jtsx-tsx-mode))
+		 ("\\.tsx?\\'" . jtsx-tsx-mode))
   :commands jtsx-install-treesit-language
   :hook ((jtsx-jsx-mode . hs-minor-mode)
-         (jtsx-tsx-mode . hs-minor-mode)
-         (jtsx-jsx-mode . eglot-ensure)
-         (jtsx-tsx-mode . eglot-ensure))
+		 (jtsx-tsx-mode . hs-minor-mode)
+		 (jtsx-jsx-mode . eglot-ensure)
+		 (jtsx-tsx-mode . eglot-ensure))
   :custom
   (js-indent-level (symbol-value 'tab-width))
   (typescript-ts-mode-indent-offset (symbol-value 'tab-width))
@@ -199,24 +205,24 @@
   (add-hook 'jsx-ts-mode-hook 'eglot-ensure)
   (add-to-list 'auto-mode-alist '("\\.json\\'" . json-ts-mode))
   (defun jtsx-bind-keys-to-mode-map (mode-map)
-    "Bind keys to MODE-MAP."
-    (define-key mode-map (kbd "C-c C-j") 'jtsx-jump-jsx-element-tag-dwim)
-    (define-key mode-map (kbd "C-c j o") 'jtsx-jump-jsx-opening-tag)
-    (define-key mode-map (kbd "C-c j c") 'jtsx-jump-jsx-closing-tag)
-    (define-key mode-map (kbd "C-c j r") 'jtsx-rename-jsx-element)
-    (define-key mode-map (kbd "C-c <down>") 'jtsx-move-jsx-element-tag-forward)
-    (define-key mode-map (kbd "C-c <up>") 'jtsx-move-jsx-element-tag-backward)
-    (define-key mode-map (kbd "C-c C-<down>") 'jtsx-move-jsx-element-forward)
-    (define-key mode-map (kbd "C-c C-<up>") 'jtsx-move-jsx-element-backward)
-    (define-key mode-map (kbd "C-c C-S-<down>") 'jtsx-move-jsx-element-step-in-forward)
-    (define-key mode-map (kbd "C-c C-S-<up>") 'jtsx-move-jsx-element-step-in-backward)
-    (define-key mode-map (kbd "C-c j w") 'jtsx-wrap-in-jsx-element))
+	"Bind keys to MODE-MAP."
+	(define-key mode-map (kbd "C-c C-j") 'jtsx-jump-jsx-element-tag-dwim)
+	(define-key mode-map (kbd "C-c j o") 'jtsx-jump-jsx-opening-tag)
+	(define-key mode-map (kbd "C-c j c") 'jtsx-jump-jsx-closing-tag)
+	(define-key mode-map (kbd "C-c j r") 'jtsx-rename-jsx-element)
+	(define-key mode-map (kbd "C-c <down>") 'jtsx-move-jsx-element-tag-forward)
+	(define-key mode-map (kbd "C-c <up>") 'jtsx-move-jsx-element-tag-backward)
+	(define-key mode-map (kbd "C-c C-<down>") 'jtsx-move-jsx-element-forward)
+	(define-key mode-map (kbd "C-c C-<up>") 'jtsx-move-jsx-element-backward)
+	(define-key mode-map (kbd "C-c C-S-<down>") 'jtsx-move-jsx-element-step-in-forward)
+	(define-key mode-map (kbd "C-c C-S-<up>") 'jtsx-move-jsx-element-step-in-backward)
+	(define-key mode-map (kbd "C-c j w") 'jtsx-wrap-in-jsx-element))
 
   (defun jtsx-bind-keys-to-jtsx-jsx-mode-map ()
-    (jtsx-bind-keys-to-mode-map jtsx-jsx-mode-map))
+	(jtsx-bind-keys-to-mode-map jtsx-jsx-mode-map))
 
   (defun jtsx-bind-keys-to-jtsx-tsx-mode-map ()
-    (jtsx-bind-keys-to-mode-map jtsx-tsx-mode-map))
+	(jtsx-bind-keys-to-mode-map jtsx-tsx-mode-map))
 
   (add-hook 'jtsx-jsx-mode-hook 'jtsx-bind-keys-to-jtsx-jsx-mode-map)
   (add-hook 'jtsx-tsx-mode-hook 'jtsx-bind-keys-to-jtsx-tsx-mode-map))
@@ -259,7 +265,7 @@
   (indent-bars-treesit-ignore-blank-lines-types '("module"))
   ;; Add other languages as needed
   (indent-bars-treesit-scope '((python function_definition class_definition for_statement
-      if_statement with_statement while_statement)))
+	  if_statement with_statement while_statement)))
   ;; Note: wrap may not be needed if no-descend-list is enough
   ;;(indent-bars-treesit-wrap '((python argument_list parameters ; for python, as an example
   ;;                      list list_comprehension

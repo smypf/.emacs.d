@@ -19,7 +19,7 @@
 
   (cond
    ((file-exists-p "/opt/homebrew/bin/fish")
-    (setq shell-file-name "/opt/homebrew/bin/fish")))
+	(setq shell-file-name "/opt/homebrew/bin/fish")))
 
   ;; For some reason esc u u is bound to 'upcase-word which is a friction point for me.
   ;; This unbinds it.
@@ -30,18 +30,27 @@
 
   ;; https://stackoverflow.com/questions/27142996/electric-pair-mode-dont-pair-if-cursor-precedes-a-non-whitespace-character
   (setq electric-pair-preserve-balance nil
-        electric-pair-inhibit-predicate 'electric-pair-conservative-inhibit)
+		electric-pair-inhibit-predicate 'electric-pair-conservative-inhibit)
 
   ;; Confirm closing emacs
   (setq confirm-kill-emacs 'y-or-n-p)
 
-  ;; Change to y-or-n-p when killing buffer that contains changes.
-  ;; https://emacs.stackexchange.com/questions/22569/kill-buffer-with-y-or-n-p-instead-of-yes-or-no-p
-  (defun yes-or-no-p->-y-or-n-p (orig-fun &rest r)
-    (cl-letf (((symbol-function 'yes-or-no-p) #'y-or-n-p))
-      (apply orig-fun r)))
+  ;; ;; Change to y-or-n-p when killing buffer that contains changes.
+  ;; ;; https://emacs.stackexchange.com/questions/22569/kill-buffer-with-y-or-n-p-instead-of-yes-or-no-p
+  ;; (defun yes-or-no-p@maybe-just-y-or-n-p (orig-fun prompt)
+  ;; (funcall
+  ;;  (if (eq this-command 'kill-buffer)
+  ;;      #'y-or-n-p
+  ;;    #'yes-or-no-p)
+  ;;  prompt))
 
-  (advice-add 'kill-buffer :around #'yes-or-no-p->-y-or-n-p)
+  ;; (advice-add 'yes-or-no-p :around #'yes-or-no-p@maybe-just-y-or-n-p)
+
+                                        ; (defun yes-or-no-p->-y-or-n-p (orig-fun &rest r)
+                                        ;   (cl-letf (((symbol-function 'yes-or-no-p) #'y-or-n-p))
+                                        ;     (apply orig-fun r)))
+
+                                        ;(advice-add 'kill-buffer :around #'yes-or-no-p->-y-or-n-p)
 
   ;; ediff
   ;; Split windows horizontally
@@ -54,11 +63,11 @@
 
   ;; disable scrollbars in vertical frames
   (add-to-list 'default-frame-alist
-               '(vertical-scroll-bars . nil))
+			   '(vertical-scroll-bars . nil))
 
   ;; Change the minimum level of messages to error
-  ;(setq native-comp-async-report-warnings-errors 'silent)
-  ;(setq warning-minimum-level :error)
+                                        ;(setq native-comp-async-report-warnings-errors 'silent)
+                                        ;(setq warning-minimum-level :error)
 
   ;; move backups to a different directory to prevent it being present in the git status
   ;; https://stackoverflow.com/a/151946

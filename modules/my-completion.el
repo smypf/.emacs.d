@@ -192,7 +192,7 @@
 (use-package orderless
   :defer t
   :init
-  (setq completion-styles '(orderless))
+  ;; (setq completion-styles '(orderless))
   :commands (orderless-filter))
 
 ;; This give better sorting
@@ -208,7 +208,8 @@
   (setq fussy-filter-fn 'fussy-filter-orderless)
   ;;(setq fussy-filter-fn 'fussy-filter-orderless-flex)
 
-  (push 'fussy completion-styles)
+  ;; (setq completion-styles '(orderless))
+  (setq completion-styles '(fussy))
   (setq
    ;; For example, project-find-file uses 'project-files which uses
    ;; substring completion by default. Set to nil to make sure it's using

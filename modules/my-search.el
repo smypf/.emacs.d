@@ -11,6 +11,7 @@
 
 ;;; Code:
 
+;; TODO: create function which returns `switch-to-buffer-other-window` when not on the scratch buffer. otherwise use the current window and set deadgrep-display-buffer-function to use this function
 (use-package  deadgrep
   :ensure t
   :defer t

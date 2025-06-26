@@ -43,20 +43,20 @@
 
 ;; base purple - #dfcee7
 ;; analogous - #e7cee3 & #d3cee7
-(let ((fg                "#444444")
-      (bg                "#fffff8")
+(let ((fg                "#444444") ; 68 68 68
+      (bg                "#fffff8") ; 255 255 248
 
-      (comment           "#c1c1bd")
+      (comment           "#c1c1bd") ; 193 193 189
 
-      (bg-highlight      "#fff1aa")
+      (bg-highlight      "#fff1aa") ; 255 241 170
       (bg-highlight-2    "LightCyan")
       (bg-highlight-3    "LightGreen")
       (hl-line-bg        "#f4f4e8")
 
-      (isearch-bg        "#d3cee7")
-      (lazy-highlight-bg "#e1c5e8")
-      (purple-bg         "#dfcee7")
-      (dark-purple       "#8b4d9e")
+      (isearch-bg        "#d3cee7") ; 211 206 231
+      (lazy-highlight-bg "#e1c5e8") ; 225 197 232
+      (purple-bg         "#dfcee7") ; 223 206 231
+      (dark-purple       "#8b4d9e") ; 139 77 158
 
       ;; Previously used colours which are still referenced below
       ;; (fg-table          "#222291")
@@ -134,7 +134,8 @@
    `(doom-modeline-evil-normal-state ((t (:foreground ,fg))))
    `(doom-modeline-lsp-success ((t (:foreground ,fg))))
    `(doom-modeline-buffer-modified ((t (:foreground ,dark-purple :weight bold))))
-   `(doom-modeline-urgent ((t (:foreground ,dark-purple))))
+   ;`(doom-modeline-urgent ((t (:foreground ,dark-purple))))
+   `(doom-modeline-urgent ((t (:inherit error))))
    `(doom-modeline-bar ((t (:inherit mode-line))))
 
 
@@ -142,10 +143,10 @@
                               ;; :box '(:line-width 3 :color ,bg :style nil)
                               ))))
    `(tab-bar-tab ((t (:background ,purple-bg :foreground ,fg
-                                  :box '(:line-width (3. 3) :color ,purple-bg)
+   ;                                :box '(:line-width (3. 3) :color ,purple-bg)
                                   ))))
    `(tab-bar-tab-inactive ((t (:background ,bg :foreground ,comment
-                                           :box '(:line-width (3 . 3) :color ,bg)
+   ;                                         :box '(:line-width (3 . 3) :color ,bg)
                                            ))))
 
 
@@ -223,6 +224,7 @@
    ;; flycheck
    `(flycheck-error ((t (:inherit error))))
    `(flycheck-warning ((t (:inherit warning))))
+   `(eglot-diagnostic-tag-unnecessary-face ((t (:inherit error))))
 
    ;; dired
    `(dired-directory ((t (:weight bold))))
@@ -479,7 +481,7 @@
    `(markdown-code-face ((t (:inherit default))))
 
    `(combobulate-query-highlight-serene-shade-face ((t (:inherit default))))
-   
+
    `(sh-quoted-exec ((t (:inherit normal))))
 
    `(help-key-binding ((t (:inherit fixed-pitch :background ,purple-bg :foreground ,fg :box nil))))))

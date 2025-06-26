@@ -20,52 +20,65 @@
 
   ;; See `trash-directory' as it requires defining `system-move-file-to-trash'.
   (defun system-move-file-to-trash (file)
-    "Use \"trash\" to move FILE to the system trash."
-    (cl-assert (executable-find "trash") nil "'trash' must be installed. Needs \"brew install trash\"")
-    (call-process "trash" nil 0 nil "-F"  file))
+	"Use \"trash\" to move FILE to the system trash."
+	(cl-assert (executable-find "trash") nil "'trash' must be installed. Needs \"brew install trash\"")
+	(call-process "trash" nil 0 nil "-F"  file))
   (defun isolate-kill-ring()
-    "Isolate Emacs kill ring from OS X system pasteboard.
+	"Isolate Emacs kill ring from OS X system pasteboard.
 This function is only necessary in window system."
-    (interactive)
-    (setq interprogram-cut-function nil)
-    (setq interprogram-paste-function nil))
+	(interactive)
+	(setq interprogram-cut-function nil)
+	(setq interprogram-paste-function nil))
 
 
   ;; https://gist.github.com/zmwangx/faf7c442ce3f43d85ba2
   (defun pasteboard-copy()
-    "Copy region to OS X system pasteboard."
-    (interactive)
-    (shell-command-on-region
-     (region-beginning) (region-end) "pbcopy"))
+	"Copy region to OS X system pasteboard."
+	(interactive)
+	(shell-command-on-region
+	 (region-beginning) (region-end) "pbcopy"))
 
   (defun pasteboard-paste()
-    "Paste from OS X system pasteboard via `pbpaste' to point."
-    (interactive)
-    (shell-command-on-region
-     (point) (if mark-active (mark) (point)) "pbpaste" nil t))
+	"Paste from OS X system pasteboard via `pbpaste' to point."
+	(interactive)
+	(shell-command-on-region
+	 (point) (if mark-active (mark) (point)) "pbpaste" nil t))
 
   (defun pasteboard-cut()
-    "Cut region and put on OS X system pasteboard."
-    (interactive)
-    (pasteboard-copy)
-    (delete-region (region-beginning) (region-end)))
+	"Cut region and put on OS X system pasteboard."
+	(interactive)
+	(pasteboard-copy)
+	(delete-region (region-beginning) (region-end)))
 
   (if window-system
-      (progn
-        (isolate-kill-ring)
-        ;; bind CMD+C to pasteboard-copy
-        (global-set-key (kbd "s-c") 'pasteboard-copy)
-        ;; bind CMD+V to pasteboard-paste
-        (global-set-key (kbd "s-v") 'pasteboard-paste)
-        ;; bind CMD+X to pasteboard-cut
-        (global-set-key (kbd "s-x") 'pasteboard-cut)))
+	  (progn
+		(isolate-kill-ring)
+		;; bind CMD+C to pasteboard-copy
+		(global-set-key (kbd "s-c") 'pasteboard-copy)
+		;; bind CMD+V to pasteboard-paste
+		(global-set-key (kbd "s-v") 'pasteboard-paste)
+		;; bind CMD+X to pasteboard-cut
+		(global-set-key (kbd "s-x") 'pasteboard-cut)))
   ;; you might also want to assign some keybindings for non-window
   ;; system usage (i.e., in your text terminal, where the
   ;; command->super does not work)
+
+  (defun smypf/copy-file-path-to-clipboard ()
+	"Copy the full path of the current file or dired file at point to the clipboard using pbcopy."
+	(interactive)
+	(let ((file-path (if (eq major-mode 'dired-mode)
+						 (dired-get-file-for-visit)
+					   (or buffer-file-name
+						   (user-error "Current buffer is not visiting a file")))))
+	  (when file-path
+		(shell-command (format "echo -n %s | pbcopy" (shell-quote-argument file-path)))
+		(message "Copied: %s" file-path))))
+
+  (global-set-key (kbd "C-c f c") 'smypf/copy-file-path-to-clipboard)
   )
 
 (if (eq system-type 'darwin)
-    (setup-osx))
+	(setup-osx))
 
 
 ;;; Package:

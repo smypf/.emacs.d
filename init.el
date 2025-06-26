@@ -4,6 +4,32 @@
 ;;; Most of the stuff is in module files.  These are located in the `/module` folder
 ;;; Code:
 
+;; Set up melpa which is a package host
+(require 'package)
+(add-to-list 'package-archives
+			 '("melpa" . "https://melpa.org/packages/"))
+
+;; Compile Angel
+                                        ; (use-package compile-angel
+                                        ;   :ensure t
+                                        ;   :demand t
+                                        ;   :custom
+                                        ;   (compile-angel-verbose nil)
+                                        ;   :config
+                                        ;   (with-eval-after-load "recentf"
+                                        ;   (push (concat "/" (file-name-nondirectory recentf-save-file))
+                                        ;         compile-angel-excluded-files))
+
+                                        ;   (push ".emacs.d/init.el" compile-angel-excluded-files)
+                                        ;   (push ".emacs.d/early-init.el" compile-angel-excluded-files)
+
+                                        ;   (setq compile-angel-predicate-function
+                                        ;       (lambda (file)
+                                        ;         (and (not (file-in-directory-p file (expand-file-name "modules/" user-emacs-directory))))))
+                                        ;   (compile-angel-on-load-mode)
+                                        ;   (add-hook 'emacs-lisp-mode-hook #'compile-angel-on-save-local-mode))
+
+
 
 ;; settings to speedup initialisation
 (setq gc-cons-threshold (* 32 1024 1024))
@@ -24,14 +50,10 @@
 
 ;; if you don't use RTL ever, this could improve perf
 (setq-default bidi-display-reordering 'left-to-right
-              bidi-paragraph-direction 'left-to-right
-              bidi-inhibit-bpa t)
+			  bidi-paragraph-direction 'left-to-right
+			  bidi-inhibit-bpa t)
 
 
-;; Set up melpa which is a package host
-(require 'package)
-(add-to-list 'package-archives
-             '("melpa" . "https://melpa.org/packages/"))
 
 ;; Setting this significantly increases the statup time as packages are refreshed from melpa
 ;; See C-h f package-refresh-contents
@@ -45,8 +67,13 @@
   ;; Following line is not needed if use-package.el is in ~/.emacs.d
   (add-to-list 'load-path (expand-file-name "elpa/" user-emacs-directory))
   (unless (package-installed-p 'use-package)
-    (require 'use-package)))
-(setq use-package-always-ensure t)
+	(require 'use-package)))
+
+;; Enable this to allow use-package-report to show package start time
+(use-package use-package
+  :ensure t
+  :custom
+  (use-package-compute-statistics t))
 
 ;; Benchmark startup times
 ;; Comment out this to enable benchmarking of startup
@@ -71,15 +98,19 @@
 (require 'my-org)
 (require 'my-projectile)
 (require 'my-node)
+(require 'my-rust)
 (require 'my-coding)
 (require 'my-utility)
+(require 'my-popper)
 (require 'my-system)
 (require 'my-tab-bar)
 (require 'my-native-comp)
 (require 'my-atlassian)
 (require 'my-search)
+(require 'my-ai)
+(require 'my-vterm)
+(require 'my-gumshoe)
 
-;;(require 'my-vterm)
 ;;(require 'my-golang)
 ;;(require 'my-restclient)
 
@@ -100,6 +131,7 @@
   (global-set-key (kbd "<mouse-4>") 'scroll-down-line)
   (global-set-key (kbd "<mouse-5>") 'scroll-up-line))
 
+(setq use-package-compute-statistics t)
 ;; For compiling files. This needs to be moved into a file which is only called sometimes.
 ;; See https://github.com/gilbertw1/emacs-literate-starter
 ;; (setq byte-compile-warnings '(not free-vars unresolved noruntime lexical make-local))
@@ -112,40 +144,60 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
-   '("308632d8369829e0c3610b73a3d1c708db68f4487d66be2760bc82a1102a288e" "4dfdc4ee3b5ace84c2c306596e53f02478e0cbe9d35471d161832488ad4713af" "c63281bceaa0ab53b694c28390f9e927e1e17a26ee1af52ca61ba7a49a2cdf6b" "e7820b899036ae7e966dcaaec29fd6b87aef253748b7de09e74fdc54407a7a02" "1781e8bccbd8869472c09b744899ff4174d23e4f7517b8a6c721100288311fa5" "cdab8585cf30d8ae482b4d5bb5dd2de3cd8d0a486b0b90da1958ed04c187363b" "021321ae56a45794f43b41de09fb2bfca184e196666b7d7ff59ea97ec2114559" "40d29cf577515779b178069a54d998a3da35a28b5d42246e4006dbdf7cf4b7a5" "f0393dbed2e12400391e2845e7443d92fbbc109a6a5b68549db416ffa9a7d26a" "43723b620f335ac047727a9dc13cb629b74a7c23349e9b5e0e6535dd662dadc4" "96ac3799e504479c862cce31b6882274fa4ad9490c57ccfab81c1bfb8c326795" "77ccee107184be05753c15ba11cae1f4f03012505969d46c4e3d76cac264e077" "3848c2c3e7a48d6dec6defbd5a90ea6f8c03c4aac835461ead0c2bef7651a174" "c6d63b27dea1738060614c48ce48cee42ee82ce27263dbd612a9230c86a4a8eb" "f98c6f84330f1f3490021c1f0ccb9f7e90797df0f2700fe3bd7fe8ad4dd67369" "680ba271ab61df49c4f8464b6f4d04b5bb2965691cec658bbd16bd8039faf69b" default))
+   '("308632d8369829e0c3610b73a3d1c708db68f4487d66be2760bc82a1102a288e"
+	 "4dfdc4ee3b5ace84c2c306596e53f02478e0cbe9d35471d161832488ad4713af"
+	 "c63281bceaa0ab53b694c28390f9e927e1e17a26ee1af52ca61ba7a49a2cdf6b"
+	 "e7820b899036ae7e966dcaaec29fd6b87aef253748b7de09e74fdc54407a7a02"
+	 "1781e8bccbd8869472c09b744899ff4174d23e4f7517b8a6c721100288311fa5"
+	 "cdab8585cf30d8ae482b4d5bb5dd2de3cd8d0a486b0b90da1958ed04c187363b"
+	 "021321ae56a45794f43b41de09fb2bfca184e196666b7d7ff59ea97ec2114559"
+	 "40d29cf577515779b178069a54d998a3da35a28b5d42246e4006dbdf7cf4b7a5"
+	 "f0393dbed2e12400391e2845e7443d92fbbc109a6a5b68549db416ffa9a7d26a"
+	 "43723b620f335ac047727a9dc13cb629b74a7c23349e9b5e0e6535dd662dadc4"
+	 "96ac3799e504479c862cce31b6882274fa4ad9490c57ccfab81c1bfb8c326795"
+	 "77ccee107184be05753c15ba11cae1f4f03012505969d46c4e3d76cac264e077"
+	 "3848c2c3e7a48d6dec6defbd5a90ea6f8c03c4aac835461ead0c2bef7651a174"
+	 "c6d63b27dea1738060614c48ce48cee42ee82ce27263dbd612a9230c86a4a8eb"
+	 "f98c6f84330f1f3490021c1f0ccb9f7e90797df0f2700fe3bd7fe8ad4dd67369"
+	 "680ba271ab61df49c4f8464b6f4d04b5bb2965691cec658bbd16bd8039faf69b" default))
+ '(eldoc-echo-area-use-multiline-p nil)
  '(global-display-line-numbers-mode t)
+ '(gumshoe-prefer-same-window t)
  '(jest-test-options nil)
  '(jinx-camel-modes
-   '(java-mode java-ts-mode js-mode js-ts-mode ruby-mode ruby-ts-mode rust-mode rust-ts-mode haskell-mode kotlin-mode swift-mode csharp-mode csharp-ts-mode objc-mode typescript-ts-mode typescript-mode python-mode python-ts-mode dart-mode go-mode go-ts-mode scala-mode groovy-mode tsx-ts-mode typescript-ts-mode))
+   '(java-mode java-ts-mode js-mode js-ts-mode ruby-mode ruby-ts-mode rust-mode rust-ts-mode haskell-mode kotlin-mode
+			   swift-mode csharp-mode csharp-ts-mode objc-mode typescript-ts-mode typescript-mode python-mode
+			   python-ts-mode dart-mode go-mode go-ts-mode scala-mode groovy-mode tsx-ts-mode typescript-ts-mode))
+ '(magit-process-apply-ansi-colors t nil nil "Customized with use-package magit")
  '(meow-tree-sitter-major-mode-language-alist
-   '(("c++" . "cpp")
-     ("ess-r" . "r")
-     ("js" . "javascript")
-     ("js2" . "javascript")
-     ("js3" . "javascript")
-     ("rjsx" . "javascript")
-     ("rustic" . "rust")
-     ("sh" . "bash")
-     ("shell-script" . "bash")
-     ("tsx" . "typescript")
-     ("jtsx-jsx" . "javascript")
-     ("jtsx-tsx" . "typescript")))
+   '(("c++" . "cpp") ("ess-r" . "r") ("js" . "javascript") ("js2" . "javascript") ("js3" . "javascript")
+	 ("rjsx" . "javascript") ("rustic" . "rust") ("sh" . "bash") ("shell-script" . "bash") ("tsx" . "typescript")
+	 ("jtsx-jsx" . "javascript") ("jtsx-tsx" . "typescript")))
  '(org-export-backends '(ascii html icalendar latex md odt))
  '(package-selected-packages
-   '(lua-mode meow-tree-sitter indent-bars casual-re-builder casual-isearch casual-ibuffer casual-bookmarks combobulate markdown-mode consult-flycheck flycheck tree-sitter-langs tree-sitter treesit-auto devdocs private-comments-mode consult-eglot jinx balanced-windows shackle popper helpful which-key vertico-posframe jsdoc rg dot-mode hideshowvis deadgrep yaml editorconfig fuz-bin binky centered-cursor-mode auto-dim-other-buffers eldoc-box gumshoe eglot-booster howm dape jtsx dumb-jump jest-test-mode plz-see surround pcre2el visual-regexp-steroids visual-regexp-steriods visual-regexp visual-regex-steriods visual-regex hide-mode-line mistty olivetti smart-delete flycheck-hl-todo hl-todo-flycheck hl-todo highlight almost-mono-themes fuz compile-multi flycheck-eglot wgrep noccur imenu-list reveal-in-osx-finder org-jira ztree dired-sidebar binky-mode transpose-frame multi-compile magit-todos csv-mode fold-this exec-path-from-shell consult-git-log-grep backward-forward benchmark-init dirvish rainbow-mode yasnippet flymake-cursor company xclip doom-modeline no-littering eglot general consult vertico magit use-package vterm))
+   '(abridge-diff apheleia balanced-windows cape compile-angel consult-eglot copilot corfu dape deadgrep
+				  devdocs dogears doom-modeline editorconfig eglot-booster embark-consult exec-path-from-shell fussy
+				  fuz-bin git-link gptel gumshoe helpful highlight howm indent-bars jinx jira json-mode jtsx lua-mode
+				  magit meow-tree-sitter no-littering orderless org-contrib ox-jira pleasant-monochromish-theme popper
+				  private-comments-mode projectile rainbow-mode repeat-fu reveal-in-osx-finder rg rustic shackle
+				  smart-delete surround tree-sitter-langs treesit-auto ultra-scroll vertico visual-fill-column
+				  visual-regexp vterm which-key xclip))
  '(package-vc-selected-packages
-   '((fuz-bin :vc-backend Git :url "https://github.com/jcs-legacy/fuz-bin")
-     (eglot-booster :vc-backend Git :url "https://github.com/jdtsmith/eglot-booster")
-     (tree-sitter-langs :vc-backend Git :url "https://github.com/emacs-tree-sitter/tree-sitter-langs")
-     (combobulate :vc-backend Git :url "https://github.com/mickeynp/combobulate")))
+   '((copilot :vc-backend Git :url "https://github.com/copilot-emacs/copilot.el")
+	 (ultra-scroll :vc-backend Git :url "https://github.com/jdtsmith/ultra-scroll")
+	 (fuz-bin :vc-backend Git :url "https://github.com/jcs-legacy/fuz-bin")
+	 (eglot-booster :vc-backend Git :url "https://github.com/jdtsmith/eglot-booster")
+	 (tree-sitter-langs :vc-backend Git :url "https://github.com/emacs-tree-sitter/tree-sitter-langs")
+	 (combobulate :vc-backend Git :url "https://github.com/mickeynp/combobulate")))
  '(popper-mode-line '(:eval (propertize " POP " 'face 'mode-line-emphasis)))
  '(safe-local-variable-values
-   '((eval magit-disable-selction-inserter 'magit-insert-unpulled-from-pushremote)
-     (eval magit-disable-selection-inserter 'magit-insert-unpushed-to-pushremote)
-     (smypf-compile-items quote
-              ("parent; cd platform; yarn test -- packages/uip/volt"))
-     (magit-refresh-buffers)
-     (smypf-compile-items "parent; cd platform; yarn test -- packages/uip/frontkit")))
+   '((smypf-compile-items quote ("root platform; nvm use; yarn test -- services/volt-playground/"))
+	 (smypf-compile-items quote ("root platform; nvm use; yarn test -- packages/uip/pillar/"))
+	 (smypf-compile-items quote ("root; cd platform; nvm use; yarn test -- packages/uip/pillar/"))
+	 (eval magit-disable-selction-inserter 'magit-insert-unpulled-from-pushremote)
+	 (eval magit-disable-selection-inserter 'magit-insert-unpushed-to-pushremote)
+	 (smypf-compile-items quote ("parent; cd platform; yarn test -- packages/uip/volt")) (magit-refresh-buffers)
+	 (smypf-compile-items "parent; cd platform; yarn test -- packages/uip/frontkit")))
  '(tab-bar-mode t)
  '(vr/engine python3))
 

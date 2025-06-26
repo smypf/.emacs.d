@@ -19,9 +19,13 @@
                           :family "Fira Code"
                           :height 140
                           :weight 'normal
-                          :width 'normal)))
+                          :width 'normal)
+      (menu-bar-mode t)))
 
-  (menu-bar-mode -1)
+(if (daemonp)
+    (progn
+      (menu-bar-mode -1)))
+
 ;; Disable audio bells which are annoying
 ;; (setq visible-bell 1)
 ;; https://www.emacswiki.org/emacs/AlarmBell
@@ -54,6 +58,10 @@
 
 ;; Add line numbers globally
 (global-display-line-numbers-mode)
+
+
+;; Hide cursor in buffers which aren't selected.
+(setq-default cursor-in-non-selected-windows nil)
 
 ;; Use hl-line-mode everywhere
 ;; This makes it easier to see which line the cursor is on
@@ -101,8 +109,8 @@
 
 ;; Set the initial buffer to the scratch buffer
 (setq inhibit-startup-message t
-	  ;; Set a different message
-	  initial-scratch-message ";; I am focused\n\n")
+      ;; Set a different message
+      initial-scratch-message ";; I am focused\n\n")
 
 ;; Allow for pressing `y` and `n` instead of having to type yesRET or noRET
 (defalias 'yes-or-no-p 'y-or-n-p)

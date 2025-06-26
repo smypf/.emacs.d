@@ -17,6 +17,8 @@
   :hook
   ;; Disable line numbers for vterm mode
   (vterm-mode . (lambda() (display-line-numbers-mode -1)))
+  :bind
+  ("C-c \"" . vterm)
 )
 
 ;; (general-define-key

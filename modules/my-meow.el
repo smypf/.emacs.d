@@ -16,21 +16,45 @@
   ;; bind SPC to Meow Keypad in magit status
   (define-key magit-status-mode-map (kbd "SPC") #'meow-keypad))
 
+;; Variable to track consecutive 'q' presses on scratch buffer
+(defvar smypf-scratch-q-counter 0
+  "Counter for consecutive 'q' presses on the scratch buffer.")
+
+;; Variable to store original confirm-kill-emacs value
+(defvar smypf-original-confirm-kill-emacs nil
+  "Original value of confirm-kill-emacs before modification.")
 
 (defun smypf-meow-quit ()
   "A better way of handling close panes.
 
 Close the window if there is more than one buffer.
-If there is only one buffer go to the *scratch* buffer."
+If there is only one buffer go to the *scratch* buffer.
+If there is more than one frame and user is on scratch buffer, close the frame.
+If the user presses q three times on the scratch buffer, exit emacs."
   (interactive)
 
   (if (bound-and-true-p magit-blame-read-only-mode)
-      (magit-blame-quit)
-    (if (> (count-windows) 1)
-        (delete-window)
-      (if (> (length (tab-bar-tabs)) 1)
-          (tab-bar-close-tab)
-        (switch-to-buffer "*scratch*")))))
+	  (magit-blame-quit)
+	(if (> (count-windows) 1)
+		(delete-window)
+	  (if (> (length (tab-bar-tabs)) 1)
+		  (tab-bar-close-tab)
+		(if (string= (buffer-name) "*scratch*")
+			(progn
+			  (setq smypf-scratch-q-counter (1+ smypf-scratch-q-counter))
+			  (if (>= smypf-scratch-q-counter 3)
+				  (progn
+					(setq smypf-original-confirm-kill-emacs confirm-kill-emacs)
+					(setq confirm-kill-emacs nil)
+					(save-buffers-kill-emacs)
+					(setq confirm-kill-emacs smypf-original-confirm-kill-emacs)
+		            (setq smypf-scratch-q-counter 1))
+				(if (> (length (frame-list)) 1)
+					(delete-frame)
+				  (message "Press 'q' %d more time(s) to exit Emacs" (- 3 smypf-scratch-q-counter)))))
+		  (progn
+			(setq smypf-scratch-q-counter 0)
+			(switch-to-buffer "*scratch*")))))))
 
 (defun meow-qwerty-setup ()
   ;; https://emacs.stackexchange.com/questions/45401/why-cant-i-bind-my-function-to-a-key-or-call-it-with-m-x
@@ -75,7 +99,7 @@ If there is only one buffer go to the *scratch* buffer."
    '("-" . negative-argument)
    '("=" . indent-region)
    '(";" . meow-reverse)
-   '(":" . execute-extended-command)
+   '(":" . meow-execute-extended-command)
    '("," . meow-inner-of-thing)
    '("." . meow-bounds-of-thing)
    '("[" . meow-beginning-of-thing)
@@ -164,7 +188,7 @@ If there is only one buffer go to the *scratch* buffer."
    '("-" . negative-argument)
    '("=" . indent-region)
    '(";" . meow-reverse)
-   '(":" . execute-extended-command)
+   '(":" . meow-execute-extended-command)
    '("," . meow-inner-of-thing)
    '("." . meow-bounds-of-thing)
    '("[" . meow-beginning-of-thing)
@@ -267,7 +291,7 @@ If there is only one buffer go to the *scratch* buffer."
  ;; '("wh" . back-window)
 
  ;; Open Magit
- '("G" . magit)
+ '("G" . smypf/magit-with-buffer-management)
 
  ;; Searching
  ;;'("/" . consult-ripgrep) - replaced with deadgrep
@@ -291,7 +315,7 @@ If there is only one buffer go to the *scratch* buffer."
  '("cl" . xref-list-references)
  '("cr" . eglot-rename)
  '("ca" . eglot-code-actions)
- '("ce" . consult-flycheck)
+ '("ce" . consult-flymake)
  '("cs" . consult-eglot-symbols)
  '("cf" . backward-forward-next-location)
  '("cb" . backward-forward-previous-location)
@@ -311,7 +335,7 @@ If there is only one buffer go to the *scratch* buffer."
  '("bb" . consult-buffer)
  '("bk" . kill-buffer)
  '("B" . consult-buffer)
-                                        ;'("," . consult-buffer)
+										;'("," . consult-buffer)
 
  '("X" . org-capture)
  )

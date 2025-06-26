@@ -1,3 +1,15 @@
+;; Compile Angel
+;; Ensure Emacs loads the most recent byte-compiled files.
+(setq load-prefer-newer t)
+
+;; Ensure JIT compilation is enabled for improved performance by
+;; native-compiling loaded .elc files asynchronously
+(setq native-comp-jit-compilation t)
+(setq native-comp-deferred-compilation t) ; Deprecated in Emacs > 29.1
+
+
+
+
 ;; Prevent pauses due to garbage collection by increasing the threshold
 (setq gc-cons-threshold (* 50 1000 1000))
 
