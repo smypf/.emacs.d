@@ -1,6 +1,5 @@
 auto-save-list
 eln-cache
-elps
 transient
 projectile-bookmarks.eld
 elpa
@@ -9,3 +8,5 @@ var
 history
 projects
 straight
+
+debug-adapters
