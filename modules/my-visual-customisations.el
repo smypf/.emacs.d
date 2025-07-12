@@ -13,18 +13,18 @@
 
 ;; Disable the menu bar which is not useful in the terminal
 (if window-system
-    (progn
-      (scroll-bar-mode -1)
-      (set-face-attribute 'default nil
-                          :family "Fira Code"
-                          :height 140
-                          :weight 'normal
-                          :width 'normal)
-      (menu-bar-mode t)))
+	(progn
+	  (scroll-bar-mode -1)
+	  (set-face-attribute 'default nil
+						  :family "Fira Code"
+						  :height 140
+						  :weight 'normal
+						  :width 'normal)
+	  (menu-bar-mode t)))
 
 (if (daemonp)
-    (progn
-      (menu-bar-mode -1)))
+	(progn
+	  (menu-bar-mode -1)))
 
 ;; Disable audio bells which are annoying
 ;; (setq visible-bell 1)
@@ -37,16 +37,16 @@
   :init (doom-modeline-mode)
   :config
   (setq doom-modeline-major-mode-icon nil
-        doom-modeline-vcs-max-length 40
-        doom-modeline-workspace-name nil
-        doom-modeline-buffer-encoding nil
-        doom-modeline-persp-name nil
-        doom-modeline-persp-icon t
-        doom-modeline-bar-width 2
-        doom-modeline-buffer-state-icon nil
-        doom-modeline-check-icon nil
-        doom-modeline-icon nil
-        doom-modeline-buffer-file-name-style 'relative-to-project))
+		doom-modeline-vcs-max-length 40
+		doom-modeline-workspace-name nil
+		doom-modeline-buffer-encoding nil
+		doom-modeline-persp-name nil
+		doom-modeline-persp-icon t
+		doom-modeline-bar-width 2
+		doom-modeline-buffer-state-icon nil
+		doom-modeline-check-icon nil
+		doom-modeline-icon nil
+		doom-modeline-buffer-file-name-style 'relative-to-project))
 
 
 ;; Setup my theme to be used
@@ -99,18 +99,18 @@
 ;; Change highlighting while searching
 ;; Perhaps change the `/` button to `consult-line`
 ;; This was disabled in favour of 'evil-search. See modules/my-evil.el
-                                        ; (setq lazy-highlight-cleanup nil
-                                        ;       lazy-highlight-max-at-a-time nil
-                                        ;       lazy-highlight-initial-delay 0
-                                        ;       isearch-allow-scroll t)
+										; (setq lazy-highlight-cleanup nil
+										;       lazy-highlight-max-at-a-time nil
+										;       lazy-highlight-initial-delay 0
+										;       isearch-allow-scroll t)
 
 ;; 120 is a good number
 (setq-default fill-column 120)
 
 ;; Set the initial buffer to the scratch buffer
 (setq inhibit-startup-message t
-      ;; Set a different message
-      initial-scratch-message ";; I am focused\n\n")
+	  ;; Set a different message
+	  initial-scratch-message ";; I am focused\n\n")
 
 ;; Allow for pressing `y` and `n` instead of having to type yesRET or noRET
 (defalias 'yes-or-no-p 'y-or-n-p)
@@ -120,8 +120,8 @@
 ;; https://stackoverflow.com/a/18211568
 ;; Set symbol for the border
 (set-display-table-slot standard-display-table
-                        'vertical-border
-                        (make-glyph-code ?│))
+						'vertical-border
+						(make-glyph-code ?│))
 
 ;; Remove the `\` character from lines that wrap
 (set-display-table-slot standard-display-table 'wrap ?\ )

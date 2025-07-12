@@ -23,9 +23,10 @@
 ;; There's a dependency that this needs to be first which I don't like
 ;; (use-package flycheck
 ;;   :ensure t
-;;   :commands (global-flycheck-mode)
-;;   :config
-;;   (global-flycheck-mode)
+;;   ;:commands (global-flycheck-mode)
+;;   :hook (prog-mode . flycheck-mode)
+;;   :bind ("C-c c e" . consult-flycheck)
+;;   :custom
 ;;   ((flycheck-add-mode 'javascript-eslint 'typescript-ts-mode)
 ;;    (flycheck-add-mode 'javascript-eslint 'tsx-ts-mode)
 ;;    (flycheck-add-mode 'javascript-eslint 'jsx-ts-mode)))
@@ -38,20 +39,22 @@
   :preface
   (defun mp-eglot-eldoc ()
 	(setq eldoc-documentation-strategy
-			'eldoc-documentation-compose-eagerly))
+		  'eldoc-documentation-compose-eagerly))
   :hook ((eglot-managed-mode . mp-eglot-eldoc))
-  :config
-  (setq eglot-autoshutdown t
-		eglot-send-changes-idle-time 1
-		;; Remove logging to speed up eglot when using TypeScript / Javascript
-		;; https://www.reddit.com/r/emacs/comments/vau4x1/comment/ic6wd9i/
-		;; eglot-events-buffer-size 0)
+  :custom
+  ((eglot-autoshutdown t)
+   (eglot-send-changes-idle-time 1)
+   ;; This was driving me mental. It originally uses an emoji which has extra height.
+   (eglot-code-action-indicator "α")
+   ;; Remove logging to speed up eglot when using TypeScript / Javascript
+   ;; https://www.reddit.com/r/emacs/comments/vau4x1/comment/ic6wd9i/
+   ;; eglot-events-buffer-size 0)
 
-		;; More speed
-		;; https://www.reddit.com/r/emacs/comments/1b25904/comment/ksj593p/
-		;; (fset #'jsonrpc--log-event #'ignore))
-		;; (setf (plist-get eglot-events-buffer-config :size) 0))
-		))
+   ;; More speed
+   ;; https://www.reddit.com/r/emacs/comments/1b25904/comment/ksj593p/
+   ;; (fset #'jsonrpc--log-event #'ignore))
+   ;; (setf (plist-get eglot-events-buffer-config :size) 0))
+   ))
 
 (use-package consult-eglot
   :after consult
@@ -95,20 +98,20 @@
   ;; (setq ansi-color-for-comint-mode 'filter)
   :hook (compilation-filter . ansi-color-compilation-filter))
 
-(use-package combobulate
-  :config
-  (defalias 'combobulate-key-map combobulate-key-map)
-  (meow-normal-define-key '("N" . combobulate-key-map))
-  (define-key combobulate-key-map "N" 'combobulate)
+;; (use-package combobulate
+;;   :config
+;;   (defalias 'combobulate-key-map combobulate-key-map)
+;;   (meow-normal-define-key '("N" . combobulate-key-map))
+;;   ;;(define-key combobulate-key-map "N" 'combobulate)
 
-  ;;:custom
-  ;; You can customize Combobulate's key prefix here.
-  ;; Note that you may have to restart Emacs for this to take effect!
-  ;; (combobulate-key-prefix "C-c l")
-  :hook ((prog-mode . combobulate-mode))
-  ;; Amend this to the directory where you keep Combobulate's source
-  ;; code.
-  :load-path ("~/tools/combobulate/"))
+;;   ;;:custom
+;;   ;; You can customize Combobulate's key prefix here.
+;;   ;; Note that you may have to restart Emacs for this to take effect!
+;;   ;; (combobulate-key-prefix "C-c l")
+;;   :hook ((prog-mode . combobulate-mode))
+;;   ;; Amend this to the directory where you keep Combobulate's source
+;;   ;; code.
+;;   :load-path ("~/tools/combobulate/"))
 
 (use-package treesit-auto
   :commands (global-treesit-auto-mode)
@@ -121,7 +124,7 @@
   (global-tree-sitter-mode)
   (setq go-ts-mode-indent-offset (symbol-value 'tab-width))
   ;; This doesn't work as the file name is not in the expected format (it should have tree-sitter- as the prefix)
-  (setq treesit-extra-load-path '("/Users/yees6f/.emacs.d/elpa/tree-sitter-langs-20230114.1524/bin/"))
+  ;; (setq treesit-extra-load-path '("/Users/syee/.emacs.d/elpa/tree-sitter-langs-20250706.1346/bin/"))
   (push '(css-mode . css-ts-mode) major-mode-remap-alist)
   (push '(python-mode . python-ts-mode) major-mode-remap-alist)
   (push '(javascript-mode . js-ts-mode) major-mode-remap-alist)
@@ -140,8 +143,8 @@
   (add-to-list 'eglot-server-programs
 			   '((python-ts-mode) . ("pyright-langserver" "--stdio"))))
 
-(use-package tree-sitter-langs
-  :after tree-sitter)
+;; (use-package tree-sitter-langs
+;;   :after tree-sitter)
 
 (setq-default show-trailing-whitespace nil)
 
@@ -257,6 +260,11 @@
   ;; Projectile users
   (setq dape-cwd-fn 'projectile-project-root))
 
+;; https://github.com/sunskyxh/ast-grep.el
+(use-package ast-grep
+  :commands (ast-grep-search ast-grep-project ast-grep-directory)
+  :bind ("C-c c g" . ast-grep-project))
+
 (use-package indent-bars
   :config
   (require 'indent-bars-ts)         ; not needed with straight
@@ -265,7 +273,7 @@
   (indent-bars-treesit-ignore-blank-lines-types '("module"))
   ;; Add other languages as needed
   (indent-bars-treesit-scope '((python function_definition class_definition for_statement
-	  if_statement with_statement while_statement)))
+									   if_statement with_statement while_statement)))
   ;; Note: wrap may not be needed if no-descend-list is enough
   ;;(indent-bars-treesit-wrap '((python argument_list parameters ; for python, as an example
   ;;                      list list_comprehension
@@ -276,11 +284,11 @@
   ;; allows for non-stipple support
   (indent-bars-prefer-character t)
   (indent-bars-color '(highlight :face-bg t :blend 0.5)
-  (indent-bars-color-by-depth '(:regexp "outline-\\([0-9]+\\)" :blend 1))
-  (indent-bars-unspecified-fg-color "white")
-  (indent-bars-unspecified-bg-color "black")
+					 (indent-bars-color-by-depth '(:regexp "outline-\\([0-9]+\\)" :blend 1))
+					 (indent-bars-unspecified-fg-color "white")
+					 (indent-bars-unspecified-bg-color "black")
 
-  :hook ((prog-mode js-ts-mode jsx-ts-mode tsx-ts-mode) . indent-bars-mode)))
+					 :hook ((prog-mode js-ts-mode jsx-ts-mode tsx-ts-mode) . indent-bars-mode)))
 ;;; Package:
 (provide 'my-coding)
 ;;; my-coding.el ends here

@@ -25,11 +25,11 @@
   ;; Tab to select - Any other characters to choose and continue?
   ;; This should also only apply to the completion and ont other sections
   :bind (:map vertico-map
-              ("TAB" . vertico-next)
-              ("M-TAB" . vertico-insert)
-              ;; ("TAB" . minibuffer-complete)
-              ("<backtab>" . vertico-previous)
-              ("S-TAB" . vertico-previous))
+			  ("TAB" . vertico-next)
+			  ("M-TAB" . vertico-insert)
+			  ;; ("TAB" . minibuffer-complete)
+			  ("<backtab>" . vertico-previous)
+			  ("S-TAB" . vertico-previous))
 
   :config
   ;; Use transient for Embark
@@ -42,18 +42,18 @@
 
   ;; Show more candidates
   (setq vertico-count 15
-        vertico-cycle t
-        ;; Configure the display per command.
-        ;; Use a buffer with indices for imenu
-        ;; and a flat (Ido-like) menu for M-x.
-        vertico-multiform-commands '((consult-ripgrep buffer indexed)
-                                     (consult-eglot-symbols buffer indexed))
+		vertico-cycle t
+		;; Configure the display per command.
+		;; Use a buffer with indices for imenu
+		;; and a flat (Ido-like) menu for M-x.
+		vertico-multiform-commands '((consult-ripgrep buffer indexed)
+									 (consult-eglot-symbols buffer indexed))
 
-        ;; Display ripgrep candidates in a buffer on the right of the page
-        vertico-buffer-display-action
-        '(display-buffer-in-side-window
-          (side . right)
-          (window-width . 0.3)))
+		;; Display ripgrep candidates in a buffer on the right of the page
+		vertico-buffer-display-action
+		'(display-buffer-in-side-window
+		  (side . right)
+		  (window-width . 0.3)))
   (add-hook 'minibuffer-setup-hook #'vertico-repeat-save))
 
 ;; Configure directory extension.
@@ -70,11 +70,11 @@
   ;; TODO this overrides the binds above. This is not really a problem since my-vertico-expand-next works nicely
   ;; but this should be fixed at some point
   :bind (:map vertico-map
-              ("TAB" . my-vertico-expand-next)
-              ("<backtab>" . vertico-directory-up)
-              ("RET" . vertico-directory-enter)
-              ("DEL" . vertico-directory-delete-char)
-              ("M-DEL" . vertico-directory-delete-word))
+			  ("TAB" . my-vertico-expand-next)
+			  ("<backtab>" . vertico-directory-up)
+			  ("RET" . vertico-directory-enter)
+			  ("DEL" . vertico-directory-delete-char)
+			  ("M-DEL" . vertico-directory-delete-word))
   ;; Tidy shadowed file names
   :hook (rfn-eshadow-update-overlay . vertico-directory-tidy))
 
@@ -91,12 +91,12 @@
   ;; Add prompt indicator to `completing-read-multiple'.
   ;; We display [CRM<separator>], e.g., [CRM,] if the separator is a comma.
   (defun crm-indicator (args)
-    (cons (format "[CRM%s] %s"
-                  (replace-regexp-in-string
-                   "\\`\\[.*?]\\*\\|\\[.*?]\\*\\'" ""
-                   crm-separator)
-                  (car args))
-          (cdr args)))
+	(cons (format "[CRM%s] %s"
+				  (replace-regexp-in-string
+				   "\\`\\[.*?]\\*\\|\\[.*?]\\*\\'" ""
+				   crm-separator)
+				  (car args))
+		  (cdr args)))
   (advice-add #'completing-read-multiple :filter-args #'crm-indicator)
 
   ;; Do not allow the cursor in the minibuffer prompt
@@ -107,7 +107,7 @@
   ;; Emacs 28: Hide commands in M-x which do not work in the current mode.
   ;; Vertico commands are hidden in normal buffers.
   (setq read-extended-command-predicate
-        #'command-completion-default-include-p)
+		#'command-completion-default-include-p)
 
   ;; Enable recursive minibuffers
   ;; (setq enable-recursive-minibuffers t)
@@ -125,11 +125,11 @@
   ;; TODO this is where the completion in vertico is.
   ;; Perhaps this needs to be changed here.
   (setq completion-in-region-function
-        (lambda (&rest args)
-          (apply (if vertico-mode
-                     #'consult-completion-in-region
-                   #'completion--in-region)
-                 args)))
+		(lambda (&rest args)
+		  (apply (if vertico-mode
+					 #'consult-completion-in-region
+				   #'completion--in-region)
+				 args)))
 
   ;; Enable indentation+completion using the TAB key.
   ;; `completion-at-point' is often bound to M-TAB.
@@ -158,16 +158,16 @@
   :defer t
   :init
   (setq xref-show-xrefs-function #'consult-xref
-        xref-show-definitions-function #'consult-xref)
+		xref-show-definitions-function #'consult-xref)
   :config
   (autoload 'projectile-project-root "projectile")
   ;; Set the selected region to be the initial search term for consult-line and consult-ripgrep
   ;; https://takeonrules.com/2023/03/14/spending-a-bit-of-time-reviewing-consult-emacs-package/
   (consult-customize consult-line
-                     consult-ripgrep
-                     :initial (when (use-region-p)
-                                (buffer-substring-no-properties
-                                 (region-beginning) (region-end))))
+					 consult-ripgrep
+					 :initial (when (use-region-p)
+								(buffer-substring-no-properties
+								 (region-beginning) (region-end))))
   ;; Hide the modeline when opening vertico buffers
   ;; This is done to hide the ugly modeline
   ;; It needs to be done on a timer as this is overwritten by vertico
@@ -181,11 +181,11 @@
   ;;   (redraw-display))
   ;; (add-hook 'vertico-buffer-mode-hook (lambda () (run-with-timer 0.1 nil 'hide-mode-line)))
   :bind (("C-c h" . consult-history)
-         ;; Removed as this doesn't allow for entering the "*" character when searching
-         ;; :map vertico-map
-         ;; ("*" . vertico-next)
-         :map meow-normal-state-keymap
-         ("*" . consult-line))
+		 ;; Removed as this doesn't allow for entering the "*" character when searching
+		 ;; :map vertico-map
+		 ;; ("*" . vertico-next)
+		 :map meow-normal-state-keymap
+		 ("*" . consult-line))
   :hook
   (completion-list-mode . consult-preview-at-point-mode))
 
@@ -220,8 +220,8 @@
 
   ;; `eglot' defaults to flex, so set an override to point to fussy instead.
   (with-eval-after-load 'eglot
-    (add-to-list 'completion-category-overrides
-                 '(eglot (styles fussy basic)))))
+	(add-to-list 'completion-category-overrides
+				 '(eglot (styles fussy basic)))))
 
 ;; This may be the package to use having exhausted the list here
 ;; https://github.com/jojojames/fussy
@@ -233,18 +233,18 @@
 ;;    (fuz-build-and-load-dymod)))
 
 ;; I wasn't using this.
-                                        ; (use-package marginalia
-                                        ;  :defer t
-                                        ;  :ensure t
-                                        ;  :config
-                                        ;  (marginalia-mode))
+										; (use-package marginalia
+										;  :defer t
+										;  :ensure t
+										;  :config
+										;  (marginalia-mode))
 
 (use-package cape
   ;; Bind dedicated completion commands
   ;; Alternative prefix keys: C-c p, M-p, M-+, ...
   :bind (("C-c c p" . completion-at-point)  ;; capf
 ;;;;;;         ("C-c c t" . complete-tag)        ;; etags
-         ("C-c c P" . cape-dabbrev))        ;; or dabbrev-completion
+		 ("C-c c P" . cape-dabbrev))        ;; or dabbrev-completion
 ;;;;;;         ("C-c p h" . cape-history)
 ;;;;;;         ("C-c p f" . cape-file)
 ;;;;;;         ("C-c p k" . cape-keyword)
@@ -278,21 +278,21 @@
   ;; Add completion in the git commit message buffer.
   ;; This isn't a perfect implementation
   (eval-after-load 'magit
-    '(progn
-       (define-key git-commit-mode-map (kbd "TAB") #'cape-dabbrev)))
+	'(progn
+	   (define-key git-commit-mode-map (kbd "TAB") #'cape-dabbrev)))
   )
 ;; Add Cape Completions when eglot is being used
 ;; https://github.com/minad/corfu/wiki#making-a-cape-super-capf-for-eglot
 (defun smypf/eglot-capf ()
   (setq-local completion-at-point-functions
-              (list (cape-capf-super
-                     #'eglot-completion-at-point
-                     #'cape-abbrev
-                     ;; Disabled for now.
-                     ;; Really what I would like is eglot first, and then the rest afterwards. look into display-sort-function
-                     ;; #'cape-dabbrev
-                     #'cape-file
-                     #'cape-history))))
+			  (list (cape-capf-super
+					 #'eglot-completion-at-point
+					 #'cape-abbrev
+					 ;; Disabled for now.
+					 ;; Really what I would like is eglot first, and then the rest afterwards. look into display-sort-function
+					 ;; #'cape-dabbrev
+					 #'cape-file
+					 #'cape-history))))
 
 (add-hook 'eglot-managed-mode-hook #'smypf/eglot-capf)
 
@@ -301,13 +301,13 @@
 (defun my-corfu-combined-sort (candidates)
   "Sort CANDIDATES using both display-sort-function and corfu-sort-function."
   (let ((candidates
-         (let ((display-sort-func (corfu--metadata-get 'display-sort-function)))
-           (if display-sort-func
-               (funcall display-sort-func candidates)
-             candidates))))
-    (if corfu-sort-function
-        (funcall corfu-sort-function candidates)
-      candidates)))
+		 (let ((display-sort-func (corfu--metadata-get 'display-sort-function)))
+		   (if display-sort-func
+			   (funcall display-sort-func candidates)
+			 candidates))))
+	(if corfu-sort-function
+		(funcall corfu-sort-function candidates)
+	  candidates)))
 
 (setq corfu-sort-override-function #'my-corfu-combined-sort)
 
@@ -338,9 +338,9 @@
 
   ;; Hide the mode line of the Embark live/completions buffers
   (add-to-list 'display-buffer-alist
-               '("\\`\\*Embark Collect \\(Live\\|Completions\\)\\*"
-                 nil
-                 (window-parameters (mode-line-format . none)))))
+			   '("\\`\\*Embark Collect \\(Live\\|Completions\\)\\*"
+				 nil
+				 (window-parameters (mode-line-format . none)))))
 
 ;; Consult users will also want the embark-consult package.
 (use-package embark-consult
@@ -376,55 +376,55 @@
   ;; Corfu
   ;; Perhaps use this
   (use-package corfu
-    :defer t
-    :config
-    (defun corfu-move-to-minibuffer ()
-      (interactive)
-      (let ((completion-extra-properties corfu--extra)
-            completion-cycle-threshold completion-cycling)
-        (apply #'consult-completion-in-region completion-in-region--data)))
-    (define-key corfu-map "\M-m" #'corfu-move-to-minibuffer)
+	:defer t
+	:config
+	(defun corfu-move-to-minibuffer ()
+	  (interactive)
+	  (let ((completion-extra-properties corfu--extra)
+			completion-cycle-threshold completion-cycling)
+		(apply #'consult-completion-in-region completion-in-region--data)))
+	(define-key corfu-map "\M-m" #'corfu-move-to-minibuffer)
 
-    (defun my-corfu-complete-and-space ()
-      (interactive)
-      (corfu-complete)
-      (insert " "))
-    ;; Optional customizations
-    :custom
-    (corfu-cycle t)                   ;; Enable cycling for `corfu-next/previous'
-    (corfu-auto nil)                  ;; Enable auto completion
-    ;; (corfu-separator ?\s)          ;; Orderless field separator
-    ;; (corfu-quit-at-boundary nil)   ;; Never quit at completion boundary
-    ;; (corfu-quit-no-match nil)      ;; Never quit, even if there is no match
-    (corfu-preview-current t)         ;; Enable current candidate preview
-    (corfu-preselect-first t)         ;; Enable candidate preselection
-    (corfu-on-exact-match 'quit)      ;; Configure handling of exact matches
-    ;; (corfu-echo-documentation nil) ;; Disable documentation in the echo area
-    ;; (corfu-scroll-margin 5)        ;; Use scroll margin
+	(defun my-corfu-complete-and-space ()
+	  (interactive)
+	  (corfu-complete)
+	  (insert " "))
+	;; Optional customizations
+	:custom
+	(corfu-cycle t)                   ;; Enable cycling for `corfu-next/previous'
+	(corfu-auto nil)                  ;; Enable auto completion
+	;; (corfu-separator ?\s)          ;; Orderless field separator
+	;; (corfu-quit-at-boundary nil)   ;; Never quit at completion boundary
+	;; (corfu-quit-no-match nil)      ;; Never quit, even if there is no match
+	(corfu-preview-current t)         ;; Enable current candidate preview
+	(corfu-preselect-first t)         ;; Enable candidate preselection
+	(corfu-on-exact-match 'quit)      ;; Configure handling of exact matches
+	;; (corfu-echo-documentation nil) ;; Disable documentation in the echo area
+	;; (corfu-scroll-margin 5)        ;; Use scroll margin
 
-    :bind
-    (:map corfu-map
-          ;; Tab will select the next option
-          ("TAB" . corfu-next)
-          ([tab] . corfu-next)
-          ;; Shift-Tab will select the previous option
-          ("S-TAB" . corfu-previous)
-          ([backtab] . corfu-previous)
-          ;; todo space doesn't work
-          ([? ] . my-corfu-complete-and-space)
-          ;; Enter will select the option
-          ([enter] . corfu-complete))
+	:bind
+	(:map corfu-map
+		  ;; Tab will select the next option
+		  ("TAB" . corfu-next)
+		  ([tab] . corfu-next)
+		  ;; Shift-Tab will select the previous option
+		  ("S-TAB" . corfu-previous)
+		  ([backtab] . corfu-previous)
+		  ;; todo space doesn't work
+		  ([? ] . my-corfu-complete-and-space)
+		  ;; Enter will select the option
+		  ([enter] . corfu-complete))
 
-    ;; Enable Corfu only for certain modes.
-    ;; :hook ((prog-mode . corfu-mode)
-    ;;        (shell-mode . corfu-mode)
-    ;;        (eshell-mode . corfu-mode))
+	;; Enable Corfu only for certain modes.
+	;; :hook ((prog-mode . corfu-mode)
+	;;        (shell-mode . corfu-mode)
+	;;        (eshell-mode . corfu-mode))
 
-    ;; Recommended: Enable Corfu globally.
-    ;; This is recommended since Dabbrev can be used globally (M-/).
-    ;; See also `corfu-excluded-modes'.
-    :init
-    (global-corfu-mode)))
+	;; Recommended: Enable Corfu globally.
+	;; This is recommended since Dabbrev can be used globally (M-/).
+	;; See also `corfu-excluded-modes'.
+	:init
+	(global-corfu-mode)))
 
 ;; This has been removed as it was slowing everything down too much.
 ;;(use-package corfu-candidate-overlay

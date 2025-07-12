@@ -24,21 +24,14 @@
 	  (browse-url-at-point))))
 
 ;; From https://emacs.stackexchange.com/a/44685
-(defun insert-issue-key()
+(defun smypf/insert-issue-key()
   (interactive)
   ;; TODO also include the commit type by testing for a string proceeded by a '/'
   ;; e.g. feat/, fix/, docs/ etc...
   ;; Set a regex for identifying an issue
   (let ((ISSUEKEYREGEX "[[:upper:]]+-[[:digit:]]+"))
 	;; Save the Issue Key as a variable from the current branch
-	(let ((ISSUEKEY (replace-regexp-in-string
-					 (concat ".*?\\(" ISSUEKEYREGEX "\\).*")
-					 "\\1"
-					 (magit-get-current-branch)))
-		  ;; Find where the first instance of the "#" character is, which designates the start of the comments in the commit message
-		  ;; This is unnecessary
-		  ;; (COMMITMESSAGEEND (search-forward "#"))
-		  )
+	(let (ISSUEKEY (smypf/get-issue-key))
 
 	  ;; When the current branch has an issue key in it
 	  (when (string-match-p ISSUEKEYREGEX (magit-get-current-branch))
@@ -54,6 +47,19 @@
 	  ;;)
 	  (meow-insert))))
 
+(defun smypf/get-issue-key()
+  (interactive)
+  ;; TODO also include the commit type by testing for a string proceeded by a '/'
+  ;; e.g. feat/, fix/, docs/ etc...
+  ;; Set a regex for identifying an issue
+  (let ((ISSUEKEYREGEX "[[:upper:]]+-[[:digit:]]+"))
+	;; Save the Issue Key as a variable from the current branch
+	(let ((ISSUEKEY (replace-regexp-in-string
+					 (concat ".*?\\(" ISSUEKEYREGEX "\\).*")
+					 "\\1"
+					 (magit-get-current-branch)))
+		  )
+	  ISSUEKEY)))
 
 ;; Magit is a wrapper around git which is nice to use.
 (use-package magit
@@ -132,7 +138,7 @@
   ;;(cond (fboundp 'meow-insert meow-insert)
   ;;(fboundp 'evil-insert-line (evil-insert-line 1)))))))
 
-  (add-hook 'git-commit-setup-hook 'insert-issue-key)
+  (add-hook 'git-commit-setup-hook 'smypf/insert-issue-key)
 
   ;; https://magit.vc/manual/magit/Automatic-Refreshing-of-Magit-Buffers.html
   ;; This was slowing things down

@@ -1,4 +1,4 @@
-;; Compile Angel
+;; Compile Angel  -*- lexical-binding: t; -*-
 ;; Ensure Emacs loads the most recent byte-compiled files.
 (setq load-prefer-newer t)
 

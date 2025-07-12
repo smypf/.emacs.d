@@ -37,32 +37,31 @@
 ;; https://github.com/radian-software/apheleia
 ;; TODO This could probably go somewhere else
 ;; I think that this may be slowing down things
+
+(defun smypf/inhibit-apheleia-files ()
+  "Return t if the buffer file matches a file that should not be formatted automatically."
+  (let ((file-name (buffer-file-name)))
+	(if (or (and file-name (string-match-p "node_modules" file-name))
+			(and file-name (string-match-p "\\.d\\.ts$" file-name)))
+		t nil)))
+
 (use-package apheleia
   :defer t
   :ensure t
-  :config
-  ;; Prevent Apheleia from being enabled for files I don't care about
-  (defun smypf/inhibit-apheleia-files ()
-	"Return false if the buffer file contains 'node_modules' or '.d.ts'."
-	(message "testing if apheleia should be inhibited")
-	(let ((file-name (buffer-file-name)))
-	  (if (or (and file-name (string-match-p "node_modules" file-name))
-			  (and file-name (string-match-p "\\.d\\.ts$" file-name)))
-		  (progn
-			(message "smypf/inhibit-apheleia-files contains 'node_modules' or '.d.ts'.")
-			t)
-		(progn
-		  (message "it was not found")
-		  nil))))
+  :hook
+  ((after-init . apheleia-global-mode)))
 
-  (add-to-list 'apheleia-inhibit-functions #'smypf/inhibit-apheleia-files))
+(with-eval-after-load 'apheleia
+  (setf (alist-get 'cargo-fmt apheleia-formatters)
+		'("cargo" "fmt"))
+		(add-to-list 'apheleia-inhibit-functions #'smypf/inhibit-apheleia-files))
 
 ;; Running M-x compile will allow to jumping to errors in the output
 ;; https://emacs.stackexchange.com/a/44708
 (require 'compile)
 (add-to-list 'compilation-error-regexp-alist-alist
-	         ;; Tip: M-x re-builder to test this out
-	         '(tsx "(\\([a-zA-Z\.0-9_/-]+\\):\\([0-9]+\\):\\([0-9]+\\))"
+			 ;; Tip: M-x re-builder to test this out
+			 '(tsx "(\\([a-zA-Z\.0-9_/-]+\\):\\([0-9]+\\):\\([0-9]+\\))"
 				   1 ;; file
 				   2 ;; line
 				   3 ;; column

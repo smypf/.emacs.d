@@ -14,7 +14,6 @@
   :custom
   (rustic-lsp-client 'eglot))
 
-
 ;;; Package:
 (provide 'my-rust)
 ;;; my-rust.el ends here

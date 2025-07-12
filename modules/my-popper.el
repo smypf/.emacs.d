@@ -107,6 +107,14 @@
 		`((display-buffer-reuse-window
 		   display-buffer-in-side-window)
 		  (side . ,smypf/default-alignment)
+		  (window-width . ,smypf/default-width)))
+  
+  (setf (alist-get "*compilation*"
+				   display-buffer-alist
+				   nil nil #'string=)
+		`((display-buffer-reuse-window
+		   display-buffer-in-side-window)
+		  (side . ,smypf/default-alignment)
 		  (window-width . ,smypf/default-width))))
 
 ;; Popper configuration with the new display rules

@@ -36,7 +36,8 @@
 			   (string-prefix-p (expand-file-name "~/atlassian/afm") file-name)
 			   (string-match-p "\\.tsx?$" file-name))
 	  (not (string-match-p "node_modules" file-name))
-	  (not (string-match-p "\\.d\\.ts$" file-name)))
+	  (not (string-match-p "\\.d\\.ts$" file-name))
+	  (not (string-match-p "\\.rs$" file-name)))
 	;; Only enable these modes for TypeScript files
 	(setq-local indent-tabs-mode t)
 	(setq-local apheleia-mode t)))

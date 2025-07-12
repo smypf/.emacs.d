@@ -1,8 +1,10 @@
-;;; package -- Sasha's Personal Configuration
+;;; package -- Sasha's Personal Configuration  -*- lexical-binding: t; -*-
 ;;; Commentary:
 ;;; Stuff gets loaded here.
 ;;; Most of the stuff is in module files.  These are located in the `/module` folder
 ;;; Code:
+
+(select-frame-set-input-focus (selected-frame))
 
 ;; Set up melpa which is a package host
 (require 'package)
@@ -10,26 +12,28 @@
 			 '("melpa" . "https://melpa.org/packages/"))
 
 ;; Compile Angel
-                                        ; (use-package compile-angel
-                                        ;   :ensure t
-                                        ;   :demand t
-                                        ;   :custom
-                                        ;   (compile-angel-verbose nil)
-                                        ;   :config
-                                        ;   (with-eval-after-load "recentf"
-                                        ;   (push (concat "/" (file-name-nondirectory recentf-save-file))
-                                        ;         compile-angel-excluded-files))
+										; (use-package compile-angel
+										;   :ensure t
+										;   :demand t
+										;   :custom
+										;   (compile-angel-verbose nil)
+										;   :config
+										;   (with-eval-after-load "recentf"
+										;   (push (concat "/" (file-name-nondirectory recentf-save-file))
+										;         compile-angel-excluded-files))
 
-                                        ;   (push ".emacs.d/init.el" compile-angel-excluded-files)
-                                        ;   (push ".emacs.d/early-init.el" compile-angel-excluded-files)
+										;   (push ".emacs.d/init.el" compile-angel-excluded-files)
+										;   (push ".emacs.d/early-init.el" compile-angel-excluded-files)
 
-                                        ;   (setq compile-angel-predicate-function
-                                        ;       (lambda (file)
-                                        ;         (and (not (file-in-directory-p file (expand-file-name "modules/" user-emacs-directory))))))
-                                        ;   (compile-angel-on-load-mode)
-                                        ;   (add-hook 'emacs-lisp-mode-hook #'compile-angel-on-save-local-mode))
+										;   (setq compile-angel-predicate-function
+										;       (lambda (file)
+										;         (and (not (file-in-directory-p file (expand-file-name "modules/" user-emacs-directory))))))
+										;   (compile-angel-on-load-mode)
+										;   (add-hook 'emacs-lisp-mode-hook #'compile-angel-on-save-local-mode))
 
-
+;; Uncomment to ensure that packages are installed.
+;; (require 'use-package-ensure)
+;; (setq use-package-always-ensure t)
 
 ;; settings to speedup initialisation
 (setq gc-cons-threshold (* 32 1024 1024))
@@ -144,7 +148,12 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(custom-safe-themes
-   '("308632d8369829e0c3610b73a3d1c708db68f4487d66be2760bc82a1102a288e"
+   '("6c291791e76352f28e5b9034e2335fefced38c2af275d73e664c8ffe54a2efc6"
+	 "c5ce8f96cd0baa23ed973d0572c0a1cc24181c83eaf93e1444fbb99668acd259"
+	 "a7368ad6c2016b19aa6b5d853fd182a1f1d07a81f4d88412ef6438e21383e55e"
+	 "bb697acd1c079178f606a36b3e7217e2a6f5f920905f1ce21815aaadd711b713"
+	 "3f495f29670e5d84260a7a4e85955626ddb99da8fee9c580e38dd6341f602f7d"
+	 "308632d8369829e0c3610b73a3d1c708db68f4487d66be2760bc82a1102a288e"
 	 "4dfdc4ee3b5ace84c2c306596e53f02478e0cbe9d35471d161832488ad4713af"
 	 "c63281bceaa0ab53b694c28390f9e927e1e17a26ee1af52ca61ba7a49a2cdf6b"
 	 "e7820b899036ae7e966dcaaec29fd6b87aef253748b7de09e74fdc54407a7a02"
@@ -160,9 +169,9 @@
 	 "c6d63b27dea1738060614c48ce48cee42ee82ce27263dbd612a9230c86a4a8eb"
 	 "f98c6f84330f1f3490021c1f0ccb9f7e90797df0f2700fe3bd7fe8ad4dd67369"
 	 "680ba271ab61df49c4f8464b6f4d04b5bb2965691cec658bbd16bd8039faf69b" default))
+ '(eglot-code-action-indicator "α")
  '(eldoc-echo-area-use-multiline-p nil)
  '(global-display-line-numbers-mode t)
- '(gumshoe-prefer-same-window t)
  '(jest-test-options nil)
  '(jinx-camel-modes
    '(java-mode java-ts-mode js-mode js-ts-mode ruby-mode ruby-ts-mode rust-mode rust-ts-mode haskell-mode kotlin-mode
@@ -175,15 +184,16 @@
 	 ("jtsx-jsx" . "javascript") ("jtsx-tsx" . "typescript")))
  '(org-export-backends '(ascii html icalendar latex md odt))
  '(package-selected-packages
-   '(abridge-diff apheleia balanced-windows cape compile-angel consult-eglot copilot corfu dape deadgrep
-				  devdocs dogears doom-modeline editorconfig eglot-booster embark-consult exec-path-from-shell fussy
-				  fuz-bin git-link gptel gumshoe helpful highlight howm indent-bars jinx jira json-mode jtsx lua-mode
-				  magit meow-tree-sitter no-littering orderless org-contrib ox-jira pleasant-monochromish-theme popper
-				  private-comments-mode projectile rainbow-mode repeat-fu reveal-in-osx-finder rg rustic shackle
-				  smart-delete surround tree-sitter-langs treesit-auto ultra-scroll vertico visual-fill-column
-				  visual-regexp vterm which-key xclip))
+   '(abridge-diff apheleia ast-grep balanced-windows cape compile-angel consult-eglot copilot corfu dape deadgrep devdocs
+				  dogears doom-modeline editorconfig eglot-booster embark-consult exec-path-from-shell fussy fuz-bin
+				  git-link gptel gumshoe helpful highlight howm indent-bars jinx jira json-mode jtsx lua-mode magit
+				  meow-tree-sitter no-littering orderless org-contrib ox-jira perspective pleasant-monochromish-theme
+				  popper private-comments-mode projectile rainbow-mode repeat-fu reveal-in-osx-finder rg rustic shackle
+				  smart-delete surround tree-sitter-langs treesit-auto ultra-scroll vertico vim-tab-bar
+				  visual-fill-column visual-regexp vterm which-key xclip))
  '(package-vc-selected-packages
-   '((copilot :vc-backend Git :url "https://github.com/copilot-emacs/copilot.el")
+   '((ast-grep :vc-backend Git :url "https://github.com/sunskyxh/ast-grep.el")
+	 (copilot :vc-backend Git :url "https://github.com/copilot-emacs/copilot.el")
 	 (ultra-scroll :vc-backend Git :url "https://github.com/jdtsmith/ultra-scroll")
 	 (fuz-bin :vc-backend Git :url "https://github.com/jcs-legacy/fuz-bin")
 	 (eglot-booster :vc-backend Git :url "https://github.com/jdtsmith/eglot-booster")
@@ -207,6 +217,7 @@
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(default ((t (:family "Fira Code" :foundry "nil" :slant normal :weight regular :height 140 :width normal))))
+ '(eglot-inlay-hint-face ((t nil)))
  '(tab-bar-tab ((t (:background "#dfcee7" :foreground "#444444" :box (:line-width (3 . 3) :color "#dfcee7")))))
  '(tab-bar-tab-inactive ((t (:background "#fffff8" :foreground "#c1c1bd" :box (:line-width (3 . 3) :color "#fffff8"))))))
 (put 'narrow-to-region 'disabled nil)

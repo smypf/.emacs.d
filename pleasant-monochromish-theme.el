@@ -1,4 +1,4 @@
-;;; pleasant-monochromish-theme.el --- Pleasant Monochromish Theme
+;;; pleasant-monochromish-theme.el --- Pleasant Monochromish Theme  -*- lexical-binding: t; -*-
 ;;; Version: 1.0
 ;;; Commentary:
 ;;; A pleasant monochromish theme
@@ -44,26 +44,26 @@
 ;; base purple - #dfcee7
 ;; analogous - #e7cee3 & #d3cee7
 (let ((fg                "#444444") ; 68 68 68
-      (bg                "#fffff8") ; 255 255 248
+	  (bg                "#fffff8") ; 255 255 248
 
-      (comment           "#c1c1bd") ; 193 193 189
+	  (comment           "#c1c1bd") ; 193 193 189
 
-      (bg-highlight      "#fff1aa") ; 255 241 170
-      (bg-highlight-2    "LightCyan")
-      (bg-highlight-3    "LightGreen")
-      (hl-line-bg        "#f4f4e8")
+	  (bg-highlight      "#fff1aa") ; 255 241 170
+	  (bg-highlight-2    "LightCyan")
+	  (bg-highlight-3    "LightGreen")
+	  (hl-line-bg        "#f4f4e8")
 
-      (isearch-bg        "#d3cee7") ; 211 206 231
-      (lazy-highlight-bg "#e1c5e8") ; 225 197 232
-      (purple-bg         "#dfcee7") ; 223 206 231
-      (dark-purple       "#8b4d9e") ; 139 77 158
+	  (isearch-bg        "#d3cee7") ; 211 206 231
+	  (lazy-highlight-bg "#e1c5e8") ; 225 197 232
+	  (purple-bg         "#dfcee7") ; 223 206 231
+	  (dark-purple       "#8b4d9e") ; 139 77 158
 
-      ;; Previously used colours which are still referenced below
-      ;; (fg-table          "#222291")
-      ;; (bg-light          "#646464")
-      ;; (fg-light          "#ddddd8")
-      (org-todo          "#ff98a3")
-      )
+	  ;; Previously used colours which are still referenced below
+	  ;; (fg-table          "#222291")
+	  ;; (bg-light          "#646464")
+	  ;; (fg-light          "#ddddd8")
+	  (org-todo          "#ff98a3")
+	  )
 
   (custom-theme-set-faces
    'pleasant-monochromish
@@ -134,20 +134,20 @@
    `(doom-modeline-evil-normal-state ((t (:foreground ,fg))))
    `(doom-modeline-lsp-success ((t (:foreground ,fg))))
    `(doom-modeline-buffer-modified ((t (:foreground ,dark-purple :weight bold))))
-   ;`(doom-modeline-urgent ((t (:foreground ,dark-purple))))
+										;`(doom-modeline-urgent ((t (:foreground ,dark-purple))))
    `(doom-modeline-urgent ((t (:inherit error))))
    `(doom-modeline-bar ((t (:inherit mode-line))))
 
 
    `(tab-bar ((t (:background ,bg
-                              ;; :box '(:line-width 3 :color ,bg :style nil)
-                              ))))
+							  ;; :box '(:line-width 3 :color ,bg :style nil)
+							  ))))
    `(tab-bar-tab ((t (:background ,purple-bg :foreground ,fg
-   ;                                :box '(:line-width (3. 3) :color ,purple-bg)
-                                  ))))
+										;                                :box '(:line-width (3. 3) :color ,purple-bg)
+								  ))))
    `(tab-bar-tab-inactive ((t (:background ,bg :foreground ,comment
-   ;                                         :box '(:line-width (3 . 3) :color ,bg)
-                                           ))))
+										;                                         :box '(:line-width (3 . 3) :color ,bg)
+										   ))))
 
 
    `(doom-modeline-info ((t (:foreground ,fg))))
@@ -225,6 +225,8 @@
    `(flycheck-error ((t (:inherit error))))
    `(flycheck-warning ((t (:inherit warning))))
    `(eglot-diagnostic-tag-unnecessary-face ((t (:inherit error))))
+   `(eglot-inlay-hint-face ((t (:height unspecified))))
+   `(flymake-end-of-line-diagnostics-face ((t (:height unspecified))))
 
    ;; dired
    `(dired-directory ((t (:weight bold))))
@@ -402,19 +404,19 @@
    `(compilation-info ((t (:foreground ,comment))))
    `(flycheck-error-list-info ((t (:foreground ,comment))))
 
-                                        ;`(font-lock-type-face ((t (:foreground ,comment))))
+										;`(font-lock-type-face ((t (:foreground ,comment))))
 
-                                        ;`(dap-ui-breakpoint-verified-fringe ((t (:foreground ,comment))))
-                                        ;`(lsp-treemacs-file-info ((t (:foreground ,comment))))
+										;`(dap-ui-breakpoint-verified-fringe ((t (:foreground ,comment))))
+										;`(lsp-treemacs-file-info ((t (:foreground ,comment))))
 
-                                        ; I don't like this. This is for the lsp messages
+										; I don't like this. This is for the lsp messages
    `(success ((t (:foreground ,comment))))
 
 
    `(vertical-border ((t (:foreground ,comment :background ,bg))))
    ;;`(vertical-border ((t (:foreground ,bg-light :background ,bg-light))))
 
-                                        ; Removed rainbow-delimiters
+										; Removed rainbow-delimiters
    ;; `(rainbow-delimiters-depth-1-face ((t (:foreground ,fg))))
    ;; `(rainbow-delimiters-depth-2-face ((t (:foreground ,fg))))
    ;; `(rainbow-delimiters-depth-3-face ((t (:foreground ,fg))))
@@ -427,7 +429,7 @@
 
    ;; `(tree-sitter-hl-face:property ((t (:inherit default))))
 
-                                        ; Orderless
+										; Orderless
    `(orderless-match-face-0 ((t (:background ,purple-bg :weight bold))))
    `(orderless-match-face-1 ((t (:background ,purple-bg :weight bold))))
    `(orderless-match-face-2 ((t (:background ,purple-bg :weight bold))))
@@ -466,7 +468,7 @@
 
    `(highlight-indent-guides-character-face ((t (:foreground ,comment))))
    `(highlight-indent-guides-top-character-face ((t (:foreground ,purple-bg))))
-                                        ; `(highlight-indent-guides-stack-character-face ((t (:foreground ,purple-bg))))
+										; `(highlight-indent-guides-stack-character-face ((t (:foreground ,purple-bg))))
 
    `(marginalia-documentation ((t (:underline nil))))
 

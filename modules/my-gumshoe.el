@@ -19,11 +19,13 @@
 
 (defun smypf/setup-gumshoe ()
   "Customise Gumshoe after the `after-init` hook is run"
+  (interactive)
   (add-to-list 'gumshoe-ignore-predicates 'smypf/gumshoe-line-not-empty-or-punctuation-p)
   (smypf/gumshoe-window))
 
 (defun smypf/reset-gumshoe ()
   " Enable and disable Gumshoe to reset the ring"
+  (interactive)
   (global-gumshoe-mode)
   (global-gumshoe-mode))
 
@@ -35,7 +37,6 @@
 ;; or right (backward) of the current window.
 
 (defun smypf/gumshoe-window()
-
   ;; This function provides custom window management for gumshoe backtracking.
   ;; It overrides the gumshoe--jump method to implement a configurable window layout
   ;; where new buffers are displayed in new windows to the left (forward)
@@ -159,12 +160,15 @@ This function can be used in gumshoe-display-buffer-action."
   )
 
 (use-package gumshoe
-  :defer t
+  :commands (global-gumshoe-mode)
+  :custom
+  (gumshoe-horizontal-scale 4)
+  (gumshoe-cover-old-footprints-p nil)
+  (gumshoe-show-footprints-p t)
   :init
   (global-gumshoe-mode)
-  (message "gumshoe")
   :hook
-  ((after-init . smypf/setup-gumshoe))
+  (global-gumshoe-mode . smypf/setup-gumshoe)
   ;; Enabing global-gumshoe-backtracking-mode will initiate tracking
   ;; customize peruse slot display if you like
   ;;:custom
