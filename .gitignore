@@ -10,3 +10,5 @@ projects
 straight
 
 debug-adapters
+
+projectile.cache
