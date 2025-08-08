@@ -10,9 +10,9 @@
 ;;
 
 ;;; Code:
-(use-package rustic
-  :custom
-  (rustic-lsp-client 'eglot))
+;; (use-package rustic
+;;   :custom
+;;   (rustic-lsp-client 'eglot))
 
 ;;; Package:
 (provide 'my-rust)

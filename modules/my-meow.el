@@ -34,27 +34,27 @@ If the user presses q three times on the scratch buffer, exit emacs."
   (interactive)
 
   (if (bound-and-true-p magit-blame-read-only-mode)
-	  (magit-blame-quit)
-	(if (> (count-windows) 1)
-		(delete-window)
-	  (if (> (length (tab-bar-tabs)) 1)
-		  (tab-bar-close-tab)
-		(if (string= (buffer-name) "*scratch*")
-			(progn
-			  (setq smypf-scratch-q-counter (1+ smypf-scratch-q-counter))
-			  (if (>= smypf-scratch-q-counter 3)
-				  (progn
-					(setq smypf-original-confirm-kill-emacs confirm-kill-emacs)
-					(setq confirm-kill-emacs nil)
-					(save-buffers-kill-emacs)
-					(setq confirm-kill-emacs smypf-original-confirm-kill-emacs)
-					(setq smypf-scratch-q-counter 1))
-				(if (> (length (frame-list)) 1)
-					(delete-frame)
-				  (message "Press 'q' %d more time(s) to exit Emacs" (- 3 smypf-scratch-q-counter)))))
-		  (progn
-			(setq smypf-scratch-q-counter 0)
-			(switch-to-buffer "*scratch*")))))))
+      (magit-blame-quit)
+    (if (> (count-windows) 1)
+        (delete-window)
+      (if (> (length (tab-bar-tabs)) 1)
+          (tab-bar-close-tab)
+        (if (string= (buffer-name) "*scratch*")
+            (progn
+              (setq smypf-scratch-q-counter (1+ smypf-scratch-q-counter))
+              (if (>= smypf-scratch-q-counter 3)
+                  (progn
+                    (setq smypf-original-confirm-kill-emacs confirm-kill-emacs)
+                    (setq confirm-kill-emacs nil)
+                    (save-buffers-kill-emacs)
+                    (setq confirm-kill-emacs smypf-original-confirm-kill-emacs)
+                    (setq smypf-scratch-q-counter 1))
+                (if (> (length (frame-list)) 1)
+                    (delete-frame)
+                  (message "Press 'q' %d more time(s) to exit Emacs" (- 3 smypf-scratch-q-counter)))))
+          (progn
+            (setq smypf-scratch-q-counter 0)
+            (switch-to-buffer "*scratch*")))))))
 
 (defun meow-qwerty-setup ()
   ;; https://emacs.stackexchange.com/questions/45401/why-cant-i-bind-my-function-to-a-key-or-call-it-with-m-x
@@ -315,7 +315,7 @@ If the user presses q three times on the scratch buffer, exit emacs."
  '("cl" . xref-list-references)
  '("cr" . eglot-rename)
  '("ca" . eglot-code-actions)
- ;'("ce" . consult-flymake)
+                                        ;'("ce" . consult-flymake)
  '("cs" . consult-eglot-symbols)
  '("cf" . backward-forward-next-location)
  '("cb" . backward-forward-previous-location)
@@ -335,7 +335,7 @@ If the user presses q three times on the scratch buffer, exit emacs."
  '("bb" . consult-buffer)
  '("bk" . kill-buffer)
  '("B" . consult-buffer)
-										;'("," . consult-buffer)
+                                        ;'("," . consult-buffer)
 
  '("X" . org-capture)
  )
@@ -368,6 +368,7 @@ If the user presses q three times on the scratch buffer, exit emacs."
 (use-package meow-tree-sitter
   :after meow
   :defer t
+  :commands (meow-tree-sitter-register-defaults)
   :init
   (meow-tree-sitter-register-defaults))
 

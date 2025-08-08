@@ -15,10 +15,10 @@
 (use-package no-littering)
 
 (setq auto-save-file-name-transforms
-	  `((".*" ,(no-littering-expand-var-file-name "auto-save/") t))
-	  ;; Prevent creation of "#...#" lock files
-	  ;; https://www.gnu.org/software/emacs/manual/html_node/emacs/Interlocking.html#Interlocking
-	  create-lockfiles nil)
+      `((".*" ,(no-littering-expand-var-file-name "auto-save/") t))
+      ;; Prevent creation of "#...#" lock files
+      ;; https://www.gnu.org/software/emacs/manual/html_node/emacs/Interlocking.html#Interlocking
+      create-lockfiles nil)
 
 ;; Set up which-key. This shows what options are availabe for key sequences
 ;; Which key is playing up. Meow provides this functionality without explicitly enabling this functionality
@@ -38,24 +38,24 @@
 (use-package helpful
   :defer t
   :bind (
-		 ;; Note that the built-in `describe-function' includes both functions
-		 ;; and macros. `helpful-function' is functions only, so we provide
-		 ;; `helpful-callable' as a drop-in replacement.
-		 ("C-h f" . helpful-callable)
-		 ;; Lookup the current symbol at point. C-c C-d is a common keybinding
-		 ;; for this in lisp modes.
-		 ("C-h v" . helpful-variable)
-		 ("C-h k" . helpful-key)
-		 ;; By default, C-h F is bound to `Info-goto-emacs-command-node'. Helpful
-		 ;; already links to the manual, if a function is referenced there.
-		 ("C-c C-d" . helpful-at-point)
-		 ("C-h F" . helpful-function)
-		 ;; Look up *C*ommands.
-		 ;;
-		 ;; By default, C-h C is bound to describe `describe-coding-system'. I
-		 ;; don't find this very useful, but it's frequently useful to only
-		 ;; look at interactive functions.
-		 ("C-h C" . helpful-command)))
+         ;; Note that the built-in `describe-function' includes both functions
+         ;; and macros. `helpful-function' is functions only, so we provide
+         ;; `helpful-callable' as a drop-in replacement.
+         ("C-h f" . helpful-callable)
+         ;; Lookup the current symbol at point. C-c C-d is a common keybinding
+         ;; for this in lisp modes.
+         ("C-h v" . helpful-variable)
+         ("C-h k" . helpful-key)
+         ;; By default, C-h F is bound to `Info-goto-emacs-command-node'. Helpful
+         ;; already links to the manual, if a function is referenced there.
+         ("C-c C-d" . helpful-at-point)
+         ("C-h F" . helpful-function)
+         ;; Look up *C*ommands.
+         ;;
+         ;; By default, C-h C is bound to describe `describe-coding-system'. I
+         ;; don't find this very useful, but it's frequently useful to only
+         ;; look at interactive functions.
+         ("C-h C" . helpful-command)))
 
 
 ;; Replacing shackle with popper functions. They were not working well together.
@@ -143,7 +143,7 @@
   :init
   (recentf-mode t)
   (setq recentf-max-saved-items 50)
-  :bind ("C-c r" . recentf))
+  :bind ("C-c f r" . recentf))
 
 ;; Windmove is an alternative means to navigate window panes
 ;; (use-package windmove
@@ -182,51 +182,51 @@
   :ensure nil
   :init
   (defun xah-next-user-buffer ()
-	"Switch to the next user buffer.
+    "Switch to the next user buffer.
 'user buffer' is determined by `xah-user-buffer-q'.
 URL `http://xahlee.info/emacs/emacs/elisp_next_prev_user_buffer.html'
 Version 2016-06-19"
-	(interactive)
-	(next-buffer)
-	(let ((i 0))
-	  (while (< i 20)
-		(if (not (xah-user-buffer-q))
-			(progn (next-buffer)
-				   (setq i (1+ i)))
-		  (progn (setq i 100))))))
+    (interactive)
+    (next-buffer)
+    (let ((i 0))
+      (while (< i 20)
+        (if (not (xah-user-buffer-q))
+            (progn (next-buffer)
+                   (setq i (1+ i)))
+          (progn (setq i 100))))))
 
   (defun xah-previous-user-buffer ()
-	"Switch to the previous user buffer.
+    "Switch to the previous user buffer.
 'user buffer' is determined by `xah-user-buffer-q'.
 URL `http://xahlee.info/emacs/emacs/elisp_next_prev_user_buffer.html'
 Version 2016-06-19"
-	(interactive)
-	(previous-buffer)
-	(let ((i 0))
-	  (while (< i 20)
-		(if (not (xah-user-buffer-q))
-			(progn (previous-buffer)
-				   (setq i (1+ i)))
-		  (progn (setq i 100))))))
+    (interactive)
+    (previous-buffer)
+    (let ((i 0))
+      (while (< i 20)
+        (if (not (xah-user-buffer-q))
+            (progn (previous-buffer)
+                   (setq i (1+ i)))
+          (progn (setq i 100))))))
 
   (defun xah-user-buffer-q ()
-	"Return t if current buffer is a user buffer, else nil.
+    "Return t if current buffer is a user buffer, else nil.
 Typically, if buffer name starts with *, it's not considered a user buffer.
 This function is used by buffer switching command and close buffer command,
 so that next buffer shown is a user buffer.
 You can override this function to get your idea of 'user buffer'.
 version 2016-06-18"
-	(interactive)
-	(if (string-equal major-mode "deadgrep-mode")
-		t
-	  (if (string-equal "*" (substring (buffer-name) 0 1))
-		  nil
-		(if (string-equal major-mode "dired-mode")
-			nil
-		(if (string-equal major-mode "magit-process-mode")
-			nil
-		  t
-		  )))))
+    (interactive)
+    (if (string-equal major-mode "deadgrep-mode")
+        t
+      (if (string-equal "*" (substring (buffer-name) 0 1))
+          nil
+        (if (string-equal major-mode "dired-mode")
+            nil
+          (if (string-equal major-mode "magit-process-mode")
+              nil
+            t
+            )))))
 
   ;; Modified buffer navigation functions
   ;; These functions allow you to quickly jump between buffers that have unsaved changes.
@@ -234,48 +234,48 @@ version 2016-06-18"
   ;; If no other buffers have unsaved changes, a message is displayed.
 
   (defun smypf/next-modified-buffer ()
-	"Switch to the next buffer with unsaved changes.
+    "Switch to the next buffer with unsaved changes.
 Skips buffers that are not modified or are special buffers."
-	(interactive)
-	(let ((buffers (buffer-list))
-		  (current-buffer (current-buffer))
-		  (found nil)
-		  (started-from-current nil))
-	  ;; Find the current buffer in the list
-	  (while (and buffers (not found))
-		(if (eq (car buffers) current-buffer)
-			(setq found t)
-		  (setq buffers (cdr buffers))))
-	  ;; Start from the next buffer
-	  (setq buffers (cdr buffers))
-	  ;; If we reached the end, wrap around to the beginning
-	  (unless buffers
-		(setq buffers (buffer-list)))
-	  ;; Find the next modified buffer
-	  (let ((i 0)
-			(max-iterations (length (buffer-list))))
-		(while (and (< i max-iterations)
-					(or (not (and (buffer-modified-p (car buffers))
-								  (with-current-buffer (car buffers) (xah-user-buffer-q))))
-						(and started-from-current (eq (car buffers) current-buffer))))
-		  (setq buffers (cdr buffers))
-		  (setq i (1+ i))
-		  ;; Wrap around if we reach the end
-		  (unless buffers
-			(setq buffers (buffer-list))
-			(setq started-from-current t)))
-		(if (and buffers
-				 (buffer-modified-p (car buffers))
-				 (with-current-buffer (car buffers) (xah-user-buffer-q))
-				 (not (eq (car buffers) current-buffer)))
-			(switch-to-buffer (car buffers))
-		  (message "No other buffers with unsaved changes")))))
+    (interactive)
+    (let ((buffers (buffer-list))
+          (current-buffer (current-buffer))
+          (found nil)
+          (started-from-current nil))
+      ;; Find the current buffer in the list
+      (while (and buffers (not found))
+        (if (eq (car buffers) current-buffer)
+            (setq found t)
+          (setq buffers (cdr buffers))))
+      ;; Start from the next buffer
+      (setq buffers (cdr buffers))
+      ;; If we reached the end, wrap around to the beginning
+      (unless buffers
+        (setq buffers (buffer-list)))
+      ;; Find the next modified buffer
+      (let ((i 0)
+            (max-iterations (length (buffer-list))))
+        (while (and (< i max-iterations)
+                    (or (not (and (buffer-modified-p (car buffers))
+                                  (with-current-buffer (car buffers) (xah-user-buffer-q))))
+                        (and started-from-current (eq (car buffers) current-buffer))))
+          (setq buffers (cdr buffers))
+          (setq i (1+ i))
+          ;; Wrap around if we reach the end
+          (unless buffers
+            (setq buffers (buffer-list))
+            (setq started-from-current t)))
+        (if (and buffers
+                 (buffer-modified-p (car buffers))
+                 (with-current-buffer (car buffers) (xah-user-buffer-q))
+                 (not (eq (car buffers) current-buffer)))
+            (switch-to-buffer (car buffers))
+          (message "No other buffers with unsaved changes")))))
 
   ;; Bind dedicated completion commands
   ;; Alternative prefix keys: C-c p, M-p, M-+, ...
   :bind (("C-c b n" . xah-next-user-buffer)
-		 ("C-c b p" . xah-previous-user-buffer)
-		 ("C-c b m" . smypf/next-modified-buffer)))
+         ("C-c b p" . xah-previous-user-buffer)
+         ("C-c b m" . smypf/next-modified-buffer)))
 
 (use-package jinx
   :hook (emacs-startup . global-jinx-mode)
@@ -286,29 +286,29 @@ Skips buffers that are not modified or are special buffers."
 (use-package emacs
   :ensure nil
   :bind (
-		 ("s-=" . 'global-text-scale-adjust)
-		 ("s--" . 'global-text-scale-adjust)
-		 ("s-0" . 'global-text-scale-adjust)))
+         ("s-=" . 'global-text-scale-adjust)
+         ("s--" . 'global-text-scale-adjust)
+         ("s-0" . 'global-text-scale-adjust)))
 
 ;; These are stolen from https://macowners.club/posts/custom-functions-5-navigation/
 (use-package emacs
   :ensure nil
   :config
   (defun smypf-nav-split-and-follow-right ()
-	"Split and focus a new window to the right."
-	(interactive)
-	(split-window-right)
-	(other-window 1))
+    "Split and focus a new window to the right."
+    (interactive)
+    (split-window-right)
+    (other-window 1))
   (defun smypf-nav-find-file-right ()
-	"Open file with `projectile-find-file' in a split window to the right."
-	(interactive)
-	(split-window-right)
-	(other-window 1)
-	(projectile-find-file))
+    "Open file with `projectile-find-file' in a split window to the right."
+    (interactive)
+    (split-window-right)
+    (other-window 1)
+    (projectile-find-file))
   :commands (smypf-nav-find-file-right smypf-nav-split-and-follow-right)
   :bind (([remap split-window-right] . smypf-nav-split-and-follow-right)
-										;("C-c n" . smypf-nav-find-file-right)
-		 ))
+                                        ;("C-c n" . smypf-nav-find-file-right)
+         ))
 
 (use-package smart-delete
   :defer t
@@ -319,7 +319,13 @@ Skips buffers that are not modified or are special buffers."
 (use-package visual-regexp
   :defer t
   :bind (("C-c %" . vr/replace)
-		 ([remap query-replace] . vr/replace)))
+         ([remap query-replace] . vr/replace)))
+
+
+;; Doesn't work for me. It's too old maybe
+;; (use-package visual-regexp-steroids
+;;   :after visual-regexp
+;;   :defer nil)
 
 (use-package howm
   :defer t
@@ -345,42 +351,42 @@ Skips buffers that are not modified or are special buffers."
   :config
   ;; https://www.reddit.com/r/emacs/comments/r7l3ar/comment/hn3kuwh
   (defun smypf/scroll-down-half-page ()
-	"scroll down half a page while keeping the cursor centered"
-	(interactive)
-	(let ((ln (line-number-at-pos (point)))
-		  (lmax (line-number-at-pos (point-max))))
-	  (cond ((= ln 1) (move-to-window-line nil))
-			((= ln lmax) (recenter (window-end)))
-			(t (progn
-				 (move-to-window-line -1)
-				 (recenter))))))
+    "scroll down half a page while keeping the cursor centered"
+    (interactive)
+    (let ((ln (line-number-at-pos (point)))
+          (lmax (line-number-at-pos (point-max))))
+      (cond ((= ln 1) (move-to-window-line nil))
+            ((= ln lmax) (recenter (window-end)))
+            (t (progn
+                 (move-to-window-line -1)
+                 (recenter))))))
 
   (defun smypf/scroll-up-half-page ()
-	"scroll up half a page while keeping the cursor centered"
-	(interactive)
-	(let ((ln (line-number-at-pos (point)))
-		  (lmax (line-number-at-pos (point-max))))
-	  (cond ((= ln 1) nil)
-			((= ln lmax) (move-to-window-line nil))
-			(t (progn
-				 (move-to-window-line 0)
-				 (recenter))))))
+    "scroll up half a page while keeping the cursor centered"
+    (interactive)
+    (let ((ln (line-number-at-pos (point)))
+          (lmax (line-number-at-pos (point-max))))
+      (cond ((= ln 1) nil)
+            ((= ln lmax) (move-to-window-line nil))
+            (t (progn
+                 (move-to-window-line 0)
+                 (recenter))))))
 
   ;; Add to repeat map
   ;; https://www.masteringemacs.org/article/mastering-key-bindings-emacs
   (defvar scroll-repeat-map
-	(let ((map (make-sparse-keymap)))
-	  (define-key map "e" 'smypf/scroll-up-half-page)
-	  (define-key map "d" 'smypf/scroll-down-half-page)
-	  map))
+    (let ((map (make-sparse-keymap)))
+      (define-key map "e" 'smypf/scroll-up-half-page)
+      (define-key map "d" 'smypf/scroll-down-half-page)
+      map))
 
   (put 'smypf/scroll-up-half-page 'repeat-map 'scroll-repeat-map)
   (put 'smypf/scroll-down-half-page 'repeat-map 'scroll-repeat-map)
 
   :bind (
-		 ("C-c d" . smypf/scroll-down-half-page)
-		 ("C-c e" . smypf/scroll-up-half-page)
-		 )
+         ("C-c d" . smypf/scroll-down-half-page)
+         ("C-c e" . smypf/scroll-up-half-page)
+         )
   :commands (smypf/scroll-down-half-page smypf/scroll-up-half-page))
 
 
@@ -438,23 +444,23 @@ Replaces `kill-buffer--possibly-save' as advice, so
 ORIGINAL-FUNCTION is unused and never delegated to. Its first
 parameter is the buffer, which is the `car' or ARGS."
   (let ((response
-		 (car
-		  (read-multiple-choice
-		   (format "Buffer %s modified."
-				   (buffer-name))
-		   '((?s "Save and kill buffer" "save the buffer and then kill it")
-			 (?d "Discard and kill buffer without saving" "kill buffer without saving")
-			 (?c "Cancel" "Exit without doing anything"))
-		   nil nil (and (not use-short-answers)
-						(not (use-dialog-box-p)))))))
-	(cond ((= response ?s)
-		   (with-current-buffer buffer (save-buffer))
-		   t)
-		  ((= response ?d)
-		   t)
-		  ((= response ?c)
-		   nil)
-		  )))
+         (car
+          (read-multiple-choice
+           (format "Buffer %s modified."
+                   (buffer-name))
+           '((?s "Save and kill buffer" "save the buffer and then kill it")
+             (?d "Discard and kill buffer without saving" "kill buffer without saving")
+             (?c "Cancel" "Exit without doing anything"))
+           nil nil (and (not use-short-answers)
+                        (not (use-dialog-box-p)))))))
+    (cond ((= response ?s)
+           (with-current-buffer buffer (save-buffer))
+           t)
+          ((= response ?d)
+           t)
+          ((= response ?c)
+           nil)
+          )))
 
 (advice-add 'kill-buffer--possibly-save :around #'ct/kill-buffer--possibly-save--advice)
 
@@ -472,10 +478,10 @@ parameter is the buffer, which is the `car' or ARGS."
   ((meow-mode)
    .
    (lambda ()
-	 (when (and (not (minibufferp)) (not (derived-mode-p 'special-mode)))
-	   (repeat-fu-mode)
-	   (define-key meow-normal-state-keymap (kbd "C-'") 'repeat-fu-execute)
-	   (define-key meow-insert-state-keymap (kbd "C-'") 'repeat-fu-execute)))))
+     (when (and (not (minibufferp)) (not (derived-mode-p 'special-mode)))
+       (repeat-fu-mode)
+       (define-key meow-normal-state-keymap (kbd "C-'") 'repeat-fu-execute)
+       (define-key meow-insert-state-keymap (kbd "C-'") 'repeat-fu-execute)))))
 ;;;
 
 

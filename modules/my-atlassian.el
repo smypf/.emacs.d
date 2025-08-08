@@ -16,15 +16,15 @@
  'huge-git-repository
  '((nil . ((magit-refresh-buffers . nil)))
    (magit-status-mode
-	. ((eval . (magit-disable-section-inserter 'magit-insert-tags-header))
-	   ;;(eval . (magit-disable-section-inserter 'magit-insert-status-headers))
-	   ;; This was 6+ seconds for this one!!! (Something has changed)
-	   ;;(eval . (magit-disable-section-inserter 'magit-insert-untracked-files))
-	   (eval . (magit-disable-section-inserter 'magit-insert-unpulled-from-upstream))
-	   (eval . (magit-disable-section-inserter 'magit-insert-unpushed-to-upstream-or-recent))
-	   (eval . (magit-disable-section-inserter 'magit-insert-unpushed-to-pushremote))
-	   (eval . (magit-disable-section-inserter 'magit-insert-unpulled-from-pushremote))
-	   ))))
+    . ((eval . (magit-disable-section-inserter 'magit-insert-tags-header))
+       ;;(eval . (magit-disable-section-inserter 'magit-insert-status-headers))
+       ;; This was 6+ seconds for this one!!! (Something has changed)
+       ;;(eval . (magit-disable-section-inserter 'magit-insert-untracked-files))
+       (eval . (magit-disable-section-inserter 'magit-insert-unpulled-from-upstream))
+       (eval . (magit-disable-section-inserter 'magit-insert-unpushed-to-upstream-or-recent))
+       (eval . (magit-disable-section-inserter 'magit-insert-unpushed-to-pushremote))
+       (eval . (magit-disable-section-inserter 'magit-insert-unpulled-from-pushremote))
+       ))))
 
 (dir-locals-set-directory-class
  (expand-file-name "~/atlassian/afm") 'huge-git-repository)
@@ -32,20 +32,29 @@
 (defun smypf/enable-indent-tabs-mode-in-atlassian-folder ()
   "Enable indent-tabs-mode only for files in ~/atlassian folder."
   (let ((file-name (buffer-file-name)))
-	(when (and file-name
-			   (string-prefix-p (expand-file-name "~/atlassian/afm") file-name)
-			   (string-match-p "\\.tsx?$" file-name))
-	  (not (string-match-p "node_modules" file-name))
-	  (not (string-match-p "\\.d\\.ts$" file-name))
-	  (not (string-match-p "\\.rs$" file-name)))
-	;; Only enable these modes for TypeScript files
-	(setq-local indent-tabs-mode t)
-	(setq-local apheleia-mode t)))
+    (when (and file-name
+               (string-prefix-p (expand-file-name "~/atlassian/afm") file-name)
+               (string-match-p "\\.tsx?$" file-name))
+      (not (string-match-p "node_modules" file-name))
+      (not (string-match-p "\\.d\\.ts$" file-name))
+      (not (string-match-p "\\.rs$" file-name))
+      ;; Only enable these modes for TypeScript files
+      (message "enabled things")
+      (setq-local indent-tabs-mode t)
+      (setq-local apheleia-mode t))))
 
 (use-package emacs
   :ensure nil
   :hook
   (prog-mode . smypf/enable-indent-tabs-mode-in-atlassian-folder))
+
+;; Add paths to compilation search path to make it easier to navigate to errors
+(add-to-list 'compilation-search-path "~/atlassian/afm/platform/")
+(add-to-list 'compilation-search-path "~/atlassian/afm/jira/")
+(add-to-list 'compilation-search-path "~/atlassian/afm/confluence/")
+(add-hook 'projectile-after-switch-project-hook
+          (lambda ()
+            (add-to-list 'compilation-search-path (projectile-project-root))))
 
 (use-package jira
   :config

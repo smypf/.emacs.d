@@ -7,8 +7,6 @@
 
 ;;; Commentary:
 
-;; 
-
 ;;; Code:
 
 ;; Benchmark startup times
